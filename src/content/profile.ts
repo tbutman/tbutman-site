@@ -4,11 +4,12 @@ export const profile = {
   location: 'Lisbon, Portugal',
   availability: 'Remote (US) or on-site in Lisbon',
   engagement: 'Full-time or contract',
-  // TODO(thomas): confirm the production domain.
-  siteUrl: 'https://tbutman.com',
-  headline: 'I build products end to end.',
+  workAuthorization: 'US citizen',
+  hours: 'Works in your time zone',
+  headline: ['I build products', 'end to end.'],
   lede: 'Ten years shipping payment software for fintech startups, most of it as the engineer who owned the whole frontend. Today I work across the stack, from data model to deploy, and use AI agents to cover the ground of a small team.',
   email: 'tbutman@gmail.com',
+  cvPdf: '/Thomas_Butman_CV.pdf',
   links: [
     { label: 'GitHub', href: 'https://github.com/tbutman' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/thomasbutman' },
@@ -29,7 +30,7 @@ export const profile = {
   ],
   about: [
     'I started out automating my own job. At Allergan I wrote scripts that took document imports from about 100 a day by hand to 2,300 a day, and that was the push to study computer science and move into software full time.',
-    "Since then I've spent a decade building payment products at small companies, where there is nobody to hand the hard parts to. I now live in Lisbon and work with teams in the US and Europe.",
+    "Since then I've spent a decade building payment products at small companies, where there is nobody to hand the hard parts to. I moved to Lisbon in 2024 and keep working with US teams on their own hours.",
     'Away from the keyboard I am usually outdoors: backpacking, climbing or canyoneering. I am also a triplet, and I take pizza seriously.',
   ],
 }

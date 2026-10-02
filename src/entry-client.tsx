@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import App from './App'
 import './styles/base.css'
+import './styles/site.css'
 
 const container = document.getElementById('root')!
 const app = (

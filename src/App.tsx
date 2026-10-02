@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { Link, Route, Routes, useLocation } from 'react-router'
-import { profile } from './content/profile'
+import { Route, Routes, useLocation } from 'react-router'
+import SiteFooter from './components/SiteFooter'
+import SiteHeader from './components/SiteHeader'
 import { getMeta } from './meta'
 import Cv from './pages/Cv'
 import Home from './pages/Home'
@@ -22,19 +23,8 @@ export default function App() {
   useDocumentMeta()
 
   return (
-    <>
-      <header className="site-header">
-        <Link to="/" className="site-name">
-          {profile.name}
-        </Link>
-        <nav aria-label="Primary">
-          <Link to="/#work">Work</Link>
-          <Link to="/#about">About</Link>
-          <Link to="/#experience">Experience</Link>
-          <Link to="/cv">CV</Link>
-          <a href={`mailto:${profile.email}`}>Contact</a>
-        </nav>
-      </header>
+    <div className="shell">
+      <SiteHeader />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -43,11 +33,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <footer className="site-footer">
-        <p>
-          © {profile.name} · {profile.location}
-        </p>
-      </footer>
-    </>
+      <SiteFooter />
+    </div>
   )
 }

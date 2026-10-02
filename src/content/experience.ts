@@ -48,8 +48,8 @@ export const experience: Role[] = [
     end: '2019',
     summary: 'Built the recipient payment portal and the admin console behind it.',
     bullets: [
-      'Led development of the recipient portal, a payment flow whose layout, networks and steps were driven by JSON configuration served over a REST API.',
-      'Built an admin console for developers and operations staff to manage program configuration, users, roles and cash-flow reporting across environments.',
+      'Led development of the recipient portal, a payment flow whose layout, networks and steps are driven by JSON config from a REST API.',
+      'Built an admin console for managing program configuration, users, roles and cash-flow reporting across environments.',
       'Worked directly with the sales team to build configurable product demos, including image recognition with AWS Rekognition and Lambda.',
     ],
     stack: ['React', 'Redux', 'AWS Lambda', 'API Gateway', 'Material-UI'],
@@ -68,7 +68,17 @@ export const experience: Role[] = [
 ]
 
 export const education = [
-  { school: 'MakerSquare', detail: 'Advanced software engineering immersive', year: '2015' },
-  { school: 'Irvine Valley College', detail: 'Computer science coursework, 4.0 GPA', year: '2014' },
+  { school: 'MakerSquare', detail: 'Software engineering immersive', year: '2015' },
+  { school: 'Irvine Valley College', detail: 'Computer science, 4.0 GPA', year: '2014' },
   { school: 'National University', detail: 'BA, Interdisciplinary Studies', year: '2012' },
+]
+
+export const skills = [
+  { area: 'Frontend', items: 'TypeScript, React, Next.js, Redux, Tailwind CSS, Storybook, accessibility' },
+  { area: 'Backend', items: 'Node.js, Express, Fastify, REST APIs, Python/Flask, OAuth and SSO' },
+  { area: 'Data', items: 'PostgreSQL, SQLite, Drizzle ORM, DynamoDB, MongoDB' },
+  { area: 'Infrastructure', items: 'AWS (Lambda, S3, API Gateway), Docker, Vite, Webpack, CI' },
+  { area: 'Testing', items: 'Vitest, Playwright, Mocha' },
+  { area: 'AI', items: 'Claude Code and coding agents, Anthropic and OpenAI APIs, Whisper' },
+  { area: 'Embedded', items: 'C++, ESP32, Arduino, OTA updates' },
 ]
