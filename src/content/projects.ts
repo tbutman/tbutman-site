@@ -6,6 +6,8 @@ export type Project = {
   summary: string
   stack: string[]
   repo?: string
+  live?: string
+  status?: string
   problem: string
   built: string[]
 }
@@ -13,6 +15,44 @@ export type Project = {
 // Draft copy, written from each project's README. The case-study bodies still
 // need Thomas's own account of the decisions and trade-offs.
 export const projects: Project[] = [
+  {
+    slug: 'pepalert',
+    title: 'PepAlert',
+    kind: 'Product',
+    year: '2026',
+    status: 'Live · early access',
+    live: 'https://pepalert.com',
+    summary:
+      'A live price-comparison product that tracks pricing, stock and lab reports across hundreds of vendor channels, with alerts, an order optimizer and chat bots.',
+    stack: ['Next.js', 'TypeScript', 'SQLite', 'Drizzle', 'Claude API', 'Stripe'],
+    problem:
+      'Buyers were scanning dozens of Telegram channels and doing price-per-mg maths in spreadsheets, because every vendor names, sizes and prices the same product differently.',
+    built: [
+      'An ingestion pipeline that watches vendor channels, uses the Claude API to extract prices and lab-report results from posts, images and PDFs, and maps every vendor code to a canonical product. Anything uncertain goes to a review queue instead of being guessed.',
+      'A normalization and pricing engine that compares true cost per mg, including shipping, free-shipping thresholds and promotions, across 270+ products and 23+ vendors.',
+      'A multi-vendor order optimizer that plans the cheapest order, the fastest delivery or the fewest shipments.',
+      'Alerts by email and Telegram, plus Telegram and Discord bots for price lookups, order drafting and notes.',
+      'Google and Telegram sign-in, free and paid tiers, and first-party analytics with no third-party scripts.',
+      'Runs on a single self-hosted box with SQLite, chosen for cost and simplicity at early-access scale.',
+    ],
+  },
+  {
+    slug: 'chatlingo',
+    title: 'Chatlingo',
+    kind: 'AI integration',
+    year: '2025',
+    summary:
+      'Upload a WhatsApp export and read it in your language, with voice notes transcribed and translated in place.',
+    stack: ['React', 'Express', 'Postgres', 'Whisper', 'Drizzle'],
+    problem:
+      'Group chats in a language you only half speak are hard to follow, and voice notes are worse.',
+    built: [
+      'An upload pipeline that parses WhatsApp text and zip exports, including photos and audio.',
+      'Language detection and translation for mixed-language conversations.',
+      'Voice-note transcription with Whisper, with FFmpeg handling audio conversion.',
+      'A chat-style reader with audio playback, and export back to WhatsApp format.',
+    ],
+  },
   {
     slug: 'smart-shopping',
     title: 'Smart Shopping',
@@ -46,40 +86,6 @@ export const projects: Project[] = [
       'A mobile-first dashboard, gallery and settings UI served straight from the device.',
       'Signed, password-protected firmware updates over Wi-Fi with automatic rollback.',
       'CA-validated HTTPS for every page, API call and video stream, plus automatic recovery for Wi-Fi, camera and storage.',
-    ],
-  },
-  {
-    slug: 'chat-translator',
-    title: 'Chat Translator',
-    kind: 'AI integration',
-    year: '2025',
-    summary:
-      'Upload a WhatsApp export and read it in your language, with voice notes transcribed and translated in place.',
-    stack: ['React', 'Express', 'Postgres', 'Whisper', 'Drizzle'],
-    problem:
-      'Group chats in a language you only half speak are hard to follow, and voice notes are worse.',
-    built: [
-      'An upload pipeline that parses WhatsApp text and zip exports, including photos and audio.',
-      'Language detection and translation for mixed-language conversations.',
-      'Voice-note transcription with Whisper, with FFmpeg handling audio conversion.',
-      'A chat-style reader with audio playback, and export back to WhatsApp format.',
-    ],
-  },
-  {
-    slug: 'pepalert',
-    title: 'PepAlert',
-    kind: 'Data pipeline',
-    year: '2026',
-    summary:
-      'A pipeline that turns messy price lists and lab reports from many vendors into one comparable dataset.',
-    stack: ['Next.js', 'Drizzle', 'SQLite', 'Claude API', 'Stripe'],
-    problem:
-      'Every vendor names, sizes and prices the same product differently, so nothing can be compared until it is normalized.',
-    built: [
-      'An ingestion pipeline that reads vendor posts and documents and maps each vendor code onto a canonical product.',
-      'Append-only price observations, which give price history for free.',
-      'A review queue for anything the pipeline cannot map with confidence.',
-      'An invite-only dashboard with role-based access.',
     ],
   },
 ]

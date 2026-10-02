@@ -1,4 +1,6 @@
 import { Link, useParams } from 'react-router'
+import ArchitectureDiagram from '../components/ArchitectureDiagram'
+import { diagrams } from '../content/diagrams'
 import { findProject, projects } from '../content/projects'
 import NotFound from './NotFound'
 
@@ -7,6 +9,7 @@ export default function Project() {
   if (!project) return <NotFound />
 
   const number = String(projects.indexOf(project) + 1).padStart(2, '0')
+  const diagram = diagrams[project.slug]
 
   return (
     <article className="case-study">
@@ -18,6 +21,7 @@ export default function Project() {
           {number} / {project.kind.toLowerCase()}
         </span>
         <span>{project.year}</span>
+        {project.status && <span className="badge on">{project.status.toLowerCase()}</span>}
       </p>
       <h1>{project.title}</h1>
       <p className="lede">{project.summary}</p>
@@ -34,6 +38,15 @@ export default function Project() {
         <p>{project.problem}</p>
       </section>
 
+      {diagram && (
+        <section className="case-section diagram-section" aria-labelledby="architecture-heading">
+          <div className="section-head">
+            <h2 id="architecture-heading">architecture</h2>
+          </div>
+          <ArchitectureDiagram diagram={diagram} />
+        </section>
+      )}
+
       <section className="case-section" aria-labelledby="built-heading">
         <div className="section-head">
           <h2 id="built-heading">what i built</h2>
@@ -46,8 +59,13 @@ export default function Project() {
       </section>
 
       <div className="button-row">
+        {project.live && (
+          <a className="button primary" href={project.live}>
+            visit {project.live.replace(/^https:\/\//, '')} ↗
+          </a>
+        )}
         {project.repo && (
-          <a className="button primary" href={project.repo}>
+          <a className={project.live ? 'button' : 'button primary'} href={project.repo}>
             source on github
           </a>
         )}

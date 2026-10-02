@@ -59,7 +59,7 @@ export default function Home() {
                   <span>
                     {String(index + 1).padStart(2, '0')} / {project.kind.toLowerCase()}
                   </span>
-                  <span>{project.year}</span>
+                  {project.status ? <span className="badge on">live</span> : <span>{project.year}</span>}
                 </span>
                 <h3>
                   {project.title}

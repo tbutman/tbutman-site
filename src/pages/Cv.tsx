@@ -63,7 +63,14 @@ export default function Cv() {
           <ul className="cv-projects">
             {projects.map((project) => (
               <li key={project.slug}>
-                <b>{project.title}</b> · {project.summary} <span className="cv-stack">{project.stack.join(' · ')}</span>
+                <b>{project.title}</b>
+                {project.live && (
+                  <>
+                    {' '}
+                    (<a href={project.live}>{project.live.replace(/^https:\/\//, '')}</a>)
+                  </>
+                )}{' '}
+                · {project.summary} <span className="cv-stack">{project.stack.join(' · ')}</span>
               </li>
             ))}
           </ul>
