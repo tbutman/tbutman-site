@@ -17,7 +17,7 @@ export const profile = {
   principles: [
     {
       title: 'Whole-product ownership',
-      body: "I take a problem from a rough spec to something deployed and monitored, and I'm comfortable being the only engineer on it.",
+      body: 'I take a problem from a rough spec to something deployed and monitored, and I am comfortable being the only engineer on it. At DigitalPay I carried the entire frontend; PepAlert I built alone, 583 commits in its first 41 days.',
     },
     {
       title: 'AI as a force multiplier',
@@ -29,8 +29,9 @@ export const profile = {
     },
   ],
   about: [
-    'I started out automating my own job. At Allergan I wrote scripts that took document imports from about 100 a day by hand to 2,300 a day, and that was the push to study computer science and move into software full time.',
-    "Since then I've spent a decade building payment products at small companies, where there is nobody to hand the hard parts to. I moved to Lisbon in 2024 and keep working with US teams on their own hours.",
+    'I got into software by automating my own job. In clinical operations at Allergan I wrote scripts that took document imports from about 100 a day by hand to 2,300. Alongside that full-time job I finished a bachelor’s degree and then computer science coursework with a 4.0 GPA, before a software engineering immersive got me into the industry.',
+    'Since then I have spent a decade on payment products at small companies, where there is nobody to hand the hard parts to. When DigitalPay shrank from 22 people to 6, I stayed on as the only frontend engineer, kept every application running and shipped every new feature.',
+    'I do my best work close to the people using it: designers, product owners, and the sales team I built custom demos with. I moved to Lisbon in 2024 and still work with US teams on their hours.',
     'Away from the keyboard I am usually outdoors: backpacking, climbing or canyoneering. I am also a triplet, and I take pizza seriously.',
   ],
 }

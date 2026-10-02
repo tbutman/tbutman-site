@@ -1027,7 +1027,7 @@ main {
   .cv-contact {
     margin-top: 4pt;
     font: 400 8pt/1.4 var(--font-sans);
-    gap: 0 10pt;
+    gap: 0 7pt;
   }
 
   .cv section {
@@ -1074,8 +1074,7 @@ main {
   }
 
   .cv-skills {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 18pt;
+    gap: 1pt;
   }
 
   .cv-education {

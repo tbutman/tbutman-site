@@ -63,6 +63,8 @@ export const experience: Role[] = [
     summary: 'Clinical operations, where I taught myself to automate the work.',
     bullets: [
       'Automated bulk document imports with scripting, raising throughput from about 100 documents a day to 2,300.',
+      'Bridged technical and clinical teams across the US, UK, Australia and Japan.',
+      'Completed a BA and computer science coursework (4.0 GPA) while working full time.',
     ],
   },
 ]
@@ -74,11 +76,10 @@ export const education = [
 ]
 
 export const skills = [
-  { area: 'Frontend', items: 'TypeScript, React, Next.js, Redux, Tailwind CSS, Storybook, accessibility' },
+  { area: 'Frontend', items: 'TypeScript, React, Next.js, Redux, Tailwind CSS, Storybook, Vite, Webpack, accessibility' },
   { area: 'Backend', items: 'Node.js, Express, Fastify, REST APIs, Python/Flask, OAuth and SSO' },
   { area: 'Data', items: 'PostgreSQL, SQLite, Drizzle ORM, DynamoDB, MongoDB' },
-  { area: 'Infrastructure', items: 'AWS (Lambda, S3, API Gateway), Docker, Vite, Webpack, CI' },
-  { area: 'Testing', items: 'Vitest, Playwright, Mocha' },
-  { area: 'AI', items: 'Claude Code and coding agents, Anthropic and OpenAI APIs, Whisper' },
+  { area: 'Infrastructure and testing', items: 'AWS (Lambda, S3, API Gateway), Docker, CI, Vitest, Playwright, Mocha' },
+  { area: 'AI', items: 'Claude Code, Codex, Anthropic and OpenAI APIs, Whisper' },
   { area: 'Embedded', items: 'C++, ESP32, Arduino, OTA updates' },
 ]
