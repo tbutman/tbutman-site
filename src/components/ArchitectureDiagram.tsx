@@ -96,6 +96,26 @@ export default function ArchitectureDiagram({ diagram }: { diagram: Diagram }) {
           ))}
         </svg>
       </div>
+
+      {/* Phones get the same system as stacked columns instead of a sideways-scrolling drawing. */}
+      <ol className="diagram-list" aria-hidden="true">
+        {diagram.columns.map((column, index) => (
+          <li key={column}>
+            <span className="diagram-list-column">{column}</span>
+            <ul>
+              {diagram.nodes
+                .filter((node) => node.col === index)
+                .sort((a, b) => a.row - b.row)
+                .map((node) => (
+                  <li key={node.id} className={node.highlight ? 'highlight' : undefined}>
+                    <b>{node.label}</b>
+                    {node.detail && <span>{node.detail}</span>}
+                  </li>
+                ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
     </figure>
   )
 }

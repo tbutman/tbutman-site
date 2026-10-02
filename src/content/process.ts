@@ -4,15 +4,13 @@
 
 export const processIntro = {
   title: 'How I build with AI agents',
-  lede: 'PepAlert is the clearest example of how I work now: one engineer, coding agents doing most of the typing, and a process that keeps them honest. The agents write the code. I own the spec, the rules, the review and what ships.',
+  lede: 'I use coding agents within a process I own: specification, evaluation, review and deployment. PepAlert shows how I test model choices, handle uncertain data, and turn failures into safeguards.',
 }
 
 export const processStats = [
-  { value: '41', label: 'days of commits, June to August 2026' },
-  { value: '583', label: 'commits' },
-  { value: '~60k', label: 'lines of TypeScript' },
-  { value: '143', label: 'database migrations' },
-  { value: '27', label: 'design and runbook docs' },
+  { value: '< 1 week', label: 'from first commit to a deployed product with sign-in and alerts' },
+  { value: '42%', label: 'of the original model cost, matching 88 of 89 rows on an initial two-list sample' },
+  { value: '138 → 3', label: 'false positives in the review queue after a fail-safe fix, on real data' },
 ]
 
 export type ProcessStep = {
@@ -71,7 +69,8 @@ Link extraction + reconciliation live in a pure, unit-tested lib/llm/coa-links.`
     title: 'Turn every mistake into a standing rule',
     body: [
       'Agents follow a short rules file that every session loads. I wrote it on day nine to codify conventions that until then lived only in conversation, and the best rules name the incident that created them.',
-      'When an agent gets something wrong, I fix the code and then fix the rules, so the same mistake does not happen twice. Claude Code and Codex read the same rules, so the standard does not depend on the tool.',
+      'When an agent gets something wrong, I fix the code and then fix the rules, to make a repeat less likely. Claude Code and Codex read the same rules, so the standard does not depend on the tool.',
+      'Rules are prose, so they are a backstop rather than a guarantee. What is enforced in code: every push runs a typecheck, lint, migrations against a fresh database and a full build, and deploys only if all of them pass; the deploy then health-checks the live site.',
     ],
     excerpt: {
       file: 'CLAUDE.md',
@@ -84,8 +83,8 @@ Link extraction + reconciliation live in a pure, unit-tested lib/llm/coa-links.`
   {
     title: 'Ship like it is production, because it is',
     body: [
-      'Every commit is small and records the problem, the fix and how it was verified; 65 of them include an explicit verification note. Review catches what the agents miss: one filter failed open when it had no data yet, letting noise flood the review queue, and the fix made it fail closed and cut 138 false positives to 3 on real data.',
-      'The same care goes into operations. When a flaky build started serving errors in production, the deploy learned to check its own health and recover.',
+      'Commits are small, and their messages record the problem and the fix; 65 also record how the change was verified, such as unit-test results or before-and-after counts on real data. Review catches what the agents miss: one filter failed open when it had no data yet, letting noise flood the review queue, and the fix made it fail closed and cut 138 false positives to 3 on real data.',
+      'The same care goes into operations. When a flaky build started serving errors in production, the deploy gained a health check that rebuilds once if the site does not come back healthy.',
     ],
     excerpt: {
       file: 'commit a843dd4 · 4 July',
@@ -99,7 +98,7 @@ Next 16 turbopack prod builds intermittently emit broken native-module externals
 export const processPrinciples = [
   {
     title: 'Uncertainty goes to a human',
-    body: 'When extraction is not confident, the item waits in a review queue. Nothing is guessed into the published data.',
+    body: 'An import with any unresolved required field waits in a review queue instead of being published. It catches what the pipeline knows it does not know; it cannot catch a confident mistake, which is what spot checks are for.',
   },
   {
     title: 'Cost is a design constraint',

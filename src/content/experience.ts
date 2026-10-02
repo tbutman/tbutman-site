@@ -34,7 +34,7 @@ export const experience: Role[] = [
       'Sole frontend owner for payment products used by millions of recipients.',
     bullets: [
       'Owned frontend development for all core applications: customer-facing payment products, internal tools and sales demos, used by millions of recipients and processing hundreds of millions of dollars in payments.',
-      'Remained the sole frontend engineer as the team shrank from 22 people to 6, maintaining every application and shipping all new features.',
+      'Remained the sole frontend engineer as the team shrank from 22 people to 6, maintaining the core applications and shipping their frontend features.',
       'Shipped payout experiences that let recipients choose from more than 250 payment options, including direct-to-bank, digital debit card, wallet balance and gift cards.',
       'Built a shared component library used across company applications, with per-customer theming.',
     ],
@@ -63,15 +63,14 @@ export const experience: Role[] = [
     summary: 'Clinical operations, where I taught myself to automate the work.',
     bullets: [
       'Automated bulk document imports with scripting, raising throughput from about 100 documents a day to 2,300.',
-      'Bridged technical and clinical teams across the US, UK, Australia and Japan.',
-      'Completed a BA and computer science coursework (4.0 GPA) while working full time.',
+      'Completed a BA and computer science coursework while working full time.',
     ],
   },
 ]
 
 export const education = [
   { school: 'MakerSquare', detail: 'Software engineering immersive', year: '2015' },
-  { school: 'Irvine Valley College', detail: 'Computer science, 4.0 GPA', year: '2014' },
+  { school: 'Irvine Valley College', detail: 'Computer science coursework', year: '2014' },
   { school: 'National University', detail: 'BA, Interdisciplinary Studies', year: '2012' },
 ]
 

@@ -3,10 +3,10 @@ import { profile } from '../content/profile'
 import CommandPalette from './CommandPalette'
 
 const navItems = [
-  { label: 'work', to: '/#work', section: 'work' },
-  { label: 'lab', to: '/#lab', section: 'lab' },
-  { label: 'about', to: '/#about', section: 'about' },
   { label: 'experience', to: '/#experience', section: 'experience' },
+  { label: 'work', to: '/#work', section: 'work' },
+  { label: 'about', to: '/#about', section: 'about' },
+  { label: 'lab', to: '/#lab', section: 'lab' },
   { label: 'cv', to: '/cv', section: 'cv' },
 ]
 

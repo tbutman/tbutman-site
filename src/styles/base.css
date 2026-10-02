@@ -11,8 +11,8 @@
   --line-strong: #2b343e;
   --text: #e7eaee;
   --text-soft: #b6bec8;
-  --muted: #8a94a0;
-  --dim: #76808c;
+  --muted: #a2abb6;
+  --dim: #8a94a0;
   --accent: #ffb547;
   --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
   --accent-line: color-mix(in srgb, var(--accent) 42%, var(--line));

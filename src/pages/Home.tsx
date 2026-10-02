@@ -46,6 +46,26 @@ export default function Home() {
         </dl>
       </section>
 
+      <section id="experience" className="section" aria-labelledby="experience-heading">
+        <div className="section-head">
+          <h2 id="experience-heading">experience</h2>
+          <Link to="/cv">full cv →</Link>
+        </div>
+        <ol className="log panel">
+          {experience.map((role) => (
+            <li key={role.company}>
+              <span className="when">
+                {role.start} — {role.end.toLowerCase()}
+              </span>
+              <h3>
+                {role.company}
+                <small>{role.title.toLowerCase()}</small>
+              </h3>
+              <p>{role.summary}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
       <section id="work" className="section" aria-labelledby="work-heading">
         <div className="section-head">
           <h2 id="work-heading">selected work</h2>
@@ -59,7 +79,7 @@ export default function Home() {
                   <span>
                     {String(index + 1).padStart(2, '0')} / {project.kind.toLowerCase()}
                   </span>
-                  {project.status ? <span className="badge on">live</span> : <span>{project.year}</span>}
+                  {project.live ? <span className="badge on">live</span> : <span>{project.year}</span>}
                 </span>
                 <h3>
                   {project.title}
@@ -95,6 +115,18 @@ export default function Home() {
         </ul>
       </section>
 
+      <section id="about" className="section" aria-labelledby="about-heading">
+        <div className="section-head">
+          <h2 id="about-heading">about</h2>
+        </div>
+        <div className="about">
+          {profile.about.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </section>
+
+
       <section id="lab" className="section" aria-labelledby="lab-heading">
         <div className="section-head">
           <h2 id="lab-heading">lab</h2>
@@ -113,38 +145,6 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section id="about" className="section" aria-labelledby="about-heading">
-        <div className="section-head">
-          <h2 id="about-heading">about</h2>
-        </div>
-        <div className="about">
-          {profile.about.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </section>
-
-      <section id="experience" className="section" aria-labelledby="experience-heading">
-        <div className="section-head">
-          <h2 id="experience-heading">experience</h2>
-          <Link to="/cv">full cv →</Link>
-        </div>
-        <ol className="log panel">
-          {experience.map((role) => (
-            <li key={role.company}>
-              <span className="when">
-                {role.start} — {role.end.toLowerCase()}
-              </span>
-              <h3>
-                {role.company}
-                <small>{role.title.toLowerCase()}</small>
-              </h3>
-              <p>{role.summary}</p>
-            </li>
-          ))}
-        </ol>
       </section>
     </>
   )

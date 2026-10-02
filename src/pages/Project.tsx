@@ -21,7 +21,9 @@ export default function Project() {
           {number} / {project.kind.toLowerCase()}
         </span>
         <span>{project.year}</span>
-        {project.status && <span className="badge on">{project.status.toLowerCase()}</span>}
+        {project.status && (
+          <span className={project.live ? 'badge on' : 'badge'}>{project.status.toLowerCase()}</span>
+        )}
       </p>
       <h1>{project.title}</h1>
       <p className="lede">{project.summary}</p>

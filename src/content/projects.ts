@@ -29,7 +29,7 @@ export const projects: Project[] = [
       'Buyers were scanning dozens of Telegram channels and doing price-per-mg maths in spreadsheets, because every vendor names, sizes and prices the same product differently.',
     built: [
       'An ingestion pipeline that watches vendor channels, uses the Claude API to extract prices and lab-report results from posts, images and PDFs, and maps every vendor code to a canonical product. Anything uncertain goes to a review queue instead of being guessed.',
-      'A normalization and pricing engine that compares true cost per mg, including shipping, free-shipping thresholds and promotions, across 270+ products and 23+ vendors.',
+      'A normalization and pricing engine that compares true cost per mg, including shipping, free-shipping thresholds and promotions. As of October 2026 the catalog covers 270+ products from 23+ vendors.',
       'A multi-vendor order optimizer that plans the cheapest order, the fastest delivery or the fewest shipments.',
       'Alerts by email and Telegram, plus Telegram and Discord bots for price lookups, order drafting and notes.',
       'Google and Telegram sign-in, free and paid tiers, and first-party analytics with no third-party scripts.',
@@ -41,6 +41,7 @@ export const projects: Project[] = [
     title: 'Chatlingo',
     kind: 'AI integration',
     year: '2025',
+    status: 'Working prototype · not currently deployed',
     summary:
       'Upload a WhatsApp export and read it in your language, with voice notes transcribed and translated in place.',
     stack: ['React', 'Express', 'Postgres', 'Whisper', 'Drizzle'],
@@ -58,6 +59,7 @@ export const projects: Project[] = [
     title: 'Smart Shopping',
     kind: 'Full stack',
     year: '2026',
+    status: 'Working v1 · runs locally',
     summary:
       'A barcode-driven household shopping system: one authoritative backend, offline-first device clients and a full hardware simulator.',
     stack: ['TypeScript', 'Fastify', 'SQLite', 'React', 'Playwright'],
@@ -75,10 +77,10 @@ export const projects: Project[] = [
     title: 'Spot-Watch',
     kind: 'Embedded',
     year: '2026',
+    status: 'Personal hardware build · local network only',
     summary:
       'An ESP32 parking camera with a mobile dashboard, signed over-the-air updates and HTTPS end to end.',
     stack: ['C++', 'ESP32-S3', 'Embedded web UI', 'OTA'],
-    repo: 'https://github.com/tbutman/spot-watch',
     problem:
       'I wanted to check on a parked car from my phone without sending video through a third-party cloud.',
     built: [

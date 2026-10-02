@@ -185,10 +185,11 @@ export default function CommandPalette() {
         type="button"
         className="palette-trigger"
         onClick={show}
-        aria-label="Open command menu"
+        aria-label="Open menu"
         aria-keyshortcuts="Meta+K Control+K"
       >
-        {shortcut}
+        <span className="trigger-label">menu</span>
+        <kbd>{shortcut}</kbd>
       </button>
 
       <dialog
