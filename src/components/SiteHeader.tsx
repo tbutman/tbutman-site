@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router'
 import { profile } from '../content/profile'
+import CommandPalette from './CommandPalette'
 
 const navItems = [
   { label: 'work', to: '/#work', section: 'work' },
@@ -34,6 +35,7 @@ export default function SiteHeader() {
           </Link>
         ))}
         <a href={`mailto:${profile.email}`}>contact</a>
+        <CommandPalette />
       </nav>
     </header>
   )
