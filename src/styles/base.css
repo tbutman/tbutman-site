@@ -1,0 +1,32 @@
+/* Neutral baseline. Theme tokens and layout land once the visual direction is chosen. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 0 1rem;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
