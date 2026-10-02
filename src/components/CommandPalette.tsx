@@ -47,6 +47,13 @@ export default function CommandPalette() {
       { id: 'about', group: 'go to', label: 'About', run: goToSection('about') },
       { id: 'experience', group: 'go to', label: 'Experience', keywords: 'jobs history', run: goToSection('experience') },
       { id: 'cv', group: 'go to', label: 'CV', keywords: 'resume', run: () => navigate('/cv') },
+      {
+        id: 'how-i-work',
+        group: 'go to',
+        label: 'How I build with AI agents',
+        keywords: 'process workflow claude codex',
+        run: () => navigate('/how-i-work'),
+      },
       ...projects.map((project) => ({
         id: `project-${project.slug}`,
         group: 'case studies',

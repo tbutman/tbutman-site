@@ -5,6 +5,7 @@ import SiteHeader from './components/SiteHeader'
 import { getMeta } from './meta'
 import Cv from './pages/Cv'
 import Home from './pages/Home'
+import HowIWork from './pages/HowIWork'
 import NotFound from './pages/NotFound'
 import Project from './pages/Project'
 
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/work/:slug" element={<Project />} />
           <Route path="/cv" element={<Cv />} />
+          <Route path="/how-i-work" element={<HowIWork />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

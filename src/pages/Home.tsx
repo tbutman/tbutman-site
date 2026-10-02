@@ -82,6 +82,7 @@ export default function Home() {
       <section className="section" aria-labelledby="how-heading">
         <div className="section-head">
           <h2 id="how-heading">how i work</h2>
+          <Link to="/how-i-work">the process on a real project →</Link>
         </div>
         <ul className="principles">
           {profile.principles.map((principle, index) => (

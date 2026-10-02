@@ -1,4 +1,5 @@
 import { profile } from './content/profile'
+import { processIntro } from './content/process'
 import { findProject } from './content/projects'
 
 export type Meta = { title: string; description: string }
@@ -8,6 +9,9 @@ const defaultDescription = `${profile.name} is a ${profile.role.toLowerCase()} i
 export function getMeta(pathname: string): Meta {
   if (pathname === '/') {
     return { title: `${profile.name} · ${profile.role}`, description: defaultDescription }
+  }
+  if (pathname === '/how-i-work') {
+    return { title: `${processIntro.title} · ${profile.name}`, description: processIntro.lede }
   }
   if (pathname === '/cv') {
     return { title: `CV · ${profile.name}`, description: defaultDescription }
