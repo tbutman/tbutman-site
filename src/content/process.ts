@@ -23,26 +23,55 @@ export type ProcessStep = {
 
 export const processSteps: ProcessStep[] = [
   {
-    title: 'Write the spec first',
+    title: 'Write the spec first, and mark the guesses',
     body: [
-      'Every project starts with a living spec: the goal, the domain model, the architecture, and a phased build plan. Anything I am unsure about is marked as an assumption or an open question instead of being quietly decided, so neither I nor an agent builds on a guess.',
-      'The spec is what agents read before they touch the code, and it changes as the product does.',
+      'Every project starts with a living spec: the goal, the domain model, the architecture and a phased build plan. Anything I have not verified is marked as an assumption or an open question instead of being quietly decided, so neither I nor an agent builds on a guess without knowing it.',
+      'The spec is what agents read before they touch the code. The assumptions in it become the first things to test.',
     ],
     excerpt: {
       file: 'SPEC.md',
-      text: `> Status: draft v1 (2026-06-27). Distilled from ideation.
-> Open items and assumptions are marked **[ASSUMPTION]** / **[OPEN]** — flag any to change.
+      text: `> Open items and assumptions are marked **[ASSUMPTION]** / **[OPEN]** — flag any to change.
 
-### The draft → published boundary
+- **Extraction = LLM-driven.** [ASSUMPTION] Use Claude — Haiku 4.5 for cheap classification, Sonnet 4.6 / Opus 4.8 (vision) for hard image/PDF extraction. (Detailed API choices deferred to build.)`,
+    },
+  },
+  {
+    title: 'Measure before you trust a model',
+    body: [
+      'Within the first week, that assumption got tested. Instead of picking a model on instinct, I had an agent build a small harness that runs several models over real data and diffs every extracted row against a baseline.',
+      'On a first sample, a cheaper model ran at 42% of the cost with 88 of 89 rows matching and no price errors. Model choice became a per-task setting backed by numbers, and every call is now tracked on a cost dashboard.',
+    ],
+    excerpt: {
+      file: 'commit 5b71d9f · 3 July',
+      text: `feat(llm): per-kind model config + A/B compare harness (cut extraction cost)
 
-Imports enter as **drafts**, sit in a **needs-review** queue if any required field is unresolved (never guessed), get resolved/aliased, then **published**.`,
+Extraction runs on Opus 4.8 ($5/$25) for every kind. Add per-kind model overrides (ANTHROPIC_MODEL_<KIND>) via modelFor() so cheaper models can be dialed in per kind, plus Sonnet 4.6 / Haiku 4.5 pricing so recorded costs stay accurate. New \`npm run llm:compare\` runs several models over real dumped price lists and diffs rows vs a baseline — measured Sonnet 4.6 at 0.42x Opus cost with 88/89 rows matched and zero price deltas on a 2-list sample.`,
+    },
+  },
+  {
+    title: "Don't ask a model to do what code can",
+    body: [
+      'Models are good at messy, judgment-heavy extraction and unreliable at exhaustive recall. When dense posts made the model silently drop lab-report links, the fix was not a longer prompt.',
+      'Plain code now finds every link, the model only has to match a known list, and anything it still misses is reconciled afterwards, so nothing is lost. The deterministic part lives in a small, unit-tested library.',
+    ],
+    excerpt: {
+      file: 'commit 0726ade · 12 July',
+      text: `Regex-extract COA test links so the model doesn't drop any
+
+Multi-product COA promo posts caused the extractor to miss some janoshik test links (recall drops on dense posts), silently losing third-party tests. Test reports are deterministic janoshik URLs, so now:
+
+- regex every link out of the message and hand the model an explicit checklist, so it only has to attribute a known list rather than hunt for links;
+- strengthen the prompt: a product can have several test links — include all;
+- reconcile the result — append any link the model still dropped, resolving the product from the link slug (or leaving it for manual mapping and logging it), so no test is lost.
+
+Link extraction + reconciliation live in a pure, unit-tested lib/llm/coa-links.`,
     },
   },
   {
     title: 'Turn every mistake into a standing rule',
     body: [
-      'Agents follow a short rules file that every session loads. Most rules exist because something went wrong once: a check that passed when it should have failed, or a test script that wiped settings it should have left alone.',
-      'When an agent makes a mistake, I fix the code and then fix the rules, so the same mistake does not happen twice.',
+      'Agents follow a short rules file that every session loads. I wrote it on day nine to codify conventions that until then lived only in conversation, and the best rules name the incident that created them.',
+      'When an agent gets something wrong, I fix the code and then fix the rules, so the same mistake does not happen twice. Claude Code and Codex read the same rules, so the standard does not depend on the tool.',
     ],
     excerpt: {
       file: 'CLAUDE.md',
@@ -53,38 +82,16 @@ Imports enter as **drafts**, sit in a **needs-review** queue if any required fie
     },
   },
   {
-    title: 'Small changes, detailed records',
+    title: 'Ship like it is production, because it is',
     body: [
-      'Agents work in small, single-purpose commits, each with a message that explains the problem, the fix and how it was verified. The history reads like an engineering log, which makes review fast and makes it easy to see why any line exists.',
-      'I use more than one agent (Claude Code and Codex) and keep the same rules file for both, so the standards do not depend on which tool did the work.',
+      'Every commit is small and records the problem, the fix and how it was verified; 65 of them include an explicit verification note. Review catches what the agents miss: one filter failed open when it had no data yet, letting noise flood the review queue, and the fix made it fail closed and cut 138 false positives to 3 on real data.',
+      'The same care goes into operations. When a flaky build started serving errors in production, the deploy learned to check its own health and recover.',
     ],
     excerpt: {
-      file: 'git log --oneline (two days in August)',
-      text: `7c4b117 Classifier provenance: live re-guess instead of a stored baseline
-8cabd22 Classifier provenance: diff against a FROZEN auto-baseline
-435e5ad Rep gate: fail SAFE (not open) when a vendor has no synced reps
-b21bd8d Process all: run in the background with live progress instead of blocking
-3a7701b Process all: show extraction count + rough cost + blocking warning before running
-f2c14b2 Render all user-facing dates in the viewer's timezone`,
-    },
-  },
-  {
-    title: 'Review like it is going to production',
-    body: [
-      'Because it is. One review caught a filter that failed open: when a data source had no allow-list yet, it let everything through and flooded the review queue. The fix made it fail closed, refused to replace a good allow-list with an empty fetch, and surfaced the condition in the admin UI. It was verified with unit tests and by re-running detection on real data, which cut 138 false positives to 3.',
-      'Review also means simplifying. One design shipped, and the next day I replaced it with a simpler version that had a single source of truth, then wrote the lesson into the code as a contract for future changes.',
-    ],
-    excerpt: {
-      file: 'commit 435e5ad (abridged)',
-      text: `Rep gate: fail SAFE (not open) when a vendor has no synced reps
+      file: 'commit a843dd4 · 4 July',
+      text: `fix(deploy): self-heal — health-check after build, rebuild once on turbopack flake
 
-A vendor with no reps made detection fail OPEN, flooding the queue. Fix, layered:
-
-- Fail-safe gate: with no reps, only channel posts pass.
-- A failed or empty fetch never replaces the existing reps; it is a retryable no-op.
-- Surface it: a warning on /vendors and a banner on /updates.
-
-Verified: unit test (11/11); re-detect on real data dropped 138 -> 3 pending.`,
+Next 16 turbopack prod builds intermittently emit broken native-module externals (better-sqlite3, setup-node-env) that build fine but 500 at runtime; a fresh rebuild clears it. deploy.sh now health-checks / (exercises the DB) after build+restart and auto-rebuilds once if it 500s, so a flaky build can't leave the site down.`,
     },
   },
 ]
@@ -96,7 +103,7 @@ export const processPrinciples = [
   },
   {
     title: 'Cost is a design constraint',
-    body: 'Model calls cost money, so expensive reprocessing is batched, tracked on a cost dashboard and only run when it is worth it.',
+    body: 'Repeat content is fingerprinted and served from a cache instead of a new model call, and full reprocessing is batched until it is worth the spend.',
   },
   {
     title: 'Fail safe, then make it visible',
