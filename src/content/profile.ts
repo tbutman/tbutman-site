@@ -10,6 +10,8 @@ export const profile = {
   lede: 'Senior product engineer with ten years in fintech and deep React experience. I owned the frontend across DigitalPay’s payment applications, and now build full-stack products from data model through deployment.',
   email: 'tbutman@gmail.com',
   bookingUrl: 'https://cal.com/tbutman/intro',
+  // Turn on once the contact service is deployed and a test message has arrived.
+  contactFormEnabled: false,
   cvPdf: '/Thomas_Butman_CV.pdf',
   links: [
     { label: 'GitHub', href: 'https://github.com/tbutman' },

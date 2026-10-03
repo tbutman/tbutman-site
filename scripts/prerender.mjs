@@ -56,7 +56,7 @@ for (const path of paths) {
     `<title>${escapeHtml(meta.title)}</title>`,
     `<meta name="description" content="${escapeHtml(meta.description)}" />`,
     path === '/404' ? '' : `<link rel="canonical" href="${url}" />`,
-    indexable && path !== '/404' ? '' : '<meta name="robots" content="noindex" />',
+    indexable && path !== '/404' && !meta.noindex ? '' : '<meta name="robots" content="noindex" />',
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="Thomas Butman" />`,
     `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
@@ -86,7 +86,7 @@ await writeFile(
 await writeFile(
   join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths
-    .filter((path) => path !== '/404')
+    .filter((path) => path !== '/404' && !render(path).meta.noindex)
     .map((path) => `  <url><loc>${siteUrl}${path === '/' ? '/' : path}</loc></url>`)
     .join('\n')}\n</urlset>\n`,
 )

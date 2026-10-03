@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { profile } from '../content/profile'
 import { copyText, selectText } from '../lib/clipboard'
+import ContactForm from './ContactForm'
 
 export default function ContactSection() {
   const [status, setStatus] = useState<'idle' | 'copied' | 'selected'>('idle')
@@ -37,6 +38,7 @@ export default function ContactSection() {
             {status === 'copied' ? 'Email address copied' : status === 'selected' ? 'Email address selected' : ''}
           </span>
         </div>
+        {profile.contactFormEnabled && <ContactForm />}
         <div className="button-row">
           <a className="button primary" href={profile.bookingUrl}>
             book a 20-minute intro call ↗

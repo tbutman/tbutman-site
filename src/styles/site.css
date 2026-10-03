@@ -355,6 +355,93 @@ main {
   cursor: pointer;
 }
 
+/* ---------- Contact form ---------- */
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.375rem;
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--muted);
+}
+
+.contact-form em {
+  font-style: normal;
+  color: var(--dim);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  font: 400 1rem/1.5 var(--font-sans);
+  color: var(--text);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.contact-form .honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.form-actions .button {
+  cursor: pointer;
+}
+
+.form-actions .button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.form-status {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
+.form-status a {
+  color: var(--accent);
+}
+
+.form-status.sent {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--accent-line);
+  border-radius: 8px;
+  color: var(--text);
+}
+
 /* ---------- Principles ---------- */
 
 .principles {
@@ -987,6 +1074,10 @@ main {
 }
 
 @media (max-width: 680px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
   /* The command palette doubles as the menu on small screens. */
   .site-nav a {
     display: none;

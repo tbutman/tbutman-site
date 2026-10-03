@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import HowIWork from './pages/HowIWork'
 import NotFound from './pages/NotFound'
 import Project from './pages/Project'
+import Thanks from './pages/Thanks'
 
 function useDocumentMeta() {
   const { pathname, hash } = useLocation()
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/work/:slug" element={<Project />} />
           <Route path="/cv" element={<Cv />} />
           <Route path="/how-i-work" element={<HowIWork />} />
+          <Route path="/thanks" element={<Thanks />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

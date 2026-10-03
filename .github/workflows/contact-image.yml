@@ -1,0 +1,54 @@
+name: Contact service image
+
+# Tests the contact-form service and publishes its container image to GHCR when it changes.
+# The server pins the image by tag (see deploy/README.md), so publishing never changes
+# production by itself.
+
+on:
+  push:
+    branches: [main]
+    paths: ['services/contact/**', '.github/workflows/contact-image.yml']
+  pull_request:
+    paths: ['services/contact/**', '.github/workflows/contact-image.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node --test services/contact/server.test.mjs
+
+  image:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      - name: Tag
+        id: tag
+        run: echo "short=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v7
+        with:
+          context: services/contact
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/${{ github.repository }}-contact:${{ steps.tag.outputs.short }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.description=Contact-form endpoint for tbutman.com

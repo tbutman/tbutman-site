@@ -15,6 +15,8 @@ function gitCommit() {
 // https://vite.dev/config/
 export default defineConfig(({ isPreview }) => ({
   plugins: [react()],
+  // In development, forward the contact form to a local `node services/contact/server.mjs`.
+  server: { proxy: { '/api': 'http://127.0.0.1:3000' } },
   define: {
     __BUILD_COMMIT__: JSON.stringify(gitCommit()),
     __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),

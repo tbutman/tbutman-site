@@ -5,7 +5,7 @@ import App from './App'
 import { projects } from './content/projects'
 import { getMeta } from './meta'
 
-export const paths = ['/', '/cv', '/how-i-work', ...projects.map((project) => `/work/${project.slug}`), '/404']
+export const paths = ['/', '/cv', '/how-i-work', '/thanks', ...projects.map((project) => `/work/${project.slug}`), '/404']
 
 export function render(path: string) {
   const html = renderToString(
