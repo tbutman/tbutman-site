@@ -499,6 +499,10 @@ main {
   font-size: 1.0625rem;
 }
 
+.case-section > p + p {
+  margin-top: 1rem;
+}
+
 .built-list {
   display: grid;
   gap: 0.875rem;

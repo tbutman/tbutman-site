@@ -40,7 +40,7 @@ export const profile = {
   ],
   about: [
     'I got into software by automating my own job. In clinical operations at Allergan I wrote scripts that took document imports from about 100 a day by hand to 2,300. Alongside that full-time job I finished a bachelor’s degree and then computer science coursework with a 4.0 GPA, before a software engineering immersive got me into the industry.',
-    'Since then I have spent a decade on payment products at small companies. When DigitalPay shrank from 22 people to 6, I stayed on as the only frontend engineer and kept shipping frontend features across the core applications.',
+    'Since then I have spent a decade on payment products at small companies. Ahead of DigitalPay’s first payout to about a million recipients, I did not trust our first version with it, so I rebuilt the payout portal on nights and weekends and only pitched the rewrite once I could demo it. When the team shrank from 22 people to 6, I stayed on as the only frontend engineer.',
     'I do my best work close to the people using it: designers, product owners, and the sales team I built custom demos with. I moved to Lisbon in 2024 and still work with US teams on their hours.',
     'Away from the keyboard I am usually outdoors: backpacking, climbing or canyoneering. I am also a triplet, and I take pizza seriously.',
   ],

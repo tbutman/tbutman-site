@@ -41,6 +41,17 @@ export default function Project() {
         <p>{project.problem}</p>
       </section>
 
+      {project.story?.map((section, index) => (
+        <section key={section.heading} className="case-section" aria-labelledby={`story-heading-${index}`}>
+          <div className="section-head">
+            <h2 id={`story-heading-${index}`}>{section.heading}</h2>
+          </div>
+          {section.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </section>
+      ))}
+
       {diagram && (
         <section className="case-section diagram-section" aria-labelledby="architecture-heading">
           <div className="section-head">
@@ -71,6 +82,15 @@ export default function Project() {
               <li key={item}>{item}</li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {project.reflection && (
+        <section className="case-section" aria-labelledby="reflection-heading">
+          <div className="section-head">
+            <h2 id="reflection-heading">looking back</h2>
+          </div>
+          <p>{project.reflection}</p>
         </section>
       )}
 

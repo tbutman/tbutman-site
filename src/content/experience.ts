@@ -31,13 +31,14 @@ export const experience: Role[] = [
     start: '2019',
     end: '2025',
     summary:
-      'Sole frontend owner; rewrote the payout product as a configuration-driven system used by millions of recipients.',
+      'Sole frontend owner; rewrote the payout portal so new programs launch from configuration in a morning.',
     bullets: [
       'Owned frontend development for all core applications: customer-facing payment products, internal tools and sales demos, used by millions of recipients and processing hundreds of millions of dollars in payments.',
+      'Rewrote the consumer payout portal on my own initiative ahead of a payout to about a million recipients, building a working version on nights and weekends before proposing it, then piloting it on a new program while existing programs stayed on v1.',
+      'Made the portal configuration-driven: customer defaults with per-program, per-network, per-status and per-amount overrides stored in the database. Launching a program went from days of often-buggy work to ready to test within a morning.',
+      'Modelled the UI as a state machine mirroring backend payment statuses, and designed the API and configuration schema in lockstep with the CTO, who later rewrote the backend along the same lines.',
+      'Supported 250+ payment options across dozens of payout methods, including ACH, PayPal, direct-to-bank, paper check with address collection and normalization, rewards programs and gift cards.',
       'Remained the sole frontend engineer as the team shrank from 22 people to 6, maintaining the core applications and shipping their frontend features.',
-      'Shipped payout experiences that let recipients choose from more than 250 payment options, including direct-to-bank, digital debit card, wallet balance and gift cards.',
-      'Rewrote the consumer payout frontend as a configuration-driven system: branding, copy, payment flows, payment options, notifications and outage handling configurable per customer and program in the database, with no deploy.',
-      'Modelled the frontend as a state machine mirroring backend payment statuses, built from shared components whose Storybook previews product reviews ran against.',
     ],
     stack: ['React', 'AWS', 'Storybook', 'Webpack'],
   },

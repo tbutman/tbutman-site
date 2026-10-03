@@ -11,8 +11,12 @@ export type Project = {
   /** What the work was mine versus other people's. */
   scope?: string
   problem: string
+  /** Narrative sections shown between the problem and the architecture. */
+  story?: { heading: string; body: string[] }[]
   built: string[]
   outcomes?: string[]
+  /** A closing note on what I would do next or differently. */
+  reflection?: string
 }
 
 // Personal projects are drafted from each project's README; DigitalPay is from Thomas's own
@@ -25,24 +29,50 @@ export const projects: Project[] = [
     year: '2019–2025',
     status: 'Production · millions of recipients',
     summary:
-      'A ground-up rewrite of the consumer payout frontend into a configuration-driven system: every customer and program gets its own branding, copy, payment flows and payment options, changed in the database without a deploy.',
+      'A rewrite of the consumer payout portal into a configuration-driven state machine. Launching a new payout program went from days of often-buggy work to ready to test within a morning.',
     stack: ['React', 'Context/Hooks', 'Storybook', 'JSON configuration', 'AWS'],
     scope:
-      'I owned the consumer frontend and rewrote it end to end. The payments backend was built by other engineers.',
+      'I owned the consumer payout portal from its first version and rewrote it end to end. The payments backend was built by the company’s CTO, who was also its principal engineer.',
     problem:
-      'I wrote most of the first version of the payout frontend. As the product matured and business needs changed, every new customer, program or rule meant code changes, testing and a deploy, and every deploy carried risk while millions of recipients were mid-program and relying on the system to get paid.',
+      'DigitalPay pays out money on behalf of its customers, many of them class-action settlement administrators running several programs each. I had written most of the first version of the payout portal, and as the business grew it became brittle: copy and behaviour were hard-coded in places nobody could easily find, every new program meant days of changes and a risky deploy, and testing a single screen meant walking a test payment through one specific payment network. Our first big payout, to about a million recipients, was coming, and I did not trust v1 with it.',
+    story: [
+      {
+        heading: 'building it before pitching it',
+        body: [
+          'I started the rewrite on my own, on nights and weekends, designing it to be composable from the first line and then rebuilding every v1 feature on the new architecture. By the time I proposed it, it was largely built and I could demo it.',
+          'We kept every existing program running on v1 and piloted v2 on the next new program, so live payouts were never at risk during the switch.',
+        ],
+      },
+      {
+        heading: 'configuration in layers',
+        body: [
+          'Each customer has one base configuration for branding, copy and defaults. Programs override it, and overrides can go further, per payment network, payment status or amount. The resolved configuration becomes the props passed to each component, so it is always clear why a screen looks the way it does.',
+          'The portal itself is a state machine whose states mirror the backend’s payment statuses, with composable views and flows for dozens of payout methods: ACH and PayPal, direct to bank, paper checks with address collection and normalization, rewards programs and gift cards.',
+        ],
+      },
+      {
+        heading: 'designing with the backend',
+        body: [
+          'I worked in lockstep with the CTO, who wrote the backend. The backend stayed the source of truth for business logic, and my job was to handle every state it could produce; together we designed the API, the config schema and even the property names, which let us move very quickly.',
+          'After the frontend shipped, he rewrote the backend as a v2 of its own, partly inspired by the frontend rewrite.',
+        ],
+      },
+    ],
     built: [
-      'Rewrote the entire consumer frontend from scratch as composable payment flows, driven by per-customer and per-program JSON configuration stored in the database.',
-      'Made nearly everything configurable on the fly: copy and payment language, branding to each customer’s spec, payment flows, available payment options, notifications and emails, and error messaging.',
-      'Let a payment network be switched off through configuration during an upstream outage, with no code change.',
-      'Modelled the frontend as a state machine whose states mirror the backend’s payment statuses, so the UI is easy to reason about and stays in step with the payments system.',
-      'Built the flows from shared components with Storybook previews, which product reviews were run against.',
+      'A ground-up rewrite of the consumer payout portal as composable payment flows driven by layered JSON configuration stored in the database.',
+      'Configurable copy, payment language, branding to each customer’s spec, payment flows, available payment options, notifications and error messaging, with overrides per program, payment network, payment status and amount.',
+      'A switch to disable a payment network through configuration during an upstream outage, with no code change.',
+      'Scripts that generate every user notification template from a program’s configuration and load it into the production database.',
+      'Storybook previews of every component and state, driven by the same configuration props as production.',
     ],
     outcomes: [
-      'Launching or changing a customer program became a configuration change instead of a release.',
-      'Fewer code changes to test and deploy, and a more stable product for recipients in the middle of a program.',
-      'Product reviews moved from deployed builds to previews of the configurable components in Storybook.',
+      'Launching a program became a new row in the programs table with its configuration in a column: ready to test within a morning, instead of days of often-buggy work.',
+      'Onboarding a new customer went from days to minutes or hours, limited mainly by collecting logos and custom language and provisioning their portal URL.',
+      'Product managers and customer representatives could finally see every screen in every payment state. They described what they wanted, and it translated directly into configuration.',
+      'Fewer code changes to test and deploy, and a stable, predictable product for recipients in the middle of live payouts.',
     ],
+    reflection:
+      'Engineers still edited the JSON by hand. Storybook already showed exactly what any configuration would render, so the natural next step would have been a constrained visual editor that let product and support staff launch programs themselves.',
   },
   {
     slug: 'pepalert',
