@@ -34,7 +34,7 @@ export default function SiteHeader() {
             {item.label}
           </Link>
         ))}
-        <a href={`mailto:${profile.email}`}>contact</a>
+        <Link to="/#contact">contact</Link>
         <CommandPalette />
       </nav>
     </header>

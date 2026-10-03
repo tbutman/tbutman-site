@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import ContactSection from '../components/ContactSection'
 import { experience } from '../content/experience'
 import { lab, labIntro } from '../content/lab'
 import { profile } from '../content/profile'
@@ -161,6 +162,8 @@ export default function Home() {
           ))}
         </ul>
       </section>
+
+      <ContactSection />
     </>
   )
 }

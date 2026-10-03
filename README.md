@@ -22,7 +22,14 @@ npm run preview   # serves dist/ the way production does
 `404.html`. With nginx:
 
 ```nginx
+# Hashed build assets never change, so cache them for a year.
+location /assets/ {
+  add_header Cache-Control "public, max-age=31536000, immutable";
+}
+
+# Pages must be revalidated so visitors pick up new deploys.
 location / {
+  add_header Cache-Control "no-cache";
   try_files $uri $uri.html $uri/ =404;
 }
 error_page 404 /404.html;

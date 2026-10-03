@@ -3,6 +3,7 @@ import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { profile } from '../content/profile'
 import { projects } from '../content/projects'
+import { copyText } from '../lib/clipboard'
 
 type Command = {
   id: string
@@ -45,6 +46,7 @@ export default function CommandPalette() {
       { id: 'work', group: 'go to', label: 'Selected work', keywords: 'projects portfolio', run: goToSection('work') },
       { id: 'lab', group: 'go to', label: 'Lab', keywords: 'hardware esp32 robots', run: goToSection('lab') },
       { id: 'about', group: 'go to', label: 'About', run: goToSection('about') },
+      { id: 'contact', group: 'go to', label: 'Contact', keywords: 'email reach', run: goToSection('contact') },
       { id: 'hire', group: 'go to', label: 'Work with me', keywords: 'hire contract freelance full-time', run: goToSection('hire') },
       { id: 'experience', group: 'go to', label: 'Experience', keywords: 'jobs history', run: goToSection('experience') },
       { id: 'cv', group: 'go to', label: 'CV', keywords: 'resume', run: () => navigate('/cv') },
@@ -79,7 +81,10 @@ export default function CommandPalette() {
         label: 'Copy email address',
         hint: copied ? 'copied ✓' : profile.email,
         run: () => {
-          void navigator.clipboard?.writeText(profile.email).then(() => setCopied(true))
+          void copyText(profile.email).then((ok) => {
+            if (ok) setCopied(true)
+            else window.location.href = `mailto:${profile.email}`
+          })
           return 'keep-open'
         },
       },

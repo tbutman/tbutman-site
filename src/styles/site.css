@@ -324,6 +324,37 @@ main {
   font-size: 0.9375rem;
 }
 
+/* ---------- Contact ---------- */
+
+.contact {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.contact-lede {
+  color: var(--text-soft);
+}
+
+.contact-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.contact-email a {
+  font: 600 clamp(1.25rem, 3.5vw, 1.75rem) / 1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+.contact-email .button {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
 /* ---------- Principles ---------- */
 
 .principles {
