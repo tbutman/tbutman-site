@@ -34,7 +34,7 @@ export const experience: Role[] = [
       'Sole frontend owner; rewrote the payout portal that carried a payout to about a million recipients.',
     bullets: [
       'Owned frontend development for all core applications: customer-facing payment products, internal tools and sales demos, used by millions of recipients and processing hundreds of millions of dollars in payments.',
-      'Rewrote the consumer payout portal on my own initiative ahead of a payout to about a million recipients, building a working version on nights and weekends before proposing it and piloting it on a new program while existing programs stayed on v1. The million-recipient payout then ran smoothly on v2.',
+      'Rewrote the consumer payout portal on my own initiative ahead of a payout to about a million recipients, building a working version over five to six months of nights and weekends before proposing it and piloting it on a new program while existing programs stayed on v1. The million-recipient payout then ran smoothly on v2.',
       'Contained an unrelated backend failure at that launch through configuration alone: disabled the affected payment option and showed recipients a notice with the expected fix time, with no deploy.',
       'Made the portal configuration-driven: customer defaults with per-program, per-network, per-status and per-amount overrides stored in the database. Launching a program went from days of often-buggy work to ready to test within a morning.',
       'Modelled the UI as a state machine mirroring backend payment statuses, and designed the API and configuration schema in lockstep with the CTO, who later rewrote the backend along the same lines.',

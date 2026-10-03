@@ -34,12 +34,13 @@ export const projects: Project[] = [
     scope:
       'I owned the consumer payout portal from its first version and rewrote it end to end. The payments backend was built by the company’s CTO, who was also its principal engineer.',
     problem:
-      'DigitalPay pays out money on behalf of its customers, many of them class-action settlement administrators running several programs each. I had written most of the first version of the payout portal, and as the business grew it became brittle: copy and behaviour were hard-coded in places nobody could easily find, every new program meant days of changes and a risky deploy, and testing a single screen meant walking a test payment through one specific payment network. Our first big payout, to about a million recipients, was coming, and I did not trust v1 with it.',
+      'DigitalPay pays out money on behalf of its customers, many of them class-action settlement administrators running several programs each. The portal was one of the company’s two core products, the result of at least five years of work by a whole team, and I had written most of its consumer frontend. As the business grew it became brittle: copy and behaviour were hard-coded in places nobody could easily find, every new program meant days of changes and a risky deploy, and testing a single screen meant walking a test payment through one specific payment network. Our first big payout, to about a million recipients, was coming, and I did not trust v1 with it.',
     story: [
       {
         heading: 'building it before pitching it',
         body: [
-          'I started the rewrite on my own, on nights and weekends, designing it to be composable from the first line and then rebuilding every v1 feature on the new architecture. By the time I proposed it, it was largely built and I could demo it.',
+          'I started the rewrite on my own, on nights and weekends, designing it to be composable from the first line and then rebuilding every v1 feature on the new architecture. It took five to six months of spare time, fitted around sprint work, from the first line to feature-complete, and it ended up with more features than v1 and far less fragile code.',
+          'By the time I proposed it, it was largely built and I could demo it.',
           'We kept every existing program running on v1 and piloted v2 on the next new program, so live payouts were never at risk during the switch.',
         ],
       },
