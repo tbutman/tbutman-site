@@ -24,8 +24,18 @@ export const profile = {
       body: 'I write the spec and the rules, test model choices against real data, and review what agents produce before it ships.',
     },
     {
-      title: 'Shared frontend foundations',
-      body: 'At DigitalPay I built the shared component library used across the company’s applications, with per-customer theming for white-labelled payment flows.',
+      title: 'Configuration over code',
+      body: 'At DigitalPay I rewrote the payout frontend so each customer’s branding, copy, payment flows and payment options live in configuration and change without a deploy.',
+    },
+  ],
+  engagements: [
+    {
+      title: 'Full-time',
+      body: 'Senior product or full-stack roles, remote with US companies or on-site in Lisbon. I am a US citizen based in Portugal, and can join through an employer of record such as Deel or Remote.',
+    },
+    {
+      title: 'Contract',
+      body: 'Scoped work for startups and product teams: MVPs and internal tools end to end, payment and onboarding flows, and AI features with evaluation. I invoice directly and work US business hours.',
     },
   ],
   about: [

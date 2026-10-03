@@ -115,6 +115,21 @@ export default function Home() {
         </ul>
       </section>
 
+      <section id="hire" className="section" aria-labelledby="hire-heading">
+        <div className="section-head">
+          <h2 id="hire-heading">work with me</h2>
+          <a href={`mailto:${profile.email}`}>{profile.email} →</a>
+        </div>
+        <ul className="engagements">
+          {profile.engagements.map((engagement) => (
+            <li key={engagement.title} className="panel">
+              <h3>{engagement.title}</h3>
+              <p>{engagement.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section id="about" className="section" aria-labelledby="about-heading">
         <div className="section-head">
           <h2 id="about-heading">about</h2>

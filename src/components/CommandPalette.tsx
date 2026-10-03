@@ -45,6 +45,7 @@ export default function CommandPalette() {
       { id: 'work', group: 'go to', label: 'Selected work', keywords: 'projects portfolio', run: goToSection('work') },
       { id: 'lab', group: 'go to', label: 'Lab', keywords: 'hardware esp32 robots', run: goToSection('lab') },
       { id: 'about', group: 'go to', label: 'About', run: goToSection('about') },
+      { id: 'hire', group: 'go to', label: 'Work with me', keywords: 'hire contract freelance full-time', run: goToSection('hire') },
       { id: 'experience', group: 'go to', label: 'Experience', keywords: 'jobs history', run: goToSection('experience') },
       { id: 'cv', group: 'go to', label: 'CV', keywords: 'resume', run: () => navigate('/cv') },
       {

@@ -8,13 +8,42 @@ export type Project = {
   repo?: string
   live?: string
   status?: string
+  /** What the work was mine versus other people's. */
+  scope?: string
   problem: string
   built: string[]
+  outcomes?: string[]
 }
 
-// Draft copy, written from each project's README. The case-study bodies still
-// need Thomas's own account of the decisions and trade-offs.
+// Personal projects are drafted from each project's README; DigitalPay is from Thomas's own
+// account. All case-study copy gets a final pass with Thomas once the site settles.
 export const projects: Project[] = [
+  {
+    slug: 'digitalpay-payouts',
+    title: 'DigitalPay payouts',
+    kind: 'Professional · fintech',
+    year: '2019–2025',
+    status: 'Production · millions of recipients',
+    summary:
+      'A ground-up rewrite of the consumer payout frontend into a configuration-driven system: every customer and program gets its own branding, copy, payment flows and payment options, changed in the database without a deploy.',
+    stack: ['React', 'Context/Hooks', 'Storybook', 'JSON configuration', 'AWS'],
+    scope:
+      'I owned the consumer frontend and rewrote it end to end. The payments backend was built by other engineers.',
+    problem:
+      'I wrote most of the first version of the payout frontend. As the product matured and business needs changed, every new customer, program or rule meant code changes, testing and a deploy, and every deploy carried risk while millions of recipients were mid-program and relying on the system to get paid.',
+    built: [
+      'Rewrote the entire consumer frontend from scratch as composable payment flows, driven by per-customer and per-program JSON configuration stored in the database.',
+      'Made nearly everything configurable on the fly: copy and payment language, branding to each customer’s spec, payment flows, available payment options, notifications and emails, and error messaging.',
+      'Let a payment network be switched off through configuration during an upstream outage, with no code change.',
+      'Modelled the frontend as a state machine whose states mirror the backend’s payment statuses, so the UI is easy to reason about and stays in step with the payments system.',
+      'Built the flows from shared components with Storybook previews, which product reviews were run against.',
+    ],
+    outcomes: [
+      'Launching or changing a customer program became a configuration change instead of a release.',
+      'Fewer code changes to test and deploy, and a more stable product for recipients in the middle of a program.',
+      'Product reviews moved from deployed builds to previews of the configurable components in Storybook.',
+    ],
+  },
   {
     slug: 'pepalert',
     title: 'PepAlert',
@@ -23,16 +52,17 @@ export const projects: Project[] = [
     status: 'Live · early access',
     live: 'https://pepalert.com',
     summary:
-      'A live price-comparison product that tracks pricing, stock and lab reports across hundreds of vendor channels, with alerts, an order optimizer and chat bots.',
+      'A live price-comparison product for research peptides. It tracks pricing, stock and independent lab-test results across hundreds of vendor channels, with alerts, an order optimizer and chat bots.',
     stack: ['Next.js', 'TypeScript', 'SQLite', 'Drizzle', 'Claude API', 'Stripe'],
     problem:
-      'Buyers were scanning dozens of Telegram channels and doing price-per-mg maths in spreadsheets, because every vendor names, sizes and prices the same product differently.',
+      'Research-peptide buyers were scanning dozens of Telegram channels, doing price-per-mg maths in spreadsheets and hunting through pinned messages for lab reports, because every vendor names, sizes and prices the same product differently and test results are scattered.',
     built: [
       'An ingestion pipeline that watches vendor channels, uses the Claude API to extract prices and lab-report results from posts, images and PDFs, and maps every vendor code to a canonical product. Anything uncertain goes to a review queue instead of being guessed.',
       'A normalization and pricing engine that compares true cost per mg, including shipping, free-shipping thresholds and promotions. As of October 2026 the catalog covers 270+ products from 23+ vendors.',
       'A multi-vendor order optimizer that plans the cheapest order, the fastest delivery or the fewest shipments.',
       'Alerts by email and Telegram, plus Telegram and Discord bots for price lookups, order drafting and notes.',
-      'Google and Telegram sign-in, free and paid tiers, and first-party analytics with no third-party scripts.',
+      'Lab-report results (purity, net content, endotoxin) shown per batch, with who ordered the test and which lab ran it, so buyers can favour independent third-party testing.',
+      'Google and Telegram sign-in, free and paid tiers with Stripe, and first-party analytics with no third-party scripts.',
       'Runs on a single self-hosted box with SQLite, chosen for cost and simplicity at early-access scale.',
     ],
   },

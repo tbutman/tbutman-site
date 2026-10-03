@@ -31,12 +31,13 @@ export const experience: Role[] = [
     start: '2019',
     end: '2025',
     summary:
-      'Sole frontend owner for payment products used by millions of recipients.',
+      'Sole frontend owner; rewrote the payout product as a configuration-driven system used by millions of recipients.',
     bullets: [
       'Owned frontend development for all core applications: customer-facing payment products, internal tools and sales demos, used by millions of recipients and processing hundreds of millions of dollars in payments.',
       'Remained the sole frontend engineer as the team shrank from 22 people to 6, maintaining the core applications and shipping their frontend features.',
       'Shipped payout experiences that let recipients choose from more than 250 payment options, including direct-to-bank, digital debit card, wallet balance and gift cards.',
-      'Built a shared component library used across company applications, with per-customer theming.',
+      'Rewrote the consumer payout frontend as a configuration-driven system: branding, copy, payment flows, payment options, notifications and outage handling configurable per customer and program in the database, with no deploy.',
+      'Modelled the frontend as a state machine mirroring backend payment statuses, built from shared components whose Storybook previews product reviews ran against.',
     ],
     stack: ['React', 'AWS', 'Storybook', 'Webpack'],
   },

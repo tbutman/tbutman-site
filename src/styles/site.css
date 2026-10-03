@@ -298,6 +298,32 @@ main {
   margin-top: 1.375rem;
 }
 
+.work-grid > li:first-child {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Work with me ---------- */
+
+.engagements {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.engagements li {
+  padding: 1.5rem;
+}
+
+.engagements h3 {
+  margin-bottom: 0.5rem;
+  font: 600 1.0625rem/1.3 var(--font-sans);
+}
+
+.engagements p {
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+}
+
 /* ---------- Principles ---------- */
 
 .principles {
@@ -452,6 +478,12 @@ main {
   margin: 1rem 0 1.25rem;
   font: 600 clamp(2.25rem, 6vw, 3.5rem) / 1.08 var(--font-sans);
   letter-spacing: -0.04em;
+}
+
+.scope {
+  margin-top: 1rem;
+  font: 400 0.875rem/1.6 var(--font-mono);
+  color: var(--muted);
 }
 
 .case-study > .tags {
@@ -895,6 +927,7 @@ main {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
+  .engagements,
   .principles,
   .step {
     grid-template-columns: 1fr;

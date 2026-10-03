@@ -18,6 +18,26 @@ export type Diagram = {
 
 // System diagrams for the case studies, drawn from each project's README and spec.
 export const diagrams: Record<string, Diagram> = {
+  'digitalpay-payouts': {
+    title: 'DigitalPay payout frontend architecture',
+    columns: ['database', 'frontend (mine)', 'payments backend'],
+    rows: 3,
+    nodes: [
+      { id: 'config', label: 'Program config', detail: 'per customer + program', col: 0, row: 1 },
+      { id: 'runtime', label: 'Runtime config', detail: 'brand · copy · options', col: 1, row: 0 },
+      { id: 'machine', label: 'Flow state machine', detail: 'mirrors payment statuses', col: 1, row: 1, highlight: true },
+      { id: 'components', label: 'Composable flows', detail: 'Storybook components', col: 1, row: 2 },
+      { id: 'api', label: 'Payments API', detail: 'payment statuses', col: 2, row: 1 },
+      { id: 'networks', label: 'Payment networks', detail: 'bank · card · wallets', col: 2, row: 2 },
+    ],
+    edges: [
+      ['config', 'runtime'],
+      ['runtime', 'machine'],
+      ['machine', 'components'],
+      ['machine', 'api'],
+      ['api', 'networks'],
+    ],
+  },
   'smart-shopping': {
     title: 'Smart Shopping architecture',
     columns: ['devices', 'api', 'domain', 'storage'],

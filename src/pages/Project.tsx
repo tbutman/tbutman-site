@@ -27,6 +27,7 @@ export default function Project() {
       </p>
       <h1>{project.title}</h1>
       <p className="lede">{project.summary}</p>
+      {project.scope && <p className="scope">{project.scope}</p>}
       <ul className="tags" aria-label="Stack">
         {project.stack.map((tech) => (
           <li key={tech}>{tech.toLowerCase()}</li>
@@ -59,6 +60,19 @@ export default function Project() {
           ))}
         </ul>
       </section>
+
+      {project.outcomes && (
+        <section className="case-section" aria-labelledby="outcomes-heading">
+          <div className="section-head">
+            <h2 id="outcomes-heading">what changed</h2>
+          </div>
+          <ul className="built-list">
+            {project.outcomes.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="button-row">
         {project.live && (
