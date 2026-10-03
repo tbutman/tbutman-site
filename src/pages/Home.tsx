@@ -104,7 +104,7 @@ export default function Home() {
           <h2 id="how-heading">how i work</h2>
           <Link to="/how-i-work">the process on a real project →</Link>
         </div>
-        <ul className="principles">
+        <ul className="principles principles-four">
           {profile.principles.map((principle, index) => (
             <li key={principle.title} className="principle panel">
               <span className="num">{String(index + 1).padStart(2, '0')}</span>

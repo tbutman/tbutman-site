@@ -34,7 +34,7 @@ export const projects: Project[] = [
     scope:
       'I owned the consumer payout portal from its first version and rewrote it end to end. The payments backend was built by the company’s CTO, who was also its principal engineer.',
     problem:
-      'DigitalPay pays out money on behalf of its customers, many of them class-action settlement administrators running several programs each. The portal was one of the company’s two core products, the result of at least five years of work by a whole team, and I had written most of its consumer frontend. As the business grew it became brittle: copy and behaviour were hard-coded in places nobody could easily find, every new program meant days of changes and a risky deploy, and testing a single screen meant walking a test payment through one specific payment network. Our first big payout, to about a million recipients, was coming, and I did not trust v1 with it.',
+      'DigitalPay started out serving a few large government and airline customers: one-off payments, created on the fly, for a monthly fee. Then the business pivoted to class-action settlement payouts, earning a commission on volume. Settlement administrators run many programs each, and every program could need different payment methods, often chosen by the customer or the judge on the case, plus its own copy and branding. I had written most of the first version of the payout portal early in my career, on the old assumptions, with core logic hard-coded. Adding per-program customization after the fact was slow and risky: every new program meant days of changes and a deploy, and testing a single screen meant walking a test payment through one specific network. Our first big payout, to about a million recipients, was coming, and I did not trust v1 with it.',
     story: [
       {
         heading: 'building it before pitching it',
@@ -42,6 +42,13 @@ export const projects: Project[] = [
           'I started the rewrite on my own, on nights and weekends, designing it to be composable from the first line and then rebuilding every v1 feature on the new architecture. It took five to six months of spare time, fitted around sprint work, from the first line to feature-complete, and it ended up with more features than v1 and far less fragile code.',
           'By the time I proposed it, it was largely built and I could demo it.',
           'We kept every existing program running on v1 and piloted v2 on the next new program, so live payouts were never at risk during the switch.',
+        ],
+      },
+      {
+        heading: 'thinking like the product owner',
+        body: [
+          'That rewrite was not a one-off. Many of the features I shipped at DigitalPay were my own ideas, which I demoed before anyone asked for them, so the team could decide on something real instead of a description.',
+          'I spent more time inside the payment flows than anyone, so I was usually the first to see the gaps, and to spot where the design would fail when a future program arrived with new requirements. The layered configuration came from that habit of designing for the programs we had not signed yet.',
         ],
       },
       {

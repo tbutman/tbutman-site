@@ -332,6 +332,10 @@ main {
   gap: 1rem;
 }
 
+.principles-four {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .principle {
   padding: 1.5rem;
 }

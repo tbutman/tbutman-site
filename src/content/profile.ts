@@ -16,6 +16,10 @@ export const profile = {
   ],
   principles: [
     {
+      title: 'Product thinking',
+      body: 'Many features I shipped at DigitalPay were my own ideas, demoed before anyone asked. I spend enough time inside the product to see the gaps first, and design for the requirements that are coming next.',
+    },
+    {
       title: 'Whole-product ownership',
       body: 'I take a problem from a rough spec to something deployed and monitored. PepAlert went from first commit to a deployed product with sign-in and alerts in under a week.',
     },
