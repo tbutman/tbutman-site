@@ -24,7 +24,7 @@ export default function ContactSection() {
       </div>
       <div className="contact panel">
         <p className="contact-lede">
-          Email is the fastest way to reach me, whether it is about a role, a contract or just an introduction.
+          Email me, or book a 20-minute intro call at a time that suits you, whether it is about a role, a contract or just an introduction.
         </p>
         <div className="contact-email">
           <a ref={emailRef} href={`mailto:${profile.email}`}>
@@ -38,6 +38,9 @@ export default function ContactSection() {
           </span>
         </div>
         <div className="button-row">
+          <a className="button primary" href={profile.bookingUrl}>
+            book a 20-minute intro call ↗
+          </a>
           {profile.links.map((link) => (
             <a key={link.href} className="button" href={link.href}>
               {link.label.toLowerCase()}

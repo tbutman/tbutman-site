@@ -89,6 +89,14 @@ export default function CommandPalette() {
         },
       },
       {
+        id: 'book',
+        group: 'contact',
+        label: 'Book a 20-minute intro call',
+        hint: 'cal.com ↗',
+        keywords: 'meeting schedule calendar',
+        run: openExternal(profile.bookingUrl),
+      },
+      {
         id: 'email',
         group: 'contact',
         label: 'Send an email',

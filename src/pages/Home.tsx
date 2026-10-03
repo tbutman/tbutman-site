@@ -119,7 +119,7 @@ export default function Home() {
       <section id="hire" className="section" aria-labelledby="hire-heading">
         <div className="section-head">
           <h2 id="hire-heading">work with me</h2>
-          <a href={`mailto:${profile.email}`}>{profile.email} →</a>
+          <a href={profile.bookingUrl}>book an intro call →</a>
         </div>
         <ul className="engagements">
           {profile.engagements.map((engagement) => (
