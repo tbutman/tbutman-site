@@ -1,0 +1,16 @@
+[Unit]
+Description=Install the newest release of tbutman-site
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=site-deploy
+Group=site-deploy
+ExecStart=/usr/local/bin/deploy-site.sh
+# Hardening: the script only needs network access and write access to the site directory.
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/srv/tbutman-site
+PrivateTmp=true
+ProtectHome=true

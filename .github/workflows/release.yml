@@ -1,0 +1,68 @@
+name: Build and release
+
+# Every push to main builds the site and publishes it as a GitHub release. The home server polls
+# for the newest release and installs it (see deploy/README.md), so nothing here needs credentials
+# for, or network access to, the server.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Repository variable; defaults to the test site until production moves to tbutman.com.
+      SITE_URL: ${{ vars.SITE_URL || 'https://home.tbutman.com' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - name: Package
+        run: |
+          tar -czf site.tar.gz -C dist .
+          sha256sum site.tar.gz > site.tar.gz.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: |
+            site.tar.gz
+            site.tar.gz.sha256
+          retention-days: 7
+
+  release:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+      - name: Publish release
+        run: |
+          tag="site-${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
+          gh release create "$tag" site.tar.gz site.tar.gz.sha256 \
+            --target "$GITHUB_SHA" --title "$tag" --notes "Built from ${GITHUB_SHA}."
+      - name: Keep the ten newest releases
+        run: |
+          gh release list --limit 100 --json tagName --jq '.[10:][].tagName' |
+            xargs -r -n1 gh release delete --yes --cleanup-tag

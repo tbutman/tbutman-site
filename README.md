@@ -17,23 +17,12 @@ npm run build     # client bundle + SSR bundle, then scripts/prerender.mjs write
 npm run preview   # serves dist/ the way production does
 ```
 
-`dist/` is the whole site. Routes are flat files (`/cv` → `cv.html`, `/work/spot-watch` →
-`work/spot-watch.html`) plus `404.html`, so the web server needs to try `$uri.html` and fall back to
-`404.html`. With nginx:
+`dist/` is the whole site: one HTML file per route (`/cv` → `cv.html`) plus `404.html`.
 
-```nginx
-# Hashed build assets never change, so cache them for a year.
-location /assets/ {
-  add_header Cache-Control "public, max-age=31536000, immutable";
-}
+## Deploy
 
-# Pages must be revalidated so visitors pick up new deploys.
-location / {
-  add_header Cache-Control "no-cache";
-  try_files $uri $uri.html $uri/ =404;
-}
-error_page 404 /404.html;
-```
+Pushes to `main` build a GitHub release, and the home server installs it within a few minutes.
+See [deploy/README.md](deploy/README.md).
 
 ## Content
 
