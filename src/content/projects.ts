@@ -29,7 +29,7 @@ export const projects: Project[] = [
     year: '2019–2025',
     status: 'Production · millions of recipients',
     summary:
-      'A rewrite of the consumer payout portal into a configuration-driven state machine. Launching a new payout program went from days of often-buggy work to ready to test within a morning.',
+      'A rewrite of the consumer payout portal into a configuration-driven state machine. It carried a payout to about a million recipients, and launching a new program went from days of often-buggy work to ready to test within a morning.',
     stack: ['React', 'Context/Hooks', 'Storybook', 'JSON configuration', 'AWS'],
     scope:
       'I owned the consumer payout portal from its first version and rewrote it end to end. The payments backend was built by the company’s CTO, who was also its principal engineer.',
@@ -57,15 +57,23 @@ export const projects: Project[] = [
           'After the frontend shipped, he rewrote the backend as a v2 of its own, partly inspired by the frontend rewrite.',
         ],
       },
+      {
+        heading: 'launch day',
+        body: [
+          'The payout to about a million recipients ran on v2. At launch, an unrelated backend bug broke one payment option. Because everything was configuration, we disabled that option and added a notice on page load with the expected fix time, telling recipients to choose another payment method or check back later. No deploy, no hot-fix under pressure, and the rest of the payout carried on.',
+          'Each program sent email from its own domain, so notification emails went out gradually to warm those domains up rather than all at once.',
+        ],
+      },
     ],
     built: [
       'A ground-up rewrite of the consumer payout portal as composable payment flows driven by layered JSON configuration stored in the database.',
       'Configurable copy, payment language, branding to each customer’s spec, payment flows, available payment options, notifications and error messaging, with overrides per program, payment network, payment status and amount.',
-      'A switch to disable a payment network through configuration during an upstream outage, with no code change.',
+      'Incident controls in configuration: disable a payment network during an outage and show recipients a page-load notice with the expected fix time, with no code change.',
       'Scripts that generate every user notification template from a program’s configuration and load it into the production database.',
       'Storybook previews of every component and state, driven by the same configuration props as production.',
     ],
     outcomes: [
+      'The payout to about a million recipients ran smoothly on v2, including a backend incident at launch that was contained through configuration alone.',
       'Launching a program became a new row in the programs table with its configuration in a column: ready to test within a morning, instead of days of often-buggy work.',
       'Onboarding a new customer went from days to minutes or hours, limited mainly by collecting logos and custom language and provisioning their portal URL.',
       'Product managers and customer representatives could finally see every screen in every payment state. They described what they wanted, and it translated directly into configuration.',
