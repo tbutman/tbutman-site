@@ -93,7 +93,7 @@ if [[ "$(live_tag)" != "$tag" ]]; then
   activate "$tag"
 
   # Prune old releases, never touching the live one.
-  ls -1t "$RELEASES" | grep -vx -- "$tag" | tail -n +"$KEEP" | while read -r old; do
+  ls -1t "$RELEASES" | { grep -vx -- "$tag" || true; } | tail -n +"$KEEP" | while read -r old; do
     rm -rf "${RELEASES:?}/$old"
   done
 fi
