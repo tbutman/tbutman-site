@@ -8,6 +8,7 @@ export const hello = {
   intro:
     'The card in your hand is one I designed, modelled in OpenSCAD and 3D-printed, with an NFC tag sealed inside it halfway through the print. This page is served from a small server in my home in Lisbon.',
   nextHeading: 'next steps',
+  aboutHeading: 'about me',
   diagramHeading: 'how this page reached you',
   cardNote:
     'A script generates the QR code, and another decodes it from the exported 3D model before anything is printed.',

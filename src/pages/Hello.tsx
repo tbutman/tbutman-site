@@ -33,7 +33,6 @@ export default function Hello() {
           {hello.headline[0]} <span>{hello.headline[1]}</span>
         </h1>
         <p className="lede">{hello.intro}</p>
-        <p className="hello-bio">{profile.lede}</p>
         <p className="hello-open">
           <span>open to</span> {profile.availability.toLowerCase()} · {profile.engagement.toLowerCase()}
         </p>
@@ -72,6 +71,13 @@ export default function Hello() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="section" aria-labelledby="hello-about-heading">
+        <div className="section-head">
+          <h2 id="hello-about-heading">{hello.aboutHeading}</h2>
+        </div>
+        <p className="hello-bio">{profile.lede}</p>
       </section>
 
       <section className="section" aria-labelledby="hello-path-heading">

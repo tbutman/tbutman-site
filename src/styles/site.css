@@ -815,6 +815,60 @@ main {
   display: none;
 }
 
+/* ---------- Hello (business card landing page) ---------- */
+
+/* Phone-first: one column, full-width actions, and the intro short enough to leave the call
+   button near the first screen. */
+.hello-intro {
+  padding: clamp(2rem, 8vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem);
+}
+
+.hello-intro h1 {
+  margin: 1.5rem 0 1.25rem;
+  font: 600 clamp(2.25rem, 9vw, 4rem) / 1.06 var(--font-sans);
+  letter-spacing: -0.04em;
+}
+
+.hello-intro h1 span {
+  display: block;
+  color: var(--accent);
+}
+
+.hello-bio {
+  max-width: 44rem;
+  font-size: 1.0625rem;
+}
+
+.hello-open {
+  margin-top: 1.25rem;
+  font: 400 0.8125rem/1.5 var(--font-mono);
+  color: var(--text-soft);
+}
+
+.hello-open span {
+  color: var(--dim);
+}
+
+.hello-actions {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 40rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.hello-actions > .button.primary {
+  justify-content: center;
+  padding-block: 1.125rem;
+  font-size: 0.9375rem;
+}
+
+.hello-note {
+  max-width: 44rem;
+  margin-top: 1rem;
+  font-size: 0.90625rem;
+  color: var(--muted);
+}
+
 /* ---------- CV ---------- */
 
 .cv-page {
