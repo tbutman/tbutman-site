@@ -17,7 +17,7 @@ const dist = join(root, 'dist')
 const serverDist = join(root, 'dist-server')
 
 const template = await readFile(join(dist, 'index.html'), 'utf8')
-const { paths, render } = await import(pathToFileURL(join(serverDist, 'entry-server.js')).href)
+const { paths, render, contactCard } = await import(pathToFileURL(join(serverDist, 'entry-server.js')).href)
 
 const escapeHtml = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -90,5 +90,9 @@ await writeFile(
     .map((path) => `  <url><loc>${siteUrl}${path === '/' ? '/' : path}</loc></url>`)
     .join('\n')}\n</urlset>\n`,
 )
+
+const card = contactCard(siteUrl)
+await writeFile(join(dist, card.file), card.body)
+console.log(`wrote ${card.file}`)
 
 await rm(serverDist, { recursive: true, force: true })

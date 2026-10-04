@@ -56,6 +56,10 @@ export default function Hello() {
               {status === 'copied' ? 'Email address copied' : status === 'selected' ? 'Email address selected' : ''}
             </span>
           </div>
+          {/* No download attribute: iOS only offers "Create New Contact" when it opens the file. */}
+          <a className="button primary" href={hello.vcardPath}>
+            save my contact
+          </a>
           <div className="button-row">
             {hello.socials.map((link) => (
               <a key={link.href} className="button" href={link.href}>

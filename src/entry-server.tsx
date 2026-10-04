@@ -5,6 +5,8 @@ import App from './App'
 import { projects } from './content/projects'
 import { getMeta } from './meta'
 
+export { contactCard } from './lib/vcard'
+
 export const paths = ['/', '/cv', '/how-i-work', '/thanks', '/hello', ...projects.map((project) => `/work/${project.slug}`), '/404']
 
 export function render(path: string) {

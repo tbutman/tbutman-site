@@ -9,6 +9,8 @@ export const hello = {
   intro:
     'The card in your hand is one I designed, modelled in OpenSCAD and 3D-printed, with an NFC tag sealed inside it halfway through the print. This page is served from a small server in my home in Lisbon.',
   keepInTouchHeading: 'keep in touch',
+  // Generated at build time by src/lib/vcard.ts; nginx serves it as text/vcard.
+  vcardPath: '/thomas-butman.vcf',
   workHeading: 'work with me',
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/t.butman/' },
