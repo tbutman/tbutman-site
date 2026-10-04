@@ -26,7 +26,7 @@ export const projects: Project[] = [
     slug: 'digitalpay-payouts',
     title: 'DigitalPay payouts',
     kind: 'Professional · fintech',
-    year: '2019–2025',
+    year: '2019–2024',
     status: 'Production · millions of recipients',
     summary:
       'A rewrite of the consumer payout portal into a configuration-driven state machine. It carried a payout to about a million recipients, and launching a new program went from days of often-buggy work to ready to test within a morning.',

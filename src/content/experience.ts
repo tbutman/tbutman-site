@@ -9,14 +9,42 @@ export type Role = {
   stack?: string[]
 }
 
+/** "2024" for a role that started and ended in the same year, otherwise "2019 – 2024". */
+export function roleDates(role: Pick<Role, 'start' | 'end'>, separator = ' – ') {
+  return role.start === role.end ? role.start : `${role.start}${separator}${role.end}`
+}
+
 // Scale figures are deliberately approximate: Thomas can't share exact metrics.
+// Freelance contract work ran from 2024 until about September 2025 (Thomas, 4 October 2026).
 export const experience: Role[] = [
+  {
+    company: 'PepAlert',
+    title: 'Founder & Engineer',
+    location: 'Lisbon (remote)',
+    start: '2026',
+    end: 'Now',
+    summary: 'Designed, built and run a live price- and lab-testing comparison product.',
+    bullets: [
+      'Built PepAlert end to end on my own, from first commit to a deployed product with sign-in and alerts in under a week: an ingestion pipeline that uses the Claude API to extract prices and lab results, with uncertain items sent to a review queue.',
+      'Built a pricing engine and multi-vendor order optimizer; shipped alerts, Telegram and Discord bots, and paid tiers with Stripe; tested model choices against real data before switching.',
+    ],
+    stack: ['Next.js', 'TypeScript', 'SQLite', 'Drizzle', 'Claude API', 'Stripe'],
+  },
+  {
+    company: 'Career break',
+    title: 'Relocation and family',
+    location: 'Lisbon',
+    start: '2025',
+    end: '2026',
+    summary: 'Started a family in Lisbon; built Chatlingo, Smart Shopping and hardware projects.',
+    bullets: [],
+  },
   {
     company: 'Freelance',
     title: 'Software Engineer',
     location: 'Remote',
-    start: '2025',
-    end: 'Now',
+    start: '2024',
+    end: '2025',
     summary: 'ACH payment flows and single sign-on for a payments client.',
     bullets: [
       'Built an ACH payment flow that collects recipient bank and address details, as composable, embeddable React components that can be extended to new payment networks.',
@@ -29,7 +57,7 @@ export const experience: Role[] = [
     title: 'Senior Software Engineer',
     location: 'San Francisco, CA',
     start: '2019',
-    end: '2025',
+    end: '2024',
     summary:
       'Sole frontend owner; rewrote the payout portal that carried a payout to about a million recipients.',
     bullets: [
@@ -52,7 +80,6 @@ export const experience: Role[] = [
     summary: 'Built the recipient payment portal and the admin console behind it.',
     bullets: [
       'Led development of the recipient portal, a payment flow whose layout, networks and steps are driven by JSON config from a REST API.',
-      'Built an admin console for managing program configuration, users, roles and cash-flow reporting across environments.',
       'Worked directly with the sales team to build configurable product demos, including image recognition with AWS Rekognition and Lambda.',
     ],
     stack: ['React', 'Redux', 'AWS Lambda', 'API Gateway', 'Material-UI'],
@@ -66,7 +93,6 @@ export const experience: Role[] = [
     summary: 'Clinical operations, where I taught myself to automate the work.',
     bullets: [
       'Automated bulk document imports with scripting, raising throughput from about 100 documents a day to 2,300.',
-      'Completed a BA and computer science coursework while working full time.',
     ],
   },
 ]
@@ -74,7 +100,7 @@ export const experience: Role[] = [
 export const education = [
   { school: 'MakerSquare', detail: 'Software engineering immersive', year: '2015' },
   { school: 'Irvine Valley College', detail: 'Computer science coursework', year: '2014' },
-  { school: 'National University', detail: 'BA, Interdisciplinary Studies', year: '2012' },
+  { school: 'National University', detail: 'BA, Interdisciplinary Studies, while working full time', year: '2012' },
 ]
 
 export const skills = [

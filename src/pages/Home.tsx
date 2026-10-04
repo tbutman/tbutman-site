@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import ContactSection from '../components/ContactSection'
-import { experience } from '../content/experience'
+import { experience, roleDates } from '../content/experience'
 import { lab, labIntro } from '../content/lab'
 import { profile } from '../content/profile'
 import { projects } from '../content/projects'
@@ -56,7 +56,7 @@ export default function Home() {
           {experience.map((role) => (
             <li key={role.company}>
               <span className="when">
-                {role.start} — {role.end.toLowerCase()}
+                {roleDates(role, ' — ').toLowerCase()}
               </span>
               <h3>
                 {role.company}

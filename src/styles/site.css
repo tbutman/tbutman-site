@@ -898,6 +898,10 @@ main {
   color: var(--dim);
 }
 
+.cv-note {
+  margin-top: 0.25rem;
+}
+
 .cv-stack {
   margin-top: 0.375rem;
   font-size: 0.875rem;
@@ -1264,7 +1268,11 @@ main {
     break-after: avoid;
   }
 
-  .cv-role {
+  .cv-role ul {
+    break-before: avoid;
+  }
+
+  .cv li {
     break-inside: avoid;
   }
 

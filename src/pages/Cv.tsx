@@ -1,10 +1,11 @@
-import { education, experience, skills } from '../content/experience'
+import { education, experience, roleDates, skills } from '../content/experience'
 import { profile } from '../content/profile'
 import { projects } from '../content/projects'
 
 // The CV favours plain structure over layout tricks so text extractors and applicant-tracking
 // systems read it in order: real list bullets, metadata on its own line, literal separators.
-const CV_PROJECTS = ['pepalert', 'smart-shopping', 'chatlingo']
+// PepAlert appears under Experience, so it is not repeated here.
+const CV_PROJECTS = ['smart-shopping', 'chatlingo']
 
 const bareUrl = (href: string) => href.replace(/^https:\/\/(www\.)?/, '')
 
@@ -52,13 +53,17 @@ export default function Cv() {
                 {role.title}, {role.company}
               </h3>
               <p className="cv-meta">
-                {role.location} | {role.start} – {role.end}
+                {role.location} | {roleDates(role)}
               </p>
-              <ul>
-                {role.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
+              {role.bullets.length > 0 ? (
+                <ul>
+                  {role.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="cv-note">{role.summary}</p>
+              )}
               {role.stack && <p className="cv-stack">Technologies: {role.stack.join(', ')}</p>}
             </div>
           ))}
