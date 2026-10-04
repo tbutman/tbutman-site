@@ -19,7 +19,7 @@ A new version is live a couple of minutes after the release workflow finishes.
 | --- | --- |
 | `deploy/deploy-site.sh` | `/usr/local/bin/deploy-site.sh` |
 | `deploy/site-deploy.service`, `deploy/site-deploy.timer` | `/etc/systemd/system/` |
-| `deploy/nginx.conf` | the website container's `/etc/nginx/conf.d/default.conf` |
+| `deploy/nginx.conf` | `/etc/tbutman-site/nginx.conf`; the directory is mounted as the container's `/etc/nginx/conf.d` |
 
 The script runs as the unprivileged `site-deploy` user, which owns `/srv/tbutman-site`. The nginx
 container mounts that directory read-only. It mounts the directory rather than the `current`
