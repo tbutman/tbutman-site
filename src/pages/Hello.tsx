@@ -6,11 +6,13 @@ import { hello } from '../content/hello'
 import { profile } from '../content/profile'
 import { copyText, selectText } from '../lib/clipboard'
 
-// Landing page for the business card. Phone-first: the fastest ways to follow up come before
-// anything else.
+// Landing page for the business card. Phone-first: ways to stay in touch come first, for anyone
+// met in person, then the work actions, then everything else.
 export default function Hello() {
   const [status, setStatus] = useState<'idle' | 'copied' | 'selected'>('idle')
   const emailRef = useRef<HTMLAnchorElement>(null)
+  // GitHub and the like; LinkedIn is already under the socials.
+  const workLinks = profile.links.filter((link) => !hello.socials.some((social) => social.href === link.href))
 
   const copyEmail = async () => {
     if (await copyText(profile.email)) {
@@ -38,14 +40,11 @@ export default function Hello() {
         </p>
       </section>
 
-      <section className="section" aria-labelledby="hello-next-heading">
+      <section className="section" aria-labelledby="hello-touch-heading">
         <div className="section-head">
-          <h2 id="hello-next-heading">{hello.nextHeading}</h2>
+          <h2 id="hello-touch-heading">{hello.keepInTouchHeading}</h2>
         </div>
         <div className="hello-actions panel">
-          <a className="button primary" href={profile.bookingUrl}>
-            book a 20-minute intro call ↗
-          </a>
           <div className="contact-email">
             <a ref={emailRef} href={`mailto:${profile.email}`}>
               {profile.email}
@@ -58,10 +57,28 @@ export default function Hello() {
             </span>
           </div>
           <div className="button-row">
+            {hello.socials.map((link) => (
+              <a key={link.href} className="button" href={link.href}>
+                {link.label.toLowerCase()} ↗
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="hello-work-heading">
+        <div className="section-head">
+          <h2 id="hello-work-heading">{hello.workHeading}</h2>
+        </div>
+        <div className="hello-actions panel">
+          <a className="button primary" href={profile.bookingUrl}>
+            book a 20-minute intro call ↗
+          </a>
+          <div className="button-row">
             <Link className="button" to="/cv">
               cv
             </Link>
-            {profile.links.map((link) => (
+            {workLinks.map((link) => (
               <a key={link.href} className="button" href={link.href}>
                 {link.label.toLowerCase()}
               </a>
