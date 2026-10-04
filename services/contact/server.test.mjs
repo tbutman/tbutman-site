@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { createServer } from 'node:http'
 import { after, before, describe, it } from 'node:test'
-import { createHandler, createRateLimiter, validate } from './server.mjs'
+import { createHandler, createRateLimiter, sendWithResend, validate } from './server.mjs'
 
 const good = { name: 'Ada Lovelace', email: 'ada@example.com', company: 'Engines Ltd', message: 'Hello, can we talk?' }
 
@@ -121,5 +121,21 @@ describe('HTTP handler', () => {
   it('answers health checks and 404s other paths', async () => {
     assert.equal((await fetch(`${base}/healthz`)).status, 200)
     assert.equal((await fetch(`${base}/api/contact`)).status, 404)
+  })
+})
+
+describe('sendWithResend', () => {
+  it('includes the reason Resend gives for a rejection', async () => {
+    const realFetch = globalThis.fetch
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify({ message: 'Invalid `from` field.' }), { status: 422 })
+    try {
+      await assert.rejects(
+        sendWithResend({ apiKey: 'k', from: 'f', to: 't' }, { name: 'a', email: 'b@c.de', company: '', message: 'hello there' }),
+        /422: Invalid `from` field/,
+      )
+    } finally {
+      globalThis.fetch = realFetch
+    }
   })
 })

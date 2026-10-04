@@ -4,7 +4,7 @@
 // Environment:
 //   RESEND_API_KEY   Resend API key (without it the endpoint answers 503)
 //   CONTACT_TO       where messages are delivered
-//   CONTACT_FROM     verified sender, e.g. "tbutman.com <contact@tbutman.com>"
+//   CONTACT_FROM     verified sender, e.g. "Website contact <contact@tbutman.com>"
 //   PORT             default 3000
 //   CONTACT_DRY_RUN  set to 1 in local development to log messages instead of emailing them
 import { createServer } from 'node:http'
@@ -82,7 +82,14 @@ export async function sendWithResend({ apiKey, from, to }, message) {
     }),
     signal: AbortSignal.timeout(10_000),
   })
-  if (!response.ok) throw new Error(`Resend responded ${response.status}`)
+  if (!response.ok) {
+    // Resend explains rejections (e.g. a malformed sender); its messages contain no secrets.
+    const detail = await response
+      .json()
+      .then((body) => body?.message)
+      .catch(() => undefined)
+    throw new Error(`Resend responded ${response.status}${detail ? `: ${String(detail).slice(0, 200)}` : ''}`)
+  }
 }
 
 function readBody(req) {
