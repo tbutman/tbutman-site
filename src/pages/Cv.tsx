@@ -48,7 +48,7 @@ export default function Cv() {
         <section aria-labelledby="cv-experience">
           <h2 id="cv-experience">Experience</h2>
           {experience.map((role) => (
-            <div key={role.company} className="cv-role">
+            <div key={`${role.company}-${role.start}`} className="cv-role">
               <h3>
                 {role.title}, {role.company}
               </h3>

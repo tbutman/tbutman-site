@@ -21,6 +21,10 @@ export function getMeta(pathname: string): Meta {
   if (pathname === '/thanks') {
     return { title: `Message sent · ${profile.name}`, description: defaultDescription, noindex: true }
   }
+  if (pathname === '/hello') {
+    // Only reached from the printed business card.
+    return { title: `Hello · ${profile.name}`, description: defaultDescription, noindex: true }
+  }
   if (pathname === '/cv') {
     return { title: `CV · ${profile.name}`, description: defaultDescription }
   }

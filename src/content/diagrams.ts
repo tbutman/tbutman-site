@@ -16,8 +16,25 @@ export type Diagram = {
   edges: [from: string, to: string][]
 }
 
-// System diagrams for the case studies, drawn from each project's README and spec.
+// System diagrams for the case studies, drawn from each project's README and spec, plus the
+// /hello page's own request path (kept to the level of detail the footer already gives).
 export const diagrams: Record<string, Diagram> = {
+  hello: {
+    title: 'How this page reached you',
+    columns: ['in your hand', 'the edge', 'my home in lisbon', 'this page'],
+    rows: 1,
+    nodes: [
+      { id: 'phone', label: 'Your phone', detail: 'via NFC or QR code', col: 0, row: 0 },
+      { id: 'cloudflare', label: 'Cloudflare', detail: 'TLS · tunnel to home', col: 1, row: 0 },
+      { id: 'server', label: 'Home server', detail: 'Lenovo M920q · Proxmox', col: 2, row: 0 },
+      { id: 'nginx', label: 'nginx', detail: 'in Docker · static HTML', col: 3, row: 0, highlight: true },
+    ],
+    edges: [
+      ['phone', 'cloudflare'],
+      ['cloudflare', 'server'],
+      ['server', 'nginx'],
+    ],
+  },
   'digitalpay-payouts': {
     title: 'DigitalPay payout portal architecture',
     columns: ['configuration (database)', 'portal (mine)', 'payments backend'],

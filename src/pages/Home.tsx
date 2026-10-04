@@ -54,7 +54,7 @@ export default function Home() {
         </div>
         <ol className="log panel">
           {experience.map((role) => (
-            <li key={role.company}>
+            <li key={`${role.company}-${role.start}`}>
               <span className="when">
                 {roleDates(role, ' — ').toLowerCase()}
               </span>

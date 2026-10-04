@@ -4,6 +4,7 @@ import SiteFooter from './components/SiteFooter'
 import SiteHeader from './components/SiteHeader'
 import { getMeta } from './meta'
 import Cv from './pages/Cv'
+import Hello from './pages/Hello'
 import Home from './pages/Home'
 import HowIWork from './pages/HowIWork'
 import NotFound from './pages/NotFound'
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/cv" element={<Cv />} />
           <Route path="/how-i-work" element={<HowIWork />} />
           <Route path="/thanks" element={<Thanks />} />
+          <Route path="/hello" element={<Hello />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

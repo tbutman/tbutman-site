@@ -15,7 +15,8 @@ export function roleDates(role: Pick<Role, 'start' | 'end'>, separator = ' – '
 }
 
 // Scale figures are deliberately approximate: Thomas can't share exact metrics.
-// Freelance contract work ran from 2024 until about September 2025 (Thomas, 4 October 2026).
+// After moving to Lisbon, Thomas continued with DigitalPay as a contractor from 2024 until about
+// September 2025 (Thomas, 4 October 2026).
 export const experience: Role[] = [
   {
     company: 'PepAlert',
@@ -40,12 +41,12 @@ export const experience: Role[] = [
     bullets: [],
   },
   {
-    company: 'Freelance',
-    title: 'Software Engineer',
-    location: 'Remote',
+    company: 'DigitalPay',
+    title: 'Contract Software Engineer',
+    location: 'Remote from Lisbon',
     start: '2024',
     end: '2025',
-    summary: 'ACH payment flows and single sign-on for a payments client.',
+    summary: 'Continued as a contractor after moving to Lisbon: ACH payment flows and single sign-on.',
     bullets: [
       'Built an ACH payment flow that collects recipient bank and address details, as composable, embeddable React components that can be extended to new payment networks.',
       'Added single sign-on with social and enterprise identity providers alongside the existing password login.',
