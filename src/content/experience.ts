@@ -111,4 +111,5 @@ export const skills = [
   { area: 'Infrastructure and testing', items: 'AWS (Lambda, S3, API Gateway), Docker, CI, Vitest, Playwright, Mocha' },
   { area: 'AI', items: 'Claude Code, Codex, Anthropic and OpenAI APIs, Whisper' },
   { area: 'Embedded', items: 'C++, ESP32, Arduino, OTA updates' },
+  { area: 'Languages', items: 'English (native), Portuguese (A2, taking classes in Lisbon)' },
 ]

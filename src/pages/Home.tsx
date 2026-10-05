@@ -8,6 +8,7 @@ import { projects } from '../content/projects'
 const facts = [
   { label: 'based in', value: 'Lisbon, Portugal' },
   { label: 'work auth', value: profile.workAuthorization },
+  { label: 'languages', value: profile.languages },
   { label: 'hours', value: profile.hours },
   { label: 'open to', value: profile.engagement },
 ]
