@@ -21,5 +21,5 @@ export const hello = {
   diagramHeading: 'how this page reached you',
   cardNote:
     'The 3D model generates its own QR code, and a script decodes it from the exported model before anything is printed.',
-  projectLink: 'how the card and the app work →',
+  projectLink: 'get the app or print the card, free →',
 }

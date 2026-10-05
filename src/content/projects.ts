@@ -121,7 +121,10 @@ export const projects: Project[] = [
     year: '2026',
     status: 'Open source · beta',
     repo: 'https://github.com/tbutman/tilde',
-    links: [{ label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' }],
+    links: [
+      { label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' },
+      { label: 'product page', href: '/tilde' },
+    ],
     summary:
       'A free, open-source Android app that turns a phone into an NFC business card, and a 3D-printable card to go with it. Tap phones or scan the code to share a full contact card, a website or WhatsApp, switching between them in one tap, with no account, nothing to install on the other phone and no internet permission on mine.',
     stack: ['Kotlin', 'Android NFC', 'Material 3', 'GitHub Actions', 'OpenSCAD', 'Python'],

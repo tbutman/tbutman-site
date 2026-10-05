@@ -1,6 +1,7 @@
 import { profile } from './content/profile'
 import { processIntro } from './content/process'
 import { findProject } from './content/projects'
+import { tilde } from './content/tilde'
 
 export type Meta = {
   title: string
@@ -24,6 +25,9 @@ export function getMeta(pathname: string): Meta {
   if (pathname === '/hello') {
     // Only reached from the printed business card.
     return { title: `Hello · ${profile.name}`, description: defaultDescription, noindex: true }
+  }
+  if (pathname === '/tilde') {
+    return { title: 'Tilde · a free NFC business card app for Android', description: tilde.lede }
   }
   if (pathname === '/cv') {
     return { title: `CV · ${profile.name}`, description: defaultDescription }

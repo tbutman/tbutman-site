@@ -10,6 +10,7 @@ import HowIWork from './pages/HowIWork'
 import NotFound from './pages/NotFound'
 import Project from './pages/Project'
 import Thanks from './pages/Thanks'
+import Tilde from './pages/Tilde'
 
 function useDocumentMeta() {
   const { pathname, hash } = useLocation()
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/how-i-work" element={<HowIWork />} />
           <Route path="/thanks" element={<Thanks />} />
           <Route path="/hello" element={<Hello />} />
+          <Route path="/tilde" element={<Tilde />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
