@@ -1,0 +1,12 @@
+# Installed as /etc/logrotate.d/tbutman-site. The raw log (with full IP addresses) is kept for
+# four weeks; the stats report keeps its own anonymised totals beyond that. copytruncate leaves
+# nginx writing to the same open file, so it needs no signal.
+/var/log/tbutman-site/access.log {
+  weekly
+  rotate 4
+  compress
+  delaycompress
+  missingok
+  notifempty
+  copytruncate
+}

@@ -20,6 +20,16 @@ A new version is live a couple of minutes after the release workflow finishes.
 | `deploy/deploy-site.sh` | `/usr/local/bin/deploy-site.sh` |
 | `deploy/site-deploy.service`, `deploy/site-deploy.timer` | `/etc/systemd/system/` |
 | `deploy/nginx.conf` | `/etc/tbutman-site/nginx.conf`; the directory is mounted as the container's `/etc/nginx/conf.d` |
+| `deploy/site-stats.sh` | `/usr/local/bin/site-stats.sh`: rebuilds the private visitor report with GoAccess |
+| `deploy/site-stats.service`, `deploy/site-stats.timer` | `/etc/systemd/system/`: the report rebuilds every 15 minutes |
+| `deploy/site-logs.logrotate` | `/etc/logrotate.d/tbutman-site`: the access log rotates weekly and is kept four weeks |
+
+### Visitor statistics
+
+There are no analytics scripts, cookies or third parties. nginx writes an access log (with the
+visitor's address from Cloudflare's `CF-Connecting-IP` header), and GoAccess turns it into a report
+of visitors, pages and referring sites. It anonymises IP addresses and leaves out crawlers. The
+report is served only inside the owner's private network, never publicly.
 
 The script runs as the unprivileged `site-deploy` user, which owns `/srv/tbutman-site`. The nginx
 container mounts that directory read-only. It mounts the directory rather than the `current`
