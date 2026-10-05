@@ -123,7 +123,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/tbutman/tilde',
     links: [{ label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' }],
     summary:
-      'An open-source Android app that turns a phone into an NFC business card, and a 3D-printed card to go with it. Tap phones or scan the code to share a website, contact card or WhatsApp, with nothing to install on the other phone and no internet permission on mine.',
+      'A free, open-source Android app that turns a phone into an NFC business card, and a 3D-printable card to go with it. Tap phones or scan the code to share a full contact card, a website or WhatsApp, switching between them in one tap, with no account, nothing to install on the other phone and no internet permission on mine.',
     stack: ['Kotlin', 'Android NFC', 'Material 3', 'GitHub Actions', 'OpenSCAD', 'Python'],
     scope:
       'Mine end to end: the product, the Android app and its NFC protocol layer, the printed card’s model and its automated checks, releases and documentation. I built it with AI coding agents, using the process on the how-i-work page, and tested it on real phones and real prints.',
@@ -167,10 +167,10 @@ export const projects: Project[] = [
     ],
     built: [
       'An Android app in Kotlin that emulates an NFC Forum Type 4 Tag with Host Card Emulation, serving links, vCards and Wi-Fi credentials as NDEF records.',
-      'Share, receive and write modes: answer taps as a tag, read other tags and phones, or write a link onto an NFC sticker or printed card.',
+      'Sharing that switches in one tap: a full contact card (vCard), a website or profile link, a WhatsApp chat or guest Wi-Fi. Plus receive and write modes: read other tags and phones, or write a link or contact card onto an NFC sticker or printed card.',
       'A Met list of everyone a tap reached, with notes, event tags and CSV export; a welcome flow; a profile photo with an in-app cropper; and a Quick Settings tile.',
       'Unit tests for the tag protocol, NDEF records, vCards and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 shrinks the APK from 7.3 MB to 1.6 MB).',
-      'A parametric OpenSCAD card in four colours, with versions for 0.2 mm and 0.4 mm nozzles and for thin or thick NFC stickers, and text that shrinks to fit using the font’s own metrics.',
+      'A parametric OpenSCAD card in four colours: QR code only or with an NFC tag (thin or thick stickers), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     reflection:
