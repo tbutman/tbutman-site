@@ -8,7 +8,7 @@ const releases = 'https://github.com/tbutman/tilde/releases'
 
 export const tilde = {
   name: 'Tilde',
-  status: 'free · open source · android beta',
+  status: 'free · open source · android',
   headline: ['Your business card,', 'on your phone.'],
   lede: 'Tap phones to share your contact card, your website or your WhatsApp, or let them scan the code on your screen. Switch what you share with one tap. Free, open source, and nothing to sign up for.',
   download: { label: 'download for android', href: releases },

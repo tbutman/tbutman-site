@@ -119,7 +119,7 @@ export const projects: Project[] = [
     title: 'Tilde',
     kind: 'Open source · Android + hardware',
     year: '2026',
-    status: 'Open source · beta',
+    status: 'Open source · v1.0',
     repo: 'https://github.com/tbutman/tilde',
     links: [
       { label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' },
@@ -177,7 +177,7 @@ export const projects: Project[] = [
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     reflection:
-      'Next: test writing a card and phone-to-phone taps between two Android phones on real hardware, publish the customisable card on MakerWorld, and consider the Play Store once the beta settles.',
+      'Next: test writing a card and phone-to-phone taps between two Android phones on real hardware, publish the customisable card on MakerWorld, and consider the Play Store.',
   },
   {
     slug: 'chatlingo',
