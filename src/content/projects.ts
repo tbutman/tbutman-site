@@ -7,6 +7,8 @@ export type Project = {
   stack: string[]
   repo?: string
   live?: string
+  /** Further links shown with the source link, such as a second repository. */
+  links?: { label: string; href: string }[]
   status?: string
   /** What the work was mine versus other people's. */
   scope?: string
@@ -111,6 +113,68 @@ export const projects: Project[] = [
       'Google and Telegram sign-in, free and paid tiers with Stripe, and first-party analytics with no third-party scripts.',
       'Runs on a single self-hosted box with SQLite, chosen for cost and simplicity at early-access scale.',
     ],
+  },
+  {
+    slug: 'tilde',
+    title: 'Tilde',
+    kind: 'Open source · Android + hardware',
+    year: '2026',
+    status: 'Open source · beta',
+    repo: 'https://github.com/tbutman/tilde',
+    links: [{ label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' }],
+    summary:
+      'An open-source Android app that turns a phone into an NFC business card, and a 3D-printed card to go with it. Tap phones or scan the code to share a website, contact card or WhatsApp, with nothing to install on the other phone and no internet permission on mine.',
+    stack: ['Kotlin', 'Android NFC', 'Material 3', 'GitHub Actions', 'OpenSCAD', 'Python'],
+    scope:
+      'Mine end to end: the product, the Android app and its NFC protocol layer, the printed card’s model and its automated checks, releases and documentation. I built it with AI coding agents, using the process on the how-i-work page, and tested it on real phones and real prints.',
+    problem:
+      'Paper business cards get lost, and digital-card apps usually share a link to the vendor’s own servers and want an account on at least one side. I wanted something that works with any phone, needs nothing on the other person’s side, and keeps my details on my phone until I share them.',
+    story: [
+      {
+        heading: 'two halves of one idea',
+        body: [
+          'It started as a printed card for events: a QR code on the front and an NFC tag sealed inside, both opening my site’s /hello page. Then I wanted the same thing when the card was in a drawer.',
+          'Android lets an app answer NFC readers as if it were a tag, so the phone itself can be the card. An iPhone reads it the way it reads any NFC sticker, with no app installed. Tilde can also write your link onto the card’s tag, so the app and the card work as a pair.',
+        ],
+      },
+      {
+        heading: 'speaking the protocol',
+        body: [
+          'Under the interface, Tilde answers as an NFC Forum Type 4 Tag: it handles the reader’s commands one by one, from selecting the NDEF application to serving long messages in chunks. That whole exchange runs in unit tests on the JVM, so protocol changes are checked without a phone.',
+          'Testing on real phones shaped the product. iPhones only act on links from a tap, so the contact card goes out as a vCard followed by my website: Android offers to save the contact, an iPhone opens the site, and the QR code on screen saves the contact on either. The Share screen says which options need a scan on an iPhone.',
+        ],
+      },
+      {
+        heading: 'private by construction',
+        body: [
+          'Tilde has no internet permission, so it cannot send anything anywhere. The profile, photo and the list of people I have met stay on the phone, and the app opts out of cloud backup. There are no analytics and no account.',
+          'Nothing personal is in the source. My own details reach my debug builds from a file git ignores, release builds never include it, and I checked the first release APK for my phone numbers before publishing it.',
+        ],
+      },
+      {
+        heading: 'a 3D model that checks itself',
+        body: [
+          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the tag goes in, and the rest of the card seals it.',
+          'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customise the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
+        ],
+      },
+      {
+        heading: 'shipping it like a product',
+        body: [
+          'Both halves are public under the MIT licence, with documentation written for non-technical people: how to install the app, which stickers to buy and how to print the card. Every push runs the tests and lint in CI. A version tag builds a signed, shrunk release and publishes it on GitHub, where the Obtainium app picks up updates.',
+        ],
+      },
+    ],
+    built: [
+      'An Android app in Kotlin that emulates an NFC Forum Type 4 Tag with Host Card Emulation, serving links, vCards and Wi-Fi credentials as NDEF records.',
+      'Share, receive and write modes: answer taps as a tag, read other tags and phones, or write a link onto an NFC sticker or printed card.',
+      'A Met list of everyone a tap reached, with notes, event tags and CSV export; a welcome flow; a profile photo with an in-app cropper; and a Quick Settings tile.',
+      'Unit tests for the tag protocol, NDEF records, vCards and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 shrinks the APK from 7.3 MB to 1.6 MB).',
+      'A parametric OpenSCAD card in four colours, with versions for 0.2 mm and 0.4 mm nozzles and for thin or thick NFC stickers, and text that shrinks to fit using the font’s own metrics.',
+      'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
+    ],
+    reflection:
+      'Next: test writing a card and phone-to-phone taps between two Android phones on real hardware, publish the customisable card on MakerWorld, and consider the Play Store once the beta settles.',
   },
   {
     slug: 'chatlingo',

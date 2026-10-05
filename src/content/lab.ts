@@ -30,14 +30,6 @@ export const lab: LabItem[] = [
     hardware: 'M5StickS3 · Cardputer',
   },
   {
-    title: 'Business card',
-    // TODO(thomas): switch to 'working' once a printed card has passed the checklist in the card
-    // repo's PRINTING.md (QR and NFC on an iPhone and an Android phone).
-    status: 'in progress',
-    body: 'A 3D-printed card that opens this site from a QR code or an NFC tap. It is modelled in OpenSCAD, printed in three colours with the tag sealed inside mid-print, and a script decodes the QR code from the exported model before anything is printed.',
-    hardware: 'Bambu A1 mini · NTAG215',
-  },
-  {
     title: 'Stack-chan',
     status: 'in progress',
     body: 'Building and extending an open-source, palm-sized AI companion robot, with conversation running on a local LLM module.',

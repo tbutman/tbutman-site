@@ -105,6 +105,11 @@ export default function Project() {
             source on github
           </a>
         )}
+        {project.links?.map((link) => (
+          <a key={link.href} className="button" href={link.href}>
+            {link.label}
+          </a>
+        ))}
         <Link className="button" to="/#work">
           all work
         </Link>

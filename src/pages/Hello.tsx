@@ -107,6 +107,9 @@ export default function Hello() {
         </div>
         <ArchitectureDiagram diagram={diagrams.hello} />
         <p className="hello-note">{hello.cardNote}</p>
+        <p className="hello-note">
+          <Link to="/work/tilde">{hello.projectLink}</Link>
+        </p>
       </section>
     </article>
   )

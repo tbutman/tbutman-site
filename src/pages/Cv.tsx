@@ -4,8 +4,9 @@ import { projects } from '../content/projects'
 
 // The CV favours plain structure over layout tricks so text extractors and applicant-tracking
 // systems read it in order: real list bullets, metadata on its own line, literal separators.
-// PepAlert appears under Experience, so it is not repeated here.
-const CV_PROJECTS = ['smart-shopping', 'chatlingo']
+// PepAlert appears under Experience, so it is not repeated here. Tilde leads because its source
+// and releases are public.
+const CV_PROJECTS = ['tilde', 'smart-shopping']
 
 const bareUrl = (href: string) => href.replace(/^https:\/\/(www\.)?/, '')
 
@@ -75,7 +76,7 @@ export default function Cv() {
             <div key={project.slug} className="cv-role">
               <h3>
                 {project.title}
-                {project.live && ` (${bareUrl(project.live)})`}
+                {project.live ? ` (${bareUrl(project.live)})` : project.repo && ` (${bareUrl(project.repo)})`}
               </h3>
               <p className="cv-meta">{project.status}</p>
               <ul>
