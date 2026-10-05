@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
 import { Link, useParams } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
 import { diagrams } from '../content/diagrams'
-import { findProject, projects } from '../content/projects'
+import { findProject, projects, type Project as ProjectType } from '../content/projects'
 import NotFound from './NotFound'
 
 export default function Project() {
@@ -33,6 +34,7 @@ export default function Project() {
           <li key={tech}>{tech.toLowerCase()}</li>
         ))}
       </ul>
+      <ProjectLinks project={project} className="button-row project-links-top" />
 
       <section className="case-section" aria-labelledby="problem-heading">
         <div className="section-head">
@@ -94,26 +96,36 @@ export default function Project() {
         </section>
       )}
 
-      <div className="button-row">
-        {project.live && (
-          <a className="button primary" href={project.live}>
-            visit {project.live.replace(/^https:\/\//, '')} ↗
-          </a>
-        )}
-        {project.repo && (
-          <a className={project.live ? 'button' : 'button primary'} href={project.repo}>
-            source on github
-          </a>
-        )}
-        {project.links?.map((link) => (
-          <a key={link.href} className="button" href={link.href}>
-            {link.label}
-          </a>
-        ))}
+      <ProjectLinks project={project} className="button-row project-links-end">
         <Link className="button" to="/#work">
           all work
         </Link>
-      </div>
+      </ProjectLinks>
     </article>
+  )
+}
+
+/** The live product and source links, shown under the summary and again at the end. */
+function ProjectLinks({ project, className, children }: { project: ProjectType; className: string; children?: ReactNode }) {
+  if (!project.live && !project.repo && !project.links && !children) return null
+  return (
+    <div className={className}>
+      {project.live && (
+        <a className="button primary" href={project.live}>
+          visit {project.live.replace(/^https:\/\//, '')} ↗
+        </a>
+      )}
+      {project.repo && (
+        <a className={project.live ? 'button' : 'button primary'} href={project.repo}>
+          source on github
+        </a>
+      )}
+      {project.links?.map((link) => (
+        <a key={link.href} className="button" href={link.href}>
+          {link.label}
+        </a>
+      ))}
+      {children}
+    </div>
   )
 }

@@ -644,8 +644,12 @@ main {
   color: var(--accent);
 }
 
-.case-study .button-row {
+.case-study .project-links-end {
   margin-top: 3.5rem;
+}
+
+.case-study .project-links-top {
+  margin-top: 1.5rem;
 }
 
 /* ---------- Process (how I work) ---------- */
