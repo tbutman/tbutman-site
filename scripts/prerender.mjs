@@ -51,6 +51,10 @@ async function pageWeight(html) {
 
 for (const path of paths) {
   const { html, meta } = render(path)
+  // The images are drawn by `npm run og` and committed; catch a page whose card was never drawn.
+  if (!(await readFile(join(dist, meta.image)).then(() => true, () => false))) {
+    throw new Error(`${path}: missing link-preview image ${meta.image}; run npm run og`)
+  }
   const url = path === '/' || path === '/404' ? `${siteUrl}/` : `${siteUrl}${path}`
   const head = [
     `<title>${escapeHtml(meta.title)}</title>`,
@@ -62,7 +66,11 @@ for (const path of paths) {
     `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
     `<meta property="og:description" content="${escapeHtml(meta.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta name="twitter:card" content="summary" />`,
+    `<meta property="og:image" content="${siteUrl}${meta.image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(meta.title)}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="theme-color" content="#0b0d10" />`,
     `<meta name="page-weight" content="__PAGE_WEIGHT__" />`,
   ]

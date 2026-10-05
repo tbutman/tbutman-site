@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "cv:pdf": "node scripts/cv-pdf.mjs",
+    "og": "node scripts/og-images.mjs",
     "test": "node --test services/contact/server.test.mjs"
   },
   "dependencies": {
