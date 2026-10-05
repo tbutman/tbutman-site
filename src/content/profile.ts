@@ -4,7 +4,7 @@ export const profile = {
   location: 'Lisbon, Portugal',
   availability: 'Remote (US) or on-site in Lisbon',
   engagement: 'Full-time or contract',
-  workAuthorization: 'US citizen',
+  workAuthorization: 'US citizen · Portuguese residence permit pending',
   hours: 'Works US business hours',
   headline: ['I build products', 'end to end.'],
   lede: 'Senior product engineer with ten years in fintech and deep React experience. I owned the frontend across DigitalPay’s payment applications, and now build full-stack products from data model through deployment.',
@@ -38,7 +38,7 @@ export const profile = {
   engagements: [
     {
       title: 'Full-time',
-      body: 'Senior product or full-stack roles, remote with US companies or on-site in Lisbon. I am a US citizen based in Portugal, and can join through an employer of record such as Deel or Remote.',
+      body: 'Senior product or full-stack roles, remote with US companies or on-site in Lisbon. I am a US citizen based in Portugal, with my Portuguese residence permit pending, and can join through an employer of record such as Deel or Remote.',
     },
     {
       title: 'Contract',
