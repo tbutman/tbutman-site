@@ -35,6 +35,22 @@ export const diagrams: Record<string, Diagram> = {
       ['server', 'nginx'],
     ],
   },
+  'hello-pt': {
+    title: 'Como esta página chegou até ti',
+    columns: ['na tua mão', 'na internet', 'a minha casa em lisboa', 'esta página'],
+    rows: 1,
+    nodes: [
+      { id: 'phone', label: 'O teu telemóvel', detail: 'por NFC ou código QR', col: 0, row: 0 },
+      { id: 'cloudflare', label: 'Cloudflare', detail: 'TLS · túnel até casa', col: 1, row: 0 },
+      { id: 'server', label: 'Servidor em casa', detail: 'Lenovo M920q · Proxmox', col: 2, row: 0 },
+      { id: 'nginx', label: 'nginx', detail: 'em Docker · HTML estático', col: 3, row: 0, highlight: true },
+    ],
+    edges: [
+      ['phone', 'cloudflare'],
+      ['cloudflare', 'server'],
+      ['server', 'nginx'],
+    ],
+  },
   'digitalpay-payouts': {
     title: 'DigitalPay payout portal architecture',
     columns: ['configuration (database)', 'portal (mine)', 'payments backend'],

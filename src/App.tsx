@@ -17,6 +17,7 @@ function useDocumentMeta() {
   useEffect(() => {
     const meta = getMeta(pathname)
     document.title = meta.title
+    document.documentElement.lang = meta.lang
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView()
     else window.scrollTo(0, 0)
@@ -36,8 +37,10 @@ export default function App() {
           <Route path="/cv" element={<Cv />} />
           <Route path="/how-i-work" element={<HowIWork />} />
           <Route path="/thanks" element={<Thanks />} />
-          <Route path="/hello" element={<Hello />} />
-          <Route path="/tilde" element={<Tilde />} />
+          <Route path="/hello" element={<Hello locale="en" />} />
+          <Route path="/pt/hello" element={<Hello locale="pt" />} />
+          <Route path="/tilde" element={<Tilde locale="en" />} />
+          <Route path="/pt/tilde" element={<Tilde locale="pt" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

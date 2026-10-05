@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
-import { tilde } from '../content/tilde'
+import LangSwitch from '../components/LangSwitch'
+import { tildeText } from '../content/tilde'
+import { type Locale, translations } from '../i18n'
 
 function Phone({ src, alt, eager = false }: { src: string; alt: string; eager?: boolean }) {
   return (
@@ -9,9 +11,11 @@ function Phone({ src, alt, eager = false }: { src: string; alt: string; eager?: 
   )
 }
 
-export default function Tilde() {
+export default function Tilde({ locale }: { locale: Locale }) {
+  const tilde = tildeText[locale]
   return (
     <article className="product">
+      <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
       <section className="product-hero" aria-labelledby="tilde-heading">
         <div className="product-hero-text">
           <p className="status">
@@ -39,11 +43,11 @@ export default function Tilde() {
           <img
             className="product-card"
             src="/tilde/card.webp"
-            alt="A 3D-printed black business card for Jane Doe, with a QR code and an NFC tap marker"
+            alt={tilde.heroCardAlt}
             width={1200}
             height={601}
           />
-          <Phone src="/tilde/app-share.webp" alt="Tilde's Share screen: Jane Doe's card and a QR code" eager />
+          <Phone src="/tilde/app-share.webp" alt={tilde.heroPhoneAlt} eager />
         </div>
       </section>
 
@@ -52,7 +56,7 @@ export default function Tilde() {
           <h2 id="modes-heading">{tilde.modesHeading}</h2>
         </div>
         <div className="product-split">
-          <Phone src="/tilde/app-picker.webp" alt="Choosing what a tap shares: website, contact card, WhatsApp, LinkedIn, GitHub, a link or guest Wi-Fi" />
+          <Phone src="/tilde/app-picker.webp" alt={tilde.modesPhoneAlt} />
           <div>
             <p className="section-intro">{tilde.modesIntro}</p>
             <ul className="mode-grid">
@@ -98,27 +102,25 @@ export default function Tilde() {
             </dl>
             <p className="product-body">{tilde.freeBody}</p>
           </div>
-          <Phone src="/tilde/app-met.webp" alt="Tilde's Met list: people shared with, with notes and events" />
+          <Phone src="/tilde/app-met.webp" alt={tilde.metPhoneAlt} />
         </div>
       </section>
 
       <section id="card" className="section" aria-labelledby="card-heading">
         <div className="section-head">
           <h2 id="card-heading">{tilde.cardHeading}</h2>
-          <span>optional</span>
+          <span>{tilde.cardOptional}</span>
         </div>
         <div className="product-card-section">
           <div className="product-card-images">
-            <img src="/tilde/card.webp" alt="The printed card, front" width={1200} height={601} loading="lazy" decoding="async" />
+            <img src="/tilde/card.webp" alt={tilde.cardFrontAlt} width={1200} height={601} loading="lazy" decoding="async" />
             <div className="product-backs">
-              <figure>
-                <img src="/tilde/back-terminal.webp" alt="Terminal-style back: $ whoami, name, title and email" width={800} height={505} loading="lazy" decoding="async" />
-                <figcaption>terminal back</figcaption>
-              </figure>
-              <figure>
-                <img src="/tilde/back-plain.webp" alt="Plain back: name, title and email" width={800} height={505} loading="lazy" decoding="async" />
-                <figcaption>plain back</figcaption>
-              </figure>
+              {tilde.backs.map((back) => (
+                <figure key={back.src}>
+                  <img src={back.src} alt={back.alt} width={800} height={505} loading="lazy" decoding="async" />
+                  <figcaption>{back.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
           <div>
@@ -153,9 +155,9 @@ export default function Tilde() {
         </div>
       </section>
 
-      <section className="product-cta panel" aria-label="Get Tilde">
+      <section className="product-cta panel" aria-label={tilde.ctaText}>
         <p>
-          <b>~</b> Tilde is free and open source.
+          <b>~</b> {tilde.ctaText}
         </p>
         <div className="button-row">
           <a className="button primary" href={tilde.download.href}>

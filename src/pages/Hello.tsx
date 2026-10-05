@@ -1,18 +1,21 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
+import LangSwitch from '../components/LangSwitch'
 import { diagrams } from '../content/diagrams'
-import { hello } from '../content/hello'
+import { helloShared, helloText } from '../content/hello'
 import { profile } from '../content/profile'
+import { type Locale, translations } from '../i18n'
 import { copyText, selectText } from '../lib/clipboard'
 
 // Landing page for the business card. Phone-first: ways to stay in touch come first, for anyone
 // met in person, then the work actions, then everything else.
-export default function Hello() {
+export default function Hello({ locale }: { locale: Locale }) {
+  const text = helloText[locale]
   const [status, setStatus] = useState<'idle' | 'copied' | 'selected'>('idle')
   const emailRef = useRef<HTMLAnchorElement>(null)
   // GitHub and the like; LinkedIn is already under the socials.
-  const workLinks = profile.links.filter((link) => !hello.socials.some((social) => social.href === link.href))
+  const workLinks = profile.links.filter((link) => !helloShared.socials.some((social) => social.href === link.href))
 
   const copyEmail = async () => {
     if (await copyText(profile.email)) {
@@ -26,23 +29,24 @@ export default function Hello() {
 
   return (
     <article className="hello">
+      <LangSwitch locale={locale} paths={{ en: '/hello', pt: translations['/hello'] }} />
       <section className="hello-intro" aria-labelledby="hello-heading">
         <p className="status">
           <span className="status-dot" aria-hidden="true" />
-          {hello.status}
+          {text.status}
         </p>
         <h1 id="hello-heading">
-          {hello.headline[0]} <span>{hello.headline[1]}</span>
+          {text.headline[0]} <span>{text.headline[1]}</span>
         </h1>
-        <p className="lede">{hello.intro}</p>
+        <p className="lede">{text.intro}</p>
         <p className="hello-open">
-          <span>open to</span> {profile.availability.toLowerCase()} · {profile.engagement.toLowerCase()}
+          <span>{text.openTo}</span> {text.availability} · {text.engagement}
         </p>
       </section>
 
       <section className="section" aria-labelledby="hello-touch-heading">
         <div className="section-head">
-          <h2 id="hello-touch-heading">{hello.keepInTouchHeading}</h2>
+          <h2 id="hello-touch-heading">{text.keepInTouchHeading}</h2>
         </div>
         <div className="hello-actions panel">
           <div className="contact-email">
@@ -50,18 +54,18 @@ export default function Hello() {
               {profile.email}
             </a>
             <button type="button" className="button" onClick={() => void copyEmail()}>
-              {status === 'copied' ? 'copied ✓' : status === 'selected' ? 'selected' : 'copy'}
+              {text.copy[status]}
             </button>
             <span className="visually-hidden" aria-live="polite">
-              {status === 'copied' ? 'Email address copied' : status === 'selected' ? 'Email address selected' : ''}
+              {status === 'copied' ? text.copy.copiedAnnounce : status === 'selected' ? text.copy.selectedAnnounce : ''}
             </span>
           </div>
           {/* No download attribute: iOS only offers "Create New Contact" when it opens the file. */}
-          <a className="button primary" href={hello.vcardPath}>
-            save my contact
+          <a className="button primary" href={helloShared.vcardPath}>
+            {text.saveContact}
           </a>
           <div className="button-row">
-            {hello.socials.map((link) => (
+            {helloShared.socials.map((link) => (
               <a key={link.href} className="button" href={link.href}>
                 {link.label.toLowerCase()} ↗
               </a>
@@ -72,15 +76,15 @@ export default function Hello() {
 
       <section className="section" aria-labelledby="hello-work-heading">
         <div className="section-head">
-          <h2 id="hello-work-heading">{hello.workHeading}</h2>
+          <h2 id="hello-work-heading">{text.workHeading}</h2>
         </div>
         <div className="hello-actions panel">
           <a className="button primary" href={profile.bookingUrl}>
-            book a 20-minute intro call ↗
+            {text.bookCall}
           </a>
           <div className="button-row">
             <Link className="button" to="/cv">
-              cv
+              {text.cv}
             </Link>
             {workLinks.map((link) => (
               <a key={link.href} className="button" href={link.href}>
@@ -88,7 +92,7 @@ export default function Hello() {
               </a>
             ))}
             <Link className="button" to="/">
-              the full site →
+              {text.fullSite}
             </Link>
           </div>
         </div>
@@ -96,19 +100,19 @@ export default function Hello() {
 
       <section className="section" aria-labelledby="hello-about-heading">
         <div className="section-head">
-          <h2 id="hello-about-heading">{hello.aboutHeading}</h2>
+          <h2 id="hello-about-heading">{text.aboutHeading}</h2>
         </div>
-        <p className="hello-bio">{profile.lede}</p>
+        <p className="hello-bio">{text.bio}</p>
       </section>
 
       <section className="section" aria-labelledby="hello-path-heading">
         <div className="section-head">
-          <h2 id="hello-path-heading">{hello.diagramHeading}</h2>
+          <h2 id="hello-path-heading">{text.diagramHeading}</h2>
         </div>
-        <ArchitectureDiagram diagram={diagrams.hello} />
-        <p className="hello-note">{hello.cardNote}</p>
+        <ArchitectureDiagram diagram={diagrams[text.diagram]} />
+        <p className="hello-note">{text.cardNote}</p>
         <p className="hello-note">
-          <Link to="/tilde">{hello.projectLink}</Link>
+          <Link to={text.projectLink.to}>{text.projectLink.label}</Link>
         </p>
       </section>
     </article>

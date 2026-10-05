@@ -1114,6 +1114,28 @@ main {
 
 /* ---------- Responsive ---------- */
 
+/* ---- EN · PT switch on translated pages ---- */
+.lang-switch {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+  font: 500 0.8125rem/1 var(--font-mono);
+}
+
+.lang-switch a {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.lang-switch a[aria-current='page'] {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 /* ---- /tilde product page ---- */
 .product-hero {
   display: grid;

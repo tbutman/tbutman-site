@@ -66,6 +66,15 @@ for (const path of paths) {
     `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
     `<meta property="og:description" content="${escapeHtml(meta.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
+    meta.lang === 'pt-PT' ? `<meta property="og:locale" content="pt_PT" />` : '',
+    // A translated page links to both versions, with English as the default.
+    ...(meta.alternates
+      ? [
+          `<link rel="alternate" hreflang="en" href="${siteUrl}${meta.alternates.en}" />`,
+          `<link rel="alternate" hreflang="pt-PT" href="${siteUrl}${meta.alternates.pt}" />`,
+          `<link rel="alternate" hreflang="x-default" href="${siteUrl}${meta.alternates.en}" />`,
+        ]
+      : []),
     `<meta property="og:image" content="${siteUrl}${meta.image}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
@@ -77,7 +86,10 @@ for (const path of paths) {
     .filter(Boolean)
     .join('\n    ')
 
-  let page = template.replace('<!--app-head-->', () => head).replace('<!--app-html-->', () => html)
+  let page = template
+    .replace('<html lang="en">', `<html lang="${meta.lang}">`)
+    .replace('<!--app-head-->', () => head)
+    .replace('<!--app-html-->', () => html)
   const weight = await pageWeight(page)
   page = page.replaceAll('__PAGE_WEIGHT__', weight)
 
