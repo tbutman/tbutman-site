@@ -4,7 +4,7 @@ The site is self-hosted on a home server. Deploys are pull-based: nothing on the
 the server, and no workflow holds credentials for it.
 
 ```
-push to main ─▶ GitHub Actions: lint, build, package ─▶ GitHub release (site.tar.gz + sha256)
+push to main ─▶ GitHub Actions: lint, test, build, nginx check, package ─▶ GitHub release
                                                               │
 home server: systemd timer, every ~2 min ◀───────────────────┘
   deploy-site.sh: download, verify checksum, unpack to releases/<tag>, swap the `current` symlink
@@ -12,6 +12,14 @@ home server: systemd timer, every ~2 min ◀────────────
 ```
 
 A new version is live a couple of minutes after the release workflow finishes.
+
+The timer finds the newest release from the redirect of `github.com/<repo>/releases/latest`, not
+from GitHub's REST API. The API allows only 60 unauthenticated requests an hour per address, 304s
+included, and this timer and the other apps' deploy timers on the same server would exceed it.
+
+CI serves every build through `deploy/nginx.conf` in the server's pinned nginx image and runs
+`deploy/check-nginx.sh`: status codes, content types, the long cache on hashed assets, and
+`no-store` on every 404, so a not-yet-installed file can never be cached as missing.
 
 ## What runs where
 
