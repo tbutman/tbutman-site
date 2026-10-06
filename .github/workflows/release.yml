@@ -33,6 +33,18 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+      # Serve the build through the production nginx config, in the same image the server pins
+      # (NGINX_IMAGE in the homelab setup script), and check statuses and cache headers.
+      - name: Check the build behind the production nginx config
+        run: |
+          mkdir -p "$RUNNER_TEMP/nginx-logs"
+          docker run -d --name site -p 8080:80 \
+            -v "$PWD/dist:/srv/tbutman-site/current:ro" \
+            -v "$PWD/deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro" \
+            -v "$RUNNER_TEMP/nginx-logs:/var/log/tbutman-site" \
+            nginx:1.30.5-alpine
+          for i in $(seq 1 20); do curl -fs -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.5; done
+          deploy/check-nginx.sh http://127.0.0.1:8080 || { docker logs site; exit 1; }
       - name: Package
         run: |
           tar -czf site.tar.gz -C dist .
