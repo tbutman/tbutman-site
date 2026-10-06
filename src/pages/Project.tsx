@@ -36,6 +36,23 @@ export default function Project() {
       </ul>
       <ProjectLinks project={project} className="button-row project-links-top" />
 
+      {project.images && (
+        <section className="case-section gallery-section" aria-labelledby="screens-heading">
+          <div className="section-head">
+            <h2 id="screens-heading">screens</h2>
+            {project.imagesNote && <span>{project.imagesNote}</span>}
+          </div>
+          <div className="gallery">
+            {project.images.map((image) => (
+              <figure key={image.src} className={image.phone ? 'shot phone-shot' : 'shot'}>
+                <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" />
+                <figcaption>{image.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="case-section" aria-labelledby="problem-heading">
         <div className="section-head">
           <h2 id="problem-heading">the problem</h2>
@@ -72,6 +89,7 @@ export default function Project() {
             <li key={item}>{item}</li>
           ))}
         </ul>
+        {project.note && <p className="case-note">{project.note}</p>}
       </section>
 
       {project.outcomes && (

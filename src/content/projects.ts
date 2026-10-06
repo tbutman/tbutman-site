@@ -1,3 +1,13 @@
+export type ProjectImage = {
+  src: string
+  alt: string
+  caption: string
+  width: number
+  height: number
+  /** Phone screenshots sit three to a row; desktop ones two. */
+  phone?: boolean
+}
+
 export type Project = {
   slug: string
   title: string
@@ -19,6 +29,11 @@ export type Project = {
   outcomes?: string[]
   /** A closing note on what I would do next or differently. */
   reflection?: string
+  /** Screenshots shown on the case-study page, with a note on where their data came from. */
+  images?: ProjectImage[]
+  imagesNote?: string
+  /** A short caveat shown with the feature list, such as "not medical advice". */
+  note?: string
 }
 
 // Personal projects are drafted from each project's README; DigitalPay is from Thomas's own
@@ -176,6 +191,87 @@ export const projects: Project[] = [
     ],
     reflection:
       'Next: test writing a card and phone-to-phone taps between two Android phones on real hardware, publish the customisable card on MakerWorld, and consider the Play Store.',
+  },
+  {
+    slug: 'trails',
+    title: 'Trails',
+    kind: 'Open source · web apps · health data',
+    year: '2026',
+    status: 'Live · in active development',
+    live: 'https://labtrails.app',
+    // Two apps, so each link names its app; the generic "source on github" button would be ambiguous.
+    links: [
+      { label: 'labtrails source on github', href: 'https://github.com/tbutman/labtrails' },
+      { label: 'labtrails case study', href: 'https://github.com/tbutman/labtrails/blob/main/docs/case-study.md' },
+      { label: 'visit babytrails.app ↗', href: 'https://babytrails.app' },
+      { label: 'babytrails source on github', href: 'https://github.com/tbutman/babytrails' },
+      { label: 'babytrails case study', href: 'https://github.com/tbutman/babytrails/blob/main/docs/case-study.md' },
+    ],
+    summary:
+      'Two private health-record apps with one encrypted core. BabyTrails keeps a baby’s growth on the WHO charts; LabTrails charts blood test results over time against each lab’s own range. Everything is encrypted in the browser and never reaches a server, and AI is optional, uses your own key, and only explains what the code has already computed.',
+    stack: ['React', 'TypeScript', 'Vite', 'WebCrypto (AES-GCM, Argon2id)', 'IndexedDB', 'Claude API', 'Vitest', 'Playwright', 'nginx', 'Cloudflare Tunnel'],
+    scope:
+      'Mine end to end: the products, the architecture, the security model and every decision across both apps. I built them with two AI coding agents working in parallel, one per app, using the process on the how-i-work page: I wrote the briefs, approved each spec and design, reviewed the work, and arbitrated a shared notes file the agents coordinated through.',
+    problem:
+      'My blood test results and my son’s growth records both lived in long AI chat threads: hard to search, impossible to chart, and spread across labs, countries, languages and units. Most trackers want an account and a copy of your health data on their servers, and many use AI to tell you what your numbers mean. I wanted the opposite: records that stay on my device, charts that are honest about how each number was measured, and AI that helps me prepare for a doctor without pretending to be one.',
+    story: [
+      {
+        heading: 'local-first, bring your own key',
+        body: [
+          'Both apps are static files. Everything a person enters or uploads is encrypted in their own browser with AES-256-GCM, under a key derived from their passphrase with Argon2id, so my server only ever hands out the app. There are no accounts, no database, no analytics and no cookies.',
+          'AI features are optional. When someone uses one, their browser calls Anthropic directly with their own API key, after a screen that lists exactly what will be sent. The trade-offs are stated plainly in the apps and in public threat models: no password reset, one device per vault, and encrypted backups as the safety net.',
+        ],
+      },
+      {
+        heading: 'the code computes, the AI explains, you confirm',
+        body: [
+          'Numbers are never the AI’s job. LabTrails flags results with simple, tested rules against each lab’s printed range. BabyTrails works out percentiles with WHO’s LMS method, including WHO’s adjustment beyond ±3 SD, tested against WHO’s published values.',
+          'When the AI reads a report, it only copies what is printed into a strict schema; the code matches names and units, and the person checks every row next to the original page before anything is saved. Summaries are written from facts the code computed, with the person’s name and date of birth removed.',
+        ],
+      },
+      {
+        heading: 'two agents, one core',
+        body: [
+          'The apps share their foundation: the encrypted vault, storage, backup, documents, the review screen, the AI client, a design system and a batch import flow. Ownership was explicit. One agent owned the shared core, the other copied it at recorded commits and contributed pieces back, and a coordination file held proposals, requests and a log, with me deciding anything that touched both apps.',
+          'When the first versions worked but looked like prototypes, I had both rebuilt on one design system, with Inter throughout, one accent per app and a landing page each from the same template, so moving between the two feels like one product family. A unit test in both apps checks every colour pairing against WCAG contrast rules.',
+        ],
+      },
+      {
+        heading: 'details that mattered',
+        body: [
+          'LabTrails stores every value exactly as printed and converts only for display, with each conversion factor cited and tested. Checking them caught a wrong creatinine factor before release, and Portuguese urea and US BUN are kept as the different measurements they are. Importing years of reports takes several files or a zip at once, and catches duplicates at three levels: the same file, the same report from a different file, and rows already saved.',
+          'BabyTrails downloads WHO’s growth tables at build time and checks them against recorded checksums instead of committing them, because their licence doesn’t fit the MIT-licensed code. If WHO ever changes a file, the build stops rather than silently changing the charts.',
+        ],
+      },
+      {
+        heading: 'shipping, and what broke',
+        body: [
+          'Both apps deploy as static files from my home server through a Cloudflare Tunnel, pulled from checksummed GitHub releases, so no workflow holds server credentials. Going live surfaced real bugs: the PDF viewer’s worker was served with the wrong type, and returning visitors kept the old version after a deploy. Each now has a guard. CI serves every build through the server’s own nginx config and checks every file’s type, and both apps show a Reload banner when a new version is ready.',
+        ],
+      },
+    ],
+    built: [
+      'A shared core in TypeScript: a passphrase vault (Argon2id, AES-256-GCM, with records bound to their collection and ID so tampered or moved data fails to decrypt), encrypted IndexedDB storage, verified backups, documents with an in-app PDF viewer, a propose-review-confirm screen, and a browser-side Claude client with a consent sheet.',
+      'LabTrails: a catalogue of about 70 markers with English and Portuguese names and cited unit conversions, per-lab reference ranges, three code-decided flags, a dashboard of trend cards, AI report reading and summaries, a one-page doctor report, and batch import with zips and three-level duplicate detection.',
+      'BabyTrails: WHO growth charts from birth to 5 years with percentiles, quick measurement entry on a phone at the doctor’s, documents including ultrasound images (stored, never interpreted), AI reading of growth reports, summaries, and a shareable one-page report.',
+      'A shared design system (tokens, components and landing-page sections), installable offline apps with an update banner, and a demo in each app with made-up data that needs no key or passphrase.',
+      'Tests: 291 unit and 8 browser tests in LabTrails, and 105 unit and 13 browser tests in BabyTrails. They cover the network allow-list (every browser test fails if the app contacts any site but its own), nothing saved without confirmation, AI output never rendered as HTML, and encryption and backup round trips.',
+    ],
+    note: 'Not medical advice: both apps record, chart and explain, but they never diagnose or tell you whether a result or a measurement is healthy. That conversation belongs with a doctor.',
+    reflection:
+      'Next: test both apps with our own records, group several photos into one report, add corrected age for babies born early, and, if people want it, encrypted sync between devices, the likely paid tier.',
+    imagesNote: 'demo data: every name and value is made up',
+    images: [
+      { src: '/trails/labtrails-landing.webp', width: 1600, height: 1012, caption: 'LabTrails · landing page', alt: 'The LabTrails landing page: every blood test, one clear timeline, with a sample glucose chart and a ferritin card.' },
+      { src: '/trails/babytrails-landing.webp', width: 1280, height: 860, caption: 'BabyTrails · landing page', alt: 'The BabyTrails landing page: every check-up on the growth charts, with a sample weight chart at the 59th percentile.' },
+      { src: '/trails/labtrails-dashboard.webp', width: 1600, height: 1012, caption: 'LabTrails · dashboard of the markers worth discussing', alt: 'The LabTrails dashboard for a demo person, with trend cards for glucose, HbA1c, cholesterol, ferritin and other markers, each with its flags.' },
+      { src: '/trails/babytrails-overview.webp', width: 1280, height: 860, caption: 'BabyTrails · a child’s overview', alt: 'The BabyTrails overview for a demo baby: weight, length and head circumference with percentiles, weight gain per week and days between weighings.' },
+      { src: '/trails/labtrails-review.webp', width: 1280, height: 860, caption: 'LabTrails · checking rows the AI read, next to the report', alt: 'Reviewing a made-up lab report: the report on the left, and each value the AI copied on the right, waiting to be confirmed.' },
+      { src: '/trails/labtrails-import.webp', width: 1280, height: 860, caption: 'LabTrails · batch import with a duplicate caught', alt: 'The LabTrails import queue, with a second copy of the same sample report set aside as already imported.' },
+      { src: '/trails/labtrails-marker-dark.webp', width: 600, height: 1221, phone: true, caption: 'LabTrails · one marker over time, dark mode', alt: 'A phone in dark mode showing a demo ferritin chart over three years, each point against its own lab’s range.' },
+      { src: '/trails/babytrails-child-dark.webp', width: 600, height: 1022, phone: true, caption: 'BabyTrails · a child’s page, dark mode', alt: 'A phone in dark mode showing a demo baby’s page with the latest weight at the 59th percentile and a button to add a measurement.' },
+      { src: '/trails/babytrails-review.webp', width: 600, height: 1022, phone: true, caption: 'BabyTrails · checking values read from a booklet', alt: 'A phone showing values the AI read from a made-up health booklet page, each waiting to be ticked before it is saved.' },
+    ],
   },
   {
     slug: 'chatlingo',

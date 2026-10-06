@@ -758,6 +758,80 @@ main {
   margin-top: 3.5rem;
 }
 
+/* ---------- Case-study screenshots ---------- */
+
+.case-study > .gallery-section {
+  max-width: none;
+}
+
+/* Long project labels and the screenshots note wrap onto a new line on narrow screens. */
+.case-study > .card-meta,
+.gallery-section .section-head {
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+
+.case-study > .card-meta > span:first-child {
+  white-space: nowrap;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.5rem 1rem;
+  align-items: start;
+}
+
+.shot {
+  grid-column: span 3;
+  margin: 0;
+}
+
+.shot.phone-shot {
+  grid-column: span 2;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* One frame shape per kind, anchored at the top, so rows line up when the apps' screenshots
+     differ slightly in proportion. */
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.shot.phone-shot img {
+  aspect-ratio: 600 / 1022;
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 18px;
+}
+
+.shot figcaption {
+  margin-top: 0.625rem;
+  font: 400 0.8125rem/1.5 var(--font-mono);
+  color: var(--muted);
+}
+
+.shot.phone-shot figcaption {
+  text-align: center;
+}
+
+.case-note {
+  margin-top: 1.25rem;
+  padding: 0.875rem 1rem;
+  border-left: 2px solid var(--accent);
+  background: var(--panel);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
 /* ---------- Architecture diagram ---------- */
 
 .diagram {
@@ -1429,6 +1503,18 @@ main {
 }
 
 @media (max-width: 680px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shot {
+    grid-column: 1 / -1;
+  }
+
+  .shot.phone-shot {
+    grid-column: span 1;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
