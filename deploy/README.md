@@ -29,7 +29,9 @@ A new version is live a couple of minutes after the release workflow finishes.
 There are no analytics scripts, cookies or third parties. nginx writes an access log (with the
 visitor's address from Cloudflare's `CF-Connecting-IP` header), and GoAccess turns it into a report
 of visitors, pages and referring sites. It anonymises IP addresses and leaves out crawlers. The
-report is served only inside the owner's private network, never publicly.
+report is served only inside the owner's private network, never publicly. A second, smaller JSON
+copy (requested pages and referring sites only) is written to a folder that is not served
+anywhere, for the owner's private posting assistant.
 
 The script runs as the unprivileged `site-deploy` user, which owns `/srv/tbutman-site`. The nginx
 container mounts that directory read-only. It mounts the directory rather than the `current`
