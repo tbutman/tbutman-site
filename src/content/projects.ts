@@ -227,7 +227,7 @@ export const projects: Project[] = [
       'My blood test results and my son’s growth records both lived in long AI chat threads: hard to search, impossible to chart, and spread across labs, countries, languages and units. Most trackers want an account and a copy of your health data on their servers, and many use AI to tell you what your numbers mean. I wanted the opposite: records that stay on my device, charts that are honest about how each number was measured, and AI that helps me prepare for a doctor without pretending to be one.',
     story: [
       {
-        heading: 'local-first, bring your own key',
+        heading: 'private by design, bring your own key',
         body: [
           'Both apps are static files. Everything a person enters or uploads is encrypted in their own browser with AES-256-GCM, under a key derived from their passphrase with Argon2id, so my server only ever hands out the app. There are no accounts, no database, no analytics and no cookies.',
           'AI features are optional. When someone uses one, their browser calls Anthropic directly with their own API key, after a screen that lists exactly what will be sent. The trade-offs are stated plainly in the apps and in public threat models: no password reset, one device per vault, and encrypted backups as the safety net.',
@@ -282,7 +282,7 @@ export const projects: Project[] = [
     note: 'Not medical advice: both apps record, chart and explain, but they never diagnose or tell you whether a result or a measurement is healthy. That conversation belongs with a doctor.',
     outcomes: [
       'Both apps went from first commit to live on October 6, 2026, from a written spec I approved for each.',
-      '19 and 23 merged pull requests in the first two days.',
+      '19 merged pull requests in BabyTrails and 23 in LabTrails in the first two days.',
       'Tests: 368 unit and 20 browser tests in LabTrails, plus a live extraction check on fictional reports, and 163 unit and 24 browser tests in BabyTrails. Every browser test fails if the app contacts any site but its own.',
     ],
     reflection:
