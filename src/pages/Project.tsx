@@ -11,6 +11,9 @@ export default function Project() {
 
   const number = String(projects.indexOf(project) + 1).padStart(2, '0')
   const diagram = diagrams[project.slug]
+  // Phone screenshots come first, so they lead on a phone, where desktop ones are hard to read.
+  const phoneScreens = project.screens?.filter((screen) => !screen.desktop) ?? []
+  const desktopScreens = project.screens?.filter((screen) => screen.desktop) ?? []
 
   return (
     <article className="case-study">
@@ -36,23 +39,6 @@ export default function Project() {
       </ul>
       <ProjectLinks project={project} className="button-row project-links-top" />
 
-      {project.images && (
-        <section className="case-section gallery-section" aria-labelledby="screens-heading">
-          <div className="section-head">
-            <h2 id="screens-heading">screens</h2>
-            {project.imagesNote && <span>{project.imagesNote}</span>}
-          </div>
-          <div className="gallery">
-            {project.images.map((image) => (
-              <figure key={image.src} className={image.phone ? 'shot phone-shot' : 'shot'}>
-                <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" />
-                <figcaption>{image.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-      )}
-
       <section className="case-section" aria-labelledby="problem-heading">
         <div className="section-head">
           <h2 id="problem-heading">the problem</h2>
@@ -72,20 +58,35 @@ export default function Project() {
       ))}
 
       {project.screens && (
-        <section className="case-section" aria-labelledby="screens-heading">
+        <section className="case-section screens-section" aria-labelledby="screens-heading">
           <div className="section-head">
             <h2 id="screens-heading">screens</h2>
+            {project.screensNote && <span>{project.screensNote}</span>}
           </div>
-          <div className="case-screens">
-            {project.screens.map((screen) => (
-              <figure key={screen.src}>
-                <div className="phone">
-                  <img src={screen.src} alt={screen.alt} width={450} height={1000} loading="lazy" decoding="async" />
-                </div>
-                <figcaption>{screen.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
+          {phoneScreens.length > 0 && (
+            <div className="case-screens">
+              {phoneScreens.map((screen) => (
+                <figure key={screen.src}>
+                  <a className="phone" href={screen.src}>
+                    <img src={screen.src} alt={screen.alt} width={screen.width ?? 450} height={screen.height ?? 1000} loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption>{screen.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+          {desktopScreens.length > 0 && (
+            <div className="case-shots">
+              {desktopScreens.map((screen) => (
+                <figure key={screen.src}>
+                  <a href={screen.src}>
+                    <img src={screen.src} alt={screen.alt} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption>{screen.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
         </section>
       )}
 
