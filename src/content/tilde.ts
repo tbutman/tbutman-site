@@ -105,7 +105,7 @@ const en = {
     { label: 'how to print it', href: printing },
     { label: 'model on github', href: cardRepo },
   ],
-  cardNote: 'Coming soon: customise it in your browser on MakerWorld.',
+  cardNote: 'Coming soon: customize it in your browser on MakerWorld.',
 
   faqHeading: 'questions',
   faq: [

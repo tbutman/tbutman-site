@@ -159,7 +159,7 @@ export const projects: Project[] = [
         heading: 'a 3D model that checks itself',
         body: [
           'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
-          'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customise the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
+          'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customize the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
         ],
       },
       {
@@ -179,7 +179,7 @@ export const projects: Project[] = [
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     reflection:
-      'Next: multiple cards (say, one for work and one personal) in 1.2, phone-to-phone taps between two Android phones, the customisable card on MakerWorld, and the Play Store.',
+      'Next: multiple cards (say, one for work and one personal) in 1.2, phone-to-phone taps between two Android phones, the customizable card on MakerWorld, and the Play Store.',
   },
   {
     slug: 'chatlingo',
