@@ -29,8 +29,8 @@ export default function Home() {
           <a className="button primary" href={`mailto:${profile.email}`}>
             {profile.email}
           </a>
-          <Link className="button" to="/cv">
-            cv
+          <Link className="button" to="/resume">
+            résumé
           </Link>
           {profile.links.map((link) => (
             <a key={link.href} className="button" href={link.href}>
@@ -51,7 +51,7 @@ export default function Home() {
       <section id="experience" className="section" aria-labelledby="experience-heading">
         <div className="section-head">
           <h2 id="experience-heading">experience</h2>
-          <Link to="/cv">full cv →</Link>
+          <Link to="/resume">full résumé →</Link>
         </div>
         <ol className="log panel">
           {experience.map((role) => (

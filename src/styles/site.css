@@ -893,7 +893,7 @@ main {
   color: var(--muted);
 }
 
-/* ---------- CV ---------- */
+/* ---------- Résumé (class names keep the old cv- prefix) ---------- */
 
 .cv-page {
   padding: clamp(2.5rem, 7vw, 4.5rem) 0 clamp(3.5rem, 8vw, 5.5rem);
@@ -1612,7 +1612,7 @@ main {
   }
 }
 
-/* ---------- Print (the CV) ---------- */
+/* ---------- Print (the résumé) ---------- */
 
 @media print {
   @page {

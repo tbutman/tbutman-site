@@ -2,16 +2,16 @@ import { education, experience, roleDates, skills } from '../content/experience'
 import { profile } from '../content/profile'
 import { projects } from '../content/projects'
 
-// The CV favors plain structure over layout tricks so text extractors and applicant-tracking
+// The résumé favors plain structure over layout tricks so text extractors and applicant-tracking
 // systems read it in order: real list bullets, metadata on its own line, literal separators.
 // PepAlert appears under Experience, so it is not repeated here. Tilde leads because its source
 // and releases are public.
-const CV_PROJECTS = ['tilde', 'smart-shopping']
+const RESUME_PROJECTS = ['tilde', 'smart-shopping']
 
 const bareUrl = (href: string) => href.replace(/^https:\/\/(www\.)?/, '')
 
-export default function Cv() {
-  const cvProjects = CV_PROJECTS.flatMap((slug) => projects.filter((project) => project.slug === slug))
+export default function Resume() {
+  const resumeProjects = RESUME_PROJECTS.flatMap((slug) => projects.filter((project) => project.slug === slug))
   const contact = [
     profile.location,
     profile.workAuthorization,
@@ -24,9 +24,9 @@ export default function Cv() {
     <div className="cv-page">
       <div className="cv-toolbar">
         <p className="section-head">
-          <span className="label">cv</span>
+          <span className="label">résumé</span>
         </p>
-        <a className="button primary" href={profile.cvPdf} download>
+        <a className="button primary" href={profile.resumePdf} download>
           download pdf
         </a>
       </div>
@@ -72,7 +72,7 @@ export default function Cv() {
 
         <section aria-labelledby="cv-projects">
           <h2 id="cv-projects">Projects</h2>
-          {cvProjects.map((project) => (
+          {resumeProjects.map((project) => (
             <div key={project.slug} className="cv-role">
               <h3>
                 {project.title}

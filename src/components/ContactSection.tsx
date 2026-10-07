@@ -48,8 +48,8 @@ export default function ContactSection() {
               {link.label.toLowerCase()}
             </a>
           ))}
-          <Link className="button" to="/cv">
-            cv
+          <Link className="button" to="/resume">
+            résumé
           </Link>
         </div>
       </div>

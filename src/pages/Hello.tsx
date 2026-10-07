@@ -83,8 +83,8 @@ export default function Hello({ locale }: { locale: Locale }) {
             {text.bookCall}
           </a>
           <div className="button-row">
-            <Link className="button" to="/cv">
-              {text.cv}
+            <Link className="button" to="/resume">
+              {text.resume}
             </Link>
             {workLinks.map((link) => (
               <a key={link.href} className="button" href={link.href}>
