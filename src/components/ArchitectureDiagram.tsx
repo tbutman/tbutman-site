@@ -33,7 +33,7 @@ export default function ArchitectureDiagram({ diagram }: { diagram: Diagram }) {
   const width = diagram.columns.length * NODE_W + (diagram.columns.length - 1) * GAP_X
   const height = HEADER_H + (diagram.rows - 1) * ROW_STEP + NODE_H
   const description = diagram.edges
-    .map(([from, to]) => `${byId.get(from)?.label} to ${byId.get(to)?.label}`)
+    .map(([from, to, label]) => `${byId.get(from)?.label} to ${byId.get(to)?.label}${label ? ` (${label})` : ''}`)
     .join('; ')
 
   return (
@@ -81,6 +81,24 @@ export default function ArchitectureDiagram({ diagram }: { diagram: Diagram }) {
             )
           })}
 
+          {/* Edge labels sit at the arrow's midpoint, which falls in the gap between rows. */}
+          {diagram.edges.map(([from, to, label]) => {
+            const a = byId.get(from)
+            const b = byId.get(to)
+            if (!a || !b || !label) return null
+            return (
+              <text
+                key={`${from}-${to}-label`}
+                className="diagram-edge-label"
+                x={(nodeX(a) + NODE_W + nodeX(b)) / 2}
+                y={(nodeY(a) + nodeY(b) + NODE_H) / 2 + 4}
+                textAnchor="middle"
+              >
+                {label}
+              </text>
+            )
+          })}
+
           {diagram.nodes.map((node) => (
             <g key={node.id} className={node.highlight ? 'diagram-node highlight' : 'diagram-node'}>
               <rect x={nodeX(node)} y={nodeY(node)} width={NODE_W} height={NODE_H} rx={8} />
@@ -110,6 +128,13 @@ export default function ArchitectureDiagram({ diagram }: { diagram: Diagram }) {
                   <li key={node.id} className={node.highlight ? 'highlight' : undefined}>
                     <b>{node.label}</b>
                     {node.detail && <span>{node.detail}</span>}
+                    {diagram.edges
+                      .filter(([, to, label]) => to === node.id && label)
+                      .map(([from, , label]) => (
+                        <span key={from}>
+                          {label}, from {byId.get(from)?.label}
+                        </span>
+                      ))}
                   </li>
                 ))}
             </ul>

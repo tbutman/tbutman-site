@@ -13,7 +13,8 @@ export type Diagram = {
   columns: string[]
   rows: number
   nodes: DiagramNode[]
-  edges: [from: string, to: string][]
+  /** An optional label is drawn at the middle of the arrow. */
+  edges: [from: string, to: string, label?: string][]
 }
 
 // System diagrams for the case studies, drawn from each project's README and spec, plus the
@@ -172,17 +173,18 @@ export const diagrams: Record<string, Diagram> = {
   },
   tilde: {
     title: 'Tilde: the app and the card',
-    columns: ['source', 'the tag', 'their phone'],
+    columns: ['source', 'what they tap', 'their phone'],
     rows: 2,
     nodes: [
-      { id: 'app', label: 'Tilde app', detail: 'profile stays on the phone', col: 0, row: 0, highlight: true },
-      { id: 'model', label: 'Card model', detail: 'OpenSCAD · QR encoder', col: 0, row: 1 },
+      { id: 'app', label: 'Tilde app', detail: 'cards stay on the phone', col: 0, row: 0, highlight: true },
+      { id: 'model', label: 'Tilde card model', detail: 'OpenSCAD · QR encoder', col: 0, row: 1 },
       { id: 'hce', label: 'Type 4 tag (HCE)', detail: 'link · vCard · Wi-Fi', col: 1, row: 0 },
-      { id: 'card', label: 'Printed card', detail: 'NTAG215 · written by Tilde', col: 1, row: 1 },
+      { id: 'card', label: 'Tilde card', detail: 'QR code · NFC sticker', col: 1, row: 1 },
       { id: 'phone', label: 'Their phone', detail: 'tap or scan · no app', col: 2, row: 0.5 },
     ],
     edges: [
       ['app', 'hce'],
+      ['app', 'card', 'write a sticker'],
       ['model', 'card'],
       ['hce', 'phone'],
       ['card', 'phone'],

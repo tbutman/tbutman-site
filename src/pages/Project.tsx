@@ -54,6 +54,24 @@ export default function Project() {
         </section>
       ))}
 
+      {project.screens && (
+        <section className="case-section" aria-labelledby="screens-heading">
+          <div className="section-head">
+            <h2 id="screens-heading">screens</h2>
+          </div>
+          <div className="case-screens">
+            {project.screens.map((screen) => (
+              <figure key={screen.src}>
+                <div className="phone">
+                  <img src={screen.src} alt={screen.alt} width={450} height={1000} loading="lazy" decoding="async" />
+                </div>
+                <figcaption>{screen.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
       {diagram && (
         <section className="case-section diagram-section" aria-labelledby="architecture-heading">
           <div className="section-head">
