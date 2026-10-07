@@ -37,7 +37,7 @@ const en = {
     'Open the file. Android asks to let your browser install apps: tap **Settings**, turn on **Allow from this source**, and go back.',
     'Tap **Install**. If Google Play Protect (Android’s built-in app check) doesn’t recognise the developer, choose **Install anyway**: Tilde isn’t in the Play Store yet.',
   ],
-  installNote: `No account, no developer mode. Every release is built from the public code and signed with the same key. [Full guide with pictures →](${installGuide})`,
+  installNote: `No account, no developer mode. Every release is built from the public code and signed with the same key. [Full install guide →](${installGuide})`,
 
   modesHeading: 'one tap, the right details',
   modesIntro:
@@ -131,7 +131,7 @@ const en = {
     },
     {
       q: 'How do I install it without the Play Store?',
-      a: `No developer mode needed: follow the three steps under **install in a minute** near the top of this page, or the [full guide with pictures](${installGuide}). For automatic updates, the free Obtainium app can check for new versions for you ([how](${updatesGuide})).`,
+      a: `No developer mode needed: follow the three steps under **install in a minute** near the top of this page, or the [full install guide](${installGuide}). For automatic updates, the free Obtainium app can check for new versions for you ([how](${updatesGuide})).`,
     },
   ],
 
@@ -160,7 +160,7 @@ const pt: TildeText = {
     'Abre o ficheiro. O Android pede-te para deixares o browser instalar apps: toca em **Definições**, ativa **Permitir desta fonte** e volta atrás.',
     'Toca em **Instalar**. Se o Google Play Protect (a verificação de apps do próprio Android) não reconhecer o programador, escolhe **Instalar mesmo assim**: a Tilde ainda não está na Play Store.',
   ],
-  installNote: `Sem conta e sem opções de programador. Cada versão é compilada a partir do código público e assinada com a mesma chave. [Guia completo com imagens (em inglês) →](${installGuide})`,
+  installNote: `Sem conta e sem opções de programador. Cada versão é compilada a partir do código público e assinada com a mesma chave. [Guia completo (em inglês) →](${installGuide})`,
 
   modesHeading: 'um toque, os contactos certos',
   modesIntro:
@@ -254,7 +254,7 @@ const pt: TildeText = {
     },
     {
       q: 'Como a instalo sem a Play Store?',
-      a: `Não precisas das opções de programador: segue os três passos em **instalar num minuto**, no topo desta página, ou o [guia completo com imagens (em inglês)](${installGuide}). Para receberes atualizações automaticamente, a app gratuita Obtainium pode procurar novas versões por ti ([como, em inglês](${updatesGuide})).`,
+      a: `Não precisas das opções de programador: segue os três passos em **instalar num minuto**, no topo desta página, ou o [guia completo (em inglês)](${installGuide}). Para receberes atualizações automaticamente, a app gratuita Obtainium pode procurar novas versões por ti ([como, em inglês](${updatesGuide})).`,
     },
     {
       q: 'A app está em português?',
