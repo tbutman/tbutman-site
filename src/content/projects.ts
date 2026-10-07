@@ -224,7 +224,7 @@ export const projects: Project[] = [
     scope:
       'Mine end to end: the products, the architecture, the security model and every decision across both apps. I built them with two AI coding agents working in parallel, one per app, using the process on the how-i-work page: I wrote the briefs, approved each spec and design, reviewed the work, and arbitrated a shared notes file the agents coordinated through.',
     problem:
-      'My blood test results and my son’s growth records both lived in long AI chat threads: hard to search, impossible to chart, and spread across labs, countries, languages and units. Most trackers want an account and a copy of your health data on their servers, and many use AI to tell you what your numbers mean. I wanted the opposite: records that stay on my device, charts that are honest about how each number was measured, and AI that helps me prepare for a doctor without pretending to be one.',
+      'My blood test results and my son’s growth records both lived in long AI chat threads: hard to search, impossible to chart, and spread across labs, countries, languages and units. Most trackers want an account and a copy of your health data on their servers, and many use AI to tell you what your numbers mean. I wanted the opposite: records encrypted on my device that never reach my server, charts that are honest about how each number was measured, and AI that helps me prepare for a doctor without pretending to be one.',
     story: [
       {
         heading: 'private by design, bring your own key',
@@ -237,7 +237,7 @@ export const projects: Project[] = [
         heading: 'the code computes, the AI explains, you confirm',
         body: [
           'Numbers are never the AI’s job. LabTrails flags results with simple, tested rules against each lab’s printed range. BabyTrails works out percentiles with WHO’s LMS method, including WHO’s adjustment beyond ±3 SD, tested against WHO’s published values.',
-          'When the AI reads a report, it only copies what is printed into a strict schema; the code matches names and units, and the person checks every row next to the original page before anything is saved. Summaries are written from facts the code computed, without the person’s name or date of birth; BabyTrails’ facts carry no dates at all, only ages in days. Ask, for questions about the numbers, shows an answer only after the code has checked each of its numbers against the app’s own figures.',
+          'When the AI reads a report, it only copies what is printed into a strict schema; the code matches names and units, and the person checks every row next to the original page before anything is saved. Summaries of the numbers are written from facts the code computed, without the person’s name or date of birth; BabyTrails’ facts carry no dates at all, only ages in days. Ask, for questions about the numbers, shows an answer only after the code has checked each of its numbers against the app’s own figures.',
         ],
       },
       {
