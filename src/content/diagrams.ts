@@ -3,7 +3,7 @@ export type DiagramNode = {
   label: string
   detail?: string
   col: number
-  /** Row position; fractional values centre a node between rows. */
+  /** Row position; fractional values center a node between rows. */
   row: number
   highlight?: boolean
 }
