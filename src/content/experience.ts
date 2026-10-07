@@ -66,7 +66,7 @@ export const experience: Role[] = [
       'When the business pivoted from one-off government and airline payments to class-action settlement payouts, rewrote the consumer payout portal on my own initiative over five to six months of nights and weekends, demoing a working version before proposing it and piloting it alongside v1. A payout to about a million recipients then ran smoothly on v2.',
       'Made the portal configuration-driven: customer defaults with per-program, per-network, per-status and per-amount overrides stored in the database. Launching a program went from days of often-buggy work to ready to test within a morning.',
       'Contained an unrelated backend failure at that launch through configuration alone: disabled the affected payment option and showed recipients a notice with the expected fix time, with no deploy.',
-      'Modelled the UI as a state machine mirroring backend payment statuses, and designed the API and configuration schema in lockstep with the CTO, who later rewrote the backend along the same lines.',
+      'Modeled the UI as a state machine mirroring backend payment statuses, and designed the API and configuration schema in lockstep with the CTO, who later rewrote the backend along the same lines.',
       'Originated many of the features I shipped, demoing them before they were requested and anticipating the payment methods and per-program customization that new settlements would need.',
       'Remained the sole frontend engineer as the team shrank from 22 people to 6, maintaining the core applications and shipping their frontend features.',
     ],

@@ -36,7 +36,7 @@ CI serves every build through `deploy/nginx.conf` in the server's pinned nginx i
 
 There are no analytics scripts, cookies or third parties. nginx writes an access log (with the
 visitor's address from Cloudflare's `CF-Connecting-IP` header), and GoAccess turns it into a report
-of visitors, pages and referring sites. It anonymises IP addresses and leaves out crawlers. The
+of visitors, pages and referring sites. It anonymizes IP addresses and leaves out crawlers. The
 report is served only inside the owner's private network, never publicly. A second, smaller JSON
 copy (requested pages and referring sites only) is written to a folder that is not served
 anywhere, for the owner's private posting assistant.

@@ -6,7 +6,7 @@ export type LabItem = {
 }
 
 export const labIntro =
-  'Small hardware builds, most of them finished in a night or a weekend: microcontrollers, 3D printing and small robots. AI models have made it much faster to pick up a new field, and this is where I practise.'
+  'Small hardware builds, most of them finished in a night or a weekend: microcontrollers, 3D printing and small robots. AI models have made it much faster to pick up a new field, and this is where I practice.'
 
 // TODO(thomas): add home-lab equipment if it supports a story (3D printer, bench tools, the server
 // that hosts this site).

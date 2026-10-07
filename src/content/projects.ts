@@ -111,7 +111,7 @@ export const projects: Project[] = [
       'A normalization and pricing engine that compares true cost per mg, including shipping, free-shipping thresholds and promotions. As of October 2026 the catalog covers 270+ products from 23+ vendors.',
       'A multi-vendor order optimizer that plans the cheapest order, the fastest delivery or the fewest shipments.',
       'Alerts by email and Telegram, plus Telegram and Discord bots for price lookups, order drafting and notes.',
-      'Lab-report results (purity, net content, endotoxin) shown per batch, with who ordered the test and which lab ran it, so buyers can favour independent third-party testing.',
+      'Lab-report results (purity, net content, endotoxin) shown per batch, with who ordered the test and which lab ran it, so buyers can favor independent third-party testing.',
       'Google and Telegram sign-in, free and paid tiers with Stripe, and first-party analytics with no third-party scripts.',
       'Runs on a single self-hosted box with SQLite, chosen for cost and simplicity at early-access scale.',
     ],

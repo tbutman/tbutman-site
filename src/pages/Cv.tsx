@@ -2,7 +2,7 @@ import { education, experience, roleDates, skills } from '../content/experience'
 import { profile } from '../content/profile'
 import { projects } from '../content/projects'
 
-// The CV favours plain structure over layout tricks so text extractors and applicant-tracking
+// The CV favors plain structure over layout tricks so text extractors and applicant-tracking
 // systems read it in order: real list bullets, metadata on its own line, literal separators.
 // PepAlert appears under Experience, so it is not repeated here. Tilde leads because its source
 // and releases are public.
