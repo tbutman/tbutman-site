@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
+    "build": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "cv:pdf": "node scripts/cv-pdf.mjs",
+    "resume:pdf": "node scripts/resume-pdf.mjs",
     "og": "node scripts/og-images.mjs",
     "test": "node --test services/contact/server.test.mjs"
   },

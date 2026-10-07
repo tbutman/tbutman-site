@@ -3,6 +3,7 @@ import { processIntro } from './content/process'
 import { findProject } from './content/projects'
 import { helloText } from './content/hello'
 import { tildeText } from './content/tilde'
+import { tildePrivacyText } from './content/tildePrivacy'
 import { alternatesFor, htmlLang, localeOf, type Locale } from './i18n'
 
 export type Meta = {
@@ -52,8 +53,14 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
   if (pathname === '/pt/tilde') {
     return { title: 'Tilde · cartão de visita NFC grátis para Android', description: tildeText.pt.lede, image: '/og/tilde.png' }
   }
-  if (pathname === '/cv') {
-    return { title: `CV · ${profile.name}`, description: defaultDescription }
+  if (pathname === '/tilde/privacy') {
+    return { title: 'Tilde privacy · your details stay on your phone', description: tildePrivacyText.en.lede, image: '/og/tilde.png' }
+  }
+  if (pathname === '/pt/tilde/privacy') {
+    return { title: 'Privacidade da Tilde · os teus dados ficam no teu telemóvel', description: tildePrivacyText.pt.lede, image: '/og/tilde.png' }
+  }
+  if (pathname === '/resume') {
+    return { title: `Résumé · ${profile.name}`, description: defaultDescription }
   }
   const project = findProject(pathname.match(/^\/work\/([^/]+)$/)?.[1])
   if (project) {

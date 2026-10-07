@@ -1,4 +1,4 @@
-// /hello and /pt/hello: where the printed business card's QR code and NFC tag point, and what
+// /hello and /pt/hello: where the printed Tilde card's QR code and NFC sticker point, and what
 // Thomas's phone shares through Tilde. Visitors arrive on a phone, usually right after meeting
 // Thomas at an event; a phone set to Portuguese gets /pt/hello (see src/components/LangSwitch.tsx).
 // Both are open source: github.com/tbutman/tilde-card and github.com/tbutman/tilde. Kept out of
@@ -25,7 +25,7 @@ const en = {
   status: 'you tapped or scanned my card',
   headline: ['Hi, I’m Thomas.', 'Good to meet you.'],
   intro:
-    'You got here from my business card or my phone. The card is one I designed and 3D-printed, with an NFC tag sealed inside it halfway through the print. The phone runs Tilde, an open-source Android app I wrote that makes it work like the card. This page is served from a small server in my home in Lisbon.',
+    'You got here from my business card or my phone. The card is a Tilde card I designed and 3D-printed, with an NFC sticker sealed inside it halfway through the print. The phone runs Tilde, an open-source Android app I wrote that makes it work like the card. This page is served from a small server in my home in Lisbon.',
   openTo: 'open to',
   availability: profile.availability.toLowerCase(),
   engagement: profile.engagement.toLowerCase(),
@@ -34,7 +34,7 @@ const en = {
   saveContact: 'save my contact',
   workHeading: 'work with me',
   bookCall: 'book a 20-minute intro call ↗',
-  cv: 'cv',
+  resume: 'résumé',
   fullSite: 'the full site →',
   aboutHeading: 'about me',
   bio: profile.lede,
@@ -42,7 +42,7 @@ const en = {
   diagram: 'hello',
   cardNote:
     'The 3D model generates its own QR code, and a script decodes it from the exported model before anything is printed.',
-  projectLink: { label: 'get the app or print the card, free →', to: '/tilde' },
+  projectLink: { label: 'get the app or print a tilde card, free →', to: '/tilde' },
 }
 
 export type HelloText = typeof en
@@ -52,7 +52,7 @@ const pt: HelloText = {
   // A non-breaking hyphen (U+2011) keeps “conhecer‑te” on one line in the large headline.
   headline: ['Olá, sou o Thomas.', 'Prazer em conhecer\u2011te.'],
   intro:
-    'Chegaste aqui pelo meu cartão de visita ou pelo meu telemóvel. O cartão fui eu que o desenhei e imprimi em 3D, com uma etiqueta NFC selada lá dentro a meio da impressão. O telemóvel tem a Tilde, uma app Android de código aberto que escrevi para funcionar como o cartão. Esta página é servida a partir de um pequeno servidor na minha casa, em Lisboa.',
+    'Chegaste aqui pelo meu cartão de visita ou pelo meu telemóvel. O cartão é um cartão Tilde que desenhei e imprimi em 3D, com um autocolante NFC selado lá dentro a meio da impressão. O telemóvel tem a Tilde, uma app Android de código aberto que escrevi para funcionar como o cartão. Esta página é servida a partir de um pequeno servidor na minha casa, em Lisboa.',
   openTo: 'disponível para',
   availability: 'remoto (EUA) ou presencial em Lisboa',
   engagement: 'tempo inteiro ou contrato',
@@ -61,7 +61,7 @@ const pt: HelloText = {
   saveContact: 'guardar o meu contacto',
   workHeading: 'trabalhar comigo',
   bookCall: 'marcar uma conversa de 20 minutos ↗',
-  cv: 'cv (em inglês)',
+  resume: 'cv (em inglês)',
   fullSite: 'o site completo (em inglês) →',
   aboutHeading: 'sobre mim',
   bio: 'Engenheiro de produto sénior, com dez anos em fintech e muita experiência em React. Fui responsável pelo frontend das aplicações de pagamento da DigitalPay e hoje construo produtos full-stack, do modelo de dados até à produção.',
@@ -69,7 +69,7 @@ const pt: HelloText = {
   diagram: 'hello-pt',
   cardNote:
     'O modelo 3D gera o seu próprio código QR, e um script descodifica-o a partir do modelo exportado antes de qualquer impressão.',
-  projectLink: { label: 'obtém a app ou imprime o cartão, grátis →', to: '/pt/tilde' },
+  projectLink: { label: 'obtém a app ou imprime um cartão tilde, grátis →', to: '/pt/tilde' },
 }
 
 export const helloText: Record<Locale, HelloText> = { en, pt }

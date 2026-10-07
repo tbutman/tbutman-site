@@ -14,7 +14,7 @@ export const profile = {
   bookingUrl: 'https://cal.com/tbutman/intro',
   // Turn on once the contact service is deployed and a test message has arrived.
   contactFormEnabled: true,
-  cvPdf: '/Thomas_Butman_CV.pdf',
+  resumePdf: '/Thomas_Butman_Resume.pdf',
   links: [
     { label: 'GitHub', href: 'https://github.com/tbutman' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/thomasbutman' },

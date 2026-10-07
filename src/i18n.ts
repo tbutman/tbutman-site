@@ -1,5 +1,5 @@
 // The few pages with a Portuguese version: /hello (where the business card and Tilde lead) and the
-// Tilde product page, for people Thomas meets in person in Portugal. Everything else is English.
+// Tilde product and privacy pages, for people Thomas meets in person in Portugal. Everything else is English.
 export type Locale = 'en' | 'pt'
 
 /** The <html lang> value for each locale: European Portuguese, not Brazilian. */
@@ -9,6 +9,7 @@ export const htmlLang: Record<Locale, string> = { en: 'en', pt: 'pt-PT' }
 export const translations: Record<string, string> = {
   '/hello': '/pt/hello',
   '/tilde': '/pt/tilde',
+  '/tilde/privacy': '/pt/tilde/privacy',
 }
 
 /** Both versions of a translated page, from either of its paths. */

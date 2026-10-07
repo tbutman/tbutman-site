@@ -25,3 +25,6 @@ dist-ssr
 
 # Prerender build output
 dist-server
+
+# Written by scripts/tilde-release.mjs at build time
+tilde-release.json
