@@ -283,7 +283,7 @@ export const projects: Project[] = [
     outcomes: [
       'Both apps went from first commit to live on October 6, 2026, from a written spec I approved for each.',
       '19 merged pull requests in BabyTrails and 23 in LabTrails in the first two days.',
-      'Tests: 421 unit and 27 browser tests in LabTrails, plus a live extraction check on fictional reports, and 198 unit and 37 browser tests in BabyTrails. Every browser test fails if the app contacts any site but its own.',
+      'Tests: 424 unit and 27 browser tests in LabTrails, plus a live extraction check on fictional reports, and 198 unit and 37 browser tests in BabyTrails. Every browser test fails if the app contacts any site but its own.',
     ],
     reflection:
       'What I’d do differently: agree shared resources in the coordination file on day one. Both apps’ browser tests first used the same port, so one app’s tests ran against the other’s server. Next: use both apps day to day with our own records, add corrected age for babies born early, and, if people want it, encrypted sync between devices.',
