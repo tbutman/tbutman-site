@@ -67,7 +67,7 @@ const en = {
   modes: [
     {
       title: 'Contact card',
-      body: 'Your name, title, phone numbers, email, website and social links, all at once and ready to save to their contacts. It’s the standard format every phone’s contacts app understands.',
+      body: 'Your name, title, company, phone numbers, email, website and social links, all at once and ready to save to their contacts. It’s the standard format every phone’s contacts app understands.',
     },
     {
       title: 'A link',
@@ -220,7 +220,7 @@ const pt: TildeText = {
   modes: [
     {
       title: 'Cartão de contacto',
-      body: 'O teu nome, cargo, números de telefone, email, site e redes sociais, tudo de uma vez e pronto a guardar nos contactos. É o formato padrão que a app de contactos de qualquer telemóvel entende.',
+      body: 'O teu nome, cargo, empresa, números de telefone, email, site e redes sociais, tudo de uma vez e pronto a guardar nos contactos. É o formato padrão que a app de contactos de qualquer telemóvel entende.',
     },
     {
       title: 'Uma ligação',
