@@ -8,7 +8,7 @@
 // meets in person. The app itself is in English, which the FAQ says.
 import type { Locale } from '../i18n'
 
-const releases = 'https://github.com/tbutman/tilde/releases'
+const releases = 'https://github.com/tbutman/tilde/releases/latest'
 const repo = 'https://github.com/tbutman/tilde'
 const printing = 'https://github.com/tbutman/tilde-card/blob/main/PRINTING.md'
 const cardRepo = 'https://github.com/tbutman/tilde-card'
@@ -111,7 +111,7 @@ const en = {
     },
     {
       q: 'How do I install it without the Play Store?',
-      a: 'Download the file ending in .apk from the releases page on your phone and open it; Android asks you to allow the install once. For automatic updates, add the GitHub page to the free Obtainium app.',
+      a: 'No developer mode needed. On your phone, download the file ending in .apk from the latest release and open it. Android asks once to let your browser install apps, and Google Play Protect may say it doesn’t recognise the developer, because Tilde isn’t in the Play Store yet: choose to install anyway. There’s a step-by-step guide on GitHub. For automatic updates, add the GitHub page to the free Obtainium app.',
     },
   ],
 
@@ -220,7 +220,7 @@ const pt: TildeText = {
     },
     {
       q: 'Como a instalo sem a Play Store?',
-      a: 'No telemóvel, descarrega o ficheiro que termina em .apk na página de versões (releases) e abre-o; o Android pede-te uma vez autorização para o instalar. Para receberes atualizações automaticamente, adiciona a página do GitHub à app gratuita Obtainium.',
+      a: 'Não precisas das opções de programador. No telemóvel, descarrega o ficheiro que termina em .apk da versão mais recente e abre-o. O Android pede-te uma vez para deixares o browser instalar apps, e o Google Play Protect pode dizer que não reconhece o programador, porque a Tilde ainda não está na Play Store: escolhe instalar na mesma. Há um guia passo a passo no GitHub. Para receberes atualizações automaticamente, adiciona a página do GitHub à app gratuita Obtainium.',
     },
     {
       q: 'A app está em português?',
