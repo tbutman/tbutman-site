@@ -58,7 +58,7 @@ export default function Tilde({ locale }: { locale: Locale }) {
             width={1200}
             height={601}
           />
-          <Phone src="/tilde/app-share.webp" alt={tilde.heroPhoneAlt} eager />
+          <Phone {...tilde.heroPhone} eager />
         </div>
       </section>
 
@@ -86,7 +86,7 @@ export default function Tilde({ locale }: { locale: Locale }) {
           <h2 id="modes-heading">{tilde.modesHeading}</h2>
         </div>
         <div className="product-split">
-          <Phone src="/tilde/app-picker.webp" alt={tilde.modesPhoneAlt} />
+          <Phone {...tilde.modesPhone} />
           <div>
             <p className="section-intro">{tilde.modesIntro}</p>
             <ul className="mode-grid">
@@ -97,6 +97,26 @@ export default function Tilde({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="cards-heading">
+        <div className="section-head">
+          <h2 id="cards-heading">{tilde.cardsHeading}</h2>
+        </div>
+        <div className={tilde.cardsPhones.length > 1 ? 'product-split product-split-reverse product-split-pair' : 'product-split product-split-reverse'}>
+          <div>
+            {tilde.cardsBody.map((paragraph) => (
+              <p key={paragraph} className="product-body product-paragraph">
+                <RichText text={paragraph} />
+              </p>
+            ))}
+          </div>
+          <div className="product-phones">
+            {tilde.cardsPhones.map((phone) => (
+              <Phone key={phone.src} {...phone} />
+            ))}
           </div>
         </div>
       </section>
@@ -130,19 +150,20 @@ export default function Tilde({ locale }: { locale: Locale }) {
                 </div>
               ))}
             </dl>
-            <p className="product-body">{tilde.freeBody}</p>
+            <p className="product-body">
+              <RichText text={tilde.freeBody} />
+            </p>
             <p className="product-small">
               <Link to={tilde.privacyLink.to}>{tilde.privacyLink.label} →</Link>
             </p>
           </div>
-          <Phone src="/tilde/app-met.webp" alt={tilde.metPhoneAlt} />
+          <Phone {...tilde.metPhone} />
         </div>
       </section>
 
       <section id="card" className="section" aria-labelledby="card-heading">
         <div className="section-head">
           <h2 id="card-heading">{tilde.cardHeading}</h2>
-          <span>{tilde.cardOptional}</span>
         </div>
         <div className="product-card-section">
           <div className="product-card-images">
