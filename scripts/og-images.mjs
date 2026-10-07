@@ -100,8 +100,8 @@ const cards = [
       <div class="kicker">${escape(tilde.status)}</div>
       <h1 style="font-size: 120px">${escape(tilde.name)}</h1>
       <p class="tagline">${escape(tilde.headline[0])} <span>${escape(tilde.headline[1])}</span></p>
-      <p class="points">Tap or scan to share your contact card,<br>website or WhatsApp. No account.</p>
-      <img class="phone" src="${fileUrl('public/tilde/app-share.webp')}">
+      <p class="points">Tap or scan to share your contact card,<br>website or WhatsApp. No account, no internet.</p>
+      <img class="phone" src="${fileUrl('public/tilde/share.webp')}">
       <img class="card" src="${fileUrl('public/tilde/card.webp')}">
       ${foot('/tilde')}`,
       `.tagline { margin-top: 18px; font: 650 46px/1.12 Inter; letter-spacing: -0.03em; }
@@ -109,7 +109,7 @@ const cards = [
        .points { margin-top: 26px; font-size: 26px; line-height: 1.45; color: #b6bec8; }
        .phone { position: absolute; right: 86px; top: 46px; width: 250px; padding: 7px; border-radius: 34px;
          background: #050608; border: 1px solid #2b343e; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-       .card { position: absolute; right: 230px; bottom: 74px; width: 400px; filter: drop-shadow(0 24px 40px rgba(0,0,0,0.6)); }`,
+       .card { position: absolute; right: 236px; bottom: 84px; width: 360px; filter: drop-shadow(0 24px 40px rgba(0,0,0,0.6)); }`,
     ),
   },
 ]
