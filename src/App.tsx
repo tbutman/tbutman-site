@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import Project from './pages/Project'
 import Thanks from './pages/Thanks'
 import Tilde from './pages/Tilde'
+import TildePrivacy from './pages/TildePrivacy'
 
 function useDocumentMeta() {
   const { pathname, hash } = useLocation()
@@ -41,6 +42,8 @@ export default function App() {
           <Route path="/pt/hello" element={<Hello locale="pt" />} />
           <Route path="/tilde" element={<Tilde locale="en" />} />
           <Route path="/pt/tilde" element={<Tilde locale="pt" />} />
+          <Route path="/tilde/privacy" element={<TildePrivacy locale="en" />} />
+          <Route path="/pt/tilde/privacy" element={<TildePrivacy locale="pt" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

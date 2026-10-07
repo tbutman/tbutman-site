@@ -7,7 +7,7 @@ import { getMeta } from './meta'
 
 export { contactCard } from './lib/vcard'
 
-export const paths = ['/', '/cv', '/how-i-work', '/thanks', '/hello', '/pt/hello', '/tilde', '/pt/tilde', ...projects.map((project) => `/work/${project.slug}`), '/404']
+export const paths = ['/', '/cv', '/how-i-work', '/thanks', '/hello', '/pt/hello', '/tilde', '/pt/tilde', '/tilde/privacy', '/pt/tilde/privacy', ...projects.map((project) => `/work/${project.slug}`), '/404']
 
 export function render(path: string) {
   const html = renderToString(

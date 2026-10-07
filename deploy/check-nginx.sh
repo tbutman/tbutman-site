@@ -32,6 +32,10 @@ security=('^x-content-type-options: nosniff' '^x-frame-options: deny' '^referrer
 
 check /                       200 '^content-type: text/html' '^cache-control: no-cache' "${security[@]}"
 check /cv                     200 '^content-type: text/html' '^cache-control: no-cache'
+# /tilde is tilde.html beside the tilde/ folder that holds /tilde/privacy: both must resolve to a page.
+check /tilde                  200 '^content-type: text/html'
+check /tilde/privacy          200 '^content-type: text/html'
+check /pt/tilde/privacy       200 '^content-type: text/html'
 check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable'
 check /assets/missing-check.js 404 '^content-type: text/html' '^cache-control: no-store' '!immutable' '!max-age' "${security[@]}"
 check /no-such-page           404 '^cache-control: no-store' '!max-age' "${security[@]}"

@@ -1366,6 +1366,62 @@ main {
   font-family: var(--font-mono);
 }
 
+/* Links inside the product page's copy, and bold Android button names in the install steps. */
+.product-body a,
+.product-small a,
+.product-steps a,
+.faq details p a,
+.privacy-list a {
+  color: var(--accent);
+}
+
+.product-body a:hover,
+.product-small a:hover,
+.faq details p a:hover,
+.privacy-list a:hover {
+  text-decoration: underline;
+}
+
+.product-steps b,
+.faq details p b {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.product-hero .product-release {
+  margin-top: 1.25rem;
+  color: var(--muted);
+}
+
+.product-hero .product-release + .product-small {
+  margin-top: 0.25rem;
+}
+
+.product-install-note {
+  margin-top: 1.25rem;
+  max-width: 46rem;
+}
+
+/* ---- /tilde/privacy ---- */
+.privacy-hero {
+  grid-template-columns: minmax(0, 46rem);
+}
+
+.privacy-list {
+  max-width: 46rem;
+  padding: 0.25rem 1.375rem;
+}
+
+.privacy-list li {
+  padding: 1rem 0;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.privacy-list li + li {
+  border-top: 1px solid var(--line);
+}
+
 @media (max-width: 860px) {
   .product-hero,
   .product-card-section {

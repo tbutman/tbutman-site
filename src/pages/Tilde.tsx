@@ -1,7 +1,11 @@
 import { Link } from 'react-router'
 import LangSwitch from '../components/LangSwitch'
+import RichText from '../components/RichText'
 import { tildeText } from '../content/tilde'
-import { type Locale, translations } from '../i18n'
+import { htmlLang, type Locale, translations } from '../i18n'
+
+// The newest release, looked up when the site builds; without it the button opens the release page.
+const release = __TILDE_RELEASE__
 
 function Phone({ src, alt, eager = false }: { src: string; alt: string; eager?: boolean }) {
   return (
@@ -13,6 +17,12 @@ function Phone({ src, alt, eager = false }: { src: string; alt: string; eager?: 
 
 export default function Tilde({ locale }: { locale: Locale }) {
   const tilde = tildeText[locale]
+  const downloadHref = release?.apk ?? tilde.download.fallbackHref
+  // "version 1.1.0 · 1.7 MB · android 8 or newer", with the decimal comma in Portuguese.
+  const size = release && new Intl.NumberFormat(htmlLang[locale], { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(release.bytes / 1e6)
+  const releaseLine = [release && `${tilde.release.version} ${release.version}`, release && `${size} MB`, tilde.release.minAndroid]
+    .filter(Boolean)
+    .join(' · ')
   return (
     <article className="product">
       <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
@@ -30,13 +40,14 @@ export default function Tilde({ locale }: { locale: Locale }) {
           </h1>
           <p className="lede">{tilde.lede}</p>
           <div className="button-row">
-            <a className="button primary" href={tilde.download.href}>
+            <a className="button primary" href={downloadHref}>
               {tilde.download.label} ↓
             </a>
             <a className="button" href={tilde.printCard.href}>
               {tilde.printCard.label}
             </a>
           </div>
+          <p className="product-small product-release">{releaseLine}</p>
           <p className="product-small">{tilde.requirements}</p>
         </div>
         <div className="product-hero-visual">
@@ -49,6 +60,25 @@ export default function Tilde({ locale }: { locale: Locale }) {
           />
           <Phone src="/tilde/app-share.webp" alt={tilde.heroPhoneAlt} eager />
         </div>
+      </section>
+
+      <section id="install" className="section" aria-labelledby="install-heading">
+        <div className="section-head">
+          <h2 id="install-heading">{tilde.installHeading}</h2>
+        </div>
+        <ol className="product-steps">
+          {tilde.installSteps.map((step, index) => (
+            <li key={step} className="panel">
+              <span className="num">{String(index + 1).padStart(2, '0')}</span>
+              <p>
+                <RichText text={step} />
+              </p>
+            </li>
+          ))}
+        </ol>
+        <p className="product-body product-install-note">
+          <RichText text={tilde.installNote} />
+        </p>
       </section>
 
       <section className="section" aria-labelledby="modes-heading">
@@ -101,6 +131,9 @@ export default function Tilde({ locale }: { locale: Locale }) {
               ))}
             </dl>
             <p className="product-body">{tilde.freeBody}</p>
+            <p className="product-small">
+              <Link to={tilde.privacyLink.to}>{tilde.privacyLink.label} →</Link>
+            </p>
           </div>
           <Phone src="/tilde/app-met.webp" alt={tilde.metPhoneAlt} />
         </div>
@@ -149,7 +182,9 @@ export default function Tilde({ locale }: { locale: Locale }) {
           {tilde.faq.map((item) => (
             <details key={item.q} className="panel">
               <summary>{item.q}</summary>
-              <p>{item.a}</p>
+              <p>
+                <RichText text={item.a} />
+              </p>
             </details>
           ))}
         </div>
@@ -160,7 +195,7 @@ export default function Tilde({ locale }: { locale: Locale }) {
           <b>~</b> {tilde.ctaText}
         </p>
         <div className="button-row">
-          <a className="button primary" href={tilde.download.href}>
+          <a className="button primary" href={downloadHref}>
             {tilde.download.label} ↓
           </a>
           <a className="button" href={tilde.sourceLink.href}>
