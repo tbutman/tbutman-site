@@ -137,7 +137,7 @@ export const projects: Project[] = [
       {
         heading: 'two halves of one idea',
         body: [
-          'It started as a printed card for events: a QR code on the front that opens my site’s /hello page, and room for an NFC sticker sealed inside that opens it too. Then I wanted the same thing when the card was in a drawer.',
+          'It started as a printed card for events: a QR code on the front and an NFC sticker sealed inside, both opening my site’s /hello page. Then I wanted the same thing when the card was in a drawer.',
           'Android lets an app answer NFC readers as if it were a tag, so the phone itself can be the card. An iPhone reads it the way it reads any NFC sticker, with no app installed. Tilde can also write your link onto the card’s tag, so the app and the card work as a pair.',
         ],
       },
@@ -158,7 +158,7 @@ export const projects: Project[] = [
       {
         heading: 'a 3D model that checks itself',
         body: [
-          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. For the NFC version, the printer pauses halfway so a sticker can go in, and the rest of the card seals it; that print is next.',
+          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
           'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customise the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
         ],
       },
@@ -179,7 +179,7 @@ export const projects: Project[] = [
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     reflection:
-      'Next: multiple cards (say, one for work and one personal) in 1.2, phone-to-phone taps between two Android phones, a printed card with a tag sealed inside, the customisable card on MakerWorld, and the Play Store.',
+      'Next: multiple cards (say, one for work and one personal) in 1.2, phone-to-phone taps between two Android phones, the customisable card on MakerWorld, and the Play Store.',
   },
   {
     slug: 'chatlingo',
