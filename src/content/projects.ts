@@ -160,16 +160,16 @@ export const projects: Project[] = [
       {
         heading: 'a 3D model that checks itself',
         body: [
-          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
-          'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customize the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
+          'The card is a parametric OpenSCAD model in four colors of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
+          'Every build rasterizes the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customize the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
         ],
       },
       {
         heading: 'shipping it like a product',
         body: [
-          'Both halves are public under the MIT licence, with documentation written for non-technical people: how to install the app, which stickers to buy and how to print the card. Every push runs the tests and lint in CI. A version tag builds a signed, shrunk release and publishes it on GitHub, where the Obtainium app picks up updates.',
+          'Both halves are public under the MIT license, with documentation written for non-technical people: how to install the app, which stickers to buy and how to print the card. Every push runs the tests and lint in CI. A version tag builds a signed, shrunk release and publishes it on GitHub, where the Obtainium app picks up updates.',
           'Using 1.0 every day shaped 1.1: a four-step welcome with a live preview of the card, saved links with a quick-switch row, and Send for people who aren’t in the room. Changes are tried on my phone as a separate debug app that installs next to the release; a pre-release then updates the real app through Obtainium, so the signed upgrade is tested before anyone else gets it.',
-          'Planning for events shaped 1.2. People present themselves differently to a recruiter, a friend and a meetup, so a card became one of several identities, each with its own name, photo, links and colour, switched with a swipe. I wrote up what belongs to a card (the identity, what it shares) and what stays global (the Met list, the event name, guest Wi-Fi) in a spec before any code. 1.2 also added backup to a file instead of a cloud, a choice of what each card’s contact card leaves out, a light theme, a home-screen widget and a Portuguese interface.',
+          'Planning for events shaped 1.2. People present themselves differently to a recruiter, a friend and a meetup, so a card became one of several identities, each with its own name, photo, links and color, switched with a swipe. I wrote up what belongs to a card (the identity, what it shares) and what stays global (the Met list, the event name, guest Wi-Fi) in a spec before any code. 1.2 also added backup to a file instead of a cloud, a choice of what each card’s contact card leaves out, a light theme, a home-screen widget and a Portuguese interface.',
           'Several identities in one app is where products like Blinq and Popl put their value, with the identities on their servers. Tilde keeps them on the phone.',
         ],
       },
@@ -185,7 +185,7 @@ export const projects: Project[] = [
       'A Met list of everyone a tap reached, with notes, event names and CSV export; a four-step welcome with a live card preview and country-aware phone numbers; a profile photo with an in-app cropper; and a Quick Settings tile.',
       'Several cards, each a complete identity with its own choice of what its contact card includes; backup and restore through a file; a light theme; the Tilde QR code home-screen widget; and the whole app in English and European Portuguese.',
       'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK under 2 MB).',
-      'A parametric OpenSCAD card in four colours: QR code only or with an NFC sticker sealed inside (thin or thick), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
+      'A parametric OpenSCAD card in four colors: QR code only or with an NFC sticker sealed inside (thin or thick), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     outcomes: [

@@ -38,7 +38,7 @@ const en = {
     {
       heading: 'how you can check',
       points: [
-        `The code is open source under the MIT licence, so anyone can read what the app does: [source on GitHub](${repo}).`,
+        `The code is open source under the MIT license, so anyone can read what the app does: [source on GitHub](${repo}).`,
         'Every release is built from the public code and signed with the same key.',
       ],
     },
