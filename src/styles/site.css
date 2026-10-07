@@ -252,6 +252,26 @@ main {
     transform 0.2s;
 }
 
+.work-grid > li {
+  position: relative;
+}
+
+.has-product .work-card {
+  padding-bottom: 4rem;
+}
+
+.work-product {
+  position: absolute;
+  left: 1.75rem;
+  bottom: 1.5rem;
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--accent);
+}
+
+.work-product:hover {
+  text-decoration: underline;
+}
+
 .work-card:hover {
   border-color: var(--accent-line);
   background: var(--panel-raised);

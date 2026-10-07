@@ -9,6 +9,8 @@ export type Project = {
   live?: string
   /** Further links shown with the source link, such as a second repository. */
   links?: { label: string; href: string }[]
+  /** A page on this site for using the product, linked from the home page's project card. */
+  product?: { label: string; to: string }
   status?: string
   /** What the work was mine versus other people's. */
   scope?: string
@@ -123,6 +125,7 @@ export const projects: Project[] = [
     live: 'https://tbutman.com/tilde',
     repo: 'https://github.com/tbutman/tilde',
     links: [{ label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' }],
+    product: { label: 'get the app', to: '/tilde' },
     summary:
       'A free, open-source Android app that turns a phone into an NFC business card, and a 3D-printable card to go with it. Tap phones or scan the code to share a full contact card, a website or WhatsApp, switching between them in one tap, with no account, nothing to install on the other phone and no internet permission on mine.',
     stack: ['Kotlin', 'Android NFC', 'Material 3', 'GitHub Actions', 'OpenSCAD', 'Python'],
@@ -134,7 +137,7 @@ export const projects: Project[] = [
       {
         heading: 'two halves of one idea',
         body: [
-          'It started as a printed card for events: a QR code on the front and an NFC tag sealed inside, both opening my site’s /hello page. Then I wanted the same thing when the card was in a drawer.',
+          'It started as a printed card for events: a QR code on the front that opens my site’s /hello page, and room for an NFC sticker sealed inside that opens it too. Then I wanted the same thing when the card was in a drawer.',
           'Android lets an app answer NFC readers as if it were a tag, so the phone itself can be the card. An iPhone reads it the way it reads any NFC sticker, with no app installed. Tilde can also write your link onto the card’s tag, so the app and the card work as a pair.',
         ],
       },
@@ -155,7 +158,7 @@ export const projects: Project[] = [
       {
         heading: 'a 3D model that checks itself',
         body: [
-          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the tag goes in, and the rest of the card seals it.',
+          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. For the NFC version, the printer pauses halfway so a sticker can go in, and the rest of the card seals it; that print is next.',
           'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customise the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
         ],
       },

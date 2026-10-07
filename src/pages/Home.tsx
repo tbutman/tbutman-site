@@ -75,7 +75,7 @@ export default function Home() {
         </div>
         <ul className="work-grid">
           {projects.map((project, index) => (
-            <li key={project.slug}>
+            <li key={project.slug} className={project.product ? 'has-product' : undefined}>
               <Link className="work-card panel" to={`/work/${project.slug}`}>
                 <span className="card-meta">
                   <span>
@@ -96,6 +96,12 @@ export default function Home() {
                   ))}
                 </ul>
               </Link>
+              {/* A second link can't sit inside the card's own link, so it's placed over the card's foot. */}
+              {project.product && (
+                <Link className="work-product" to={project.product.to}>
+                  {project.product.label} →
+                </Link>
+              )}
             </li>
           ))}
         </ul>
