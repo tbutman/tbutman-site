@@ -7,12 +7,12 @@ const navItems = [
   { label: 'work', to: '/#work', section: 'work' },
   { label: 'about', to: '/#about', section: 'about' },
   { label: 'lab', to: '/#lab', section: 'lab' },
-  { label: 'cv', to: '/cv', section: 'cv' },
+  { label: 'résumé', to: '/resume', section: 'resume' },
 ]
 
 function currentSection(pathname: string) {
   if (pathname.startsWith('/work/')) return 'work'
-  if (pathname === '/cv') return 'cv'
+  if (pathname === '/resume') return 'resume'
   return undefined
 }
 

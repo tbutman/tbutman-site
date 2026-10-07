@@ -49,7 +49,7 @@ export default function CommandPalette() {
       { id: 'contact', group: 'go to', label: 'Contact', keywords: 'email reach', run: goToSection('contact') },
       { id: 'hire', group: 'go to', label: 'Work with me', keywords: 'hire contract freelance full-time', run: goToSection('hire') },
       { id: 'experience', group: 'go to', label: 'Experience', keywords: 'jobs history', run: goToSection('experience') },
-      { id: 'cv', group: 'go to', label: 'CV', keywords: 'resume', run: () => navigate('/cv') },
+      { id: 'resume', group: 'go to', label: 'Résumé', keywords: 'resume cv', run: () => navigate('/resume') },
       {
         id: 'how-i-work',
         group: 'go to',
@@ -105,12 +105,12 @@ export default function CommandPalette() {
         },
       },
       {
-        id: 'cv-pdf',
+        id: 'resume-pdf',
         group: 'contact',
-        label: 'Download CV (PDF)',
-        keywords: 'resume',
+        label: 'Download résumé (PDF)',
+        keywords: 'resume cv',
         run: () => {
-          window.location.href = profile.cvPdf
+          window.location.href = profile.resumePdf
         },
       },
       ...profile.links.map((link) => ({

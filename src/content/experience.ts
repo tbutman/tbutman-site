@@ -16,7 +16,7 @@ export function roleDates(role: Pick<Role, 'start' | 'end'>, separator = ' – '
 
 // Scale figures are deliberately approximate: Thomas can't share exact metrics.
 // After moving to Lisbon, Thomas continued with DigitalPay as a contractor from 2024 until about
-// September 2025 (Thomas, 4 October 2026).
+// September 2025 (Thomas, October 4, 2026).
 export const experience: Role[] = [
   {
     company: 'PepAlert',

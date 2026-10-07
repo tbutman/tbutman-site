@@ -1,5 +1,5 @@
-// Prints the built /cv page to public/Thomas_Butman_CV.pdf (and dist/) with headless Chrome,
-// so the downloadable CV always matches the site. Run after `npm run build`; commit the PDF.
+// Prints the built /resume page to public/Thomas_Butman_Resume.pdf (and dist/) with headless
+// Chrome, so the downloadable résumé always matches the site. Run after `npm run build`; commit the PDF.
 //
 // CHROME_PATH overrides the browser binary.
 import { spawn } from 'node:child_process'
@@ -10,12 +10,12 @@ import { fileURLToPath } from 'node:url'
 import { preview } from 'vite'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const output = join(root, 'public', 'Thomas_Butman_CV.pdf')
+const output = join(root, 'public', 'Thomas_Butman_Resume.pdf')
 const chrome = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
 const server = await preview({ root, preview: { port: 0, open: false }, logLevel: 'silent' })
-const url = `${server.resolvedUrls.local[0]}cv`
-const profileDir = await mkdtemp(join(tmpdir(), 'cv-pdf-'))
+const url = `${server.resolvedUrls.local[0]}resume`
+const profileDir = await mkdtemp(join(tmpdir(), 'resume-pdf-'))
 
 const sizeOf = (file) => stat(file).then((s) => s.size, () => 0)
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -54,5 +54,5 @@ if (!size) {
   console.error(`Failed to print ${url} to PDF`)
   process.exit(1)
 }
-await copyFile(output, join(root, 'dist', 'Thomas_Butman_CV.pdf'))
-console.log(`wrote public/Thomas_Butman_CV.pdf (${Math.round(size / 1000)} kB)`)
+await copyFile(output, join(root, 'dist', 'Thomas_Butman_Resume.pdf'))
+console.log(`wrote public/Thomas_Butman_Resume.pdf (${Math.round(size / 1000)} kB)`)

@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router'
+import { Navigate, Route, Routes, useLocation } from 'react-router'
 import SiteFooter from './components/SiteFooter'
 import SiteHeader from './components/SiteHeader'
 import { getMeta } from './meta'
-import Cv from './pages/Cv'
 import Hello from './pages/Hello'
 import Home from './pages/Home'
 import HowIWork from './pages/HowIWork'
 import NotFound from './pages/NotFound'
 import Project from './pages/Project'
+import Resume from './pages/Resume'
 import Thanks from './pages/Thanks'
 import Tilde from './pages/Tilde'
 import TildePrivacy from './pages/TildePrivacy'
@@ -35,7 +35,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work/:slug" element={<Project />} />
-          <Route path="/cv" element={<Cv />} />
+          <Route path="/resume" element={<Resume />} />
+          {/* The old address, still on LinkedIn and printed material; nginx redirects it too. */}
+          <Route path="/cv" element={<Navigate to="/resume" replace />} />
           <Route path="/how-i-work" element={<HowIWork />} />
           <Route path="/thanks" element={<Thanks />} />
           <Route path="/hello" element={<Hello locale="en" />} />

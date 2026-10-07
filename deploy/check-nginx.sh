@@ -31,7 +31,10 @@ asset="$(curl -s "$BASE/" | grep -oE '/assets/[^"]+\.js' | head -n1)"
 security=('^x-content-type-options: nosniff' '^x-frame-options: deny' '^referrer-policy: ')
 
 check /                       200 '^content-type: text/html' '^cache-control: no-cache' "${security[@]}"
-check /cv                     200 '^content-type: text/html' '^cache-control: no-cache'
+check /resume                 200 '^content-type: text/html' '^cache-control: no-cache'
+check /cv                     301 '^location: /resume$'
+check /Thomas_Butman_Resume.pdf 200 '^content-type: application/pdf'
+check /Thomas_Butman_CV.pdf   301 '^location: /Thomas_Butman_Resume.pdf$'
 # /tilde is tilde.html beside the tilde/ folder that holds /tilde/privacy: both must resolve to a page.
 check /tilde                  200 '^content-type: text/html'
 check /tilde/privacy          200 '^content-type: text/html'

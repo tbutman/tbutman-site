@@ -17,7 +17,7 @@ npm run build     # client bundle + SSR bundle, then scripts/prerender.mjs write
 npm run preview   # serves dist/ the way production does
 ```
 
-`dist/` is the whole site: one HTML file per route (`/cv` → `cv.html`) plus `404.html`.
+`dist/` is the whole site: one HTML file per route (`/resume` → `resume.html`) plus `404.html`.
 
 ## Deploy
 
@@ -26,4 +26,4 @@ See [deploy/README.md](deploy/README.md).
 
 ## Content
 
-Everything on the site and the CV comes from `src/content/`. Edit the copy there, not in the components.
+Everything on the site and the résumé comes from `src/content/`. Edit the copy there, not in the components.

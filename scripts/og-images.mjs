@@ -1,6 +1,6 @@
 // Draws the link-preview images (Open Graph cards, 1200x630) that LinkedIn, Slack, X and messaging
 // apps show for the site's pages, and writes them to public/og/. Each card is an HTML page in the
-// site's style, screenshotted with headless Chrome, the same way cv-pdf.mjs prints the CV. Run
+// site's style, screenshotted with headless Chrome, the same way resume-pdf.mjs prints the résumé. Run
 // after changing a title or summary; commit the PNGs. src/meta.ts says which page uses which card.
 //
 // CHROME_PATH overrides the browser binary.
@@ -140,7 +140,7 @@ for (const card of cards) {
     ],
     { stdio: 'ignore' },
   )
-  // As in cv-pdf.mjs: Chrome can stay alive after writing the file, so wait for it to settle.
+  // As in resume-pdf.mjs: Chrome can stay alive after writing the file, so wait for it to settle.
   let size = 0
   for (let attempt = 0; attempt < 40; attempt++) {
     await wait(250)

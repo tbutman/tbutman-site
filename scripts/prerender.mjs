@@ -3,7 +3,7 @@
 //
 // SITE_URL sets the canonical origin (default https://tbutman.com). Builds for any other
 // origin, such as the home.tbutman.com test site, are marked noindex.
-import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { gzipSync } from 'node:zlib'
@@ -110,6 +110,16 @@ await writeFile(
     .map((path) => `  <url><loc>${siteUrl}${path === '/' ? '/' : path}</loc></url>`)
     .join('\n')}\n</urlset>\n`,
 )
+
+// Old addresses of the résumé, for a server whose nginx config predates the redirects in
+// deploy/nginx.conf: a page that forwards to /resume, and a copy of the PDF under its old name.
+await writeFile(
+  join(dist, 'cv.html'),
+  `<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8" />\n<title>Résumé · Thomas Butman</title>\n<meta name="robots" content="noindex" />\n<link rel="canonical" href="${siteUrl}/resume" />\n<meta http-equiv="refresh" content="0; url=/resume" />\n</head>\n<body><p><a href="/resume">Résumé</a></p></body>\n</html>\n`,
+)
+await copyFile(join(dist, 'Thomas_Butman_Resume.pdf'), join(dist, 'Thomas_Butman_CV.pdf')).catch(() => {
+  console.warn('no Thomas_Butman_Resume.pdf in dist; run npm run resume:pdf')
+})
 
 const card = contactCard(siteUrl)
 await writeFile(join(dist, card.file), card.body)
