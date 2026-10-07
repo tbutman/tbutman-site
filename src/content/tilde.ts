@@ -35,7 +35,7 @@ const en = {
   installSteps: [
     'Tap **download for android** on your Android phone. If your browser warns about the file, tap **Download anyway**.',
     'Open the file. Android asks to let your browser install apps: tap **Settings**, turn on **Allow from this source**, and go back.',
-    'Tap **Install**. If Google Play Protect (Android’s built-in app check) doesn’t recognise the developer, choose **Install anyway**: Tilde isn’t in the Play Store yet.',
+    'Tap **Install**. If Google Play Protect (Android’s built-in app check) doesn’t recognize the developer, choose **Install anyway**: Tilde isn’t in the Play Store yet.',
   ],
   installNote: `No account, no developer mode. Every release is built from the public code and signed with the same key. [Full install guide →](${installGuide})`,
 
@@ -83,7 +83,7 @@ const en = {
   freeFacts: [
     { value: '0', label: 'accounts, sign-ups or subscriptions' },
     { value: '0', label: 'internet access: it can’t send your details anywhere' },
-    { value: 'MIT', label: 'open-source licence: read, change and share the code' },
+    { value: 'MIT', label: 'open-source license: read, change and share the code' },
   ],
   freeBody:
     'No ads, no analytics and no cloud backup. Your profile, photo and Met list stay on your phone until you share them, and uninstalling Tilde removes everything.',
@@ -94,7 +94,7 @@ const en = {
   cardOptional: 'optional',
   cardBody: [
     'Tilde works on its own, but if you have a 3D printer there’s a free card to go with it. A QR code on the front opens your website, and an optional NFC sticker inside lets people tap it too.',
-    'Type in your name, links and colours, choose a back (a terminal window, a plain one or none), and print it in one go on a multi-colour printer. Tilde can write your link or your whole contact card onto the sticker.',
+    'Type in your name, links and colors, choose a back (a terminal window, a plain one or none), and print it in one go on a multi-color printer. Tilde can write your link or your whole contact card onto the sticker.',
   ],
   cardFrontAlt: 'The printed card, front',
   backs: [
@@ -123,7 +123,7 @@ const en = {
     },
     {
       q: 'Is it really free?',
-      a: 'Yes. No price, no paid tier, no account and no ads. The code is public under the MIT licence, so anyone can check what it does.',
+      a: 'Yes. No price, no paid tier, no account and no ads. The code is public under the MIT license, so anyone can check what it does.',
     },
     {
       q: 'What happens to my details?',

@@ -158,14 +158,14 @@ export const projects: Project[] = [
       {
         heading: 'a 3D model that checks itself',
         body: [
-          'The card is a parametric OpenSCAD model in four colours of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
-          'Every build rasterises the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customize the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
+          'The card is a parametric OpenSCAD model in four colors of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
+          'Every build rasterizes the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customize the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
         ],
       },
       {
         heading: 'shipping it like a product',
         body: [
-          'Both halves are public under the MIT licence, with documentation written for non-technical people: how to install the app, which stickers to buy and how to print the card. Every push runs the tests and lint in CI. A version tag builds a signed, shrunk release and publishes it on GitHub, where the Obtainium app picks up updates.',
+          'Both halves are public under the MIT license, with documentation written for non-technical people: how to install the app, which stickers to buy and how to print the card. Every push runs the tests and lint in CI. A version tag builds a signed, shrunk release and publishes it on GitHub, where the Obtainium app picks up updates.',
           'Using 1.0 every day shaped 1.1: a four-step welcome with a live preview of the card, saved links with a quick-switch row, and Send for people who aren’t in the room. Changes are tried on my phone as a separate debug app that installs next to the release; a pre-release then updates the real app through Obtainium, so the signed upgrade is tested before anyone else gets it.',
         ],
       },
@@ -175,7 +175,7 @@ export const projects: Project[] = [
       'Sharing that switches in one tap or a swipe: a full contact card (vCard), a website or profile link, saved links, a WhatsApp chat or guest Wi-Fi, with Send and Copy for sharing at a distance. Plus receive and write modes: read other tags and phones, or write a link or contact card onto an NFC sticker or printed card.',
       'A Met list of everyone a tap reached, with notes, event tags and CSV export; a four-step welcome with a live card preview and country-aware phone numbers; a profile photo with an in-app cropper; and a Quick Settings tile.',
       'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK under 2 MB).',
-      'A parametric OpenSCAD card in four colours: QR code only or with an NFC tag (thin or thick stickers), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
+      'A parametric OpenSCAD card in four colors: QR code only or with an NFC tag (thin or thick stickers), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     reflection:
