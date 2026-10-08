@@ -116,7 +116,7 @@ const en = {
   cardHeading: 'the tilde card (optional)',
   cardBody: [
     'Tilde works on its own, but if you have a 3D printer there’s a free Tilde card to go with it. A QR code on the front opens your website, and an optional NFC sticker inside lets people tap it too.',
-    'Type in your name, links and colors, choose a back (a terminal window, a plain one or none), and print it in one go on a multi-color printer. Tilde can write your link or your whole contact card onto its NFC sticker, and lock it if you want it never to change.',
+    'Type in your name, links and colors, choose a back (a terminal window, a plain one or none), and print it all at once on a multi-color printer. Tilde can write your link or your whole contact card onto its NFC sticker, and lock it if you want it never to change.',
   ],
   cardFrontAlt: 'The Tilde card, front',
   backs: [
