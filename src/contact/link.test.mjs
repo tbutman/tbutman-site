@@ -22,7 +22,7 @@ const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '
 test('the vectors are version 1 on taptilde.com', () => {
   assert.equal(vectors.version, 1)
   assert.equal(vectors.base, LINK_BASE)
-  assert.ok(vectors.encode.length >= 7 && vectors.decode.length >= 27 && vectors.vcard.length >= 3 && vectors.sticker.length >= 5)
+  assert.ok(vectors.encode.length >= 11 && vectors.decode.length >= 33 && vectors.vcard.length >= 4 && vectors.sticker.length >= 7)
 })
 
 for (const v of vectors.encode) {
@@ -71,8 +71,21 @@ test('every decoded contact round-trips through the encoder', () => {
   }
 })
 
-test('the encoder refuses a contact without a name', () => {
+test('the encoder refuses a contact without a visible name', () => {
   assert.throws(() => encodeContact({ name: '  ' }))
+  assert.throws(() => encodeContact({ name: '\u200b\u200d' }))
+})
+
+test('stickerLink never returns a link the page would refuse or misread', () => {
+  for (const v of vectors.encode) {
+    for (const maxBytes of [1024, 300, 137, 90]) {
+      const result = stickerLink(v.fields, maxBytes)
+      if (!result) continue
+      const decoded = decodeFragment(fragmentOf(result.url))
+      assert.ok(decoded.ok, `${v.name} at ${maxBytes}`)
+      assert.equal(encodeContact(decoded.contact), result.url)
+    }
+  }
 })
 
 test('default labels come from the address', () => {
@@ -90,6 +103,8 @@ test('addresses show without https://, www. or a lone slash', () => {
   assert.equal(displayAddress('http://example.org/blog'), 'http://example.org/blog')
   assert.equal(displayAddress('https://example.com/shop?ref=tilde&x=1'), 'example.com/shop?ref=tilde&x=1')
   assert.equal(displayAddress('https://xn--pple-43d.com/'), 'xn--pple-43d.com')
+  assert.equal(displayAddress('https://www.com/'), 'www.com')
+  assert.equal(displayAddress('https://www.example.co.uk/'), 'example.co.uk')
 })
 
 test('file names drop characters file systems refuse', () => {
@@ -111,7 +126,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648
@@ -126,7 +141,7 @@ test('fuzz: hostile fragments never throw or leak control characters', () => {
     const c = decoded.contact
     const values = [c.name, c.title, c.company, ...c.emails, ...c.phones.flatMap((p) => [p.number, p.label]), ...c.links.flatMap((l) => [l.url, l.label])]
     // oxlint-disable-next-line no-control-regex -- matching control characters is the point
-    for (const value of values) assert.doesNotMatch(value, /[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/)
+    for (const value of values) assert.doesNotMatch(value, /[\u0000-\u001f\u007f-\u009f\u2028\u2029\u00ad\u061c\u200b\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]|\p{M}{4}/u)
     for (const link of c.links) assert.match(link.url, /^https?:\/\/[^/@]+\//)
     // One card, with only the properties the page writes.
     const lines = vcard(c).split('\r\n').filter(Boolean)

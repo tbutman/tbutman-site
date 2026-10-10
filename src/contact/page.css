@@ -111,10 +111,13 @@ svg.icon {
 }
 
 /* Every value from the link: isolated, so its text direction can't spill, and wrapped anywhere,
-   so a long address is never cut off. */
+   so a long address is never cut off. Clipped just outside its box, so stacked accents can't draw
+   over the lines around it (the decoder also keeps at most three in a row). */
 .value {
   unicode-bidi: isolate;
   overflow-wrap: anywhere;
+  overflow: clip;
+  overflow-clip-margin: 4px;
   -webkit-user-select: text;
   user-select: text;
 }

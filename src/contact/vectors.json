@@ -249,8 +249,8 @@
           }
         ]
       },
-      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;e=a@b.example;e=c@d.example;e=e@f.example;p=+351%20912%20345%20678,xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;u=example.com",
-      "uriRecordBytes": 259,
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;e=a@b.example;e=c@d.example;e=e@f.example;p=+351%20912%20345%20678,xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;u=example.com/",
+      "uriRecordBytes": 263,
       "decoded": {
         "name": "Jane Doe",
         "title": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -272,6 +272,145 @@
             "label": "Website"
           }
         ]
+      }
+    },
+    {
+      "name": "links are normalized, and ones the page would refuse are left out",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://user:pw@example.com/"
+          },
+          {
+            "url": "https://example.com:99999/"
+          },
+          {
+            "url": "https://exa mple.com/"
+          },
+          {
+            "url": "HTTPS://Example.COM:443"
+          },
+          {
+            "url": "http://example.org:80/blog"
+          },
+          {
+            "url": "https://bücher.example/straße?q=café"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/;u=http://example.org/blog;u=xn--bcher-kva.example/stra%25C3%259Fe?q=caf%25C3%25A9",
+      "uriRecordBytes": 131,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "http://example.org/blog",
+            "label": "Website"
+          },
+          {
+            "url": "https://xn--bcher-kva.example/stra%C3%9Fe?q=caf%C3%A9",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "phone extensions are cut, vanity numbers left out",
+      "fields": {
+        "name": "Jane Doe",
+        "phones": [
+          {
+            "number": "+1 555 010 0199 ext. 42",
+            "label": "work"
+          },
+          {
+            "number": "555-0199 x42"
+          },
+          {
+            "number": "1-800-FLOWERS"
+          },
+          {
+            "number": "+351 912 345 678 ramal 7"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;p=+1%20555%20010%200199,work;p=555%200199;p=+351%20912%20345%20678",
+      "uriRecordBytes": 101,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [
+          {
+            "number": "+1 555 010 0199",
+            "label": "work"
+          },
+          {
+            "number": "555 0199",
+            "label": ""
+          },
+          {
+            "number": "+351 912 345 678",
+            "label": ""
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "name": "line separators, invisible characters and stacked marks",
+      "fields": {
+        "name": "Jane Doe​",
+        "title": "﻿Boss­",
+        "company": "​‍",
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "Ź́́́́́́"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Boss;p=+351%20912%20345%20678,Z%CC%81%CC%81%CC%81",
+      "uriRecordBytes": 86,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Boss",
+        "company": "",
+        "emails": [],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "Ź́́"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "name": "trailing no-break and ideographic spaces are trimmed",
+      "fields": {
+        "name": "Jane Doe ",
+        "title": "　Product designer "
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer",
+      "uriRecordBytes": 55,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
       }
     }
   ],
@@ -537,6 +676,69 @@
         "phones": [],
         "links": []
       }
+    },
+    {
+      "name": "a line separator in the name (vCard injection on iOS)",
+      "url": "https://taptilde.com/c#1;n=Jane%E2%80%A8END:VCARD%E2%80%A8BEGIN:VCARD",
+      "error": "damaged"
+    },
+    {
+      "name": "a paragraph separator in the title is dropped",
+      "url": "https://taptilde.com/c#1;n=Jane;t=Boss%E2%80%A9Verified%20by%20Tilde",
+      "contact": {
+        "name": "Jane",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "invisible characters are removed",
+      "url": "https://taptilde.com/c#1;n=%E2%80%8BJane%C2%AD%20Doe%EF%BB%BF%E2%81%A0",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "a name of invisible characters only",
+      "url": "https://taptilde.com/c#1;n=%E2%80%8B%E2%80%8D%E2%80%8C",
+      "error": "damaged"
+    },
+    {
+      "name": "a stack of combining marks is cut to three",
+      "url": "https://taptilde.com/c#1;n=Z%CC%81%CC%81%CC%81%CC%81%CC%81%CC%81%CC%81%CC%81%CC%81%CC%81%20Doe",
+      "contact": {
+        "name": "Ź́́ Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "a phone with an extension or letters is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane;p=555%200199%20x42;p=1%20800%20FLOWERS;p=555%200100",
+      "contact": {
+        "name": "Jane",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [
+          {
+            "number": "555 0100",
+            "label": ""
+          }
+        ],
+        "links": []
+      }
     }
   ],
   "vcard": [
@@ -554,6 +756,11 @@
       "name": "saved links with display text",
       "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/shop?ref=tilde&x=1,My%20shop%3B%2050%25%20off;u=http://example.org/blog,Blog;u=makerworld.com/en/@janedoe;u=github.com/janedoe,Code%2C%20mostly",
       "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://example.com/shop?ref=tilde&x=1\r\nitem1.X-ABLabel:My shop\\; 50% off\r\nitem2.URL:http://example.org/blog\r\nitem2.X-ABLabel:Blog\r\nitem3.URL:https://makerworld.com/en/@janedoe\r\nitem3.X-ABLabel:MakerWorld\r\nitem4.URL:https://github.com/janedoe\r\nitem4.X-ABLabel:Code\\, mostly\r\nEND:VCARD\r\n"
+    },
+    {
+      "name": "a backslash in a link is percent-encoded",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/a%5Cb?x=1%5C2",
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://example.com/a/b?x=1%5C2\r\nitem1.X-ABLabel:Website\r\nEND:VCARD\r\n"
     }
   ],
   "sticker": [
@@ -726,6 +933,57 @@
       },
       "maxBytes": 77,
       "result": null
+    },
+    {
+      "name": "invalid email and phone are never counted or kept, 80 bytes",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "emails": [
+          "not-an-email",
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "call me"
+          },
+          {
+            "number": "+351 912 345 678"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/"
+          },
+          {
+            "url": "ftp://old.example"
+          }
+        ]
+      },
+      "maxBytes": 80,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@example.com;p=+351%20912%20345%20678",
+        "dropped": [
+          "title",
+          "link"
+        ]
+      }
+    },
+    {
+      "name": "a tap: three 100-character CJK fields at 1,024 bytes",
+      "fields": {
+        "name": "東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東",
+        "title": "東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東",
+        "company": "東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東東"
+      },
+      "maxBytes": 1024,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1%E6%9D%B1",
+        "dropped": [
+          "title",
+          "company"
+        ]
+      }
     }
   ]
 }

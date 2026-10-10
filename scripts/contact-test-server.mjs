@@ -55,7 +55,13 @@ ${item(`/tilde${fragment}`, '/tilde with a contact fragment', 'should forward to
 }
 
 function resolve(pathname) {
-  const clean = normalize(decodeURIComponent(pathname)).replace(/^(\.\.[/\\])+/, '')
+  let decoded
+  try {
+    decoded = decodeURIComponent(pathname)
+  } catch {
+    return 'bad request'
+  }
+  const clean = normalize(decoded).replace(/^(\.\.[/\\])+/, '')
   for (const candidate of [clean, `${clean}.html`, join(clean, 'index.html')]) {
     const file = join(dist, candidate)
     if (!file.startsWith(dist)) return null
@@ -76,6 +82,11 @@ createServer((req, res) => {
     return
   }
   const file = resolve(pathname)
+  if (file === 'bad request') {
+    res.writeHead(400, { 'content-type': 'text/plain' })
+    res.end('bad request')
+    return
+  }
   if (!file) {
     res.writeHead(404, { 'content-type': 'text/plain' })
     res.end('not found')
@@ -90,5 +101,6 @@ createServer((req, res) => {
     .map((a) => a.address)
   console.log('Contact page test server. On the iPhone (same Wi-Fi), open:')
   for (const address of addresses) console.log(`  http://${address}:${port}/x1-test`)
-  console.log(`On this Mac: http://localhost:${port}/x1-test  (Ctrl-C to stop)`)
+  console.log(`On this Mac: http://localhost:${port}/x1-test`)
+  console.log('It serves every network this Mac is on: stop it with Ctrl-C when the test is done.')
 })

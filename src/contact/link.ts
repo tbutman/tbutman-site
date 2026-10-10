@@ -53,10 +53,20 @@ export const LIMITS = {
 // Kept as is in a value; every other byte is percent-encoded (UTF-8, upper-case hex). The set is
 // fragment-safe in every browser, and leaves out the separators ; and , and the escape %.
 const SAFE = /^[A-Za-z0-9\-._~!$&'()*+=:@/?]$/
+// Control characters and the line and paragraph separators, which Apple's text APIs treat as line
+// breaks: a value with one could add lines to the .vcf, or draw a fake line under a name.
 // oxlint-disable-next-line no-control-regex -- matching control characters is the point
-const CONTROL = /[\u0000-\u001f\u007f-\u009f]/g
-// Bidi embeddings, overrides and isolates: a name could use them to show text backwards.
-const BIDI = /[\u202a-\u202e\u2066-\u2069]/g
+const CONTROL = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g
+// Removed from every value: bidi embeddings, overrides and isolates (a name could use them to show
+// text backwards) and invisible format characters (soft hyphen, Arabic letter mark, zero-width
+// space, LRM and RLM, word joiners, BOM), which can hide characters or leave a blank name. ZWNJ and
+// ZWJ (U+200C, U+200D) stay: Persian, Indic scripts and emoji sequences need them.
+const INVISIBLE = /[\u00ad\u061c\u200b\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]/g
+// At most 3 combining marks in a row: real text never needs more, and a stack of them draws over
+// the lines around it.
+const MARKS = /(\p{M}{3})\p{M}+/gu
+// A value must have something to see, not just spaces, joiners and marks.
+const VISIBLE = /[\p{L}\p{N}\p{P}\p{S}]/u
 const EMAIL = /^[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
 // A phone number: an optional +, then digits in groups separated by single spaces.
 const PHONE = /^\+?[0-9]+( [0-9]+)*$/
@@ -74,7 +84,15 @@ const PLATFORMS: [string, string[]][] = [
 
 const length = (value: string) => [...value].length
 const truncate = (value: string, max: number) => [...value].slice(0, max).join('').trim()
-const clean = (value: string | undefined) => (value ?? '').replace(CONTROL, ' ').trim()
+
+/** What every text value goes through, in the encoder and the decoder alike. */
+const tidy = (value: string) => value.replace(INVISIBLE, '').replace(MARKS, '$1').trim()
+
+/** The encoder's cleaning: control characters become spaces; "" when nothing visible is left. */
+function clean(value: string | undefined): string {
+  const tidied = tidy((value ?? '').replace(CONTROL, ' '))
+  return VISIBLE.test(tidied) ? tidied : ''
+}
 
 /** The label a link gets when it carries none: the network's name, or "Website". */
 export function defaultLabel(url: string): string {
@@ -88,6 +106,35 @@ export function defaultLabel(url: string): string {
   return platform ? platform[0] : 'Website'
 }
 
+/**
+ * A web link as both sides keep it: parsed and serialized by the WHATWG URL parser (lower-case
+ * host, punycode, no default port, "/" for an empty path), or null when it isn't an http(s) link
+ * with a host and without a user name or password, or is too long.
+ */
+function webLink(text: string): string | null {
+  let url: URL
+  try {
+    url = new URL(text)
+  } catch {
+    return null
+  }
+  if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) return null
+  return length(url.href) <= LIMITS.url ? url.href : null
+}
+
+/**
+ * A phone number as the link carries it: digits in the groups they were typed in
+ * ("+1 (555) 010-0199" → "+1 555 010 0199"), which is easier to check on the page than a run of
+ * digits. An extension at the end is cut off; any other letter (a vanity number such as
+ * "1-800-FLOWERS") leaves the number out rather than change it. Null when it isn't a number.
+ */
+function phoneNumber(text: string): string | null {
+  const number = text.replace(/\s*(?:x|ext\.?|extension|ramal)\s*[0-9]+\s*$/i, '')
+  if (/\p{L}/u.test(number)) return null
+  const grouped = number.replace(/[^0-9+]+/g, ' ').trim()
+  return phoneOk(grouped) ? grouped : null
+}
+
 function percentEncode(value: string): string {
   let out = ''
   for (const byte of new TextEncoder().encode(value)) {
@@ -97,38 +144,51 @@ function percentEncode(value: string): string {
   return out
 }
 
-/** The contact link for a contact card. Fields over the limits are cut or left out, never refused. */
-export function encodeContact(input: ContactInput): string {
-  const fields: string[] = [VERSION]
-  const add = (key: string, value: string) => fields.push(`${key}=${value}`)
-
+/**
+ * A contact card as the link will carry it: cleaned, checked and capped by the spec's rules, with
+ * link labels only where they differ from the default. Everything the encoder and stickerLink do
+ * starts here, so nothing is counted that the link wouldn't carry.
+ */
+function normalize(input: ContactInput): Contact {
   const name = truncate(clean(input.name), LIMITS.text)
   if (!name) throw new Error('A contact link needs a name')
-  add('n', percentEncode(name))
-  const title = truncate(clean(input.title), LIMITS.text)
-  if (title) add('t', percentEncode(title))
-  const company = truncate(clean(input.company), LIMITS.text)
-  if (company) add('o', percentEncode(company))
-
-  const emails = (input.emails ?? []).map(clean).filter((e) => EMAIL.test(e) && e.length <= LIMITS.email)
-  for (const email of emails.slice(0, LIMITS.emails)) add('e', percentEncode(email))
-
-  // Digits in the groups they were typed in ("+1 (555) 010-0199" → "+1 555 010 0199"): the page
-  // shows the number as the owner wrote it, which is easier to check than a run of digits.
-  const phones = (input.phones ?? [])
-    .map((p) => ({ number: clean(p.number).replace(/[^0-9+]+/g, ' ').trim(), label: truncate(clean(p.label), LIMITS.label) }))
-    .filter((p) => phoneOk(p.number))
-  for (const p of phones.slice(0, LIMITS.phones)) add('p', percentEncode(p.number) + (p.label ? `,${percentEncode(p.label)}` : ''))
-
-  const links = (input.links ?? [])
-    .map((l) => ({ url: clean(l.url), label: truncate(clean(l.label), LIMITS.label) }))
-    .filter((l) => /^https?:\/\/[^/?#]/i.test(l.url) && length(l.url) <= LIMITS.url)
-  for (const l of links.slice(0, LIMITS.links)) {
-    const url = l.url.replace(/^https:\/\//i, '')
-    const label = l.label && l.label !== defaultLabel(l.url) ? `,${percentEncode(l.label)}` : ''
-    add('u', percentEncode(url) + label)
+  return {
+    name,
+    title: truncate(clean(input.title), LIMITS.text),
+    company: truncate(clean(input.company), LIMITS.text),
+    emails: (input.emails ?? [])
+      .map(clean)
+      .filter((e) => EMAIL.test(e) && e.length <= LIMITS.email)
+      .slice(0, LIMITS.emails),
+    phones: (input.phones ?? [])
+      .map((p) => ({ number: phoneNumber(clean(p.number)), label: truncate(clean(p.label), LIMITS.label) }))
+      .filter((p): p is Phone => p.number !== null)
+      .slice(0, LIMITS.phones),
+    links: (input.links ?? [])
+      .map((l) => {
+        const url = webLink(clean(l.url))
+        const label = truncate(clean(l.label), LIMITS.label)
+        return { url, label: url && label !== defaultLabel(url) ? label : '' }
+      })
+      .filter((l): l is Link => l.url !== null)
+      .slice(0, LIMITS.links),
   }
+}
+
+/** Writes a normalized contact as a link. */
+function serialize(c: Contact): string {
+  const fields: string[] = [VERSION, `n=${percentEncode(c.name)}`]
+  if (c.title) fields.push(`t=${percentEncode(c.title)}`)
+  if (c.company) fields.push(`o=${percentEncode(c.company)}`)
+  for (const email of c.emails) fields.push(`e=${percentEncode(email)}`)
+  for (const p of c.phones) fields.push(`p=${percentEncode(p.number)}${p.label ? `,${percentEncode(p.label)}` : ''}`)
+  for (const l of c.links) fields.push(`u=${percentEncode(l.url.replace(/^https:\/\//, ''))}${l.label ? `,${percentEncode(l.label)}` : ''}`)
   return LINK_BASE + fields.join(';')
+}
+
+/** The contact link for a contact card. Fields over the limits are cut or left out, never refused. */
+export function encodeContact(input: ContactInput): string {
+  return serialize(normalize(input))
 }
 
 class Damaged extends Error {}
@@ -143,22 +203,15 @@ function decodeValue(raw: string): string | null {
   }
   CONTROL.lastIndex = 0
   if (CONTROL.test(value)) return null
-  value = value.replace(BIDI, '').trim()
-  return value || null
+  value = tidy(value)
+  return VISIBLE.test(value) ? value : null
 }
 
 function decodeLink(raw: string): string | null {
   if (length(raw) > LIMITS.url) return null
   const hasScheme = /^[A-Za-z][A-Za-z0-9+.-]*:\/\//.test(raw)
   if (hasScheme && !/^https?:\/\//i.test(raw)) return null
-  let url: URL
-  try {
-    url = new URL(hasScheme ? raw : `https://${raw}`)
-  } catch {
-    return null
-  }
-  if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) return null
-  return url.href
+  return webLink(hasScheme ? raw : `https://${raw}`)
 }
 
 /** Reads a contact link's fragment (with or without the #). Never throws. */
@@ -228,7 +281,8 @@ export function decodeFragment(hash: string): Decoded {
 /** A link as the page shows it: no https://, www. or lone trailing slash. */
 export function displayAddress(url: string): string {
   const parsed = new URL(url)
-  const host = parsed.host.replace(/^www\./, '')
+  // "www." goes only when a domain with a dot is left: www.com stays www.com.
+  const host = /^www\.[^.]+\./.test(parsed.host) ? parsed.host.slice(4) : parsed.host
   const rest = `${parsed.pathname}${parsed.search}${parsed.hash}`
   return (parsed.protocol === 'http:' ? 'http://' : '') + host + (rest === '/' ? '' : rest)
 }
@@ -271,7 +325,8 @@ export function vcard(contact: Contact): string {
   }
   for (const link of contact.links) {
     item++
-    lines.push(`item${item}.URL:${link.url}`, `item${item}.X-ABLabel:${escapeText(link.label)}`)
+    // A backslash, which lenient parsers read as an escape, goes in percent-encoded.
+    lines.push(`item${item}.URL:${link.url.replace(/\\/g, '%5C')}`, `item${item}.X-ABLabel:${escapeText(link.label)}`)
   }
   lines.push('END:VCARD')
   return lines.map(fold).join('\r\n') + '\r\n'
@@ -297,17 +352,11 @@ export function uriRecordBytes(url: string): number {
  * reference its tests share.
  */
 export function stickerLink(input: ContactInput, maxBytes: number): { url: string; dropped: string[] } | null {
-  const c: Required<ContactInput> = {
-    name: input.name,
-    title: input.title ?? '',
-    company: input.company ?? '',
-    emails: [...(input.emails ?? [])],
-    phones: (input.phones ?? []).map((p) => ({ ...p })),
-    // A label the link wouldn't carry anyway (LinkedIn, Website) isn't something to drop.
-    links: (input.links ?? []).map((l) => ({ url: l.url, label: l.label === defaultLabel(l.url) ? '' : l.label })),
-  }
+  // Only what the link would carry: an invalid email or a default label isn't something to drop,
+  // and an invalid email can't take the place of a valid one.
+  const c = normalize(input)
   const dropped: string[] = []
-  const fits = () => uriRecordBytes(encodeContact(c)) <= maxBytes
+  const fits = () => uriRecordBytes(serialize(c)) <= maxBytes
   const steps: [string, () => boolean][] = [
     // Each step removes one thing and says whether there was anything to remove.
     ['label', () => {
@@ -325,5 +374,5 @@ export function stickerLink(input: ContactInput, maxBytes: number): { url: strin
   for (const [what, step] of steps) {
     while (!fits() && step()) dropped.push(what)
   }
-  return fits() ? { url: encodeContact(c), dropped } : null
+  return fits() ? { url: serialize(c), dropped } : null
 }

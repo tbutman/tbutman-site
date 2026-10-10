@@ -82,8 +82,9 @@ for (const path of paths) {
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="theme-color" content="#0b0d10" />`,
     `<meta name="page-weight" content="__PAGE_WEIGHT__" />`,
-    // taptilde.com/c#1;… lands here until Cloudflare sends /c to /tilde/c: the browser keeps the
-    // fragment across the redirect, so pass it on to the contact page before anything draws.
+    // Permanently: browsers cache the old taptilde.com catch-all 301 (→ /tilde), so a phone that
+    // opened a contact link before the /c rule existed keeps landing here. The browser keeps the
+    // fragment across the redirect; pass it on to the contact page before anything draws.
     path === '/tilde' ? `<script>if(/^#[1-9][0-9]{0,2};/.test(location.hash))location.replace('/tilde/c'+location.hash)</script>` : '',
   ]
     .filter(Boolean)

@@ -48,6 +48,8 @@ const csp = [
   "img-src 'self'",
   "base-uri 'none'",
   "form-action 'none'",
+  // The page has no HTML sinks; this makes Chrome refuse one if it ever gets one.
+  "require-trusted-types-for 'script'",
 ].join('; ')
 
 const template = await readFile(join(source, 'page.html'), 'utf8')
