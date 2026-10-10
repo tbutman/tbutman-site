@@ -25,6 +25,9 @@ type Screenshot = { src: string; alt: string }
 
 const en = {
   name: 'Tilde',
+  // The sample Tilde Card's QR code opens taptilde.com, which redirects here: this strip greets those
+  // visitors. The wording matches the launch video, so keep it as is.
+  sampleStrip: { question: 'Scanned a Tilde Card?', link: 'Make your own', href: '#card' },
   status: 'free · open source · no account · android',
   headline: ['Your business card,', 'on your phone.'],
   lede: 'Tap phones to share your contact card, your website or your WhatsApp, or let them scan the code on your screen. Free and open source, with no account and no internet: your details stay on your phone until you share them.',
@@ -178,6 +181,7 @@ export type TildeText = typeof en
 
 const pt: TildeText = {
   name: 'Tilde',
+  sampleStrip: { question: 'Leste um cartão Tilde?', link: 'Faz o teu', href: '#card' },
   status: 'grátis · código aberto · sem conta · android',
   headline: ['O teu cartão de visita,', 'no teu telemóvel.'],
   lede: 'Encosta os telemóveis para partilhar o teu cartão de contacto, o teu site ou o teu WhatsApp, ou deixa que leiam o código no teu ecrã. Grátis e de código aberto, sem conta e sem internet: os teus dados ficam no teu telemóvel até os partilhares.',

@@ -1225,6 +1225,30 @@ main {
 
 /* ---------- Responsive ---------- */
 
+/* ---- /tilde: the strip for people who scanned a sample Tilde Card ---- */
+.product-strip {
+  margin-top: 1.5rem;
+  font: 400 0.875rem/1.4 var(--font-mono);
+}
+
+.product-strip a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.product-strip b {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.product-strip a:hover b {
+  text-decoration: underline;
+}
+
 /* ---- EN · PT switch on translated pages ---- */
 .lang-switch {
   display: flex;

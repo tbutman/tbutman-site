@@ -25,6 +25,12 @@ export default function Tilde({ locale }: { locale: Locale }) {
     .join(' · ')
   return (
     <article className="product">
+      <p className="product-strip">
+        <a href={tilde.sampleStrip.href}>
+          {tilde.sampleStrip.question} <b>{tilde.sampleStrip.link}</b>
+          <span aria-hidden="true"> →</span>
+        </a>
+      </p>
       <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
       <section className="product-hero" aria-labelledby="tilde-heading">
         <div className="product-hero-text">
