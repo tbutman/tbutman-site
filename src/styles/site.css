@@ -1595,12 +1595,16 @@ main {
     grid-template-columns: 1fr;
   }
 
+  /* A definite width, so the screenshot's box is its full size before the lazy image loads.
+     Shrink-to-fit made it 0 px tall until then, and links to #card stopped short on phones. */
   .product-split .phone {
+    width: 100%;
     max-width: 14rem;
     margin: 0 auto;
   }
 
   .product-phones {
+    grid-auto-columns: minmax(0, 14rem);
     justify-content: center;
   }
 
