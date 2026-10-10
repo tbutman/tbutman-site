@@ -39,6 +39,7 @@ check /Thomas_Butman_CV.pdf   301 '^location: /Thomas_Butman_Resume.pdf$'
 check /tilde                  200 '^content-type: text/html'
 check /tilde/privacy          200 '^content-type: text/html'
 check /pt/tilde/privacy       200 '^content-type: text/html'
+check /tilde/c                200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}"
 check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable'
 check /assets/missing-check.js 404 '^content-type: text/html' '^cache-control: no-store' '!immutable' '!max-age' "${security[@]}"
 check /no-such-page           404 '^cache-control: no-store' '!max-age' "${security[@]}"

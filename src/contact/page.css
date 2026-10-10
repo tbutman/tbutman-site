@@ -1,0 +1,337 @@
+/* /tilde/c, the contact page (X1). Inlined into the page by scripts/contact-page.mjs, so it can't
+   use the site's stylesheets or fonts: system fonts only, so the first paint is the final page.
+   Layout and sizes from the designer's mockup, tilde-review/design/contact-page.html. */
+
+:root {
+  color-scheme: dark;
+  --bg: #0b0d10;
+  --panel: #11151a;
+  --raised: #151a20;
+  --line: #1f262e;
+  --line-strong: #2b343e;
+  --text: #e7eaee;
+  --soft: #b6bec8;
+  --muted: #a2abb6;
+  --dim: #8a94a0;
+  --accent: #ffb547;
+  --accent-text: #ffb547;
+  --on-accent: #0b0d10;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f4f3ef;
+    --panel: #ffffff;
+    --raised: #ffffff;
+    --line: #e2e0d9;
+    --line-strong: #ccc9bf;
+    --text: #15181d;
+    --soft: #2e343b;
+    --muted: #545c67;
+    --dim: #5f6873;
+    --accent: #a85f00;
+    --accent-text: #8a4e00;
+    --on-accent: #ffffff;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+  color: var(--text);
+  font: 400 15px/1.45 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fade the grid out below the top, as on the rest of the site. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 120% 55% at 50% 0%, transparent 0%, var(--bg) 70%);
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  isolation: isolate;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 16px 20px 28px;
+}
+
+.top {
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.wordmark {
+  display: block;
+  height: 20px;
+  width: auto;
+}
+
+.wordmark .wm-mark {
+  fill: var(--accent);
+}
+
+.wordmark .wm-name {
+  fill: var(--text);
+}
+
+svg.icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Every value from the link: isolated, so its text direction can't spill, and wrapped anywhere,
+   so a long address is never cut off. */
+.value {
+  unicode-bidi: isolate;
+  overflow-wrap: anywhere;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.card {
+  margin-top: 12px;
+  padding: 24px 20px 20px;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.name {
+  margin: 16px 0 0;
+  font-size: 30px;
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+.role {
+  margin: 6px 0 0;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.save {
+  width: 100%;
+  height: 54px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 27px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 17px/1 var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.save svg.icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+}
+
+.save:focus-visible,
+.button:focus-visible,
+.footer a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.under {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.details {
+  margin: 16px 0 0;
+  padding: 2px 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.row {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.row dt {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.row dd {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.privacy {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 18px 2px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.privacy svg.icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: var(--dim);
+}
+
+.footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--accent-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* The error states: empty, damaged, unsupported, and no JavaScript. */
+.error {
+  margin-top: 28px;
+}
+
+.error-icon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-icon svg.icon {
+  width: 26px;
+  height: 26px;
+}
+
+.error h1 {
+  margin: 18px 0 8px;
+  font-size: 26px;
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.error p {
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--soft);
+}
+
+.button {
+  height: 50px;
+  margin-top: 14px;
+  padding: 0 22px;
+  border: 1px solid var(--accent);
+  border-radius: 25px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 16px/1 var(--font);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.tip {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--soft);
+}
+
+.tip svg.icon {
+  margin-top: 1px;
+  color: var(--muted);
+}
+
+[hidden] {
+  display: none !important;
+}

@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
+    "build": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/contact-page.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "resume:pdf": "node scripts/resume-pdf.mjs",
     "og": "node scripts/og-images.mjs",
-    "test": "node --test services/contact/server.test.mjs"
+    "test": "node --test services/contact/server.test.mjs src/contact/link.test.mjs",
+    "contact:test": "npm run build && node scripts/contact-test-server.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
