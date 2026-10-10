@@ -177,9 +177,9 @@ export const diagrams: Record<string, Diagram> = {
     rows: 2,
     nodes: [
       { id: 'app', label: 'Tilde app', detail: 'cards stay on the phone', col: 0, row: 0, highlight: true },
-      { id: 'model', label: 'Tilde card model', detail: 'OpenSCAD · QR encoder', col: 0, row: 1 },
+      { id: 'model', label: 'Tilde Card model', detail: 'OpenSCAD · QR encoder', col: 0, row: 1 },
       { id: 'hce', label: 'Type 4 tag (HCE)', detail: 'link · vCard · Wi-Fi', col: 1, row: 0 },
-      { id: 'card', label: 'Tilde card', detail: 'QR code · NFC sticker', col: 1, row: 1 },
+      { id: 'card', label: 'Tilde Card', detail: 'QR code · NFC sticker', col: 1, row: 1 },
       { id: 'phone', label: 'Their phone', detail: 'tap or scan · no app', col: 2, row: 0.5 },
     ],
     edges: [

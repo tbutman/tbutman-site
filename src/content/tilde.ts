@@ -1,5 +1,5 @@
 // /tilde and /pt/tilde: the product page for Tilde, the open-source Android NFC business-card app,
-// and the Tilde card, its printable card. Written for people who might use it, not for hiring
+// and the Tilde Card, its printable card. Written for people who might use it, not for hiring
 // managers (the case study at /work/tilde covers the engineering). Source: github.com/tbutman/tilde
 // and github.com/tbutman/tilde-card. Images in public/tilde/ are Tilde 1.2 screenshots and the card's
 // renders, with the made-up person Jane Doe; /pt/tilde shows the Portuguese app where a Portuguese
@@ -36,7 +36,7 @@ const en = {
   printCard: { label: 'print a tilde card', href: '#card' },
   requirements:
     'Dark or light, in English or Portuguese. Tapping needs NFC, the contactless feature most Android phones have; the QR code works with any phone.',
-  heroCardAlt: 'A 3D-printed black Tilde card for Jane Doe, with a QR code and an NFC tap marker',
+  heroCardAlt: 'A 3D-printed black Tilde Card for Jane Doe, with a QR code and an NFC tap marker',
   heroPhone: {
     src: '/tilde/share.webp',
     alt: 'Tilde’s Share screen: Jane Doe’s Web Summit card, the QR code for her contact card, and chips to switch between her website, contact card and LinkedIn',
@@ -118,10 +118,10 @@ const en = {
 
   cardHeading: 'the tilde card (optional)',
   cardBody: [
-    'Tilde works on its own, but if you have a 3D printer there’s a free Tilde card to go with it. A QR code on the front opens your website, and an optional NFC sticker inside lets people tap it too.',
+    'Tilde works on its own, but if you have a 3D printer there’s a free Tilde Card to go with it. A QR code on the front opens your website, and an optional NFC sticker inside lets people tap it too.',
     'Type in your name, links and colors, choose a back (a terminal window, a plain one or none), and print it all at once on a multi-color printer. Tilde can write your link or your whole contact card onto its NFC sticker, and lock it if you want it never to change.',
   ],
-  cardFrontAlt: 'The Tilde card, front',
+  cardFrontAlt: 'The Tilde Card, front',
   backs: [
     { src: '/tilde/back-terminal.webp', caption: 'terminal back', alt: 'Terminal-style back: $ whoami, name, title and email' },
     { src: '/tilde/back-plain.webp', caption: 'plain back', alt: 'Plain back: name, title and email' },

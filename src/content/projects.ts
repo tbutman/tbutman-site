@@ -136,10 +136,10 @@ export const projects: Project[] = [
     links: [{ label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' }],
     product: { label: 'get the app', to: '/tilde' },
     summary:
-      'A free, open-source Android app that turns a phone into an NFC business card, and the Tilde card, a 3D-printable business card to go with it. Tap phones or scan the code to share a full contact card, a website or WhatsApp, switching between them in one tap, with no account, nothing to install on the other phone and no internet permission on mine.',
+      'A free, open-source Android app that turns a phone into an NFC business card, and the Tilde Card, a 3D-printable business card to go with it. Tap phones or scan the code to share a full contact card, a website or WhatsApp, switching between them in one tap, with no account, nothing to install on the other phone and no internet permission on mine.',
     stack: ['Kotlin', 'Android NFC', 'Material 3', 'GitHub Actions', 'OpenSCAD', 'Python'],
     scope:
-      'Mine end to end: the product, the Android app and its NFC protocol layer, the Tilde card’s model and its automated checks, releases and documentation. I built it with AI coding agents, using the process on the how-i-work page, and tested it on real phones and real prints.',
+      'Mine end to end: the product, the Android app and its NFC protocol layer, the Tilde Card’s model and its automated checks, releases and documentation. I built it with AI coding agents, using the process on the how-i-work page, and tested it on real phones and real prints.',
     problem:
       'Paper business cards get lost, and digital-card apps usually share a link to the vendor’s own servers and want an account on at least one side. I wanted something that works with any phone, needs nothing on the other person’s side, and keeps my details on my phone until I share them.',
     story: [
@@ -147,7 +147,7 @@ export const projects: Project[] = [
         heading: 'two halves of one idea',
         body: [
           'It started as a printed card for events: a QR code on the front and an NFC sticker sealed inside, both opening my site’s /hello page. Then I wanted the same thing when the card was in a drawer.',
-          'Android lets an app answer NFC readers as if it were a tag, so the phone itself can be the card. An iPhone reads it the way it reads any NFC sticker, with no app installed. Tilde can also write your link onto the Tilde card’s NFC sticker, so the app and the card work as a pair.',
+          'Android lets an app answer NFC readers as if it were a tag, so the phone itself can be the card. An iPhone reads it the way it reads any NFC sticker, with no app installed. Tilde can also write your link onto the Tilde Card’s NFC sticker, so the app and the card work as a pair.',
         ],
       },
       {
@@ -188,7 +188,7 @@ export const projects: Project[] = [
     ],
     built: [
       'An Android app in Kotlin that emulates an NFC Forum Type 4 Tag with Host Card Emulation, serving links, vCards and Wi-Fi credentials as NDEF records.',
-      'Sharing that switches in one tap or a swipe: a full contact card (vCard), a website or profile link, saved links, a WhatsApp chat or guest Wi-Fi, with Send and Copy for sharing at a distance. Plus receive and write modes: read other NFC stickers, cards and phones, or write a link or contact card onto an NFC sticker or a Tilde card.',
+      'Sharing that switches in one tap or a swipe: a full contact card (vCard), a website or profile link, saved links, a WhatsApp chat or guest Wi-Fi, with Send and Copy for sharing at a distance. Plus receive and write modes: read other NFC stickers, cards and phones, or write a link or contact card onto an NFC sticker or a Tilde Card.',
       'A Met list of everyone a tap reached, with notes, event names and CSV export; a four-step welcome with a live card preview and country-aware phone numbers; a profile photo with an in-app cropper; and a Quick Settings tile.',
       'Several cards, each a complete identity with its own choice of what its contact card includes; backup and restore through a file; a light theme; the Tilde QR code home-screen widget; and the whole app in English and European Portuguese.',
       'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK under 2 MB).',

@@ -1,4 +1,4 @@
-// /hello and /pt/hello: where the printed Tilde card's QR code and NFC sticker point, and what
+// /hello and /pt/hello: where the printed Tilde Card's QR code and NFC sticker point, and what
 // Thomas's phone shares through Tilde. Visitors arrive on a phone, usually right after meeting
 // Thomas at an event; a phone set to Portuguese gets /pt/hello (see src/components/LangSwitch.tsx).
 // Both are open source: github.com/tbutman/tilde-card and github.com/tbutman/tilde. Kept out of
@@ -25,7 +25,7 @@ const en = {
   status: 'you tapped or scanned my card',
   headline: ['Hi, I’m Thomas.', 'Good to meet you.'],
   intro:
-    'You got here from my business card or my phone. The card is a Tilde card I designed and 3D-printed, with an NFC sticker sealed inside it halfway through the print. The phone runs Tilde, an open-source Android app I wrote that makes it work like the card. This page is served from a small server in my home in Lisbon.',
+    'You got here from my business card or my phone. The card is a Tilde Card I designed and 3D-printed, with an NFC sticker sealed inside it halfway through the print. The phone runs Tilde, an open-source Android app I wrote that makes it work like the card. This page is served from a small server in my home in Lisbon.',
   openTo: 'open to',
   availability: profile.availability.toLowerCase(),
   engagement: profile.engagement.toLowerCase(),
