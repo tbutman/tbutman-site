@@ -140,7 +140,7 @@ const en = {
     },
     {
       q: 'Does it work with iPhones?',
-      a: 'iPhones read Tilde, but they only act on links from a tap. If you share your contact card, a tapping iPhone opens your website instead, and scanning the code on your screen saves the contact.',
+      a: 'Yes. iPhones read Tilde with a tap, like any NFC sticker. If you share your contact card, a tapping iPhone opens a page that shows it, with a Save contact button; that needs an internet connection. Scanning the code on your screen saves the contact without one.',
     },
     {
       q: 'Why only Android?',
@@ -294,7 +294,7 @@ const pt: TildeText = {
     },
     {
       q: 'Funciona com iPhones?',
-      a: 'Os iPhones leem a Tilde, mas só abrem ligações recebidas por toque. Se partilhares o teu cartão de contacto, um iPhone que encoste abre o teu site; para guardar o contacto, basta ler o código no teu ecrã.',
+      a: 'Sim. Os iPhones leem a Tilde com um toque, como qualquer autocolante NFC. Se partilhares o teu cartão de contacto, um iPhone que encoste abre uma página que o mostra, com um botão Guardar contacto; isso precisa de ligação à internet. Ler o código no teu ecrã guarda o contacto sem ela.',
     },
     {
       q: 'Porquê só Android?',
