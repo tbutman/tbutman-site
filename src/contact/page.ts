@@ -119,11 +119,15 @@ function decorative<T extends Element>(node: T): T {
   return node
 }
 
-/** "JD" from "Jane Doe": the first letters of the first and last words. */
+/**
+ * "JD" from "Jane Doe": the first letter (with any marks on it) of the first and last words. A
+ * word without a letter, such as an emoji or a flag, adds nothing: "Jane 🏴" gives "J".
+ */
 function initials(name: string): string {
   const words = name.trim().split(/\s+/)
-  const first = [...words[0]][0] ?? ''
-  const last = words.length > 1 ? ([...words[words.length - 1]][0] ?? '') : ''
+  const letter = (word: string) => word.match(/\p{L}\p{M}*/u)?.[0] ?? ''
+  const first = letter(words[0])
+  const last = words.length > 1 ? letter(words[words.length - 1]) : ''
   return (first + last).toUpperCase()
 }
 

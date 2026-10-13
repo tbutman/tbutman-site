@@ -364,7 +364,8 @@ svg.icon {
   margin-right: 64px;
 }
 
-.void p {
+/* Not the ~/tilde line, which keeps the handle's gap below it. */
+.void p:not(.handle) {
   margin: 0;
   font-size: 17px;
   line-height: 24px;

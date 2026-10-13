@@ -93,6 +93,7 @@ for (const [engine, type] of [
             name: document.querySelector('.face .name')?.getAttribute('aria-label') ?? null,
             handle: document.querySelector('.face:not(.void) .handle')?.textContent ?? null,
             role: document.querySelector('.face .role')?.textContent ?? null,
+            ring: document.querySelector('.face .ring')?.textContent ?? null,
             details: [...document.querySelectorAll('.details dd')].map((dd) => dd.textContent),
             heading: document.querySelector('.void h1')?.textContent ?? null,
             // Nothing from the link may become markup: the page's own elements only.
@@ -105,6 +106,8 @@ for (const [engine, type] of [
             assert.equal(shown.name, contact.name)
             assert.equal(shown.handle, contact.handle ? `~/${contact.handle}` : null)
             assert.equal(shown.role, [contact.title, contact.company].filter(Boolean).join(' · '))
+            // Initials are letters only: never an emoji, a flag or a symbol.
+            assert.match(shown.ring, /^(\p{L}\p{M}*){0,2}$/u)
             assert.deepEqual(shown.details, [...contact.emails, ...contact.phones.map((p) => p.number), ...contact.links.map((l) => displayAddress(l.url))])
           } else {
             assert.equal(shown.face, 'face void k-amber')
@@ -126,6 +129,25 @@ for (const [engine, type] of [
         await page.evaluate(() => (location.hash = '#1;n=John%20Roe;h=johnroe;c=sea'))
         await page.waitForFunction(() => document.querySelector('.face .name')?.getAttribute('aria-label') === 'John Roe')
         assert.equal(await page.locator('.face').getAttribute('class'), 'face k-sea')
+      } finally {
+        await context.close()
+      }
+    })
+
+    test('initials come from letters: a flag as the last word adds nothing', async () => {
+      const flag = String.fromCodePoint(0x1f3f4, 0xe0067, 0xe0062, 0xe0073, 0xe0063, 0xe0074, 0xe007f)
+      const { context, page } = await open(`#1;n=${encodeURIComponent(`Jane ${flag}`)}`)
+      try {
+        assert.equal(await page.locator('.face .ring').textContent(), 'J')
+      } finally {
+        await context.close()
+      }
+    })
+
+    test('the error card keeps the gap under ~/tilde', async () => {
+      const { context, page } = await open('#1;n=%ZZ')
+      try {
+        assert.equal(await page.locator('.void .handle').evaluate((node) => getComputedStyle(node).marginBottom), '14px')
       } finally {
         await context.close()
       }
