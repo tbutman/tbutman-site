@@ -1639,6 +1639,166 @@
           }
         ]
       }
+    },
+    {
+      "name": "v3-M1: invisible characters or a blank before the dot still pose as another site",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal%CD%8F.com;u=evil.example,paypal%EF%B8%80.com;u=evil.example,paypal%EF%B8%8F.com;u=evil.example,paypal%E1%A0%8B.com;u=evil.example,paypal%E1%A0%8D.com;u=evil.example,paypal%E2%80%8C.com;u=evil.example,paypal%E2%80%8D.com;u=evil.example,paypal%E2%A0%80.com",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3-M1: dot-like marks pose as a dot",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal%EA%93%B8com;u=evil.example,paypal%C2%B7com;u=evil.example,paypal%CE%87com;u=evil.example,paypal%E3%83%BBcom;u=evil.example,paypal%E2%88%99com;u=evil.example,paypal%E2%8B%85com;u=evil.example,paypal%E2%80%A7com;u=evil.example,paypal%CB%99com",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3-M1: dot-like marks pose as a dot, II",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal%DC%81com;u=evil.example,paypal%DB%94com;u=evil.example,paypal%E2%B8%B1com;u=evil.example,paypal%E2%B8%BCcom;u=evil.example,paypal%E1%90%A7com;u=evil.example,paypal%E1%9B%ABcom;u=evil.example,paypal%D6%89com",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3-M1: kept beside the fix: a space after the dot, an emoji with ZWJ; Catalan l·l reads as a domain",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal.%20com;u=evil.example,%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB%20Blog;u=evil.example,col%C2%B7lega;u=evil.example,St.%20Louis%20office",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "paypal. com"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "👩‍💻 Blog"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "St. Louis office"
+          }
+        ]
+      }
     }
   ],
   "vcard": [

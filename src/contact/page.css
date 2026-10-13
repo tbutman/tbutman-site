@@ -194,6 +194,16 @@ svg.icon {
   color: var(--muted);
 }
 
+/* Large text (175% zoom on a 390 px phone is 223 px): beside the ring, a long word such as a
+   company name breaks with a hyphen rather than anywhere (design N1). Only there: at normal sizes,
+   hyphenation would also split words that fit on the next line. */
+@media (max-width: 299px) {
+  .role {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
+
 .ring {
   position: absolute;
   right: 22px;

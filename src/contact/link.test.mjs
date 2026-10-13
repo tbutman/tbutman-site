@@ -23,7 +23,7 @@ import {
 
 // The vectors' SHA-256, pinned in the spec's header and in the app's ContactLinkTest too: a change
 // to the vectors fails every suite until each copy and each pin is updated (checker improvement 3).
-const X1_VECTORS_SHA256 = '203c7fda36bf9eeb7a7a3cd201615b56a08f1574d3e6df3b6471eac0f5ed32f5'
+const X1_VECTORS_SHA256 = '328f93cbaa28ed1ab904408102244ba7b553017b81c4fd5af7e48a931d08238c'
 const vectorsFile = readFileSync(new URL('./vectors.json', import.meta.url))
 const vectors = JSON.parse(vectorsFile.toString('utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')
@@ -140,12 +140,14 @@ test('international domains in Latin script show as written, others in punycode'
   assert.equal(displayAddress('https://www.xn--caf-dma.pt/menu'), 'café.pt/menu')
   assert.equal(displayAddress('http://xn--bcher-kva.example:8443/a?b=1'), 'http://bücher.example:8443/a?b=1')
   assert.equal(displayAddress(new URL('https://łódź.example/').href), 'łódź.example')
-  // Look-alikes stay in punycode: Cyrillic "а", and the Latin letters that pass for ASCII (R8-S6).
+  // Look-alikes stay in punycode: Cyrillic "а", and the Latin letters that pass for ASCII (R8-S6, C14).
+  // Kept as written: letters with a visible mark, such as đ, ħ and ŋ.
   assert.equal(displayAddress('https://xn--pple-43d.com/'), 'xn--pple-43d.com')
-  for (const host of ['lınkedın.com', 'ŀinkedin.com', 'ĸite.example', 'ŉews.example']) {
+  for (const host of ['lınkedın.com', 'ŀinkedin.com', 'ĸite.example', 'ŉews.example', 'þaypal.com', 'ðropbox.com']) {
     const url = new URL(`https://${host}/`).href
     assert.match(displayAddress(url), /^xn--/, host)
   }
+  assert.equal(displayAddress(new URL('https://đaħŋ.example/').href), 'đaħŋ.example')
   // One non-Latin label keeps the whole host in punycode.
   assert.equal(displayAddress('https://xn--bcher-kva.xn--pple-43d.com/'), 'xn--bcher-kva.xn--pple-43d.com')
   assert.deepEqual(addressParts('https://www.example.com/a/b?c=1&d=2'), { host: 'example.com', rest: '/a/b?c=1&d=2' })
@@ -185,7 +187,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', 'GitHub', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', '%CB%99', '%EA%93%B8', '%EF%B8%8F', '%C2%B7', 'GitHub', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648

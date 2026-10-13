@@ -153,6 +153,10 @@ export function defaultLabel(url: string): string {
 // then a top-level label that starts with a letter and has two characters or more.
 const CLAIMED_HOST = /(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+\p{L}[\p{L}\p{N}-]+/gu
 
+// Marks a reader takes for a dot between two words (after NFKC, which already folds the fullwidth,
+// small and one-dot-leader dots): 。 ｡ ꓸ · · ‧ ∙ ⋅ ・ ܁ ۔ ⸱ ⸼ ᛫ ᐧ ˙ ։.
+const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u0701\u06d4\u2e31\u2e3c\u16eb\u1427\u02d9\u0589]/g
+
 /**
  * Whether a link's label poses as another site (design rec. 4, checker R8-S5): it names a domain
  * that isn't the link's host or a parent of it ("paypal.com" over evil.example, also written with
@@ -164,7 +168,16 @@ const CLAIMED_HOST = /(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+\p{L}[\p
  */
 function posesAsOtherHost(label: string, url: string): boolean {
   const host = new URL(url).hostname.replace(/^www\./, '')
-  const text = label.normalize('NFKC').replace(/[\u3002\uff61]/g, '.').replace(/\s+\./g, '.').toLowerCase()
+  // Invisible characters go (checker V3-M1: a variation selector or ZWJ before the dot), dot-like
+  // marks become dots (middle dots, ideographic and Lisu dots), and blanks before a dot go. The dots
+  // fold before NFKC too, which turns ˙ into a space and a combining dot.
+  const text = label
+    .replace(LOOKALIKE_DOT, '.')
+    .normalize('NFKC')
+    .replace(/\p{DI}/gu, '')
+    .replace(LOOKALIKE_DOT, '.')
+    .replace(/[\s\u2800]+\./g, '.')
+    .toLowerCase()
   for (const [claimed] of text.matchAll(CLAIMED_HOST)) {
     let named: string
     try {
@@ -434,9 +447,10 @@ function punyDecode(input: string): string {
 
 // Hosts shown as written (design rec. 3): ASCII letters, digits, dots and hyphens, plus the Latin-1
 // and Latin Extended-A letters, without ÷ and without the ones that pass for ASCII letters (checker
-// R8-S6): dotless ı (U+0131), kra ĸ (U+0138), Ŀ and ŀ (U+013F, U+0140) and ŉ (U+0149). Any other
+// R8-S6, C14): dotless ı (U+0131), kra ĸ (U+0138), Ŀ and ŀ (U+013F, U+0140), ŉ (U+0149), and eth ð
+// and thorn þ (U+00F0, U+00FE), which pass for d and p ("þaypal.com", "ðropbox.com"). Any other
 // letter, such as a Cyrillic "а" in "аpple.com", keeps the whole host in punycode.
-const LATIN_HOST = /^[a-z0-9.\-\u00e0-\u00f6\u00f8-\u00ff\u0100-\u0130\u0132-\u0137\u0139-\u013e\u0141-\u0148\u014a-\u017e]+$/
+const LATIN_HOST = /^[a-z0-9.\-\u00e0-\u00ef\u00f1-\u00f6\u00f8-\u00fd\u00ff\u0100-\u0130\u0132-\u0137\u0139-\u013e\u0141-\u0148\u014a-\u017e]+$/
 
 /** A host as the page shows it: international domains in Latin script as written, the rest as parsed. */
 function displayHost(hostname: string): string {

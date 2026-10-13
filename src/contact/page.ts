@@ -207,8 +207,9 @@ function emailLabels(contact: Contact): string[] {
 
 /**
  * Text with a line-break chance after each character of `after` and before each of `before`, so a
- * long address wraps at its seams (design rec. 2): after a dot, a "/", "?" or "&", and before an
- * email's "@". A break inside a word stays the last resort.
+ * long address wraps at its seams (design rec. 2): after a "/", "?" or "&", and before a dot or an
+ * email's "@", so no line starts with "com" cut from its dot (design N2). A break inside a word
+ * stays the last resort.
  */
 function seams(text: string, after: string, before = ''): Node[] {
   const nodes: Node[] = []
@@ -252,7 +253,7 @@ function website(url: string): HTMLElement {
   const { host, rest } = addressParts(url)
   const dd = value('dd', 'text', host + rest)
   const where = el('span', 'host')
-  where.append(...seams(host, '.'))
+  where.append(...seams(host, '', '.'))
   const path = el('span', 'path')
   path.append(...seams(rest, '/?&'))
   dd.replaceChildren(where, ...(rest ? [path] : []))
@@ -352,7 +353,7 @@ function showContact(root: HTMLElement, contact: Contact) {
 
   const labels = emailLabels(contact)
   const rows: [string, HTMLElement][] = [
-    ...contact.emails.map((email, i): [string, HTMLElement] => [labels[i], tappable(email, seams(email, '.', '@'), mailtoHref(email), 'mail')]),
+    ...contact.emails.map((email, i): [string, HTMLElement] => [labels[i], tappable(email, seams(email, '', '.@'), mailtoHref(email), 'mail')]),
     ...contact.phones.map((phone): [string, HTMLElement] => [
       phoneLabel(phone.label),
       tappable(phone.number, [document.createTextNode(phone.number)], telHref(phone.number), 'phone'),

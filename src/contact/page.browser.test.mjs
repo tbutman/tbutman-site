@@ -203,6 +203,8 @@ for (const [engine, type] of [
         const [host, path] = await page.locator('.details dd').first().evaluate((dd) => [...dd.children].map((node) => getComputedStyle(node).color))
         assert.notEqual(host, path)
         assert.equal(await page.locator('.details dd').first().locator('wbr').count(), 3)
+        // A host breaks before its dots, never after (design N2).
+        assert.equal(await page.locator('.details .host').first().evaluate((host) => host.querySelector('wbr').nextSibling.textContent), '.example')
       } finally {
         await context.close()
       }
