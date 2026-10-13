@@ -15,6 +15,9 @@ export type Contact = {
   emails: string[]
   phones: Phone[]
   links: Link[]
+  /** The card face (contact page v2): the ~/handle without "~/", and the card's color. Present only when the link carries a valid one. */
+  handle?: string
+  color?: Color
 }
 
 /** What the encoder takes: the app's contact card. Labels are optional. */
@@ -25,12 +28,21 @@ export type ContactInput = {
   emails?: string[]
   phones?: { number: string; label?: string }[]
   links?: { url: string; label?: string }[]
+  /** The handle the card face shows, already cleaned by the app (Profile.cleanHandle). */
+  handle?: string
+  /** The card's color key. */
+  color?: string
 }
 
 export type Decoded =
   | { ok: true; contact: Contact }
   /** empty: no fragment. damaged: not a link Tilde makes. unsupported: a newer version. */
   | { ok: false; reason: 'empty' | 'damaged' | 'unsupported' }
+
+/** The app's card colors (Cards.COLOURS keys). The page maps each to its own token; amber is the default. */
+export const COLORS = ['amber', 'sea', 'sky', 'iris', 'clay', 'moss'] as const
+export type Color = (typeof COLORS)[number]
+const isColor = (value: string): value is Color => (COLORS as readonly string[]).includes(value)
 
 export const LINK_BASE = 'https://taptilde.com/c#'
 export const VERSION = '1'
@@ -48,6 +60,8 @@ export const LIMITS = {
   emails: 3,
   phones: 5,
   links: 10,
+  /** The handle, in characters (the app's HANDLE_MAX). */
+  handle: 20,
 } as const
 
 // Kept as is in a value; every other byte is percent-encoded (UTF-8, upper-case hex). The set is
@@ -70,6 +84,8 @@ const VISIBLE = /[\p{L}\p{N}\p{P}\p{S}]/u
 const EMAIL = /^[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
 // A phone number: an optional +, then digits in groups separated by single spaces.
 const PHONE = /^\+?[0-9]+( [0-9]+)*$/
+// The app's handle characters. Never percent-encoded, and nothing a page could misread.
+const HANDLE = /^[a-z0-9._-]{1,20}$/
 const phoneOk = (n: string) => PHONE.test(n) && n.replace(/[^0-9]/g, '').length >= 3 && n.length <= LIMITS.phone
 
 /** Link labels the page works out from the address, so the link needn't carry them. */
@@ -172,6 +188,10 @@ function normalize(input: ContactInput): Contact {
       })
       .filter((l): l is Link => l.url !== null)
       .slice(0, LIMITS.links),
+    // The face fields are kept only as they are: the app cleans the handle first, and amber, the
+    // default, is left out to save 8 bytes.
+    ...(input.handle && HANDLE.test(input.handle) ? { handle: input.handle } : {}),
+    ...(input.color && isColor(input.color) && input.color !== 'amber' ? { color: input.color } : {}),
   }
 }
 
@@ -183,6 +203,9 @@ function serialize(c: Contact): string {
   for (const email of c.emails) fields.push(`e=${percentEncode(email)}`)
   for (const p of c.phones) fields.push(`p=${percentEncode(p.number)}${p.label ? `,${percentEncode(p.label)}` : ''}`)
   for (const l of c.links) fields.push(`u=${percentEncode(l.url.replace(/^https:\/\//, ''))}${l.label ? `,${percentEncode(l.label)}` : ''}`)
+  // Last, so everything a page without the card face reads keeps its bytes, and a sticker drops them first.
+  if (c.handle) fields.push(`h=${c.handle}`)
+  if (c.color) fields.push(`c=${c.color}`)
   return LINK_BASE + fields.join(';')
 }
 
@@ -263,6 +286,18 @@ export function decodeFragment(hash: string): Decoded {
           if (url && length(text) <= LIMITS.label && contact.links.length < LIMITS.links) {
             contact.links.push({ url, label: text || defaultLabel(url) })
           }
+          break
+        }
+        case 'h': {
+          // Exactly the app's handle characters, never cleaned or guessed: anything else is skipped.
+          const value = decodeValue(body)
+          if (value && contact.handle === undefined && HANDLE.test(value)) contact.handle = value
+          break
+        }
+        case 'c': {
+          // One of the six names, exact and lower case: the page never takes a color from the link.
+          const value = decodeValue(body)
+          if (value && contact.color === undefined && isColor(value)) contact.color = value
           break
         }
         default:
@@ -346,8 +381,9 @@ export function uriRecordBytes(url: string): number {
 
 /**
  * The link for a sticker with room for `maxBytes` of NDEF message: the whole contact card when it
- * fits, otherwise with details left out in the spec's order (labels, extra links, title, company,
- * extra emails and phones, the last link) until it does. Null when even the name with one email
+ * fits, otherwise with details left out in the spec's order (the card's color and handle, which are
+ * only its look, then labels, extra links, title, company, extra emails and phones, the last link)
+ * until it does. Null when even the name with one email
  * and one phone doesn't fit. The app does this when writing a sticker; it lives here as the
  * reference its tests share.
  */
@@ -359,6 +395,8 @@ export function stickerLink(input: ContactInput, maxBytes: number): { url: strin
   const fits = () => uriRecordBytes(serialize(c)) <= maxBytes
   const steps: [string, () => boolean][] = [
     // Each step removes one thing and says whether there was anything to remove.
+    ['color', () => c.color !== undefined && delete c.color],
+    ['handle', () => c.handle !== undefined && delete c.handle],
     ['label', () => {
       const labeled = [...c.phones, ...c.links].reverse().find((x) => x.label)
       if (labeled) labeled.label = ''

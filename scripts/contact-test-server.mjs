@@ -39,7 +39,7 @@ function testIndex() {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>X1 test links</title><style>body{font:16px/1.5 system-ui,sans-serif;margin:16px;max-width:40rem}li{margin:.6em 0}small{color:#666;word-break:break-all}</style></head><body>
 <h1>X1 contact page: test links</h1>
-<p>For the iPhone test (spec section 7). Switch the phone between light and dark, and set its language to Portuguese for the PT copy.</p>
+<p>For the iPhone test (spec section 7). The page is always dark. Set the phone's language to Portuguese for the PT copy. Open a contact twice: the second time the fonts come from the cache (Inter and JetBrains Mono); a first visit on a slow network keeps the system font.</p>
 <h2>T2: Save contact, by method</h2><p>Each opens the typical card. Press Save contact and note what the phone does.</p><ul>
 ${['blob', 'data', 'download', 'share'].map((m) => item(`/tilde/c?save=${m}${fragment}`, `save=${m}`, m === 'share' ? 'needs https: expect it to fall back to blob here' : '')).join('\n')}
 </ul>

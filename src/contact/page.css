@@ -1,6 +1,9 @@
-/* /tilde/c, the contact page (X1). Inlined into the page by scripts/contact-page.mjs, so it can't
-   use the site's stylesheets or fonts: system fonts only, so the first paint is the final page.
-   Layout and sizes from the designer's mockup, tilde-review/design/contact-page.html. */
+/* /tilde/c, the contact page (X1, version 2). Inlined into the page by scripts/contact-page.mjs,
+   which also adds the @font-face rules for the site's own Inter and JetBrains Mono ("Tilde Inter",
+   "Tilde Mono"), with font-display: optional: they're used only if they're cached or arrive at
+   once, and otherwise the page stays on the system font for the visit, with no swap.
+   Layout and sizes from the designer's mockup, tilde-review/design/contact-page.html. Every line
+   height in the card face is in px, so it takes the same space in either font. */
 
 :root {
   color-scheme: dark;
@@ -14,27 +17,31 @@
   --muted: #a2abb6;
   --dim: #8a94a0;
   --accent: #ffb547;
-  --accent-text: #ffb547;
   --on-accent: #0b0d10;
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --sans: 'Tilde Inter', var(--system);
+  --mono: 'Tilde Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-    --bg: #f4f3ef;
-    --panel: #ffffff;
-    --raised: #ffffff;
-    --line: #e2e0d9;
-    --line-strong: #ccc9bf;
-    --text: #15181d;
-    --soft: #2e343b;
-    --muted: #545c67;
-    --dim: #5f6873;
-    --accent: #a85f00;
-    --accent-text: #8a4e00;
-    --on-accent: #ffffff;
-  }
+/* The six card colors: the app's dark swatches (Cards.COLOURS), all 8:1 or better on --bg. The
+   page picks one of these classes from a fixed list; no color ever comes from the link. */
+.k-amber {
+  --k: #ffb547;
+}
+.k-sea {
+  --k: #6cc4b4;
+}
+.k-sky {
+  --k: #7aa7f0;
+}
+.k-iris {
+  --k: #a99bf0;
+}
+.k-clay {
+  --k: #e89a7a;
+}
+.k-moss {
+  --k: #9cc77a;
 }
 
 *,
@@ -57,7 +64,7 @@ body {
   background-size: 64px 64px;
   background-position: -1px -1px;
   color: var(--text);
-  font: 400 15px/1.45 var(--font);
+  font: 400 15px/1.45 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -76,7 +83,7 @@ main {
   isolation: isolate;
   max-width: 440px;
   margin: 0 auto;
-  padding: 16px 20px 28px;
+  padding: 12px 20px 28px;
 }
 
 .top {
@@ -122,51 +129,94 @@ svg.icon {
   user-select: text;
 }
 
-.card {
-  margin-top: 12px;
-  padding: 24px 20px 20px;
-  background: var(--panel);
+/* A value with characters outside the site's Latin font files: all of it in the system font, so
+   fonts never mix within one name. */
+.system {
+  font-family: var(--system);
+}
+
+/* The card face: the app's view_card. */
+.face {
+  position: relative;
+  margin-top: 10px;
+  padding: 20px 22px;
+  background: var(--raised);
   border: 1px solid var(--line-strong);
   border-radius: 20px;
 }
 
-.avatar {
-  width: 64px;
-  height: 64px;
-  border: 2px solid var(--accent);
+.handle {
+  margin: 0 0 14px;
+  font: 700 17px/24px var(--mono);
+  white-space: nowrap;
+}
+
+.handle span {
+  color: var(--k);
+}
+
+/* The name: the first word, then the rest. --n steps down from 34 to 26 px until each line fits
+   (page.ts), then the lines wrap. */
+.name {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--n, 34px);
+  line-height: calc(var(--n, 34px) * 1.06);
+  letter-spacing: -0.01em;
+}
+
+.name span {
+  display: block;
+  white-space: nowrap;
+}
+
+.name.wrap span {
+  white-space: normal;
+}
+
+.rule {
+  width: 40px;
+  height: 3px;
+  margin: 14px 0 12px;
+  border-radius: 2px;
+  background: var(--k);
+}
+
+/* Title · company. Keeps its row when empty, so the ring never touches the name. */
+.role {
+  min-height: 24px;
+  margin: 0;
+  padding-right: 76px;
+  font-size: 17px;
+  line-height: 24px;
+  color: var(--muted);
+}
+
+.ring {
+  position: absolute;
+  right: 22px;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--k);
   border-radius: 50%;
-  background: var(--raised);
+  background: var(--panel);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-}
-
-.name {
-  margin: 16px 0 0;
-  font-size: 30px;
-  line-height: 1.12;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-}
-
-.role {
-  margin: 6px 0 0;
-  font-size: 17px;
-  line-height: 1.35;
-  color: var(--muted);
 }
 
 .save {
   width: 100%;
   height: 54px;
-  margin-top: 20px;
+  margin-top: 16px;
   border: 0;
   border-radius: 27px;
   background: var(--accent);
   color: var(--on-accent);
-  font: 600 17px/1 var(--font);
+  font: 600 17px/1 var(--sans);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,12 +240,13 @@ svg.icon {
 .under {
   margin: 10px 0 0;
   font-size: 14px;
+  line-height: 20px;
   color: var(--muted);
   text-align: center;
 }
 
 .details {
-  margin: 16px 0 0;
+  margin: 18px 0 0;
   padding: 2px 18px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -212,14 +263,14 @@ svg.icon {
 }
 
 .row dt {
-  font-size: 13px;
-  color: var(--muted);
+  font: 500 12.5px/18px var(--mono);
+  color: var(--dim);
 }
 
 .row dd {
   margin: 0;
   font-size: 17px;
-  line-height: 1.35;
+  line-height: 24px;
 }
 
 .privacy {
@@ -227,8 +278,8 @@ svg.icon {
   gap: 10px;
   align-items: flex-start;
   margin: 18px 2px 0;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 13.5px;
+  line-height: 20px;
   color: var(--muted);
 }
 
@@ -256,7 +307,7 @@ svg.icon {
   min-height: 44px;
   display: flex;
   align-items: center;
-  color: var(--accent-text);
+  color: var(--accent);
   font-weight: 600;
   text-decoration: none;
 }
@@ -265,54 +316,77 @@ svg.icon {
   text-decoration: underline;
 }
 
-/* The error states: empty, damaged, unsupported, and no JavaScript. */
-.error {
-  margin-top: 28px;
+/* The errors (empty, damaged, unsupported, no JavaScript): the face's place, dashed like the
+   app's blank card, with ~/tilde in place of a handle and the message as the name. */
+.face.void {
+  padding: 22px;
+  background: transparent;
+  border: 1px dashed var(--dim);
 }
 
-.error-icon {
-  width: 56px;
-  height: 56px;
-  border: 1px solid var(--line-strong);
+.void .handle,
+.void .handle span {
+  color: var(--dim);
+}
+
+.void .rule {
+  background: var(--dim);
+}
+
+.badge {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  width: 52px;
+  height: 52px;
+  border: 2px dashed var(--dim);
   border-radius: 50%;
-  background: var(--panel);
-  color: var(--accent-text);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.error-icon svg.icon {
-  width: 26px;
-  height: 26px;
+.badge svg.icon {
+  width: 24px;
+  height: 24px;
 }
 
-.error h1 {
-  margin: 18px 0 8px;
+.void h1 {
+  margin: 0;
   font-size: 26px;
-  line-height: 1.18;
-  font-weight: 800;
+  line-height: 30px;
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.error p {
-  margin: 0 0 10px;
+.badge ~ h1 {
+  margin-right: 64px;
+}
+
+.void p {
+  margin: 0;
   font-size: 17px;
-  line-height: 1.45;
+  line-height: 24px;
   color: var(--soft);
 }
 
+.void p + p {
+  margin-top: 10px;
+}
+
 .button {
+  width: 100%;
   height: 50px;
-  margin-top: 14px;
-  padding: 0 22px;
-  border: 1px solid var(--accent);
+  margin-top: 16px;
+  border: 0;
   border-radius: 25px;
   background: var(--accent);
   color: var(--on-accent);
-  font: 600 16px/1 var(--font);
-  display: inline-flex;
+  font: 600 16px/1 var(--sans);
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   cursor: pointer;
 }
@@ -320,19 +394,48 @@ svg.icon {
 .tip {
   display: flex;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 16px;
   padding: 14px 16px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 16px;
   font-size: 15px;
-  line-height: 1.4;
+  line-height: 22px;
   color: var(--soft);
 }
 
 .tip svg.icon {
   margin-top: 1px;
   color: var(--muted);
+}
+
+/* 320 px phones: narrower margins, padding and ring; the type stays the same size. */
+@media (max-width: 360px) {
+  main {
+    padding: 8px 16px 24px;
+  }
+
+  .face,
+  .face.void {
+    padding: 18px;
+  }
+
+  .ring {
+    right: 18px;
+    bottom: 18px;
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .badge {
+    top: 18px;
+    right: 18px;
+  }
+
+  .role {
+    padding-right: 64px;
+  }
 }
 
 [hidden] {

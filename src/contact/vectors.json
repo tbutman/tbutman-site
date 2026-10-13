@@ -1,5 +1,5 @@
 {
-  "$description": "Tilde contact link (X1) test vectors, version 1. Spec: tilde-review/specs/x1-contact-link.md. encode: contact card fields -> exact link (the app). decode: link -> contact or error (the page). vcard: link -> .vcf text (the page). sticker: fields and a sticker's room in bytes -> the link that fits and what was left out, or null (the app). Keep every copy byte-identical.",
+  "$description": "Tilde contact link (X1) test vectors, version 1, with the card face fields h and c (contact page v2). Spec: tilde-review/specs/x1-contact-link.md. encode: contact card fields -> exact link (the app). decode: link -> contact or error (the page). vcard: link -> .vcf text (the page). sticker: fields and a sticker's room in bytes -> the link that fits and what was left out, or null (the app). Keep every copy byte-identical.",
   "version": 1,
   "base": "https://taptilde.com/c#",
   "encode": [
@@ -412,6 +412,119 @@
         "phones": [],
         "links": []
       }
+    },
+    {
+      "name": "card face: the typical card with its handle and color",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "iris"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe;c=iris",
+      "uriRecordBytes": 175,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "iris"
+      }
+    },
+    {
+      "name": "card face: amber, the default color, is left out",
+      "fields": {
+        "name": "Jane Doe",
+        "handle": "janedoe",
+        "color": "amber"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=janedoe",
+      "uriRecordBytes": 44,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "handle": "janedoe"
+      }
+    },
+    {
+      "name": "card face: no handle (the app passes the suggested one; with none, h is left out)",
+      "fields": {
+        "name": "Jane Doe",
+        "handle": "",
+        "color": "sea"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;c=sea",
+      "uriRecordBytes": 40,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "color": "sea"
+      }
+    },
+    {
+      "name": "card face: a handle that is not clean and an unknown color are left out",
+      "fields": {
+        "name": "Jane Doe",
+        "handle": "~/Jane Doe",
+        "color": "rose"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe",
+      "uriRecordBytes": 34,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
     }
   ],
   "decode": [
@@ -739,6 +852,171 @@
         ],
         "links": []
       }
+    },
+    {
+      "name": "card face: a handle with upper case is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=JaneDoe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: a handle of 21 characters is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=abcdefghijklmnopqrstu",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: a handle with an encoded slash is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=jane%2Fdoe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: a handle with a tilde is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=~janedoe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: a handle with HTML is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=%3Cb%3Ejane",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: an unknown color is skipped (the page uses amber)",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;c=rose",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: a color in upper case is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;c=IRIS",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: a CSS value as the color is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;c=red;c=%23ff0000",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "card face: amber can be written",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;c=amber",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "color": "amber"
+      }
+    },
+    {
+      "name": "card face: repeated handle and color, the first wins",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;h=janedoe;h=other;c=sky;c=moss",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "handle": "janedoe",
+        "color": "sky"
+      }
+    },
+    {
+      "name": "card face: handle and color in any order",
+      "url": "https://taptilde.com/c#1;c=moss;h=jane.doe-1;n=Jane%20Doe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "color": "moss",
+        "handle": "jane.doe-1"
+      }
+    },
+    {
+      "name": "card face: a link from before the card face has neither",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ]
+      }
     }
   ],
   "vcard": [
@@ -982,6 +1260,152 @@
         "dropped": [
           "title",
           "company"
+        ]
+      }
+    },
+    {
+      "name": "card face: typical card, 175 bytes (whole)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "iris"
+      },
+      "maxBytes": 175,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe;c=iris",
+        "dropped": []
+      }
+    },
+    {
+      "name": "card face: typical card, 170 bytes (color dropped)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "iris"
+      },
+      "maxBytes": 170,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe",
+        "dropped": [
+          "color"
+        ]
+      }
+    },
+    {
+      "name": "card face: typical card, 160 bytes (color and handle dropped)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "iris"
+      },
+      "maxBytes": 160,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe",
+        "dropped": [
+          "color",
+          "handle"
+        ]
+      }
+    },
+    {
+      "name": "card face: typical card, 137 bytes (the face first, then the usual steps)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "iris"
+      },
+      "maxBytes": 137,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678;u=example.com/",
+        "dropped": [
+          "color",
+          "handle",
+          "label",
+          "link"
         ]
       }
     }

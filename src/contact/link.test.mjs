@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import {
+  COLORS,
   decodeFragment,
   defaultLabel,
   displayAddress,
@@ -126,7 +127,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648
@@ -143,6 +144,8 @@ test('fuzz: hostile fragments never throw or leak control characters', () => {
     // oxlint-disable-next-line no-control-regex -- matching control characters is the point
     for (const value of values) assert.doesNotMatch(value, /[\u0000-\u001f\u007f-\u009f\u2028\u2029\u00ad\u061c\u200b\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]|\p{M}{4}/u)
     for (const link of c.links) assert.match(link.url, /^https?:\/\/[^/@]+\//)
+    if (c.handle !== undefined) assert.match(c.handle, /^[a-z0-9._-]{1,20}$/)
+    if (c.color !== undefined) assert.ok(COLORS.includes(c.color), c.color)
     // One card, with only the properties the page writes.
     const lines = vcard(c).split('\r\n').filter(Boolean)
     for (const line of lines) {
@@ -157,4 +160,17 @@ test('the limits hold', () => {
   const many = Array.from({ length: 12 }, (_, i) => `u=example${i}.com`).join(';')
   const decoded = decodeFragment(`#1;n=Jane;${many}`)
   assert.equal(decoded.contact.links.length, LIMITS.links)
+})
+
+test('the card face never reaches the vCard', () => {
+  const face = decodeFragment(fragmentOf(vectors.encode.find((v) => v.fields.color === 'iris').url))
+  assert.ok(face.ok && face.contact.handle === 'janedoe' && face.contact.color === 'iris')
+  const { handle: _handle, color: _color, ...plain } = face.contact
+  assert.equal(vcard(face.contact), vcard(plain))
+})
+
+test('the card face comes last, so the rest of the link keeps its bytes', () => {
+  const plain = encodeContact(vectors.encode[1].fields)
+  const face = encodeContact({ ...vectors.encode[1].fields, handle: 'janedoe', color: 'iris' })
+  assert.equal(face, `${plain};h=janedoe;c=iris`)
 })
