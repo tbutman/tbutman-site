@@ -164,7 +164,7 @@ const en = {
     },
     {
       q: 'Do I have to open Tilde to share?',
-      a: 'By default, yes: Tilde only answers taps while it’s on screen, so nothing goes out from your pocket. Switch on **Settings → Sharing → Answer taps when Tilde is closed** (from the gear on the Cards tab) and it answers whenever your phone is unlocked, never from the lock screen.',
+      a: 'By default, yes: Tilde only answers taps while it’s on screen, so nothing goes out from your pocket. Switch on **Settings → Sharing → Answer taps when Tilde is closed** (from the gear on the Cards tab) and it answers whenever your phone is unlocked, never from the lock screen. If another app on your phone also answers taps (X does), Android asks which one to use each time, then needs a second tap, so opening Tilde first is quicker.',
     },
     {
       q: 'What if I change phones?',
@@ -335,7 +335,7 @@ const pt: TildeText = {
     },
     {
       q: 'Tenho de abrir a Tilde para partilhar?',
-      a: 'Por defeito, sim: a Tilde só responde a toques enquanto está no ecrã, por isso nada sai do teu bolso. Liga **Definições → Partilha → Responder a toques com a Tilde fechada** (na roda dentada do separador Cartões) e passa a responder sempre que o telemóvel estiver desbloqueado, nunca a partir do ecrã de bloqueio.',
+      a: 'Por defeito, sim: a Tilde só responde a toques enquanto está no ecrã, por isso nada sai do teu bolso. Liga **Definições → Partilha → Responder a toques com a Tilde fechada** (na roda dentada do separador Cartões) e passa a responder sempre que o telemóvel estiver desbloqueado, nunca a partir do ecrã de bloqueio. Se outra app no teu telemóvel também responder a toques (o X responde), o Android pergunta qual usar de cada vez e depois é preciso encostar outra vez, por isso abrir a Tilde primeiro é mais rápido.',
     },
     {
       q: 'E se mudar de telemóvel?',
