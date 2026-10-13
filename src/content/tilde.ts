@@ -21,6 +21,8 @@ const installGuide = `${repo}#install`
 const updatesGuide = `${repo}#updates`
 const printing = 'https://github.com/tbutman/tilde-card/blob/main/PRINTING.md'
 const cardRepo = 'https://github.com/tbutman/tilde-card'
+const email = 'hello@taptilde.com'
+const issues = `${repo}/issues`
 
 type Screenshot = { src: string; alt: string }
 
@@ -168,12 +170,18 @@ const en = {
       a: 'They stay on your phone. Tilde has no internet permission, no account and no analytics, and nothing leaves your phone until you share it. [Read the privacy page →](/tilde/privacy)',
     },
     {
+      q: 'How do I get help?',
+      a: `Email [${email}](mailto:${email}) with a question, a bug or an idea, or open an issue on [GitHub](${issues}).`,
+    },
+    {
       q: 'How do I install it without the Play Store?',
       a: `No developer mode needed: follow the three steps under **install in a minute** near the top of this page, or the [full install guide](${installGuide}). For automatic updates, the free Obtainium app can check for new versions for you ([how](${updatesGuide})).`,
     },
   ],
 
   ctaText: 'Tilde is free and open source.',
+  // The product's printed and marketed address, which redirects here.
+  address: { label: 'the short address to share:', value: 'taptilde.com' },
   sourceLink: { label: 'source on github', href: repo },
   caseStudyLink: { label: 'how i built it', to: '/work/tilde' },
 }
@@ -322,12 +330,17 @@ const pt: TildeText = {
       a: 'Ficam no teu telemóvel. A Tilde não tem permissão de acesso à internet, nem conta, nem estatísticas, e nada sai do teu telemóvel até o partilhares. [Lê a página de privacidade →](/pt/tilde/privacy)',
     },
     {
+      q: 'Como peço ajuda?',
+      a: `Envia um email para [${email}](mailto:${email}) com uma pergunta, um erro ou uma ideia, ou escreve nas [issues do GitHub](${issues}).`,
+    },
+    {
       q: 'Como a instalo sem a Play Store?',
       a: `Não precisas das opções de programador: segue os três passos em **instalar num minuto**, no topo desta página, ou o [guia completo (em inglês)](${installGuide}). Para receberes atualizações automaticamente, a app gratuita Obtainium pode procurar novas versões por ti ([como, em inglês](${updatesGuide})).`,
     },
   ],
 
   ctaText: 'A Tilde é grátis e de código aberto.',
+  address: { label: 'o endereço curto para partilhar:', value: 'taptilde.com' },
   sourceLink: { label: 'código no github', href: repo },
   caseStudyLink: { label: 'como a construí (em inglês)', to: '/work/tilde' },
 }

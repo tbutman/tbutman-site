@@ -50,6 +50,10 @@ const en = {
         'The contact page (taptilde.com/c) is logged like any page: the time, the visitor’s IP address and browser, never the details in the link.',
       ],
     },
+    {
+      heading: 'questions',
+      points: ['About privacy, or about something here that looks wrong: [hello@taptilde.com](mailto:hello@taptilde.com).'],
+    },
   ],
   ctaText: 'Tilde is free and open source.',
   backLink: { label: 'back to tilde', to: '/tilde' },
@@ -102,6 +106,10 @@ const pt: TildePrivacyText = {
         '0 cookies e 0 rastreadores.',
         'A página de contacto (taptilde.com/c) fica registada como qualquer página: a hora, o endereço IP e o browser de quem a abre, nunca os dados da ligação.',
       ],
+    },
+    {
+      heading: 'perguntas',
+      points: ['Sobre a privacidade, ou sobre algo aqui que pareça errado: [hello@taptilde.com](mailto:hello@taptilde.com).'],
     },
   ],
   ctaText: 'A Tilde é grátis e de código aberto.',

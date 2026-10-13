@@ -131,7 +131,7 @@ export const projects: Project[] = [
     kind: 'Open source · Android + hardware',
     year: '2026',
     status: 'Open source · v1.3',
-    live: 'https://tbutman.com/tilde',
+    live: 'https://taptilde.com',
     repo: 'https://github.com/tbutman/tilde',
     links: [{ label: 'card source on github', href: 'https://github.com/tbutman/tilde-card' }],
     product: { label: 'get the app', to: '/tilde' },

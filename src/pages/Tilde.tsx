@@ -32,7 +32,8 @@ export default function Tilde({ locale }: { locale: Locale }) {
         </a>
       </p>
       <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
-      <section className="product-hero" aria-labelledby="tilde-heading">
+      {/* #app: where taptilde.com/app lands (a Cloudflare rule). */}
+      <section id="app" className="product-hero" aria-labelledby="tilde-heading">
         <div className="product-hero-text">
           <p className="status">
             <span className="status-dot" aria-hidden="true" />
@@ -218,9 +219,14 @@ export default function Tilde({ locale }: { locale: Locale }) {
       </section>
 
       <section className="product-cta panel" aria-label={tilde.ctaText}>
-        <p>
-          <b>~</b> {tilde.ctaText}
-        </p>
+        <div>
+          <p>
+            <b>~</b> {tilde.ctaText}
+          </p>
+          <p className="product-address">
+            {tilde.address.label} <b>{tilde.address.value}</b>
+          </p>
+        </div>
         <div className="button-row">
           <a className="button primary" href={downloadHref}>
             {tilde.download.label} ↓
