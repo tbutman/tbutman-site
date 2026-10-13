@@ -1,6 +1,8 @@
 import { Link } from 'react-router'
 import LangSwitch from '../components/LangSwitch'
+import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
+import { tildeText } from '../content/tilde'
 import { tildeCardText } from '../content/tildeCard'
 import { type Locale, translations } from '../i18n'
 
@@ -40,9 +42,13 @@ export default function TildeCard({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="card-page-hero">
-          <img src="/tilde/card.webp" alt={card.heroAlt} width={1200} height={601} />
+          <img src="/tilde/card.webp" alt={card.heroAlt} width={1200} height={603} />
         </div>
       </section>
+
+      <figure className="product-video panel">
+        <ProductVideo video={tildeText[locale].video} />
+      </figure>
 
       <section className="section" aria-labelledby="need-heading">
         <div className="section-head">

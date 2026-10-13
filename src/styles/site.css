@@ -1597,6 +1597,24 @@ main {
   line-height: 1.6;
 }
 
+/* The Tilde Card video, full width in a frame, on its own beige backdrop (launch plan 7a). */
+.product-video {
+  margin: 0 0 clamp(2.5rem, 6vw, 4rem);
+  padding: 0;
+  overflow: hidden;
+  background: #d6d3cc;
+}
+
+.product-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
 /* ---- /tilde/card ---- */
 .card-page-hero {
   display: flex;

@@ -78,7 +78,7 @@ for (const path of paths) {
     `<meta property="og:image" content="${siteUrl}${meta.image}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
-    `<meta property="og:image:alt" content="${escapeHtml(meta.title)}" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(meta.imageAlt ?? meta.title)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="theme-color" content="#0b0d10" />`,
     `<meta name="page-weight" content="__PAGE_WEIGHT__" />`,

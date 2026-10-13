@@ -17,9 +17,9 @@ type Link = { label: string; href: string }
 const en = {
   status: 'free · open source · 3d-printable',
   name: 'Tilde Card',
-  headline: ['A business card', 'you print yourself.'],
+  headline: ['Print your own', 'business card.'],
   lede: 'Your name and link on the front, a QR code that opens your link, and a back you choose. It prints all at once on a multi-color printer, with an optional NFC sticker sealed inside so people can tap it too.',
-  heroAlt: 'A black Tilde Card for Jane Doe, with a QR code and an NFC tap marker',
+  heroAlt: 'A render of a black Tilde Card for Jane Doe: ~/janedoe, Jane Doe and taptilde.com on the left, a QR code on the right, and an NFC tap mark.',
   links: {
     guide: { label: 'how to print it', href: printing },
     source: { label: 'model on github', href: cardRepo },
@@ -112,9 +112,9 @@ export type TildeCardText = typeof en
 const pt: TildeCardText = {
   status: 'grátis · código aberto · para imprimir em 3d',
   name: 'Cartão Tilde',
-  headline: ['Um cartão de visita', 'que imprimes tu.'],
+  headline: ['Imprime o teu', 'cartão de visita.'],
   lede: 'O teu nome e a tua ligação na frente, um código QR que abre a tua ligação e um verso à tua escolha. Imprime-se de uma só vez numa impressora multicolor, com um autocolante NFC opcional selado lá dentro, para que também o possam encostar.',
-  heroAlt: 'Um cartão Tilde preto para Jane Doe, com um código QR e uma marca NFC para encostar',
+  heroAlt: 'Uma imagem 3D de um cartão Tilde preto para Jane Doe: ~/janedoe, Jane Doe e taptilde.com à esquerda, um código QR à direita e uma marca NFC para encostar.',
   links: {
     guide: { label: 'como imprimir (em inglês)', href: printing },
     source: { label: 'modelo no github', href: cardRepo },

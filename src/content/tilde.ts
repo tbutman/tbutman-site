@@ -13,6 +13,7 @@
 // The download button links straight to the newest release's APK, looked up when the site builds
 // (scripts/tilde-release.mjs); `releases` is the fallback when that lookup fails. Steps, notes
 // and answers can use **bold** and [links](url) (see src/components/RichText.tsx).
+import type { Video } from '../components/ProductVideo'
 import type { Locale } from '../i18n'
 
 export const releases = 'https://github.com/tbutman/tilde/releases/latest'
@@ -39,7 +40,14 @@ const en = {
   printCard: { label: 'print a tilde card', href: '#card' },
   requirements:
     'Dark or light, in English or Portuguese. Tapping needs NFC, the contactless feature most Android phones have; the QR code works with any phone.',
-  heroCardAlt: 'A 3D-printed black Tilde Card for Jane Doe, with a QR code and an NFC tap marker',
+  heroCardAlt: 'A render of a black Tilde Card for Jane Doe: ~/janedoe, Jane Doe and taptilde.com on the left, a QR code on the right, and an NFC tap mark.',
+  // The Tilde Card video (tilde-media, the /tilde hero video of launch plan 7a).
+  video: {
+    webm: '/tilde/video/tilde-card-16x9.webm',
+    mp4: '/tilde/video/tilde-card-16x9.mp4',
+    poster: '/tilde/video/tilde-card-16x9.jpg',
+    label: 'A 26-second video: a phone taps a Tilde Card and opens its link, the card is printed in four colors, scanned, and an NFC sticker is sealed inside.',
+  } as Video,
   heroPhone: {
     src: '/tilde/share.webp',
     alt: 'Tilde’s Share screen: Jane Doe’s Web Summit card, the QR code for her contact card, and chips to switch between her website, contact card and LinkedIn',
@@ -204,7 +212,13 @@ const pt: TildeText = {
   printCard: { label: 'imprimir um cartão tilde', href: '#card' },
   requirements:
     'Tema escuro ou claro, em português ou inglês. Encostar requer NFC, a tecnologia contactless que a maioria dos telemóveis Android tem; o código QR funciona com qualquer telemóvel.',
-  heroCardAlt: 'Um cartão Tilde preto impresso em 3D para Jane Doe, com um código QR e uma marca NFC para encostar',
+  heroCardAlt: 'Uma imagem 3D de um cartão Tilde preto para Jane Doe: ~/janedoe, Jane Doe e taptilde.com à esquerda, um código QR à direita e uma marca NFC para encostar.',
+  video: {
+    webm: '/tilde/video/tilde-card-pt-16x9.webm',
+    mp4: '/tilde/video/tilde-card-pt-16x9.mp4',
+    poster: '/tilde/video/tilde-card-pt-16x9.jpg',
+    label: 'Um vídeo de 26 segundos: um telemóvel encosta a um cartão Tilde e abre a ligação, o cartão é impresso em quatro cores, lido com a câmara, e um autocolante NFC fica selado lá dentro.',
+  },
   heroPhone: {
     src: '/tilde/share-pt.webp',
     alt: 'O ecrã Partilhar da Tilde: o cartão Web Summit de Jane Doe, o código QR do cartão de contacto dela e botões para mudar entre o site, o cartão de contacto e o LinkedIn',

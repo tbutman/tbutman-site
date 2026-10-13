@@ -21,7 +21,6 @@ const vite = await createServer({ root, server: { middlewareMode: true }, appTyp
 const { profile } = await vite.ssrLoadModule('/src/content/profile.ts')
 const { projects } = await vite.ssrLoadModule('/src/content/projects.ts')
 const { processIntro } = await vite.ssrLoadModule('/src/content/process.ts')
-const { tilde } = await vite.ssrLoadModule('/src/content/tilde.ts')
 await vite.close()
 
 const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -83,35 +82,20 @@ const cards = [
       ${foot('/how-i-work')}`,
     ),
   },
-  ...projects.map((project) => ({
-    file: `work-${project.slug}.png`,
-    html: page(
-      `${mark}
+  // Tilde's previews (tilde*.png and work-tilde.png) are drawn by tilde-media (web/og/, its
+  // HANDOFF.md) and copied in: this script leaves them alone.
+  ...projects
+    .filter((project) => project.slug !== 'tilde')
+    .map((project) => ({
+      file: `work-${project.slug}.png`,
+      html: page(
+        `${mark}
       <div class="kicker">case study · ${escape(project.kind)}${statusWord(project)}</div>
       <h1 style="font-size: ${project.title.length > 18 ? 76 : 92}px">${escape(project.title)}</h1>
       <p class="summary" style="font-size: 25px; -webkit-line-clamp: 4">${escape(project.summary)}</p>
       ${foot(`/work/${project.slug}`)}`,
-    ),
-  })),
-  {
-    file: 'tilde.png',
-    html: page(
-      `${mark}
-      <div class="kicker">${escape(tilde.status)}</div>
-      <h1 style="font-size: 120px">${escape(tilde.name)}</h1>
-      <p class="tagline">${escape(tilde.headline[0])} <span>${escape(tilde.headline[1])}</span></p>
-      <p class="points">Tap or scan to share your contact card,<br>website or WhatsApp. No account, no internet.</p>
-      <img class="phone" src="${fileUrl('public/tilde/share.webp')}">
-      <img class="card" src="${fileUrl('public/tilde/card.webp')}">
-      ${foot('/tilde')}`,
-      `.tagline { margin-top: 18px; font: 650 46px/1.12 Inter; letter-spacing: -0.03em; }
-       .tagline span { display: block; color: #ffb547; }
-       .points { margin-top: 26px; font-size: 26px; line-height: 1.45; color: #b6bec8; }
-       .phone { position: absolute; right: 86px; top: 46px; width: 250px; padding: 7px; border-radius: 34px;
-         background: #050608; border: 1px solid #2b343e; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-       .card { position: absolute; right: 236px; bottom: 84px; width: 360px; filter: drop-shadow(0 24px 40px rgba(0,0,0,0.6)); }`,
-    ),
-  },
+      ),
+    })),
 ]
 
 await mkdir(outDir, { recursive: true })

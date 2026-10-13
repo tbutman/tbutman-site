@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import LangSwitch from '../components/LangSwitch'
+import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
 import { tildeText } from '../content/tilde'
 import { htmlLang, type Locale, translations } from '../i18n'
@@ -27,8 +28,12 @@ export default function Tilde({ locale }: { locale: Locale }) {
     <article className="product">
       <p className="product-strip">
         <a href={tilde.sampleStrip.href}>
-          {tilde.sampleStrip.question} <b>{tilde.sampleStrip.link}</b>
-          <span aria-hidden="true"> →</span>
+          {tilde.sampleStrip.question}{' '}
+          {/* The arrow stays with its words, never alone on a line (360 px phones). */}
+          <span className="nowrap">
+            <b>{tilde.sampleStrip.link}</b>
+            <span aria-hidden="true"> →</span>
+          </span>
         </a>
       </p>
       <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
@@ -63,11 +68,16 @@ export default function Tilde({ locale }: { locale: Locale }) {
             src="/tilde/card.webp"
             alt={tilde.heroCardAlt}
             width={1200}
-            height={601}
+            height={603}
           />
           <Phone {...tilde.heroPhone} eager />
         </div>
       </section>
+
+      {/* The Tilde Card video: full width, framed, on its beige studio backdrop (launch plan 7a). */}
+      <figure className="product-video panel">
+        <ProductVideo video={tilde.video} />
+      </figure>
 
       <section id="install" className="section" aria-labelledby="install-heading">
         <div className="section-head">
@@ -174,7 +184,7 @@ export default function Tilde({ locale }: { locale: Locale }) {
         </div>
         <div className="product-card-section">
           <div className="product-card-images">
-            <img src="/tilde/card.webp" alt={tilde.cardFrontAlt} width={1200} height={601} loading="lazy" decoding="async" />
+            <img src="/tilde/card.webp" alt={tilde.cardFrontAlt} width={1200} height={603} loading="lazy" decoding="async" />
             <div className="product-backs">
               {tilde.backs.map((back) => (
                 <figure key={back.src}>
