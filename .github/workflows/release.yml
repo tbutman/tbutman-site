@@ -35,6 +35,8 @@ jobs:
       - run: npm run build
       # The contact page (/tilde/c) in Chromium and WebKit against every shared test vector: what
       # each link shows, no CSP reports, no requests beyond the page, favicon and fonts, and the .vcf.
+      # The pages fit the Content Security Policy in deploy/nginx.conf.
+      - run: node deploy/check-csp.mjs
       - name: Contact page in real browsers
         run: |
           npx playwright install --with-deps chromium webkit
@@ -51,6 +53,7 @@ jobs:
             nginx:1.30.5-alpine
           for i in $(seq 1 20); do curl -fs -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.5; done
           deploy/check-nginx.sh http://127.0.0.1:8080 || { docker logs site; exit 1; }
+          node deploy/check-csp-browser.mjs http://127.0.0.1:8080 || { docker logs site; exit 1; }
       - name: Package
         run: |
           tar -czf site.tar.gz -C dist .

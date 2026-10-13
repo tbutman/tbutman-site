@@ -874,7 +874,9 @@ main {
 
 .diagram svg {
   display: block;
-  width: 100%;
+  /* The width attribute is the diagram's natural width; narrower screens shrink it to 640 px, then
+     the frame scrolls. */
+  max-width: 100%;
   min-width: 640px;
   height: auto;
   margin: 0 auto;

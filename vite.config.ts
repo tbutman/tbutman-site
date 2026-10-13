@@ -36,4 +36,7 @@ export default defineConfig(({ isPreview }) => ({
   // `vite preview` serves the prerendered pages as files (like production) instead of
   // falling back to the home page; the dev server keeps the SPA fallback.
   appType: isPreview ? 'mpa' : 'spa',
+  // Fonts stay files, never data: URLs, which the site's CSP (font-src 'self') would block: Vite
+  // would otherwise inline the smallest subsets, such as JetBrains Mono's Vietnamese one.
+  build: { assetsInlineLimit: (file: string) => (file.endsWith('.woff2') ? false : undefined) },
 }))

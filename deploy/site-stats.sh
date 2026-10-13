@@ -3,13 +3,14 @@
 # site-stats.timer every 15 minutes as root (it starts a container).
 #
 # Nothing runs in visitors' browsers: the report comes from the server's own log, so the site's
-# "0 cookies, 0 trackers" stays true. GoAccess anonymises IP addresses before storing them, keeps
+# "0 cookies, 0 trackers" stays true. GoAccess anonymizes IP addresses before storing them, keeps
 # running totals in DB_DIR (so history outlives the rotated logs) and skips crawlers. The report
 # is served only inside the tailnet, never publicly.
 #
 # A second, smaller JSON copy goes to JSON_DIR, which is not served anywhere, for the owner's
 # private posting assistant: only the requested pages (query strings kept, so short ?p= link tags
-# show which post sent a visit) and the referring sites, plus overall totals. Every other panel,
+# show which post sent a visit, and /tilde?from=card counts scans of the sample Tilde Card, whose QR
+# code opens taptilde.com/?from=card) and the referring sites, plus overall totals. Every other panel,
 # including the visitor list and browsers, is left out of it. Totals are cumulative.
 set -euo pipefail
 
