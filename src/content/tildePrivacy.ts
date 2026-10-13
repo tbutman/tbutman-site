@@ -47,6 +47,7 @@ const en = {
       heading: 'this website',
       points: [
         '0 cookies and 0 trackers.',
+        '**Cloudflare** carries the traffic for taptilde.com and this website. It sets no cookies. It asks browsers to report connections that fail, never ones that work, and those network error reports never include the part of a link after the #.',
         'The contact page (taptilde.com/c) is logged like any page: the time, the visitor’s IP address and browser, never the details in the link.',
       ],
     },
@@ -104,6 +105,7 @@ const pt: TildePrivacyText = {
       heading: 'este site',
       points: [
         '0 cookies e 0 rastreadores.',
+        'A **Cloudflare** encaminha o tráfego do taptilde.com e deste site. Não define cookies. Pede aos browsers que lhe comuniquem as ligações que falham, nunca as que funcionam, e esses relatórios de erros de rede nunca incluem a parte de uma ligação depois do #.',
         'A página de contacto (taptilde.com/c) fica registada como qualquer página: a hora, o endereço IP e o browser de quem a abre, nunca os dados da ligação.',
       ],
     },
