@@ -56,7 +56,7 @@ const en = {
     'Put your code on your home screen with the **Tilde QR code** widget, for sharing by scan in a second.',
   ],
   cardsPhones: [
-    { src: '/tilde/cards.webp', alt: 'Switching cards: Jane Doe’s Work and Web Summit cards, with New card and Manage cards' },
+    { src: '/tilde/cards.webp', alt: 'Switching cards: Jane Doe’s Work and Web Summit cards' },
     { src: '/tilde/widget.webp', alt: 'The Tilde QR code widget on a home screen, showing the code for Jane Doe’s Work card' },
   ] as Screenshot[],
 
@@ -148,15 +148,15 @@ const en = {
     },
     {
       q: 'Which languages is it in?',
-      a: 'English and European Portuguese. It follows your phone’s language, or choose in Settings → Language.',
+      a: 'English and European Portuguese. It follows your phone’s language, or choose in Settings → Language, from the gear on the Cards tab.',
     },
     {
       q: 'Do I have to open Tilde to share?',
-      a: 'By default, yes: Tilde only answers taps while it’s on screen, so nothing goes out from your pocket. Switch on **Settings → Sharing → Answer taps when Tilde is closed** and it answers whenever your phone is unlocked, never from the lock screen.',
+      a: 'By default, yes: Tilde only answers taps while it’s on screen, so nothing goes out from your pocket. Switch on **Settings → Sharing → Answer taps when Tilde is closed** (from the gear on the Cards tab) and it answers whenever your phone is unlocked, never from the lock screen.',
     },
     {
       q: 'What if I change phones?',
-      a: 'Save a backup to a file (**Settings → Backup and restore**), move it to your new phone however you like, and restore it there. Tilde has no cloud and no account, so the file is yours; it isn’t encrypted, so keep it somewhere private.',
+      a: 'Save a backup to a file (**Settings → Backup and restore**, from the gear on the Cards tab), move it to your new phone however you like, and restore it there. Tilde has no cloud and no account, so the file is yours; it isn’t encrypted, so keep it somewhere private.',
     },
     {
       q: 'Is it really free?',
@@ -302,15 +302,15 @@ const pt: TildeText = {
     },
     {
       q: 'A app está em português?',
-      a: 'Sim, em português de Portugal. Se o teu telemóvel estiver em português, a Tilde abre em português; também podes escolher em Definições → Idioma.',
+      a: 'Sim, em português de Portugal. Se o teu telemóvel estiver em português, a Tilde abre em português; também podes escolher em Definições → Idioma, na roda dentada do separador Cartões.',
     },
     {
       q: 'Tenho de abrir a Tilde para partilhar?',
-      a: 'Por defeito, sim: a Tilde só responde a toques enquanto está no ecrã, por isso nada sai do teu bolso. Liga **Definições → Partilha → Responder a toques com a Tilde fechada** e passa a responder sempre que o telemóvel estiver desbloqueado, nunca a partir do ecrã de bloqueio.',
+      a: 'Por defeito, sim: a Tilde só responde a toques enquanto está no ecrã, por isso nada sai do teu bolso. Liga **Definições → Partilha → Responder a toques com a Tilde fechada** (na roda dentada do separador Cartões) e passa a responder sempre que o telemóvel estiver desbloqueado, nunca a partir do ecrã de bloqueio.',
     },
     {
       q: 'E se mudar de telemóvel?',
-      a: 'Guarda uma cópia de segurança num ficheiro (**Definições → Cópia de segurança e restauro**), passa-o para o telemóvel novo como preferires e restaura-a lá. A Tilde não tem nuvem nem conta, por isso o ficheiro é teu; não é encriptado, por isso guarda-o num sítio privado.',
+      a: 'Guarda uma cópia de segurança num ficheiro (**Definições → Cópia de segurança e restauro**, na roda dentada do separador Cartões), passa-o para o telemóvel novo como preferires e restaura-a lá. A Tilde não tem nuvem nem conta, por isso o ficheiro é teu; não é encriptado, por isso guarda-o num sítio privado.',
     },
     {
       q: 'É mesmo grátis?',
