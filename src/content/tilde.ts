@@ -93,7 +93,7 @@ const en = {
     },
     {
       title: 'Guest Wi-Fi',
-      body: 'Joins your network without anyone reading out a password.',
+      body: 'Joins your network without anyone reading out a password. Set up your phone’s hotspot too, for when there’s no guest Wi-Fi, and fill either one in from a Wi-Fi QR code, such as a screenshot or a photo of a router sticker.',
     },
   ],
 
@@ -264,7 +264,7 @@ const pt: TildeText = {
     },
     {
       title: 'Wi-Fi para convidados',
-      body: 'Liga-se à tua rede sem ninguém ter de ditar a palavra-passe.',
+      body: 'Liga-se à tua rede sem ninguém ter de ditar a palavra-passe. Configura também o hotspot do teu telemóvel, para quando não há Wi-Fi para convidados, e preenche qualquer um deles a partir de um código QR de Wi-Fi, como uma captura de ecrã ou uma fotografia do autocolante do router.',
     },
   ],
 
