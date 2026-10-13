@@ -21,6 +21,12 @@ CI serves every build through `deploy/nginx.conf` in the server's pinned nginx i
 `deploy/check-nginx.sh`: status codes, content types, the long cache on hashed assets, and
 `no-store` on every 404, so a not-yet-installed file can never be cached as missing.
 
+**Content Security Policy:** `deploy/nginx.conf` sends one on every HTML page (only the site's own
+scripts, styles, fonts and images, plus `/tilde`'s inline forwarder by hash; `/tilde/c` keeps its
+own meta policy). `deploy/check-csp.mjs` fails the build if a page has anything the policy would
+block, and `deploy/check-csp-browser.mjs` opens every page through nginx in Chromium and fails on
+any CSP report. It takes effect once the new `nginx.conf` is installed on the server.
+
 ## What runs where
 
 | File | Installed on the server as |

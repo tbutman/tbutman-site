@@ -41,7 +41,8 @@ export default function ArchitectureDiagram({ diagram }: { diagram: Diagram }) {
       <div className="diagram-scroll">
         <svg
           viewBox={`-2 -2 ${width + 4} ${height + 4}`}
-          style={{ maxWidth: width + 4 }}
+          // Its natural width as an attribute, not a style: the site's CSP allows no inline styles.
+          width={width + 4}
           role="img"
           aria-labelledby={`${id}-title ${id}-desc`}
         >
