@@ -194,7 +194,7 @@ export const projects: Project[] = [
       'A Met list of everyone a tap reached, with notes, event names and CSV export; a four-step welcome with a live card preview and country-aware phone numbers; a profile photo with an in-app cropper; and a Quick Settings tile.',
       'Several cards, each a complete identity with its own choice of what its contact card includes, managed on a Cards tab; backup and restore through a file; a light theme; the Tilde QR code home-screen widget; and the whole app in English and European Portuguese.',
       'A contact page for iPhones: the contact travels in the link’s fragment, so no server receives it; one self-contained request with a hash-based Content Security Policy, a decoder shared with the app through test vectors, and the .vcf built on the phone.',
-      'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK under 2 MB).',
+      'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK to about 2 MB).',
       'A parametric OpenSCAD card in four colors: QR code only or with an NFC sticker sealed inside (thin or thick), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
