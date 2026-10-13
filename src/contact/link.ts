@@ -160,7 +160,7 @@ const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u
 // Any other non-ASCII punctuation mark (\p{Po}) between two letters or digits, which can pass for a
 // dot too (checker V3-S1: ܂ ⸳ ་ • ⸰ ꓿), so the list above needn't be complete. Not the ideographic
 // and Arabic commas 、 and ، ("東京、大阪" isn't a domain); the fullwidth comma is ASCII after NFKC.
-const PUNCTUATION_DOT = /(?<=[\p{L}\p{N}])(?![\u0000-\u007f\u3001\u060c])\p{Po}(?=[\p{L}\p{N}])/gu
+const PUNCTUATION_DOT = /(?<=[\p{L}\p{N}])(?![\p{ASCII}\u3001\u060c])\p{Po}(?=[\p{L}\p{N}])/gu
 
 /**
  * Whether a link's label poses as another site (design rec. 4, checker R8-S5): it names a domain
