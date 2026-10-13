@@ -1799,6 +1799,100 @@
           }
         ]
       }
+    },
+    {
+      "name": "v3-S1: other punctuation between letters, and the cedilla, pose as a dot",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal%DC%82com;u=evil.example,paypal%E2%B8%B3com;u=evil.example,paypal%E0%BC%8Bcom;u=evil.example,paypal%E2%80%A2com;u=evil.example,paypal%E2%B8%B0com;u=evil.example,paypal%EA%93%BFcom;u=evil.example,paypal%C2%B8com",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3-S1: kept: apostrophes, a slash, an ampersand, ¡!, accents, and the ideographic, fullwidth and Arabic commas",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,Jane%E2%80%99s%20C.V.;u=evil.example,Rock%27n%27roll;u=evil.example,Blog%2FTalks;u=evil.example,R%26D%20notes;u=evil.example,%C2%A1Hola%21;u=evil.example,R%C3%A9sum%C3%A9;u=evil.example,S%C3%A3o%20Paulo;u=evil.example,%E6%9D%B1%E4%BA%AC%E3%80%81%E5%A4%A7%E9%98%AA;u=evil.example,%E6%9D%B1%E4%BA%AC%EF%BC%8C%E5%A4%A7%E9%98%AA;u=evil.example,%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%D8%8C%D8%AF%D8%A8%D9%8A",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Jane’s C.V."
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Rock'n'roll"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Blog/Talks"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "R&D notes"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "¡Hola!"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Résumé"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "São Paulo"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "東京、大阪"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "東京，大阪"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "القاهرة،دبي"
+          }
+        ]
+      }
     }
   ],
   "vcard": [

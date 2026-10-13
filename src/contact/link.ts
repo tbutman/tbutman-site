@@ -154,8 +154,13 @@ export function defaultLabel(url: string): string {
 const CLAIMED_HOST = /(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+\p{L}[\p{L}\p{N}-]+/gu
 
 // Marks a reader takes for a dot between two words (after NFKC, which already folds the fullwidth,
-// small and one-dot-leader dots): 。 ｡ ꓸ · · ‧ ∙ ⋅ ・ ܁ ۔ ⸱ ⸼ ᛫ ᐧ ˙ ։.
-const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u0701\u06d4\u2e31\u2e3c\u16eb\u1427\u02d9\u0589]/g
+// small and one-dot-leader dots): 。 ｡ ꓸ · · ‧ ∙ ⋅ ・ ܁ ۔ ⸱ ⸼ ᛫ ᐧ ˙ ։ ¸.
+const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u0701\u06d4\u2e31\u2e3c\u16eb\u1427\u02d9\u0589\u00b8]/g
+
+// Any other non-ASCII punctuation mark (\p{Po}) between two letters or digits, which can pass for a
+// dot too (checker V3-S1: ܂ ⸳ ་ • ⸰ ꓿), so the list above needn't be complete. Not the ideographic
+// and Arabic commas 、 and ، ("東京、大阪" isn't a domain); the fullwidth comma is ASCII after NFKC.
+const PUNCTUATION_DOT = /(?<=[\p{L}\p{N}])(?![\u0000-\u007f\u3001\u060c])\p{Po}(?=[\p{L}\p{N}])/gu
 
 /**
  * Whether a link's label poses as another site (design rec. 4, checker R8-S5): it names a domain
@@ -169,13 +174,15 @@ const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u
 function posesAsOtherHost(label: string, url: string): boolean {
   const host = new URL(url).hostname.replace(/^www\./, '')
   // Invisible characters go (checker V3-M1: a variation selector or ZWJ before the dot), dot-like
-  // marks become dots (middle dots, ideographic and Lisu dots), and blanks before a dot go. The dots
-  // fold before NFKC too, which turns ˙ into a space and a combining dot.
+  // marks become dots (middle dots, ideographic and Lisu dots, and other punctuation between
+  // letters), and blanks before a dot go. The dots fold before NFKC too, which turns ˙ and ¸ into a
+  // space and a combining mark.
   const text = label
     .replace(LOOKALIKE_DOT, '.')
     .normalize('NFKC')
     .replace(/\p{DI}/gu, '')
     .replace(LOOKALIKE_DOT, '.')
+    .replace(PUNCTUATION_DOT, '.')
     .replace(/[\s\u2800]+\./g, '.')
     .toLowerCase()
   for (const [claimed] of text.matchAll(CLAIMED_HOST)) {

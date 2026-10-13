@@ -23,7 +23,7 @@ import {
 
 // The vectors' SHA-256, pinned in the spec's header and in the app's ContactLinkTest too: a change
 // to the vectors fails every suite until each copy and each pin is updated (checker improvement 3).
-const X1_VECTORS_SHA256 = '328f93cbaa28ed1ab904408102244ba7b553017b81c4fd5af7e48a931d08238c'
+const X1_VECTORS_SHA256 = '267d73b7ebc8ba9a50990b4f3290ae4b90acaa43649ee7f746ad89acdf183aad'
 const vectorsFile = readFileSync(new URL('./vectors.json', import.meta.url))
 const vectors = JSON.parse(vectorsFile.toString('utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')
@@ -187,7 +187,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', '%CB%99', '%EA%93%B8', '%EF%B8%8F', '%C2%B7', 'GitHub', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', '%CB%99', '%EA%93%B8', '%EF%B8%8F', '%C2%B7', '%E2%80%A2', '%C2%B8', '%E3%80%81', 'GitHub', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648
