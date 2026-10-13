@@ -1,9 +1,10 @@
 // /tilde and /pt/tilde: the product page for Tilde, the open-source Android NFC business-card app,
 // and the Tilde Card, its printable card. Written for people who might use it, not for hiring
 // managers (the case study at /work/tilde covers the engineering). Source: github.com/tbutman/tilde
-// and github.com/tbutman/tilde-card. Images in public/tilde/ are Tilde 1.2 screenshots and the card's
-// renders, with the made-up person Jane Doe; /pt/tilde shows the Portuguese app where a Portuguese
-// screenshot exists.
+// and github.com/tbutman/tilde-card. The copy describes Tilde 1.3. Images in public/tilde/ are still
+// Tilde 1.2 screenshots until the 1.3 set replaces them (week plan, wave 2; each alt text describes
+// the image it sits with, so they change together), plus the card's renders, with the made-up
+// person Jane Doe; /pt/tilde shows the Portuguese app where a Portuguese screenshot exists.
 //
 // The Portuguese is European Portuguese (pt-PT) and uses the informal "tu", for people Thomas
 // meets in person. It uses the app's own Portuguese names (Partilhar, Conhecidos, Definições…), and
@@ -52,8 +53,8 @@ const en = {
 
   cardsHeading: 'a card for every room',
   cardsBody: [
-    'Keep a card for work, one for personal life and one for a side project or an event, each with its own name, photo, links and color. Swipe your card to switch before you tap. Only you see the labels.',
-    'Put your code on your home screen with the **Tilde QR code** widget, for sharing by scan in a second.',
+    'Keep a card for work, one for personal life and one for a side project or an event, each with its own name, photo, links, color and event. Swipe your card on the Share screen to switch before you tap, and set them all up on the **Cards** tab. Only you see the labels.',
+    'Put your code on your home screen with the **Tilde QR code** widget, for sharing by scan in a second. It shows your ~/handle and what the code shares.',
   ],
   cardsPhones: [
     { src: '/tilde/cards.webp', alt: 'Switching cards: Jane Doe’s Work and Web Summit cards' },
@@ -62,7 +63,7 @@ const en = {
 
   modesHeading: 'one tap, the right details',
   modesIntro:
-    'Tap the line under the QR code to switch what the next tap shares, depending on who you’re talking to.',
+    'Swipe the option card at the bottom of the Share screen to change what the next tap shares, depending on who you’re talking to, or tap it to see every option. Codes for your contact card, WhatsApp and Wi-Fi wait until you tap **Show code**, so nobody nearby can scan your number unasked.',
   modesPhone: {
     src: '/tilde/picker.webp',
     alt: 'Choosing what a tap shares: starred website, contact card and LinkedIn, then WhatsApp, a Dribbble portfolio link and guest Wi-Fi',
@@ -70,11 +71,11 @@ const en = {
   modes: [
     {
       title: 'Contact card',
-      body: 'Your name, title, company, phone numbers, email, website and social links, all at once and ready to save to their contacts. It’s the standard format every phone’s contacts app understands.',
+      body: 'Your name, title, company, phone numbers, email, website and social links, all at once and ready to save to their contacts. It’s the standard format every phone’s contacts app understands, and you choose which details each card’s contact card leaves off.',
     },
     {
       title: 'A link',
-      body: 'Your website, LinkedIn, GitHub, Instagram, X or any link you like. Links to your own site can carry the name of the event you’re at, and it clears itself at the end of the day.',
+      body: 'Your website, LinkedIn, GitHub, Instagram, X, Facebook, MakerWorld or any link you like, as many as you want, each with its own display text if you like. Links to your own site can carry the name of the event you’re at, and it can clear itself at the end of the day.',
     },
     {
       title: 'WhatsApp',
@@ -98,7 +99,7 @@ const en = {
     },
     {
       title: 'Remember who you met',
-      body: 'Every tap lands in your Met list with the time and the event. Add a note while it’s fresh (Tilde can ask after each tap), export the list, or have old entries delete themselves after 3, 6 or 12 months.',
+      body: 'Every tap lands in your Met list, day by day, with the time and the event. When someone taps their Tilde to yours, their contact card lands there too, even with Tilde closed. Add a note while it’s fresh (Tilde can ask after each tap), export the list, or have old entries delete themselves after 3, 6 or 12 months.',
     },
   ],
 
@@ -206,8 +207,8 @@ const pt: TildeText = {
 
   cardsHeading: 'um cartão para cada ocasião',
   cardsBody: [
-    'Tem um cartão para o trabalho, outro para a vida pessoal e outro para um projeto ou um evento, cada um com o seu nome, fotografia, ligações e cor. Desliza o cartão para mudar antes de encostares. Só tu vês os nomes que lhes dás.',
-    'Põe o teu código no ecrã principal com o widget **Código QR da Tilde**, para alguém o ler num segundo.',
+    'Tem um cartão para o trabalho, outro para a vida pessoal e outro para um projeto ou um evento, cada um com o seu nome, fotografia, ligações, cor e evento. Desliza o cartão no ecrã Partilhar para mudar antes de encostares, e prepara-os todos no separador **Cartões**. Só tu vês os nomes que lhes dás.',
+    'Põe o teu código no ecrã principal com o widget **Código QR da Tilde**, para alguém o ler num segundo. Mostra o teu ~/handle e o que o código partilha.',
   ],
   // No Portuguese screenshot of the card switcher: the widget shows the card and its code, not UI text.
   cardsPhones: [
@@ -216,7 +217,7 @@ const pt: TildeText = {
 
   modesHeading: 'um toque, os contactos certos',
   modesIntro:
-    'Toca na linha por baixo do código QR para mudar o que o próximo toque partilha, conforme a pessoa com quem estás a falar.',
+    'Desliza o cartão de opções no fundo do ecrã Partilhar para mudar o que o próximo toque partilha, conforme a pessoa com quem estás a falar, ou toca nele para veres todas as opções. Os códigos do teu cartão de contacto, do WhatsApp e do Wi-Fi esperam que toques em **Mostrar código**, para ninguém por perto ler o teu número sem pedires.',
   modesPhone: {
     src: '/tilde/picker-pt.webp',
     alt: 'A escolher o que um toque partilha: site, cartão de contacto e LinkedIn com estrela, depois WhatsApp, uma ligação para um portefólio no Dribbble e Wi-Fi para convidados',
@@ -224,11 +225,11 @@ const pt: TildeText = {
   modes: [
     {
       title: 'Cartão de contacto',
-      body: 'O teu nome, cargo, empresa, números de telefone, email, site e redes sociais, tudo de uma vez e pronto a guardar nos contactos. É o formato padrão que a app de contactos de qualquer telemóvel entende.',
+      body: 'O teu nome, cargo, empresa, números de telefone, email, site e redes sociais, tudo de uma vez e pronto a guardar nos contactos. É o formato padrão que a app de contactos de qualquer telemóvel entende, e escolhes o que o cartão de contacto de cada cartão deixa de fora.',
     },
     {
       title: 'Uma ligação',
-      body: 'O teu site, LinkedIn, GitHub, Instagram, X ou qualquer ligação que quiseres. As ligações para o teu próprio site podem levar o nome do evento em que estás, e ele apaga-se sozinho no fim do dia.',
+      body: 'O teu site, LinkedIn, GitHub, Instagram, X, Facebook, MakerWorld ou qualquer ligação que quiseres, quantas quiseres, cada uma com o seu próprio texto, se quiseres. As ligações para o teu próprio site podem levar o nome do evento em que estás, que se pode apagar sozinho no fim do dia.',
     },
     {
       title: 'WhatsApp',
@@ -252,7 +253,7 @@ const pt: TildeText = {
     },
     {
       title: 'Lembra-te de quem conheceste',
-      body: 'Cada toque fica na tua lista Conhecidos, com a hora e o evento. Acrescenta uma nota enquanto está fresco (a Tilde pode perguntar depois de cada toque), exporta a lista ou deixa que as entradas antigas se apaguem sozinhas ao fim de 3, 6 ou 12 meses.',
+      body: 'Cada toque fica na tua lista Conhecidos, dia a dia, com a hora e o evento. Quando alguém encosta a Tilde dele à tua, o cartão de contacto dessa pessoa também fica lá, mesmo com a Tilde fechada. Acrescenta uma nota enquanto está fresco (a Tilde pode perguntar depois de cada toque), exporta a lista ou deixa que as entradas antigas se apaguem sozinhas ao fim de 3, 6 ou 12 meses.',
     },
   ],
 
