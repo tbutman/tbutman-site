@@ -92,8 +92,8 @@ const en = {
       body: 'Opens a chat with you, with a short greeting already typed so they can say hello in one tap.',
     },
     {
-      title: 'Guest Wi-Fi',
-      body: 'Joins your network without anyone reading out a password. Set up your phone’s hotspot too, for when there’s no guest Wi-Fi, and fill either one in from a Wi-Fi QR code, such as a screenshot or a photo of a router sticker.',
+      title: 'Wi-Fi',
+      body: 'Joins your guest network or your phone’s hotspot without anyone reading out a password. Fill either one from its QR code instead of typing.',
     },
   ],
 
@@ -263,8 +263,8 @@ const pt: TildeText = {
       body: 'Abre uma conversa contigo, com uma saudação curta já escrita, para te dizerem olá com um toque.',
     },
     {
-      title: 'Wi-Fi para convidados',
-      body: 'Liga-se à tua rede sem ninguém ter de ditar a palavra-passe. Configura também o hotspot do teu telemóvel, para quando não há Wi-Fi para convidados, e preenche qualquer um deles a partir de um código QR de Wi-Fi, como uma captura de ecrã ou uma fotografia do autocolante do router.',
+      title: 'Wi-Fi',
+      body: 'Liga-se à tua rede de convidados ou ao hotspot do teu telemóvel sem ninguém ditar a palavra-passe. Preenche qualquer uma a partir do código QR, em vez de escrever.',
     },
   ],
 

@@ -169,7 +169,7 @@ const pt: TildeCardText = {
 
   stickerHeading: 'o autocolante nfc',
   sticker: [
-    'Os **autocolantes finos** (0,10–0,20 mm, como os wet inlays) dão um cartão de 1,8 mm; os **grossos** (0,20–0,40 mm, a maioria dos autocolantes de papel), um de 2,0 mm. Se o anúncio não disser, mede um com um paquímetro, ou escolhe os grossos: os finos também cabem. Discos rígidos e etiquetas anti-metal com mais de 0,40 mm não cabem.',
+    'Os **autocolantes finos** (0,10–0,20 mm, como os wet inlays) dão um cartão de 1,8 mm; os **grossos** (0,20–0,40 mm, a maioria dos autocolantes de papel), um de 2,0 mm. Se o anúncio não disser, mede um com um paquímetro, ou escolhe os grossos: os finos também cabem. Discos NFC rígidos e etiquetas anti-metal com mais de 0,40 mm não cabem.',
     'Um autocolante NTAG215 guarda 504 bytes: chega para a tua ligação ou para o teu cartão de contacto completo. O NTAG216 também funciona.',
     'Bloquear o autocolante é opcional e permanente: depois ninguém o pode alterar, nem tu. Bloqueia-o só quando o cartão pronto funcionar; podes fazê-lo através do cartão.',
   ],

@@ -105,7 +105,9 @@ export default function Tilde({ locale }: { locale: Locale }) {
         <div className="product-split">
           <Phone {...tilde.modesPhone} />
           <div>
-            <p className="section-intro">{tilde.modesIntro}</p>
+            <p className="section-intro">
+              <RichText text={tilde.modesIntro} />
+            </p>
             <ul className="mode-grid">
               {tilde.modes.map((mode) => (
                 <li key={mode.title} className="panel">
