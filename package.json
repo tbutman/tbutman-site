@@ -11,6 +11,7 @@
     "resume:pdf": "node scripts/resume-pdf.mjs",
     "og": "node scripts/og-images.mjs",
     "test": "node --test services/contact/server.test.mjs src/contact/link.test.mjs",
+    "test:browser": "npm run build && node --test src/contact/page.browser.test.mjs",
     "contact:test": "npm run build && node scripts/contact-test-server.mjs"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
+    "playwright": "1.63.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }

@@ -33,6 +33,12 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+      # The contact page (/tilde/c) in Chromium and WebKit against every shared test vector: what
+      # each link shows, no CSP reports, no requests beyond the page, favicon and fonts, and the .vcf.
+      - name: Contact page in real browsers
+        run: |
+          npx playwright install --with-deps chromium webkit
+          node --test src/contact/page.browser.test.mjs
       # Serve the build through the production nginx config, in the same image the server pins
       # (NGINX_IMAGE in the homelab setup script), and check statuses and cache headers.
       - name: Check the build behind the production nginx config
