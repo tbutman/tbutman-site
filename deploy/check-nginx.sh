@@ -29,20 +29,23 @@ asset="$(curl -s "$BASE/" | grep -oE '/assets/[^"]+\.js' | head -n1)"
 [[ -n "$asset" ]] || { echo "FAIL could not find a script asset on the home page"; exit 1; }
 
 security=('^x-content-type-options: nosniff' '^x-frame-options: deny' '^referrer-policy: ')
+# HTML pages get the site's Content Security Policy; files that aren't pages get none.
+csp="^content-security-policy: default-src 'self'; script-src 'self' 'sha256-"
 
-check /                       200 '^content-type: text/html' '^cache-control: no-cache' "${security[@]}"
+check /                       200 '^content-type: text/html' '^cache-control: no-cache' "${security[@]}" "$csp"
 check /resume                 200 '^content-type: text/html' '^cache-control: no-cache'
 check /cv                     301 '^location: /resume$'
-check /Thomas_Butman_Resume.pdf 200 '^content-type: application/pdf'
+check /Thomas_Butman_Resume.pdf 200 '^content-type: application/pdf' '!content-security-policy'
 check /Thomas_Butman_CV.pdf   301 '^location: /Thomas_Butman_Resume.pdf$'
 # /tilde is tilde.html beside the tilde/ folder that holds /tilde/privacy: both must resolve to a page.
-check /tilde                  200 '^content-type: text/html'
+check /tilde                  200 '^content-type: text/html' "$csp"
 check /tilde/privacy          200 '^content-type: text/html'
 check /pt/tilde/privacy       200 '^content-type: text/html'
-check /tilde/c                200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}"
-check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable'
+# /tilde/c has its own policy in a meta tag; the header adds only what a meta tag can't set.
+check /tilde/c                200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}" "^content-security-policy: frame-ancestors 'none'; base-uri 'none'; object-src 'none'$"
+check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable' '!content-security-policy'
 check /assets/missing-check.js 404 '^content-type: text/html' '^cache-control: no-store' '!immutable' '!max-age' "${security[@]}"
-check /no-such-page           404 '^cache-control: no-store' '!max-age' "${security[@]}"
+check /no-such-page           404 '^cache-control: no-store' '!max-age' "${security[@]}" "$csp"
 check /404.html               404 '^cache-control: no-store'
 
 if (( failures > 0 )); then echo "$failures check(s) failed"; exit 1; fi

@@ -13,8 +13,13 @@ export type Contact = {
   title: string
   company: string
   emails: string[]
+  /** Each email's label, in the same order: present only when at least one email has one. */
+  emailLabels?: EmailLabel[]
   phones: Phone[]
   links: Link[]
+  /** The card face (contact page v2): the ~/handle without "~/", and the card's color. Present only when the link carries a valid one. */
+  handle?: string
+  color?: Color
 }
 
 /** What the encoder takes: the app's contact card. Labels are optional. */
@@ -23,14 +28,32 @@ export type ContactInput = {
   title?: string
   company?: string
   emails?: string[]
+  /** Each email's label key, in the same order: "work", "home" or "" (the app's Profile.emailLabels). */
+  emailLabels?: string[]
   phones?: { number: string; label?: string }[]
   links?: { url: string; label?: string }[]
+  /** The handle the card face shows, already cleaned by the app (Profile.cleanHandle). */
+  handle?: string
+  /** The card's color key. */
+  color?: string
 }
 
 export type Decoded =
   | { ok: true; contact: Contact }
   /** empty: no fragment. damaged: not a link Tilde makes. unsupported: a newer version. */
   | { ok: false; reason: 'empty' | 'damaged' | 'unsupported' }
+
+/** The app's card colors (Cards.COLOURS keys). The page maps each to its own token; amber is the default. */
+export const COLORS = ['amber', 'sea', 'sky', 'iris', 'clay', 'moss'] as const
+export type Color = (typeof COLORS)[number]
+const isColor = (value: string): value is Color => (COLORS as readonly string[]).includes(value)
+
+/**
+ * An email's label (design rec. 9): one of two fixed keys, never free text, which the vCard turns
+ * into TYPE=WORK or TYPE=HOME and each phone shows in its own language. "" is no label.
+ */
+export type EmailLabel = '' | 'work' | 'home'
+const emailLabel = (key: string | undefined): EmailLabel => (key === 'work' || key === 'home' ? key : '')
 
 export const LINK_BASE = 'https://taptilde.com/c#'
 export const VERSION = '1'
@@ -48,6 +71,8 @@ export const LIMITS = {
   emails: 3,
   phones: 5,
   links: 10,
+  /** The handle, in characters (the app's HANDLE_MAX). */
+  handle: 20,
 } as const
 
 // Kept as is in a value; every other byte is percent-encoded (UTF-8, upper-case hex). The set is
@@ -57,20 +82,34 @@ const SAFE = /^[A-Za-z0-9\-._~!$&'()*+=:@/?]$/
 // breaks: a value with one could add lines to the .vcf, or draw a fake line under a name.
 // oxlint-disable-next-line no-control-regex -- matching control characters is the point
 const CONTROL = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g
-// Removed from every value: bidi embeddings, overrides and isolates (a name could use them to show
-// text backwards) and invisible format characters (soft hyphen, Arabic letter mark, zero-width
-// space, LRM and RLM, word joiners, BOM), which can hide characters or leave a blank name. ZWNJ and
-// ZWJ (U+200C, U+200D) stay: Persian, Indic scripts and emoji sequences need them.
-const INVISIBLE = /[\u00ad\u061c\u200b\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]/g
-// At most 3 combining marks in a row: real text never needs more, and a stack of them draws over
-// the lines around it.
-const MARKS = /(\p{M}{3})\p{M}+/gu
-// A value must have something to see, not just spaces, joiners and marks.
+// Removed from every value: every format character (\p{Cf}: bidi embeddings, overrides and
+// isolates, which could show a name backwards; soft hyphen, zero-width space, LRM and RLM, word
+// joiners, BOM, the Mongolian vowel separator, interlinear annotations, tag characters, which can
+// hide letters), and the Hangul fillers, letters that draw nothing. Kept: ZWNJ and ZWJ (U+200C,
+// U+200D), which Persian, Indic scripts and emoji sequences need, and the tag characters inside an
+// emoji flag (U+1F3F4, tags, U+E007F), such as Scotland's.
+const INVISIBLE = /(\u{1f3f4}[\u{e0020}-\u{e007e}]+\u{e007f})|(?![\u200c\u200d])[\p{Cf}\u115f\u1160\u3164\uffa0]/gu
+// At most 3 combining marks per character: real text never needs more, and a stack of them draws
+// over the lines around it. Joiners between the marks don't start a new character, and what's
+// dropped starts with a mark, so a second pass changes nothing.
+const MARKS = /((?:\p{M}[\u200c\u200d]*){3})(?:\p{M}[\u200c\u200d]*)+/gu
+// A value must have something to see, not just spaces, joiners, marks and blanks. The braille
+// blank (U+2800) stays in a value but doesn't count.
 const VISIBLE = /[\p{L}\p{N}\p{P}\p{S}]/u
+const isVisible = (value: string) => VISIBLE.test(value.replace(/\u2800/g, ''))
+// Hosts on which the two IDNA standards disagree: UTS #46 (the WHATWG parser, the page) keeps ß
+// and final sigma and gives xn--strae-oqa.de, while IDNA2003 (java.net.IDN, the app) maps them to
+// strasse.de and σ, someone else's domain. Links on such hosts are left out on both sides.
+const DEVIATION = /[\u00df\u03c2\u200c\u200d]/u
 const EMAIL = /^[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
 // A phone number: an optional +, then digits in groups separated by single spaces.
 const PHONE = /^\+?[0-9]+( [0-9]+)*$/
+// The app's handle characters. Never percent-encoded, and nothing a page could misread.
+const HANDLE = /^[a-z0-9._-]{1,20}$/
 const phoneOk = (n: string) => PHONE.test(n) && n.replace(/[^0-9]/g, '').length >= 3 && n.length <= LIMITS.phone
+// The app's own phone labels (Countries.isAutoLabel): "mobile" for one number, "mobile (US)" when
+// there are several. Anything else was typed by the owner.
+export const AUTO_PHONE_LABEL = /^mobile( \([A-Z]{2}\))?$/
 
 /** Link labels the page works out from the address, so the link needn't carry them. */
 const PLATFORMS: [string, string[]][] = [
@@ -86,12 +125,16 @@ const length = (value: string) => [...value].length
 const truncate = (value: string, max: number) => [...value].slice(0, max).join('').trim()
 
 /** What every text value goes through, in the encoder and the decoder alike. */
-const tidy = (value: string) => value.replace(INVISIBLE, '').replace(MARKS, '$1').trim()
+const tidy = (value: string) =>
+  value
+    .replace(INVISIBLE, (_, flag: string | undefined) => flag ?? '')
+    .replace(MARKS, '$1')
+    .trim()
 
 /** The encoder's cleaning: control characters become spaces; "" when nothing visible is left. */
 function clean(value: string | undefined): string {
   const tidied = tidy((value ?? '').replace(CONTROL, ' '))
-  return VISIBLE.test(tidied) ? tidied : ''
+  return isVisible(tidied) ? tidied : ''
 }
 
 /** The label a link gets when it carries none: the network's name, or "Website". */
@@ -106,10 +149,54 @@ export function defaultLabel(url: string): string {
   return platform ? platform[0] : 'Website'
 }
 
+// A domain written in a label: labels of letters, digits and inner hyphens, each followed by a dot,
+// then a top-level label that starts with a letter and has two characters or more.
+const CLAIMED_HOST = /(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+\p{L}[\p{L}\p{N}-]+/gu
+
+// Marks a reader takes for a dot between two words (after NFKC, which already folds the fullwidth,
+// small and one-dot-leader dots): 。 ｡ ꓸ · · ‧ ∙ ⋅ ・ ܁ ۔ ⸱ ⸼ ᛫ ᐧ ˙ ։.
+const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u0701\u06d4\u2e31\u2e3c\u16eb\u1427\u02d9\u0589]/g
+
+/**
+ * Whether a link's label poses as another site (design rec. 4, checker R8-S5): it names a domain
+ * that isn't the link's host or a parent of it ("paypal.com" over evil.example, also written with
+ * look-alike dots, a space before the dot, or other words around it), or it's one of the page's
+ * network names over another host ("GitHub" over evil.example). The decoder then gives the link its
+ * default label, so the row and the .vcf name one domain, the real one. Kept: a label naming the
+ * link's own host or a parent ("janedoe.com" over blog.janedoe.com) and names without a dot
+ * ("PayPal").
+ */
+function posesAsOtherHost(label: string, url: string): boolean {
+  const host = new URL(url).hostname.replace(/^www\./, '')
+  // Invisible characters go (checker V3-M1: a variation selector or ZWJ before the dot), dot-like
+  // marks become dots (middle dots, ideographic and Lisu dots), and blanks before a dot go. The dots
+  // fold before NFKC too, which turns ˙ into a space and a combining dot.
+  const text = label
+    .replace(LOOKALIKE_DOT, '.')
+    .normalize('NFKC')
+    .replace(/\p{DI}/gu, '')
+    .replace(LOOKALIKE_DOT, '.')
+    .replace(/[\s\u2800]+\./g, '.')
+    .toLowerCase()
+  for (const [claimed] of text.matchAll(CLAIMED_HOST)) {
+    let named: string
+    try {
+      named = new URL(`https://${claimed}/`).hostname.replace(/^www\./, '')
+    } catch {
+      return true
+    }
+    if (named !== host && !host.endsWith(`.${named}`)) return true
+  }
+  const bare = text.replace(/[^\p{L}\p{N}]/gu, '')
+  const platform = PLATFORMS.find(([name]) => name.toLowerCase() === (bare === 'twitter' ? 'x' : bare))
+  return platform !== undefined && defaultLabel(url) !== platform[0]
+}
+
 /**
  * A web link as both sides keep it: parsed and serialized by the WHATWG URL parser (lower-case
  * host, punycode, no default port, "/" for an empty path), or null when it isn't an http(s) link
- * with a host and without a user name or password, or is too long.
+ * with a host and without a user name or password, is too long, or has a host with ß, ς, ZWNJ or
+ * ZWJ (DEVIATION).
  */
 function webLink(text: string): string | null {
   let url: URL
@@ -118,6 +205,15 @@ function webLink(text: string): string | null {
   } catch {
     return null
   }
+  // The host as written, percent-decoded as the parser does, before it became punycode.
+  const authority = text.match(/^[a-z][a-z0-9+.-]*:\/\/([^/?#\\]*)/i)?.[1] ?? ''
+  let host = authority.slice(authority.lastIndexOf('@') + 1)
+  try {
+    host = decodeURIComponent(host)
+  } catch {
+    return null
+  }
+  if (DEVIATION.test(host)) return null
   if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) return null
   return length(url.href) <= LIMITS.url ? url.href : null
 }
@@ -152,14 +248,16 @@ function percentEncode(value: string): string {
 function normalize(input: ContactInput): Contact {
   const name = truncate(clean(input.name), LIMITS.text)
   if (!name) throw new Error('A contact link needs a name')
+  const emails = (input.emails ?? [])
+    .map((email, i) => ({ address: clean(email), label: emailLabel(input.emailLabels?.[i]) }))
+    .filter((e) => EMAIL.test(e.address) && e.address.length <= LIMITS.email)
+    .slice(0, LIMITS.emails)
   return {
     name,
     title: truncate(clean(input.title), LIMITS.text),
     company: truncate(clean(input.company), LIMITS.text),
-    emails: (input.emails ?? [])
-      .map(clean)
-      .filter((e) => EMAIL.test(e) && e.length <= LIMITS.email)
-      .slice(0, LIMITS.emails),
+    emails: emails.map((e) => e.address),
+    ...(emails.some((e) => e.label) ? { emailLabels: emails.map((e) => e.label) } : {}),
     phones: (input.phones ?? [])
       .map((p) => ({ number: phoneNumber(clean(p.number)), label: truncate(clean(p.label), LIMITS.label) }))
       .filter((p): p is Phone => p.number !== null)
@@ -172,6 +270,10 @@ function normalize(input: ContactInput): Contact {
       })
       .filter((l): l is Link => l.url !== null)
       .slice(0, LIMITS.links),
+    // The face fields are kept only as they are: the app cleans the handle first, and amber, the
+    // default, is left out to save 8 bytes.
+    ...(input.handle && HANDLE.test(input.handle) ? { handle: input.handle } : {}),
+    ...(input.color && isColor(input.color) && input.color !== 'amber' ? { color: input.color } : {}),
   }
 }
 
@@ -180,9 +282,12 @@ function serialize(c: Contact): string {
   const fields: string[] = [VERSION, `n=${percentEncode(c.name)}`]
   if (c.title) fields.push(`t=${percentEncode(c.title)}`)
   if (c.company) fields.push(`o=${percentEncode(c.company)}`)
-  for (const email of c.emails) fields.push(`e=${percentEncode(email)}`)
+  c.emails.forEach((email, i) => fields.push(`e=${percentEncode(email)}${c.emailLabels?.[i] ? `,${c.emailLabels[i]}` : ''}`))
   for (const p of c.phones) fields.push(`p=${percentEncode(p.number)}${p.label ? `,${percentEncode(p.label)}` : ''}`)
   for (const l of c.links) fields.push(`u=${percentEncode(l.url.replace(/^https:\/\//, ''))}${l.label ? `,${percentEncode(l.label)}` : ''}`)
+  // Last, so everything a page without the card face reads keeps its bytes, and a sticker drops them first.
+  if (c.handle) fields.push(`h=${c.handle}`)
+  if (c.color) fields.push(`c=${c.color}`)
   return LINK_BASE + fields.join(';')
 }
 
@@ -204,7 +309,7 @@ function decodeValue(raw: string): string | null {
   CONTROL.lastIndex = 0
   if (CONTROL.test(value)) return null
   value = tidy(value)
-  return VISIBLE.test(value) ? value : null
+  return isVisible(value) ? value : null
 }
 
 function decodeLink(raw: string): string | null {
@@ -224,13 +329,15 @@ export function decodeFragment(hash: string): Decoded {
   if (version !== VERSION) return { ok: false, reason: 'unsupported' }
 
   const contact: Contact = { name: '', title: '', company: '', emails: [], phones: [], links: [] }
+  const emailLabels: EmailLabel[] = []
   try {
     for (const token of tokens) {
       const eq = token.indexOf('=')
       if (eq !== 1) continue // empty tokens, no "=", or keys that aren't one letter
       const key = token[0]
       const body = token.slice(2)
-      // Phones and links carry an optional label after the first comma.
+      // Emails, phones and links carry an optional label after the first comma, which none of
+      // their values can contain.
       const comma = body.indexOf(',')
       const main = comma < 0 ? body : body.slice(0, comma)
       const label = () => (comma < 0 ? '' : decodeValue(body.slice(comma + 1)) ?? '')
@@ -244,8 +351,14 @@ export function decodeFragment(hash: string): Decoded {
           break
         }
         case 'e': {
-          const value = decodeValue(body)
-          if (value && EMAIL.test(value) && value.length <= LIMITS.email && contact.emails.length < LIMITS.emails) contact.emails.push(value)
+          // The label must be one of the two keys, exactly; anything else is ignored and the
+          // address kept.
+          const address = decodeValue(main)
+          const key = emailLabel(label())
+          if (address && EMAIL.test(address) && address.length <= LIMITS.email && contact.emails.length < LIMITS.emails) {
+            contact.emails.push(address)
+            emailLabels.push(key)
+          }
           break
         }
         case 'p': {
@@ -261,8 +374,20 @@ export function decodeFragment(hash: string): Decoded {
           const url = value && decodeLink(value)
           const text = label()
           if (url && length(text) <= LIMITS.label && contact.links.length < LIMITS.links) {
-            contact.links.push({ url, label: text || defaultLabel(url) })
+            contact.links.push({ url, label: text && !posesAsOtherHost(text, url) ? text : defaultLabel(url) })
           }
+          break
+        }
+        case 'h': {
+          // Exactly the app's handle characters, never cleaned or guessed: anything else is skipped.
+          const value = decodeValue(body)
+          if (value && contact.handle === undefined && HANDLE.test(value)) contact.handle = value
+          break
+        }
+        case 'c': {
+          // One of the six names, exact and lower case: the page never takes a color from the link.
+          const value = decodeValue(body)
+          if (value && contact.color === undefined && isColor(value)) contact.color = value
           break
         }
         default:
@@ -275,16 +400,104 @@ export function decodeFragment(hash: string): Decoded {
     throw error
   }
   if (!contact.name) return { ok: false, reason: 'damaged' }
-  return { ok: true, contact }
+  if (!emailLabels.some(Boolean)) return { ok: true, contact }
+  const { name, title, company, emails, ...rest } = contact
+  return { ok: true, contact: { name, title, company, emails, emailLabels, ...rest } }
+}
+
+/**
+ * One punycode label ("bcher-kva") as Unicode ("bücher"), by RFC 3492. Throws on anything that
+ * isn't valid punycode; the caller then keeps the punycode (checker R8-S6).
+ */
+function punyDecode(input: string): string {
+  const base = 36
+  const tMin = 1
+  const tMax = 26
+  const out: number[] = []
+  let i = 0
+  let n = 128
+  let bias = 72
+  const dash = input.lastIndexOf('-')
+  for (let j = 0; j < Math.max(dash, 0); j++) out.push(input.charCodeAt(j))
+  for (let k = dash > 0 ? dash + 1 : 0; k < input.length; ) {
+    const old = i
+    for (let w = 1, x = base; ; x += base) {
+      if (k >= input.length) throw new Error('punycode ends mid-number')
+      const c = input.charCodeAt(k++)
+      const digit = c >= 48 && c <= 57 ? c - 22 : c >= 97 && c <= 122 ? c - 97 : base
+      if (digit >= base) throw new Error('not a punycode digit')
+      i += digit * w
+      const t = x <= bias ? tMin : x >= bias + tMax ? tMax : x - bias
+      if (digit < t) break
+      w *= base - t
+    }
+    const count = out.length + 1
+    let delta = old === 0 ? Math.floor((i - old) / 700) : (i - old) >> 1
+    delta += Math.floor(delta / count)
+    let kk = 0
+    for (; delta > ((base - tMin) * tMax) >> 1; kk += base) delta = Math.floor(delta / (base - tMin))
+    bias = Math.floor(kk + ((base - tMin + 1) * delta) / (delta + 38))
+    n += Math.floor(i / count)
+    i %= count
+    if (n > 0x10ffff || out.length > 63) throw new Error('not a host label')
+    out.splice(i++, 0, n)
+  }
+  return String.fromCodePoint(...out)
+}
+
+// Hosts shown as written (design rec. 3): ASCII letters, digits, dots and hyphens, plus the Latin-1
+// and Latin Extended-A letters, without ÷ and without the ones that pass for ASCII letters (checker
+// R8-S6, C14): dotless ı (U+0131), kra ĸ (U+0138), Ŀ and ŀ (U+013F, U+0140), ŉ (U+0149), and eth ð
+// and thorn þ (U+00F0, U+00FE), which pass for d and p ("þaypal.com", "ðropbox.com"). Any other
+// letter, such as a Cyrillic "а" in "аpple.com", keeps the whole host in punycode.
+const LATIN_HOST = /^[a-z0-9.\-\u00e0-\u00ef\u00f1-\u00f6\u00f8-\u00fd\u00ff\u0100-\u0130\u0132-\u0137\u0139-\u013e\u0141-\u0148\u014a-\u017e]+$/
+
+/** A host as the page shows it: international domains in Latin script as written, the rest as parsed. */
+function displayHost(hostname: string): string {
+  if (!hostname.split('.').some((label) => label.startsWith('xn--'))) return hostname
+  try {
+    const unicode = hostname
+      .split('.')
+      .map((label) => (label.startsWith('xn--') ? punyDecode(label.slice(4)) : label))
+      .join('.')
+    // Shown as written only when it's Latin and the parser turns it back into the same host.
+    return LATIN_HOST.test(unicode) && new URL(`https://${unicode}/`).hostname === hostname ? unicode : hostname
+  } catch {
+    return hostname
+  }
+}
+
+/**
+ * A link as the page shows it, in two parts (design rec. 2): where it goes ("http://" if it isn't
+ * https, then the host without "www.", and a port), and the rest of the address, in full. No lone
+ * trailing slash.
+ */
+export function addressParts(url: string): { host: string; rest: string } {
+  const parsed = new URL(url)
+  // "www." goes only when a domain with a dot is left: www.com stays www.com.
+  const hostname = displayHost(/^www\.[^.]+\./.test(parsed.hostname) ? parsed.hostname.slice(4) : parsed.hostname)
+  const rest = `${parsed.pathname}${parsed.search}${parsed.hash}`
+  return {
+    host: (parsed.protocol === 'http:' ? 'http://' : '') + hostname + (parsed.port ? `:${parsed.port}` : ''),
+    rest: rest === '/' ? '' : rest,
+  }
 }
 
 /** A link as the page shows it: no https://, www. or lone trailing slash. */
 export function displayAddress(url: string): string {
-  const parsed = new URL(url)
-  // "www." goes only when a domain with a dot is left: www.com stays www.com.
-  const host = /^www\.[^.]+\./.test(parsed.host) ? parsed.host.slice(4) : parsed.host
-  const rest = `${parsed.pathname}${parsed.search}${parsed.hash}`
-  return (parsed.protocol === 'http:' ? 'http://' : '') + host + (rest === '/' ? '' : rest)
+  const { host, rest } = addressParts(url)
+  return host + rest
+}
+
+/** A decoded phone number's tel: link: its digits and +, without the spaces (design rec. 1). */
+export function telHref(number: string): string | null {
+  const digits = number.replace(/ /g, '')
+  return phoneOk(number) && /^\+?[0-9]+$/.test(digits) ? `tel:${digits}` : null
+}
+
+/** A decoded email's mailto: link. EMAIL allows no ?, &, #, % or comma, so no subject, copy or body. */
+export function mailtoHref(address: string): string | null {
+  return EMAIL.test(address) && address.length <= LIMITS.email ? `mailto:${address}` : null
 }
 
 function escapeText(value: string) {
@@ -308,26 +521,46 @@ function fold(line: string) {
   return parts.join('\r\n')
 }
 
-/** vCard 3.0, laid out like the app's own (Profile.vcard), which iOS and Android both import. */
-export function vcard(contact: Contact): string {
+export type VcardOptions = {
+  /** The page's word for the app's "mobile", for "mobile (US)": "mobile" (the default) or "telemóvel". */
+  mobile?: string
+  /** A NOTE, such as "Saved from a Tilde link on October 13, 2026" (design rec. 10). */
+  note?: string
+}
+
+/**
+ * vCard 3.0, laid out like the app's own (Profile.vcard), which iOS and Android both import. The
+ * phone's own words win where they exist (design recs. 7 to 9): the app's "mobile" is TYPE=CELL
+ * alone and the default "Website" label is left out, so Contacts shows its own words in its own
+ * language; emails get TYPE=WORK or HOME from their label, and with two or more, the first is PREF.
+ */
+export function vcard(contact: Contact, options: VcardOptions = {}): string {
   const name = contact.name
   const first = name.split(' ')[0]
   const last = name.includes(' ') ? name.slice(name.indexOf(' ') + 1) : ''
   const lines = ['BEGIN:VCARD', 'VERSION:3.0', `N:${escapeText(last)};${escapeText(first)};;;`, `FN:${escapeText(name)}`]
   if (contact.company) lines.push(`ORG:${escapeText(contact.company)}`)
   if (contact.title) lines.push(`TITLE:${escapeText(contact.title)}`)
-  for (const email of contact.emails) lines.push(`EMAIL;TYPE=INTERNET:${email}`)
+  contact.emails.forEach((email, i) => {
+    const label = contact.emailLabels?.[i]
+    const types = ['INTERNET', ...(label ? [label.toUpperCase()] : []), ...(i === 0 && contact.emails.length > 1 ? ['PREF'] : [])]
+    lines.push(`EMAIL;TYPE=${types.join(',')}:${email}`)
+  })
   let item = 0
   for (const phone of contact.phones) {
     item++
     lines.push(`item${item}.TEL;TYPE=CELL:${phone.number}`)
-    if (phone.label) lines.push(`item${item}.X-ABLabel:${escapeText(phone.label)}`)
+    const country = phone.label.match(AUTO_PHONE_LABEL)?.[1]
+    const label = AUTO_PHONE_LABEL.test(phone.label) ? (country ? `${options.mobile ?? 'mobile'}${country}` : '') : phone.label
+    if (label) lines.push(`item${item}.X-ABLabel:${escapeText(label)}`)
   }
   for (const link of contact.links) {
     item++
     // A backslash, which lenient parsers read as an escape, goes in percent-encoded.
-    lines.push(`item${item}.URL:${link.url.replace(/\\/g, '%5C')}`, `item${item}.X-ABLabel:${escapeText(link.label)}`)
+    lines.push(`item${item}.URL:${link.url.replace(/\\/g, '%5C')}`)
+    if (link.label !== 'Website') lines.push(`item${item}.X-ABLabel:${escapeText(link.label)}`)
   }
+  if (options.note) lines.push(`NOTE:${escapeText(options.note)}`)
   lines.push('END:VCARD')
   return lines.map(fold).join('\r\n') + '\r\n'
 }
@@ -346,8 +579,9 @@ export function uriRecordBytes(url: string): number {
 
 /**
  * The link for a sticker with room for `maxBytes` of NDEF message: the whole contact card when it
- * fits, otherwise with details left out in the spec's order (labels, extra links, title, company,
- * extra emails and phones, the last link) until it does. Null when even the name with one email
+ * fits, otherwise with details left out in the spec's order (the card's color and handle, which are
+ * only its look, then labels, extra links, title, company, extra emails and phones, the last link)
+ * until it does. Null when even the name with one email
  * and one phone doesn't fit. The app does this when writing a sticker; it lives here as the
  * reference its tests share.
  */
@@ -357,17 +591,23 @@ export function stickerLink(input: ContactInput, maxBytes: number): { url: strin
   const c = normalize(input)
   const dropped: string[] = []
   const fits = () => uriRecordBytes(serialize(c)) <= maxBytes
+  const labels = c.emailLabels ?? []
   const steps: [string, () => boolean][] = [
     // Each step removes one thing and says whether there was anything to remove.
+    ['color', () => c.color !== undefined && delete c.color],
+    ['handle', () => c.handle !== undefined && delete c.handle],
+    // Labels from the end of the link: links', then phones', then emails'.
     ['label', () => {
       const labeled = [...c.phones, ...c.links].reverse().find((x) => x.label)
       if (labeled) labeled.label = ''
-      return labeled !== undefined
+      const email = labeled ? -1 : labels.findLastIndex(Boolean)
+      if (email >= 0) labels[email] = ''
+      return labeled !== undefined || email >= 0
     }],
     ['link', () => c.links.length > 1 && c.links.pop() !== undefined],
     ['title', () => c.title !== '' && (c.title = '') === ''],
     ['company', () => c.company !== '' && (c.company = '') === ''],
-    ['email', () => c.emails.length > 1 && c.emails.pop() !== undefined],
+    ['email', () => c.emails.length > 1 && c.emails.pop() !== undefined && (labels.splice(c.emails.length), true)],
     ['phone', () => c.phones.length > 1 && c.phones.pop() !== undefined],
     ['link', () => c.links.length > 0 && c.links.pop() !== undefined],
   ]
