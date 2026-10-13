@@ -71,16 +71,25 @@ const SAFE = /^[A-Za-z0-9\-._~!$&'()*+=:@/?]$/
 // breaks: a value with one could add lines to the .vcf, or draw a fake line under a name.
 // oxlint-disable-next-line no-control-regex -- matching control characters is the point
 const CONTROL = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g
-// Removed from every value: bidi embeddings, overrides and isolates (a name could use them to show
-// text backwards) and invisible format characters (soft hyphen, Arabic letter mark, zero-width
-// space, LRM and RLM, word joiners, BOM), which can hide characters or leave a blank name. ZWNJ and
-// ZWJ (U+200C, U+200D) stay: Persian, Indic scripts and emoji sequences need them.
-const INVISIBLE = /[\u00ad\u061c\u200b\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]/g
-// At most 3 combining marks in a row: real text never needs more, and a stack of them draws over
-// the lines around it.
-const MARKS = /(\p{M}{3})\p{M}+/gu
-// A value must have something to see, not just spaces, joiners and marks.
+// Removed from every value: every format character (\p{Cf}: bidi embeddings, overrides and
+// isolates, which could show a name backwards; soft hyphen, zero-width space, LRM and RLM, word
+// joiners, BOM, the Mongolian vowel separator, interlinear annotations, tag characters, which can
+// hide letters), and the Hangul fillers, letters that draw nothing. Kept: ZWNJ and ZWJ (U+200C,
+// U+200D), which Persian, Indic scripts and emoji sequences need, and the tag characters inside an
+// emoji flag (U+1F3F4, tags, U+E007F), such as Scotland's.
+const INVISIBLE = /(\u{1f3f4}[\u{e0020}-\u{e007e}]+\u{e007f})|(?![\u200c\u200d])[\p{Cf}\u115f\u1160\u3164\uffa0]/gu
+// At most 3 combining marks per character: real text never needs more, and a stack of them draws
+// over the lines around it. Joiners between the marks don't start a new character, and what's
+// dropped starts with a mark, so a second pass changes nothing.
+const MARKS = /((?:\p{M}[\u200c\u200d]*){3})(?:\p{M}[\u200c\u200d]*)+/gu
+// A value must have something to see, not just spaces, joiners, marks and blanks. The braille
+// blank (U+2800) stays in a value but doesn't count.
 const VISIBLE = /[\p{L}\p{N}\p{P}\p{S}]/u
+const isVisible = (value: string) => VISIBLE.test(value.replace(/\u2800/g, ''))
+// Hosts on which the two IDNA standards disagree: UTS #46 (the WHATWG parser, the page) keeps ß
+// and final sigma and gives xn--strae-oqa.de, while IDNA2003 (java.net.IDN, the app) maps them to
+// strasse.de and σ, someone else's domain. Links on such hosts are left out on both sides.
+const DEVIATION = /[\u00df\u03c2\u200c\u200d]/u
 const EMAIL = /^[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
 // A phone number: an optional +, then digits in groups separated by single spaces.
 const PHONE = /^\+?[0-9]+( [0-9]+)*$/
@@ -102,12 +111,16 @@ const length = (value: string) => [...value].length
 const truncate = (value: string, max: number) => [...value].slice(0, max).join('').trim()
 
 /** What every text value goes through, in the encoder and the decoder alike. */
-const tidy = (value: string) => value.replace(INVISIBLE, '').replace(MARKS, '$1').trim()
+const tidy = (value: string) =>
+  value
+    .replace(INVISIBLE, (_, flag: string | undefined) => flag ?? '')
+    .replace(MARKS, '$1')
+    .trim()
 
 /** The encoder's cleaning: control characters become spaces; "" when nothing visible is left. */
 function clean(value: string | undefined): string {
   const tidied = tidy((value ?? '').replace(CONTROL, ' '))
-  return VISIBLE.test(tidied) ? tidied : ''
+  return isVisible(tidied) ? tidied : ''
 }
 
 /** The label a link gets when it carries none: the network's name, or "Website". */
@@ -125,7 +138,8 @@ export function defaultLabel(url: string): string {
 /**
  * A web link as both sides keep it: parsed and serialized by the WHATWG URL parser (lower-case
  * host, punycode, no default port, "/" for an empty path), or null when it isn't an http(s) link
- * with a host and without a user name or password, or is too long.
+ * with a host and without a user name or password, is too long, or has a host with ß, ς, ZWNJ or
+ * ZWJ (DEVIATION).
  */
 function webLink(text: string): string | null {
   let url: URL
@@ -134,6 +148,15 @@ function webLink(text: string): string | null {
   } catch {
     return null
   }
+  // The host as written, percent-decoded as the parser does, before it became punycode.
+  const authority = text.match(/^[a-z][a-z0-9+.-]*:\/\/([^/?#\\]*)/i)?.[1] ?? ''
+  let host = authority.slice(authority.lastIndexOf('@') + 1)
+  try {
+    host = decodeURIComponent(host)
+  } catch {
+    return null
+  }
+  if (DEVIATION.test(host)) return null
   if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) return null
   return length(url.href) <= LIMITS.url ? url.href : null
 }
@@ -227,7 +250,7 @@ function decodeValue(raw: string): string | null {
   CONTROL.lastIndex = 0
   if (CONTROL.test(value)) return null
   value = tidy(value)
-  return VISIBLE.test(value) ? value : null
+  return isVisible(value) ? value : null
 }
 
 function decodeLink(raw: string): string | null {

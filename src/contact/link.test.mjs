@@ -1,6 +1,7 @@
 // Tests for the contact link (X1) against the shared vectors in vectors.json, which the app's
 // tests use too (spec: tilde-review/specs/x1-contact-link.md). Run with `npm test`.
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import {
@@ -17,8 +18,16 @@ import {
   vcardFileName,
 } from './link.ts'
 
-const vectors = JSON.parse(readFileSync(new URL('./vectors.json', import.meta.url), 'utf8'))
+// The vectors' SHA-256, pinned in the spec's header and in the app's ContactLinkTest too: a change
+// to the vectors fails every suite until each copy and each pin is updated (checker improvement 3).
+const X1_VECTORS_SHA256 = '432165c15fa7b906a131989ef6a375b6948a305162abc670ae6514c5e789cdfc'
+const vectorsFile = readFileSync(new URL('./vectors.json', import.meta.url))
+const vectors = JSON.parse(vectorsFile.toString('utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')
+
+test('the vectors are the pinned copy', () => {
+  assert.equal(createHash('sha256').update(vectorsFile).digest('hex'), X1_VECTORS_SHA256)
+})
 
 test('the vectors are version 1 on taptilde.com', () => {
   assert.equal(vectors.version, 1)
@@ -127,7 +136,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648
@@ -142,7 +151,12 @@ test('fuzz: hostile fragments never throw or leak control characters', () => {
     const c = decoded.contact
     const values = [c.name, c.title, c.company, ...c.emails, ...c.phones.flatMap((p) => [p.number, p.label]), ...c.links.flatMap((l) => [l.url, l.label])]
     // oxlint-disable-next-line no-control-regex -- matching control characters is the point
-    for (const value of values) assert.doesNotMatch(value, /[\u0000-\u001f\u007f-\u009f\u2028\u2029\u00ad\u061c\u200b\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]|\p{M}{4}/u)
+    for (const value of values) {
+      // Flags keep their tag characters; nothing else invisible gets through.
+      const outsideFlags = value.replace(/\u{1f3f4}[\u{e0020}-\u{e007e}]+\u{e007f}/gu, '')
+      // oxlint-disable-next-line no-control-regex -- matching control characters is the point
+      assert.doesNotMatch(outsideFlags, /[\u0000-\u001f\u007f-\u009f\u2028\u2029\u115f\u1160\u3164\uffa0]|(?![\u200c\u200d])\p{Cf}|(?:\p{M}[\u200c\u200d]*){4}/u)
+    }
     for (const link of c.links) assert.match(link.url, /^https?:\/\/[^/@]+\//)
     if (c.handle !== undefined) assert.match(c.handle, /^[a-z0-9._-]{1,20}$/)
     if (c.color !== undefined) assert.ok(COLORS.includes(c.color), c.color)

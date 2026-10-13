@@ -525,6 +525,134 @@
         "phones": [],
         "links": []
       }
+    },
+    {
+      "name": "round 2: hosts with ß or ς are left out, bücher.example is kept",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://straße.de/"
+          },
+          {
+            "url": "https://ς.gr/"
+          },
+          {
+            "url": "https://bücher.example/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xn--bcher-kva.example/",
+      "uriRecordBytes": 59,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--bcher-kva.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "round 2: a percent-encoded ß in the host is left out too",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://stra%C3%9Fe.de/"
+          },
+          {
+            "url": "https://example.com/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/",
+      "uriRecordBytes": 49,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "round 2: combining marks joined by ZWJ are cut to three",
+      "fields": {
+        "name": "Jané́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍ Doe"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%CC%81%CC%81%CC%81%E2%80%8D%20Doe",
+      "uriRecordBytes": 61,
+      "decoded": {
+        "name": "Jané́́‍ Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: tag characters, U+180E and U+FFF9-FFFB are removed",
+      "fields": {
+        "name": "Jane󠁁󠁂󠁃 Doe",
+        "title": "Product᠎ designer￹￺￻"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer",
+      "uriRecordBytes": 55,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: an emoji flag keeps its tag characters",
+      "fields": {
+        "name": "Jane Doe 🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe%20%F0%9F%8F%B4%F3%A0%81%A7%F3%A0%81%A2%F3%A0%81%B3%F3%A0%81%A3%F3%A0%81%B4%F3%A0%81%BF",
+      "uriRecordBytes": 121,
+      "decoded": {
+        "name": "Jane Doe 🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: Hangul fillers are removed, and a braille blank alone is empty",
+      "fields": {
+        "name": "Janeㅤ Doe",
+        "title": "ㅤㅤ",
+        "company": "⠀"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe",
+      "uriRecordBytes": 34,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
     }
   ],
   "decode": [
@@ -1016,6 +1144,137 @@
             "label": "LinkedIn"
           }
         ]
+      }
+    },
+    {
+      "name": "round 2: a link to straße.de is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=stra%C3%9Fe.de",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: a link to ς.gr is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=%CF%82.gr",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: a link to bücher.example is kept, in punycode",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=b%C3%BCcher.example",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--bcher-kva.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "round 2: a host already in punycode is kept as written",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xn--strae-oqa.de",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--strae-oqa.de/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "round 2: combining marks joined by ZWJ are cut to three",
+      "url": "https://taptilde.com/c#1;n=Jane%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%CC%81%CC%81%CC%81%E2%80%8D%20Doe",
+      "contact": {
+        "name": "Jané́́‍ Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: hidden tag letters are removed from a name",
+      "url": "https://taptilde.com/c#1;n=Jane%F3%A0%81%81%F3%A0%81%82%F3%A0%81%83%20Doe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: a name of only tag characters is damaged",
+      "url": "https://taptilde.com/c#1;n=%F3%A0%81%81%F3%A0%81%82%F3%A0%81%83",
+      "error": "damaged"
+    },
+    {
+      "name": "round 2: an emoji flag in a name is kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20%F0%9F%8F%B4%F3%A0%81%A7%F3%A0%81%A2%F3%A0%81%B3%F3%A0%81%A3%F3%A0%81%B4%F3%A0%81%BF",
+      "contact": {
+        "name": "Jane 🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 2: a name of a Hangul filler is damaged",
+      "url": "https://taptilde.com/c#1;n=%E3%85%A4",
+      "error": "damaged"
+    },
+    {
+      "name": "round 2: a name of Hangul choseong and jungseong fillers is damaged",
+      "url": "https://taptilde.com/c#1;n=%E1%85%9F%E1%85%A0",
+      "error": "damaged"
+    },
+    {
+      "name": "round 2: a name of a halfwidth Hangul filler is damaged",
+      "url": "https://taptilde.com/c#1;n=%EF%BE%A0",
+      "error": "damaged"
+    },
+    {
+      "name": "round 2: a name of a braille blank is damaged",
+      "url": "https://taptilde.com/c#1;n=%E2%A0%80%E2%A0%80",
+      "error": "damaged"
+    },
+    {
+      "name": "round 2: a braille blank next to letters stays",
+      "url": "https://taptilde.com/c#1;n=Jane%E2%A0%80Doe",
+      "contact": {
+        "name": "Jane⠀Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
       }
     }
   ],
