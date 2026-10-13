@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import {
+  addressParts,
   COLORS,
   decodeFragment,
   defaultLabel,
@@ -12,7 +13,9 @@ import {
   encodeContact,
   LIMITS,
   LINK_BASE,
+  mailtoHref,
   stickerLink,
+  telHref,
   uriRecordBytes,
   vcard,
   vcardFileName,
@@ -20,7 +23,7 @@ import {
 
 // The vectors' SHA-256, pinned in the spec's header and in the app's ContactLinkTest too: a change
 // to the vectors fails every suite until each copy and each pin is updated (checker improvement 3).
-const X1_VECTORS_SHA256 = '432165c15fa7b906a131989ef6a375b6948a305162abc670ae6514c5e789cdfc'
+const X1_VECTORS_SHA256 = '203c7fda36bf9eeb7a7a3cd201615b56a08f1574d3e6df3b6471eac0f5ed32f5'
 const vectorsFile = readFileSync(new URL('./vectors.json', import.meta.url))
 const vectors = JSON.parse(vectorsFile.toString('utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')
@@ -53,11 +56,13 @@ for (const v of vectors.decode) {
   })
 }
 
+// Each case is the page's Save contact in one language, on October 13, 2026.
 for (const v of vectors.vcard) {
   test(`vcard: ${v.name}`, () => {
     const decoded = decodeFragment(fragmentOf(v.url))
     assert.ok(decoded.ok)
-    assert.equal(vcard(decoded.contact), v.vcard)
+    assert.ok(['en-US', 'pt-PT'].includes(v.locale))
+    assert.equal(vcard(decoded.contact, v.options), v.vcard)
   })
 }
 
@@ -79,6 +84,19 @@ test('every decoded contact round-trips through the encoder', () => {
     const again = encodeContact(v.decoded)
     assert.deepEqual(decodeFragment(fragmentOf(again)).contact, v.decoded)
   }
+})
+
+test('without options, the vCard keeps "mobile (US)" in English and adds no note', () => {
+  const decoded = decodeFragment('#1;n=Jane;p=+1%20555%20010%200199,mobile%20(US);p=+351%20912%20345%20678,mobile')
+  assert.ok(decoded.ok)
+  const text = vcard(decoded.contact)
+  assert.match(text, /item1\.X-ABLabel:mobile \(US\)\r\n/)
+  assert.doesNotMatch(text, /item2\.X-ABLabel|NOTE/)
+})
+
+test('one email is never PREF; a label without its key adds no type', () => {
+  const one = decodeFragment('#1;n=Jane;e=jane@example.com,work')
+  assert.match(vcard(one.contact), /\r\nEMAIL;TYPE=INTERNET,WORK:jane@example\.com\r\n/)
 })
 
 test('the encoder refuses a contact without a visible name', () => {
@@ -117,6 +135,37 @@ test('addresses show without https://, www. or a lone slash', () => {
   assert.equal(displayAddress('https://www.example.co.uk/'), 'example.co.uk')
 })
 
+test('international domains in Latin script show as written, others in punycode', () => {
+  assert.equal(displayAddress('https://xn--bcher-kva.example/'), 'bücher.example')
+  assert.equal(displayAddress('https://www.xn--caf-dma.pt/menu'), 'café.pt/menu')
+  assert.equal(displayAddress('http://xn--bcher-kva.example:8443/a?b=1'), 'http://bücher.example:8443/a?b=1')
+  assert.equal(displayAddress(new URL('https://łódź.example/').href), 'łódź.example')
+  // Look-alikes stay in punycode: Cyrillic "а", and the Latin letters that pass for ASCII (R8-S6).
+  assert.equal(displayAddress('https://xn--pple-43d.com/'), 'xn--pple-43d.com')
+  for (const host of ['lınkedın.com', 'ŀinkedin.com', 'ĸite.example', 'ŉews.example']) {
+    const url = new URL(`https://${host}/`).href
+    assert.match(displayAddress(url), /^xn--/, host)
+  }
+  // One non-Latin label keeps the whole host in punycode.
+  assert.equal(displayAddress('https://xn--bcher-kva.xn--pple-43d.com/'), 'xn--bcher-kva.xn--pple-43d.com')
+  assert.deepEqual(addressParts('https://www.example.com/a/b?c=1&d=2'), { host: 'example.com', rest: '/a/b?c=1&d=2' })
+  assert.deepEqual(addressParts('https://example.com/'), { host: 'example.com', rest: '' })
+})
+
+test('tel: and mailto: links come only from checked values (checker C8)', () => {
+  assert.equal(telHref('+351 912 345 678'), 'tel:+351912345678')
+  assert.equal(telHref('*#06#'), null)
+  assert.equal(telHref('+1 555 010 0199,1'), null)
+  assert.equal(mailtoHref('jane@example.com'), 'mailto:jane@example.com')
+  assert.equal(mailtoHref('jane@example.com?bcc=x@evil.example'), null)
+  assert.equal(mailtoHref('jane@example.com,work'), null)
+  const all = [...vectors.encode.map((v) => v.decoded), ...vectors.decode.filter((v) => v.contact).map((v) => v.contact)]
+  for (const c of all) {
+    for (const p of c.phones) assert.match(telHref(p.number), /^tel:\+?[0-9]+$/)
+    for (const e of c.emails) assert.match(mailtoHref(e), /^mailto:[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/)
+  }
+})
+
 test('file names drop characters file systems refuse', () => {
   const contact = (name) => ({ name, title: '', company: '', emails: [], phones: [], links: [] })
   assert.equal(vcardFileName(contact('Jane Doe')), 'Jane Doe.vcf')
@@ -136,7 +185,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', 'GitHub', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648
@@ -158,12 +207,18 @@ test('fuzz: hostile fragments never throw or leak control characters', () => {
       assert.doesNotMatch(outsideFlags, /[\u0000-\u001f\u007f-\u009f\u2028\u2029\u115f\u1160\u3164\uffa0]|(?![\u200c\u200d])\p{Cf}|(?:\p{M}[\u200c\u200d]*){4}/u)
     }
     for (const link of c.links) assert.match(link.url, /^https?:\/\/[^/@]+\//)
+    for (const p of c.phones) assert.match(telHref(p.number), /^tel:\+?[0-9]+$/)
+    for (const e of c.emails) assert.match(mailtoHref(e) ?? '', /^mailto:[^?&#%,]+$/)
+    if (c.emailLabels !== undefined) {
+      assert.equal(c.emailLabels.length, c.emails.length)
+      assert.ok(c.emailLabels.some(Boolean) && c.emailLabels.every((l) => ['', 'work', 'home'].includes(l)))
+    }
     if (c.handle !== undefined) assert.match(c.handle, /^[a-z0-9._-]{1,20}$/)
     if (c.color !== undefined) assert.ok(COLORS.includes(c.color), c.color)
     // One card, with only the properties the page writes.
     const lines = vcard(c).split('\r\n').filter(Boolean)
     for (const line of lines) {
-      assert.match(line, /^( |BEGIN:VCARD$|END:VCARD$|VERSION:3\.0$|N:|FN:|ORG:|TITLE:|EMAIL;TYPE=INTERNET:|item\d+\.(TEL;TYPE=CELL|URL|X-ABLabel):)/, line)
+      assert.match(line, /^( |BEGIN:VCARD$|END:VCARD$|VERSION:3\.0$|N:|FN:|ORG:|TITLE:|EMAIL;TYPE=INTERNET(,WORK|,HOME)?(,PREF)?:|item\d+\.(TEL;TYPE=CELL|URL|X-ABLabel):)/, line)
     }
     assert.equal(lines.filter((line) => line === 'BEGIN:VCARD').length, 1)
   }

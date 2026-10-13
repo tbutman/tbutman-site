@@ -1,5 +1,5 @@
 {
-  "$description": "Tilde contact link (X1) test vectors, version 1, with the card face fields h and c (contact page v2). Spec: tilde-review/specs/x1-contact-link.md. encode: contact card fields -> exact link (the app). decode: link -> contact or error (the page). vcard: link -> .vcf text (the page). sticker: fields and a sticker's room in bytes -> the link that fits and what was left out, or null (the app). Keep every copy byte-identical.",
+  "$description": "Tilde contact link (X1) test vectors, version 1, with the card face fields h and c (contact page v2) and email labels (contact v3). Spec: tilde-review/specs/x1-contact-link.md. encode: contact card fields (emailLabels beside emails) -> exact link (the app). decode: link -> contact or error (the page). vcard: link, the page's locale and the options it passes -> .vcf text (the page's Save contact). sticker: fields and a sticker's room in bytes -> the link that fits and what was left out, or null (the app). Keep every copy byte-identical.",
   "version": 1,
   "base": "https://taptilde.com/c#",
   "encode": [
@@ -653,6 +653,124 @@
         "phones": [],
         "links": []
       }
+    },
+    {
+      "name": "v3: work and personal emails",
+      "fields": {
+        "name": "Jane Doe",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@acme.example,work;e=jane@example.com,home",
+      "uriRecordBytes": 83,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: only the second email has a label",
+      "fields": {
+        "name": "Jane Doe",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "",
+          "home"
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@acme.example;e=jane@example.com,home",
+      "uriRecordBytes": 78,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "",
+          "home"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: labels other than the two keys are left out",
+      "fields": {
+        "name": "Jane Doe",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "Work",
+          "personal"
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@acme.example;e=jane@example.com",
+      "uriRecordBytes": 73,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: a label goes with its email when the email is left out",
+      "fields": {
+        "name": "Jane Doe",
+        "emails": [
+          "not an email",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "home",
+          "work"
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@example.com,work",
+      "uriRecordBytes": 58,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "work"
+        ],
+        "phones": [],
+        "links": []
+      }
     }
   ],
   "decode": [
@@ -1276,28 +1394,333 @@
         "phones": [],
         "links": []
       }
+    },
+    {
+      "name": "v3: work and personal emails",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@acme.example,work;e=jane@example.com,home",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: one email with a label",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@example.com,work",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "work"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: a label that is not one of the keys is ignored, and the address kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=a@example.com,Work;e=b@example.com,personal;e=c@example.com,work,home",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "a@example.com",
+          "b@example.com",
+          "c@example.com"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: a label is cleaned like any value, then must match exactly",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@example.com,%20work%E2%80%8B",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@example.com"
+        ],
+        "emailLabels": [
+          "work"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: a comma inside an address makes it invalid",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@example.com%2Cwork;e=,work",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: a fourth email is skipped with its label",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=a@example.com;e=b@example.com;e=c@example.com;e=d@example.com,work",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "a@example.com",
+          "b@example.com",
+          "c@example.com"
+        ],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "v3: a broken escape in an email label is damaged",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@example.com,%ZZ",
+      "error": "damaged"
+    },
+    {
+      "name": "v3: look-alike labels get the default label",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal.com;u=evil.example,https%3A%2F%2Fwww.paypal.com%2Fsignin;u=evil.example,paypal%E3%80%82com;u=evil.example,paypal%EF%BC%8Ecom;u=evil.example,paypal%E2%80%A4com;u=evil.example,paypal%20.com;u=evil.example,paypal.com%20%E2%9C%93;u=evil.example,paypal.com%20%28official%29;u=evil.example,Pay%20at%20paypal.com;u=evil.example,paypal.com.",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3: look-alike labels get the default label, II",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,p%D0%B0ypal.com;u=evil.example,GitHub;u=evil.example,Linked%20In;u=evil.example,twitter;u=paypal.com.evil.example,paypal.com;u=linkedin.com/in/janedoe,github.com",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://paypal.com.evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3: labels that name no other site are kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,PayPal;u=evil.example,Portfolio;u=evil.example,My%20talk%20v2.0;u=evil.example,Jane%E2%80%99s%20C.V.;u=evil.example,St.%20Louis%20office;u=evil.example,Dr.%20Jane%20Doe;u=evil.example,evil.example;u=evil.example,www.evil.example%2Fjane;u=blog.janedoe.com,janedoe.com;u=github.com/janedoe,GitHub",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "PayPal"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Portfolio"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "My talk v2.0"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Jane’s C.V."
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "St. Louis office"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "Dr. Jane Doe"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "evil.example"
+          },
+          {
+            "url": "https://evil.example/",
+            "label": "www.evil.example/jane"
+          },
+          {
+            "url": "https://blog.janedoe.com/",
+            "label": "janedoe.com"
+          },
+          {
+            "url": "https://github.com/janedoe",
+            "label": "GitHub"
+          }
+        ]
+      }
     }
   ],
   "vcard": [
     {
       "name": "typical card",
       "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe",
-      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nORG:Acme\r\nTITLE:Product designer\r\nEMAIL;TYPE=INTERNET:jane@example.com\r\nitem1.TEL;TYPE=CELL:+351 912 345 678\r\nitem1.X-ABLabel:mobile\r\nitem2.URL:https://example.com/\r\nitem2.X-ABLabel:Website\r\nitem3.URL:https://www.linkedin.com/in/janedoe\r\nitem3.X-ABLabel:LinkedIn\r\nEND:VCARD\r\n"
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nORG:Acme\r\nTITLE:Product designer\r\nEMAIL;TYPE=INTERNET:jane@example.com\r\nitem1.TEL;TYPE=CELL:+351 912 345 678\r\nitem2.URL:https://example.com/\r\nitem3.URL:https://www.linkedin.com/in/janedoe\r\nitem3.X-ABLabel:LinkedIn\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
     },
     {
       "name": "Portuguese accents and separators",
       "url": "https://taptilde.com/c#1;n=Jo%C3%A3o%20Sim%C3%B5es;t=Designer%20de%20produto;o=Caf%C3%A9%20&%20Companhia%2C%20Lda.;e=joao@example.pt;u=example.pt/",
-      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Simões;João;;;\r\nFN:João Simões\r\nORG:Café & Companhia\\, Lda.\r\nTITLE:Designer de produto\r\nEMAIL;TYPE=INTERNET:joao@example.pt\r\nitem1.URL:https://example.pt/\r\nitem1.X-ABLabel:Website\r\nEND:VCARD\r\n"
+      "locale": "pt-PT",
+      "options": {
+        "mobile": "telemóvel",
+        "note": "Guardado a partir de uma ligação Tilde a 13 de outubro de 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Simões;João;;;\r\nFN:João Simões\r\nORG:Café & Companhia\\, Lda.\r\nTITLE:Designer de produto\r\nEMAIL;TYPE=INTERNET:joao@example.pt\r\nitem1.URL:https://example.pt/\r\nNOTE:Guardado a partir de uma ligação Tilde a 13 de outubro de 2026\r\nEND:VCARD\r\n"
     },
     {
       "name": "saved links with display text",
       "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/shop?ref=tilde&x=1,My%20shop%3B%2050%25%20off;u=http://example.org/blog,Blog;u=makerworld.com/en/@janedoe;u=github.com/janedoe,Code%2C%20mostly",
-      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://example.com/shop?ref=tilde&x=1\r\nitem1.X-ABLabel:My shop\\; 50% off\r\nitem2.URL:http://example.org/blog\r\nitem2.X-ABLabel:Blog\r\nitem3.URL:https://makerworld.com/en/@janedoe\r\nitem3.X-ABLabel:MakerWorld\r\nitem4.URL:https://github.com/janedoe\r\nitem4.X-ABLabel:Code\\, mostly\r\nEND:VCARD\r\n"
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://example.com/shop?ref=tilde&x=1\r\nitem1.X-ABLabel:My shop\\; 50% off\r\nitem2.URL:http://example.org/blog\r\nitem2.X-ABLabel:Blog\r\nitem3.URL:https://makerworld.com/en/@janedoe\r\nitem3.X-ABLabel:MakerWorld\r\nitem4.URL:https://github.com/janedoe\r\nitem4.X-ABLabel:Code\\, mostly\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
     },
     {
       "name": "a backslash in a link is percent-encoded",
       "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/a%5Cb?x=1%5C2",
-      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://example.com/a/b?x=1%5C2\r\nitem1.X-ABLabel:Website\r\nEND:VCARD\r\n"
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://example.com/a/b?x=1%5C2\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
+    },
+    {
+      "name": "v3: work and personal emails, the first preferred",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@acme.example,work;e=jane@example.com,home",
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nEMAIL;TYPE=INTERNET,WORK,PREF:jane@acme.example\r\nEMAIL;TYPE=INTERNET,HOME:jane@example.com\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
+    },
+    {
+      "name": "v3: three emails: the first preferred, a type only where the link has a label",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;e=jane@acme.example;e=jane@example.com;e=j@example.org,home",
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nEMAIL;TYPE=INTERNET,PREF:jane@acme.example\r\nEMAIL;TYPE=INTERNET:jane@example.com\r\nEMAIL;TYPE=INTERNET,HOME:j@example.org\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
+    },
+    {
+      "name": "v3: phone labels on a Portuguese page",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;p=+351%20912%20345%20678,mobile%20(PT);p=+1%20555%20010%200199,mobile%20(US);p=+351%20213%20000%20000,casa;p=+351%20913%20000%20000,Mobile",
+      "locale": "pt-PT",
+      "options": {
+        "mobile": "telemóvel",
+        "note": "Guardado a partir de uma ligação Tilde a 13 de outubro de 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.TEL;TYPE=CELL:+351 912 345 678\r\nitem1.X-ABLabel:telemóvel (PT)\r\nitem2.TEL;TYPE=CELL:+1 555 010 0199\r\nitem2.X-ABLabel:telemóvel (US)\r\nitem3.TEL;TYPE=CELL:+351 213 000 000\r\nitem3.X-ABLabel:casa\r\nitem4.TEL;TYPE=CELL:+351 913 000 000\r\nitem4.X-ABLabel:Mobile\r\nNOTE:Guardado a partir de uma ligação Tilde a 13 de outubro de 2026\r\nEND:VCARD\r\n"
+    },
+    {
+      "name": "v3: a look-alike label leaves the link without one",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal.com;u=www.linkedin.com/in/janedoe,Portfolio",
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://evil.example/\r\nitem2.URL:https://www.linkedin.com/in/janedoe\r\nitem2.X-ABLabel:Portfolio\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
     }
   ],
   "sticker": [
@@ -1663,6 +2086,205 @@
         "dropped": [
           "color",
           "handle",
+          "label",
+          "link"
+        ]
+      }
+    },
+    {
+      "name": "v3: email labels, 188 bytes (whole)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ]
+      },
+      "maxBytes": 188,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@acme.example,work;e=jane@example.com,home;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe",
+        "dropped": []
+      }
+    },
+    {
+      "name": "v3: email labels, 181 bytes",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ]
+      },
+      "maxBytes": 181,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@acme.example,work;e=jane@example.com,home;p=+351%20912%20345%20678;u=example.com/;u=www.linkedin.com/in/janedoe",
+        "dropped": [
+          "label"
+        ]
+      }
+    },
+    {
+      "name": "v3: email labels, 176 bytes",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ]
+      },
+      "maxBytes": 176,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@acme.example,work;e=jane@example.com;p=+351%20912%20345%20678;u=example.com/;u=www.linkedin.com/in/janedoe",
+        "dropped": [
+          "label",
+          "label"
+        ]
+      }
+    },
+    {
+      "name": "v3: email labels, 171 bytes",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ]
+      },
+      "maxBytes": 171,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@acme.example;e=jane@example.com;p=+351%20912%20345%20678;u=example.com/;u=www.linkedin.com/in/janedoe",
+        "dropped": [
+          "label",
+          "label",
+          "label"
+        ]
+      }
+    },
+    {
+      "name": "v3: email labels, 170 bytes",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@acme.example",
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "emailLabels": [
+          "work",
+          "home"
+        ]
+      },
+      "maxBytes": 170,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@acme.example;e=jane@example.com;p=+351%20912%20345%20678;u=example.com/",
+        "dropped": [
+          "label",
+          "label",
           "label",
           "link"
         ]
