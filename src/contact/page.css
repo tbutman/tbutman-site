@@ -145,10 +145,12 @@ svg.icon {
   border-radius: 20px;
 }
 
+/* A 20-character handle fits on one line down to 320 px; on a narrower screen (or zoomed in) it
+   wraps, at a hyphen first, rather than push the page sideways. */
 .handle {
   margin: 0 0 14px;
   font: 700 17px/24px var(--mono);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .handle span {
@@ -232,7 +234,8 @@ svg.icon {
 
 .save:focus-visible,
 .button:focus-visible,
-.footer a:focus-visible {
+.footer a:focus-visible,
+.row a.tap:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -271,6 +274,37 @@ svg.icon {
   margin: 0;
   font-size: 17px;
   line-height: 24px;
+}
+
+/* Websites (design rec. 2): where the address goes in the text color, the rest dimmer. */
+.row .path {
+  color: var(--muted);
+}
+
+/* Phones and emails open the phone's own app (design rec. 1): the value as shown, with the call or
+   mail icon at the row's end, and a target at least 32 px tall inside the row's padding. */
+.row a.tap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  margin: -6px 0;
+  padding: 6px 0;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.row a.tap .shown {
+  flex: 1;
+  min-width: 0;
+}
+
+.row a.tap svg.icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
 }
 
 .privacy {

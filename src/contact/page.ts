@@ -3,8 +3,20 @@
 // builds the .vcf on the phone. Bundled and inlined into the page by scripts/contact-page.mjs.
 //
 // Everything from the link is hostile input: it only ever reaches the page as textContent, never
-// as HTML, a link or a style, and the page sends nothing anywhere (the CSP forbids it too).
-import { decodeFragment, displayAddress, vcard, vcardFileName, type Color, type Contact } from './link.ts'
+// as HTML or a style, and the page sends nothing anywhere (the CSP forbids it too). The only links
+// it makes are tel: and mailto: from numbers and addresses the decoder has checked (telHref,
+// mailtoHref); websites stay text.
+import {
+  addressParts,
+  AUTO_PHONE_LABEL,
+  decodeFragment,
+  mailtoHref,
+  telHref,
+  vcard,
+  vcardFileName,
+  type Color,
+  type Contact,
+} from './link.ts'
 
 // The Latin subset's unicode-range ("U+0000-00FF,U+0131,…"), put in by the build from fontsource.
 declare const __LATIN_RANGE__: string
@@ -14,8 +26,16 @@ const copy = {
     save: 'Save contact',
     asks: 'Your phone asks before adding it.',
     email: 'Email',
+    workEmail: 'Work email',
+    homeEmail: 'Personal email',
     phone: 'Phone',
+    mobile: 'Mobile',
     website: 'Website',
+    callTo: 'Call %s',
+    writeTo: 'Email %s',
+    // The saved contact's words: the app's "mobile (US)", and a note with the day it was saved.
+    mobileWord: 'mobile',
+    note: 'Saved from a Tilde link on %s',
     privacy: 'These details came inside the link. This page didn’t send them to any server or store them.',
     madeWith: 'Made with Tilde',
     makeYourOwn: 'make your own',
@@ -31,8 +51,15 @@ const copy = {
     save: 'Guardar contacto',
     asks: 'O teu telemóvel pergunta antes de o adicionar.',
     email: 'Email',
+    workEmail: 'Email profissional',
+    homeEmail: 'Email pessoal',
     phone: 'Telefone',
+    mobile: 'Telemóvel',
     website: 'Site',
+    callTo: 'Ligar para %s',
+    writeTo: 'Enviar email para %s',
+    mobileWord: 'telemóvel',
+    note: 'Guardado a partir de uma ligação Tilde a %s',
     privacy: 'Estes dados vieram dentro da ligação. Esta página não os enviou para nenhum servidor nem os guardou.',
     madeWith: 'Feito com a Tilde',
     makeYourOwn: 'faz o teu',
@@ -42,13 +69,14 @@ const copy = {
     damaged: ['Esta ligação de contacto está danificada', 'Falta uma parte ou foi alterada, por isso não pode ser lida com segurança.'],
     unsupported: ['Este contacto precisa de uma página mais recente', 'Foi criado por uma versão mais recente da Tilde. Recarregar a página costuma resolver.'],
     reload: 'Recarregar',
-    tip: 'Pede-lhe para encostar outra vez, ou para mostrar o código no telemóvel e lê-o com a câmara.',
+    tip: 'Pede à pessoa para encostar outra vez, ou para mostrar o código no telemóvel, e lê-o com a tua câmara.',
   },
 }
 
 // The page follows the phone's language.
 const lang = (navigator.languages?.[0] ?? navigator.language ?? 'en').toLowerCase().startsWith('pt') ? 'pt' : 'en'
 const t = copy[lang]
+const locale = lang === 'pt' ? 'pt-PT' : 'en-US'
 document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en'
 
 // Icon paths (24 × 24, stroked), from the mockup.
@@ -58,6 +86,8 @@ const icons = {
   empty: ['M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1'],
   damaged: ['M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1M4 4l16 16'],
   unsupported: ['M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5'],
+  phone: ['M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2'],
+  mail: ['M4 6l8 7 8-7', 'rect 3 5 18 14 2'],
   scan: ['M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M7 12h10'],
 }
 
@@ -148,6 +178,87 @@ function handle(text: string): HTMLParagraphElement {
   return line
 }
 
+/**
+ * A phone's label in the page's language (design rec. 5): the app's own "mobile" and "mobile (US)"
+ * become "Mobile" and "Mobile (US)" ("Telemóvel"); a typed label gets a capital first letter.
+ */
+function phoneLabel(label: string): string {
+  if (!label) return t.phone
+  const auto = label.match(AUTO_PHONE_LABEL)
+  if (auto) return t.mobile + (auto[1] ?? '')
+  const [first, ...rest] = label
+  return first.toLocaleUpperCase(locale) + rest.join('')
+}
+
+/**
+ * Each email's label (design recs. 8 and 9): "Work email" and "Personal email" from the link's
+ * keys, "Email" without one, numbered from the second of a kind ("Email", "Email 2").
+ */
+function emailLabels(contact: Contact): string[] {
+  const keys = contact.emails.map((_, i) => contact.emailLabels?.[i] ?? '')
+  const seen = new Map<string, number>()
+  return keys.map((key) => {
+    const word = key === 'work' ? t.workEmail : key === 'home' ? t.homeEmail : t.email
+    const nth = (seen.get(key) ?? 0) + 1
+    seen.set(key, nth)
+    return nth > 1 ? `${word} ${nth}` : word
+  })
+}
+
+/**
+ * Text with a line-break chance after each character of `after` and before each of `before`, so a
+ * long address wraps at its seams (design rec. 2): after a dot, a "/", "?" or "&", and before an
+ * email's "@". A break inside a word stays the last resort.
+ */
+function seams(text: string, after: string, before = ''): Node[] {
+  const nodes: Node[] = []
+  let part = ''
+  const cut = () => {
+    nodes.push(document.createTextNode(part), el('wbr'))
+    part = ''
+  }
+  for (const char of text) {
+    if (before.includes(char) && part) cut()
+    part += char
+    if (after.includes(char)) cut()
+  }
+  if (part) nodes.push(document.createTextNode(part))
+  return nodes
+}
+
+/**
+ * A phone number or an email (design rec. 1): the value as shown, in a tel: or mailto: link with
+ * the call or mail icon at its end. The phone asks before calling, and the href comes only from the
+ * decoder's checked value; without one, the value stays text.
+ */
+function tappable(text: string, nodes: Node[], href: string | null, kind: 'phone' | 'mail'): HTMLElement {
+  const shown = value('span', 'shown', text)
+  shown.replaceChildren(...nodes)
+  const dd = el('dd', 'text')
+  if (!href) {
+    dd.append(shown)
+    return dd
+  }
+  const a = el('a', 'tap')
+  a.href = href
+  a.setAttribute('aria-label', (kind === 'phone' ? t.callTo : t.writeTo).replace('%s', text))
+  a.append(shown, icon(kind))
+  dd.append(a)
+  return dd
+}
+
+/** A website (design recs. 2 and 3): where it goes in the text color, the rest dimmer. Never a link. */
+function website(url: string): HTMLElement {
+  const { host, rest } = addressParts(url)
+  const dd = value('dd', 'text', host + rest)
+  const where = el('span', 'host')
+  where.append(...seams(host, '.'))
+  const path = el('span', 'path')
+  path.append(...seams(rest, '/?&'))
+  dd.replaceChildren(where, ...(rest ? [path] : []))
+  return dd
+}
+
 function footer(): HTMLElement {
   const foot = el('footer', 'footer')
   const link = el('a', undefined, `${t.makeYourOwn} →`)
@@ -164,7 +275,8 @@ const asked = new URLSearchParams(location.search).get('save')
 const method: SaveMethod = asked === 'blob' || asked === 'data' || asked === 'download' || asked === 'share' ? asked : isIos ? 'blob' : 'download'
 
 async function save(contact: Contact) {
-  const text = vcard(contact)
+  const day = new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(new Date())
+  const text = vcard(contact, { mobile: t.mobileWord, note: t.note.replace('%s', day) })
   const name = vcardFileName(contact)
   const blob = new Blob([text], { type: 'text/vcard;charset=utf-8' })
   if (method === 'share') {
@@ -238,16 +350,21 @@ function showContact(root: HTMLElement, contact: Contact) {
   button.addEventListener('click', () => void save(contact))
   root.append(face, button, el('p', 'under', t.asks))
 
-  const rows: [string, string][] = [
-    ...contact.emails.map((email): [string, string] => [t.email, email]),
-    ...contact.phones.map((phone): [string, string] => [phone.label || t.phone, phone.number]),
-    ...contact.links.map((link): [string, string] => [link.label === 'Website' ? t.website : link.label, displayAddress(link.url)]),
+  const labels = emailLabels(contact)
+  const rows: [string, HTMLElement][] = [
+    ...contact.emails.map((email, i): [string, HTMLElement] => [labels[i], tappable(email, seams(email, '.', '@'), mailtoHref(email), 'mail')]),
+    ...contact.phones.map((phone): [string, HTMLElement] => [
+      phoneLabel(phone.label),
+      tappable(phone.number, [document.createTextNode(phone.number)], telHref(phone.number), 'phone'),
+    ]),
+    // The decoder has already replaced a label that poses as another site with the default.
+    ...contact.links.map((link): [string, HTMLElement] => [link.label === 'Website' ? t.website : link.label, website(link.url)]),
   ]
   if (rows.length) {
     const details = el('dl', 'details')
-    for (const [label, text] of rows) {
+    for (const [label, dd] of rows) {
       const row = el('div', 'row')
-      row.append(value('dt', 'label', label), value('dd', 'text', text))
+      row.append(value('dt', 'label', label), dd)
       details.append(row)
     }
     root.append(details)
