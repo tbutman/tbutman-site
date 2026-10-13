@@ -248,10 +248,17 @@ main {
   flex-direction: column;
   height: 100%;
   padding: 1.75rem;
+  /* With large text on a phone, a long title or tag breaks instead of pushing the grid wide. */
+  overflow-wrap: anywhere;
   transition:
     border-color 0.2s,
     background-color 0.2s,
     transform 0.2s;
+}
+
+.work-card .card-meta {
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
 }
 
 .work-grid > li {
@@ -515,8 +522,19 @@ main {
 }
 
 .lab-item .card-meta {
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
   align-items: center;
+}
+
+/* A card's meta line: the text's short basis keeps the badge or year beside it, with the text
+   wrapping as before, at normal sizes. Only with large text on a phone, when even that doesn't
+   fit, does the badge drop under it instead of pushing the page wide. */
+.work-card .card-meta > :first-child,
+.lab-item .card-meta > :first-child {
+  flex: 1 1 10ch;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .lab-item h3 {
