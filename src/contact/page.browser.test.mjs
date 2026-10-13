@@ -110,10 +110,12 @@ for (const [engine, type] of [
             assert.equal(shown.face, `face k-${contact.color ?? 'amber'}`)
             assert.equal(shown.name, contact.name)
             assert.equal(shown.handle, contact.handle ? `~/${contact.handle}` : null)
-            assert.equal(shown.role, [contact.title, contact.company].filter(Boolean).join(' · '))
+            // The owner's line, else title · company; with a line, title and company get rows of their own.
+            assert.equal(shown.role, contact.line ?? [contact.title, contact.company].filter(Boolean).join(' · '))
+            const roleRows = contact.line === undefined ? [] : [contact.title, contact.company].filter(Boolean)
             // Initials are letters only: never an emoji, a flag or a symbol.
             assert.match(shown.ring, /^(\p{L}\p{M}*){0,2}$/u)
-            assert.deepEqual(shown.details, [...contact.emails, ...contact.phones.map((p) => p.number), ...contact.links.map((l) => displayAddress(l.url))])
+            assert.deepEqual(shown.details, [...roleRows, ...contact.emails, ...contact.phones.map((p) => p.number), ...contact.links.map((l) => displayAddress(l.url))])
             // Phones and emails link to exactly what they show; websites never link (design rec. 1).
             assert.deepEqual(shown.taps, [...contact.emails.map((e) => [mailtoHref(e), e]), ...contact.phones.map((p) => [telHref(p.number), p.number])])
             for (const [href] of shown.taps) assert.match(href, /^(tel:\+?[0-9]+|mailto:[^?&#%,\s]+)$/)
@@ -205,6 +207,31 @@ for (const [engine, type] of [
         assert.equal(await page.locator('.details dd').first().locator('wbr').count(), 3)
         // A host breaks before its dots, never after (design N2).
         assert.equal(await page.locator('.details .host').first().evaluate((host) => host.querySelector('wbr').nextSibling.textContent), '.example')
+      } finally {
+        await context.close()
+      }
+    })
+
+    test('the line under the name, with title and company as rows (design §17 rec. 8)', async () => {
+      const fragment = '#1;n=Jane%20Doe;t=Design%20lead;o=Northwind;e=jane@example.com;c=sea;l=Web%20Summit%202026%20%C2%B7%20Lisbon'
+      for (const [locale, labels] of [
+        ['en-US', ['Title', 'Company', 'Email']],
+        ['pt-PT', ['Cargo', 'Empresa', 'Email']],
+      ]) {
+        const { context, page } = await open(fragment, { locale })
+        try {
+          assert.equal(await page.locator('.face .role').textContent(), 'Web Summit 2026 · Lisbon')
+          assert.deepEqual(await page.locator('.details dt').allTextContents(), labels)
+          assert.deepEqual(await page.locator('.details dd').allTextContents(), ['Design lead', 'Northwind', 'jane@example.com'])
+        } finally {
+          await context.close()
+        }
+      }
+      // Without a line, the face has title · company and no rows repeat them.
+      const { context, page } = await open('#1;n=Jane%20Doe;t=Design%20lead;o=Northwind;e=jane@example.com')
+      try {
+        assert.equal(await page.locator('.face .role').textContent(), 'Design lead · Northwind')
+        assert.deepEqual(await page.locator('.details dt').allTextContents(), ['Email'])
       } finally {
         await context.close()
       }

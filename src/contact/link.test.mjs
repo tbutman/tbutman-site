@@ -23,7 +23,7 @@ import {
 
 // The vectors' SHA-256, pinned in the spec's header and in the app's ContactLinkTest too: a change
 // to the vectors fails every suite until each copy and each pin is updated (checker improvement 3).
-const X1_VECTORS_SHA256 = '267d73b7ebc8ba9a50990b4f3290ae4b90acaa43649ee7f746ad89acdf183aad'
+const X1_VECTORS_SHA256 = '5e4ac1133df3c7116409dfee16c7f66926273f14592ace8e9f831b6c3bed4538'
 const vectorsFile = readFileSync(new URL('./vectors.json', import.meta.url))
 const vectors = JSON.parse(vectorsFile.toString('utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')
@@ -187,7 +187,7 @@ test('long vCard lines fold at 75 octets without splitting a character', () => {
 // Random fragments made of the characters that matter: whatever comes in, the decoder returns a
 // result instead of throwing, and anything it accepts is safe to show and to put in a vCard.
 test('fuzz: hostile fragments never throw or leak control characters', () => {
-  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', '%CB%99', '%EA%93%B8', '%EF%B8%8F', '%C2%B7', '%E2%80%A2', '%C2%B8', '%E3%80%81', 'GitHub', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
+  const pieces = ['%F3%A0%81%81', '%E1%A0%8E', '%EF%BF%B9', '%E3%85%A4', '%E2%A0%80', '%E2%80%8D', '%C3%9F', 'h', 'c', 'janedoe', 'iris', 'IRIS', '~', '1', ';', '=', ',', '%', '%0A', '%0D', '%00', '%E2%80%AE', '%E2%80%A8', '%E2%80%A9', '%E2%80%8B', '%C2%AD', '%CC%81', '%FF', '%C3%A3', 'n', 't', 'o', 'e', 'p', 'u', 'a', '@', 'work', 'home', 'paypal.com', '%CB%99', '%EA%93%B8', '%EF%B8%8F', '%C2%B7', '%E2%80%A2', '%C2%B8', '%E3%80%81', 'GitHub', 'l', '.', ' ', '+', '9', 'x.com', 'https://', 'javascript:', '<b>', '"', '#', '\\']
   let seed = 7
   const random = (n) => {
     seed = (seed * 1103515245 + 12345) % 2147483648
@@ -200,7 +200,7 @@ test('fuzz: hostile fragments never throw or leak control characters', () => {
     const decoded = decodeFragment(fragment)
     if (!decoded.ok) continue
     const c = decoded.contact
-    const values = [c.name, c.title, c.company, ...c.emails, ...c.phones.flatMap((p) => [p.number, p.label]), ...c.links.flatMap((l) => [l.url, l.label])]
+    const values = [c.name, c.title, c.company, ...(c.line === undefined ? [] : [c.line]), ...c.emails, ...c.phones.flatMap((p) => [p.number, p.label]), ...c.links.flatMap((l) => [l.url, l.label])]
     // oxlint-disable-next-line no-control-regex -- matching control characters is the point
     for (const value of values) {
       // Flags keep their tag characters; nothing else invisible gets through.
@@ -217,6 +217,7 @@ test('fuzz: hostile fragments never throw or leak control characters', () => {
     }
     if (c.handle !== undefined) assert.match(c.handle, /^[a-z0-9._-]{1,20}$/)
     if (c.color !== undefined) assert.ok(COLORS.includes(c.color), c.color)
+    if (c.line !== undefined) assert.ok(c.line !== '' && [...c.line].length <= LIMITS.line, c.line)
     // One card, with only the properties the page writes.
     const lines = vcard(c).split('\r\n').filter(Boolean)
     for (const line of lines) {
@@ -234,9 +235,9 @@ test('the limits hold', () => {
 })
 
 test('the card face never reaches the vCard', () => {
-  const face = decodeFragment(fragmentOf(vectors.encode.find((v) => v.fields.color === 'iris').url))
-  assert.ok(face.ok && face.contact.handle === 'janedoe' && face.contact.color === 'iris')
-  const { handle: _handle, color: _color, ...plain } = face.contact
+  const face = decodeFragment(fragmentOf(vectors.encode.find((v) => v.fields.line).url))
+  assert.ok(face.ok && face.contact.handle === 'janedoe' && face.contact.color === 'sea' && face.contact.line === 'Web Summit 2026 · Lisbon')
+  const { handle: _handle, color: _color, line: _line, ...plain } = face.contact
   assert.equal(vcard(face.contact), vcard(plain))
 })
 
@@ -244,4 +245,6 @@ test('the card face comes last, so the rest of the link keeps its bytes', () => 
   const plain = encodeContact(vectors.encode[1].fields)
   const face = encodeContact({ ...vectors.encode[1].fields, handle: 'janedoe', color: 'iris' })
   assert.equal(face, `${plain};h=janedoe;c=iris`)
+  // The line (design §17 rec. 8) comes after them.
+  assert.equal(encodeContact({ ...vectors.encode[1].fields, handle: 'janedoe', color: 'iris', line: 'Lisbon' }), `${face};l=Lisbon`)
 })

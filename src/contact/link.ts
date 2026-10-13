@@ -20,6 +20,8 @@ export type Contact = {
   /** The card face (contact page v2): the ~/handle without "~/", and the card's color. Present only when the link carries a valid one. */
   handle?: string
   color?: Color
+  /** The line under the name on the card face (design §17 rec. 8), in place of title and company. Present only when the link carries one. */
+  line?: string
 }
 
 /** What the encoder takes: the app's contact card. Labels are optional. */
@@ -36,6 +38,8 @@ export type ContactInput = {
   handle?: string
   /** The card's color key. */
   color?: string
+  /** The line the owner typed under their name (the app's Profile.line); empty or left out when none. */
+  line?: string
 }
 
 export type Decoded =
@@ -73,6 +77,8 @@ export const LIMITS = {
   links: 10,
   /** The handle, in characters (the app's HANDLE_MAX). */
   handle: 20,
+  /** The line under the name (the app's Profile.line). */
+  line: 40,
 } as const
 
 // Kept as is in a value; every other byte is percent-encoded (UTF-8, upper-case hex). The set is
@@ -255,6 +261,7 @@ function percentEncode(value: string): string {
 function normalize(input: ContactInput): Contact {
   const name = truncate(clean(input.name), LIMITS.text)
   if (!name) throw new Error('A contact link needs a name')
+  const line = truncate(clean(input.line), LIMITS.line)
   const emails = (input.emails ?? [])
     .map((email, i) => ({ address: clean(email), label: emailLabel(input.emailLabels?.[i]) }))
     .filter((e) => EMAIL.test(e.address) && e.address.length <= LIMITS.email)
@@ -281,6 +288,8 @@ function normalize(input: ContactInput): Contact {
     // default, is left out to save 8 bytes.
     ...(input.handle && HANDLE.test(input.handle) ? { handle: input.handle } : {}),
     ...(input.color && isColor(input.color) && input.color !== 'amber' ? { color: input.color } : {}),
+    // Only when typed: the app never sends a line made from the title and company.
+    ...(line ? { line } : {}),
   }
 }
 
@@ -292,9 +301,11 @@ function serialize(c: Contact): string {
   c.emails.forEach((email, i) => fields.push(`e=${percentEncode(email)}${c.emailLabels?.[i] ? `,${c.emailLabels[i]}` : ''}`))
   for (const p of c.phones) fields.push(`p=${percentEncode(p.number)}${p.label ? `,${percentEncode(p.label)}` : ''}`)
   for (const l of c.links) fields.push(`u=${percentEncode(l.url.replace(/^https:\/\//, ''))}${l.label ? `,${percentEncode(l.label)}` : ''}`)
-  // Last, so everything a page without the card face reads keeps its bytes, and a sticker drops them first.
+  // Last, so everything a page without the card face reads keeps its bytes, and a sticker drops them
+  // first (the line, then the color and the handle).
   if (c.handle) fields.push(`h=${c.handle}`)
   if (c.color) fields.push(`c=${c.color}`)
+  if (c.line) fields.push(`l=${percentEncode(c.line)}`)
   return LINK_BASE + fields.join(';')
 }
 
@@ -395,6 +406,12 @@ export function decodeFragment(hash: string): Decoded {
           // One of the six names, exact and lower case: the page never takes a color from the link.
           const value = decodeValue(body)
           if (value && contact.color === undefined && isColor(value)) contact.color = value
+          break
+        }
+        case 'l': {
+          // Cleaned like a title, and never in the .vcf: it's how the card looks, not the contact.
+          const value = decodeValue(body)
+          if (value && contact.line === undefined && length(value) <= LIMITS.line) contact.line = value
           break
         }
         default:
@@ -586,8 +603,8 @@ export function uriRecordBytes(url: string): number {
 
 /**
  * The link for a sticker with room for `maxBytes` of NDEF message: the whole contact card when it
- * fits, otherwise with details left out in the spec's order (the card's color and handle, which are
- * only its look, then labels, extra links, title, company, extra emails and phones, the last link)
+ * fits, otherwise with details left out in the spec's order (the card's line, color and handle, which
+ * are only its look, then labels, extra links, title, company, extra emails and phones, the last link)
  * until it does. Null when even the name with one email
  * and one phone doesn't fit. The app does this when writing a sticker; it lives here as the
  * reference its tests share.
@@ -601,6 +618,7 @@ export function stickerLink(input: ContactInput, maxBytes: number): { url: strin
   const labels = c.emailLabels ?? []
   const steps: [string, () => boolean][] = [
     // Each step removes one thing and says whether there was anything to remove.
+    ['line', () => c.line !== undefined && delete c.line],
     ['color', () => c.color !== undefined && delete c.color],
     ['handle', () => c.handle !== undefined && delete c.handle],
     // Labels from the end of the link: links', then phones', then emails'.

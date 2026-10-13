@@ -771,6 +771,176 @@
         "phones": [],
         "links": []
       }
+    },
+    {
+      "name": "l: typed, after the face fields",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "sea",
+        "line": "Web Summit 2026 · Lisbon"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe;c=sea;l=Web%20Summit%202026%20%C2%B7%20Lisbon",
+      "uriRecordBytes": 214,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "sea",
+        "line": "Web Summit 2026 · Lisbon"
+      }
+    },
+    {
+      "name": "l: empty or blank is left out",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "line": " ​ "
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe",
+      "uriRecordBytes": 168,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe"
+      }
+    },
+    {
+      "name": "l: 41 characters are cut to 40",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "Climbing, film photos and long walks too!"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=Climbing%2C%20film%20photos%20and%20long%20walks%20too",
+      "uriRecordBytes": 91,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "Climbing, film photos and long walks too"
+      }
+    },
+    {
+      "name": "l: a line break becomes a space",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "line": "Web Summit 2026\nLisbon"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;l=Web%20Summit%202026%20Lisbon",
+      "uriRecordBytes": 81,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "Web Summit 2026 Lisbon"
+      }
+    },
+    {
+      "name": "l: HTML is text",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "<i>Hi</i> & <img src=x onerror=alert(1)>"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=%3Ci%3EHi%3C/i%3E%20&%20%3Cimg%20src=x%20onerror=alert(1)%3E",
+      "uriRecordBytes": 97,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "<i>Hi</i> & <img src=x onerror=alert(1)>"
+      }
     }
   ],
   "decode": [
@@ -1893,6 +2063,107 @@
           }
         ]
       }
+    },
+    {
+      "name": "l: typed, shown in place of title and company",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;o=Northwind;e=jane@example.com;h=janedoe;c=sea;l=Web%20Summit%202026%20%C2%B7%20Lisbon",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "company": "Northwind",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [],
+        "links": [],
+        "handle": "janedoe",
+        "color": "sea",
+        "line": "Web Summit 2026 · Lisbon"
+      }
+    },
+    {
+      "name": "l: with no title or company, and before the other fields",
+      "url": "https://taptilde.com/c#1;l=Web%20Summit%202026%20%C2%B7%20Lisbon;n=Jane%20Doe;e=jane@example.com",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [],
+        "links": [],
+        "line": "Web Summit 2026 · Lisbon"
+      }
+    },
+    {
+      "name": "l: empty or blank is skipped, and the first valid one wins",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;l=;l=%20%E2%80%8B;l=Climbing%2C%20film%20photos%20and%20long%20walks%20too;l=Second",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "Climbing, film photos and long walks too"
+      }
+    },
+    {
+      "name": "l: 41 characters are skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=Climbing%2C%20film%20photos%20and%20long%20walks%20too%21;h=janedoe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "handle": "janedoe"
+      }
+    },
+    {
+      "name": "l: 40 characters are kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=Climbing%2C%20film%20photos%20and%20long%20walks%20too",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "Climbing, film photos and long walks too"
+      }
+    },
+    {
+      "name": "l: a line break or line separator is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;l=Web%20Summit%0ALisbon;l=Web%20Summit%E2%80%A8Lisbon",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "l: HTML is text",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=%3Ci%3EHi%3C%2Fi%3E%20%26%20%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "<i>Hi</i> & <img src=x onerror=alert(1)>"
+      }
+    },
+    {
+      "name": "l: a broken escape is damaged",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=%ZZ",
+      "error": "damaged"
     }
   ],
   "vcard": [
@@ -1975,6 +2246,16 @@
         "note": "Saved from a Tilde link on October 13, 2026"
       },
       "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nitem1.URL:https://evil.example/\r\nitem2.URL:https://www.linkedin.com/in/janedoe\r\nitem2.X-ABLabel:Portfolio\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
+    },
+    {
+      "name": "l: never in the .vcf",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;o=Northwind;e=jane@example.com;h=janedoe;c=sea;l=Web%20Summit%202026%20%C2%B7%20Lisbon",
+      "locale": "en-US",
+      "options": {
+        "mobile": "mobile",
+        "note": "Saved from a Tilde link on October 13, 2026"
+      },
+      "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;Jane;;;\r\nFN:Jane Doe\r\nORG:Northwind\r\nTITLE:Design lead\r\nEMAIL;TYPE=INTERNET:jane@example.com\r\nNOTE:Saved from a Tilde link on October 13\\, 2026\r\nEND:VCARD\r\n"
     }
   ],
   "sticker": [
@@ -2541,6 +2822,116 @@
           "label",
           "label",
           "link"
+        ]
+      }
+    },
+    {
+      "name": "l: the typical card with a line, 214 bytes (whole)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "sea",
+        "line": "Web Summit 2026 · Lisbon"
+      },
+      "maxBytes": 214,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe;c=sea;l=Web%20Summit%202026%20%C2%B7%20Lisbon",
+        "dropped": []
+      }
+    },
+    {
+      "name": "l: 213 bytes (the line dropped)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "sea",
+        "line": "Web Summit 2026 · Lisbon"
+      },
+      "maxBytes": 213,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe;c=sea",
+        "dropped": [
+          "line"
+        ]
+      }
+    },
+    {
+      "name": "l: 173 bytes (the line, then the color)",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Product designer",
+        "company": "Acme",
+        "emails": [
+          "jane@example.com"
+        ],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "mobile"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://www.linkedin.com/in/janedoe",
+            "label": "LinkedIn"
+          }
+        ],
+        "handle": "janedoe",
+        "color": "sea",
+        "line": "Web Summit 2026 · Lisbon"
+      },
+      "maxBytes": 173,
+      "result": {
+        "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Product%20designer;o=Acme;e=jane@example.com;p=+351%20912%20345%20678,mobile;u=example.com/;u=www.linkedin.com/in/janedoe;h=janedoe",
+        "dropped": [
+          "line",
+          "color"
         ]
       }
     }
