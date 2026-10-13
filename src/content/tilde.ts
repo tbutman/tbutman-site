@@ -129,6 +129,7 @@ const en = {
     { src: '/tilde/back-terminal.webp', caption: 'terminal back', alt: 'Terminal-style back: $ whoami, name, title and email' },
     { src: '/tilde/back-plain.webp', caption: 'plain back', alt: 'Plain back: name, title and email' },
   ],
+  cardPage: { label: 'the tilde card, in detail', to: '/tilde/card' },
   cardLinks: [
     { label: 'how to print it', href: printing },
     { label: 'model on github', href: cardRepo },
@@ -289,6 +290,7 @@ const pt: TildeText = {
     { src: '/tilde/back-terminal.webp', caption: 'verso terminal', alt: 'Verso estilo terminal: $ whoami, nome, cargo e email' },
     { src: '/tilde/back-plain.webp', caption: 'verso simples', alt: 'Verso simples: nome, cargo e email' },
   ],
+  cardPage: { label: 'o cartão tilde, em detalhe', to: '/pt/tilde/card' },
   cardLinks: [
     { label: 'como imprimir (em inglês)', href: printing },
     { label: 'modelo no github', href: cardRepo },

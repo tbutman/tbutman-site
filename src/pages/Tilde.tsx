@@ -191,6 +191,9 @@ export default function Tilde({ locale }: { locale: Locale }) {
               </p>
             ))}
             <div className="button-row">
+              <Link className="button primary" to={tilde.cardPage.to}>
+                {tilde.cardPage.label} →
+              </Link>
               {tilde.cardLinks.map((link) => (
                 <a key={link.href} className="button" href={link.href}>
                   {link.label} ↗

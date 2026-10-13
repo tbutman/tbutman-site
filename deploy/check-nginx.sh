@@ -35,10 +35,12 @@ check /resume                 200 '^content-type: text/html' '^cache-control: no
 check /cv                     301 '^location: /resume$'
 check /Thomas_Butman_Resume.pdf 200 '^content-type: application/pdf'
 check /Thomas_Butman_CV.pdf   301 '^location: /Thomas_Butman_Resume.pdf$'
-# /tilde is tilde.html beside the tilde/ folder that holds /tilde/privacy: both must resolve to a page.
+# /tilde is tilde.html beside the tilde/ folder that holds /tilde/privacy and /tilde/card: all must resolve to a page.
 check /tilde                  200 '^content-type: text/html'
 check /tilde/privacy          200 '^content-type: text/html'
 check /pt/tilde/privacy       200 '^content-type: text/html'
+check /tilde/card             200 '^content-type: text/html'
+check /pt/tilde/card          200 '^content-type: text/html'
 check /tilde/c                200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}"
 check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable'
 check /assets/missing-check.js 404 '^content-type: text/html' '^cache-control: no-store' '!immutable' '!max-age' "${security[@]}"

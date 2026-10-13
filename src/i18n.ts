@@ -10,6 +10,7 @@ export const translations: Record<string, string> = {
   '/hello': '/pt/hello',
   '/tilde': '/pt/tilde',
   '/tilde/privacy': '/pt/tilde/privacy',
+  '/tilde/card': '/pt/tilde/card',
 }
 
 /** Both versions of a translated page, from either of its paths. */

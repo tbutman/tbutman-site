@@ -4,6 +4,7 @@ import { findProject } from './content/projects'
 import { helloText } from './content/hello'
 import { tildeText } from './content/tilde'
 import { tildePrivacyText } from './content/tildePrivacy'
+import { tildeCardText } from './content/tildeCard'
 import { alternatesFor, htmlLang, localeOf, type Locale } from './i18n'
 
 export type Meta = {
@@ -58,6 +59,12 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
   }
   if (pathname === '/pt/tilde/privacy') {
     return { title: 'Privacidade da Tilde · os teus dados ficam no teu telemóvel', description: tildePrivacyText.pt.lede, image: '/og/tilde.png' }
+  }
+  if (pathname === '/tilde/card') {
+    return { title: 'Tilde Card · a business card you 3D-print yourself', description: tildeCardText.en.lede, image: '/og/tilde.png' }
+  }
+  if (pathname === '/pt/tilde/card') {
+    return { title: 'Cartão Tilde · um cartão de visita que imprimes em 3D', description: tildeCardText.pt.lede, image: '/og/tilde.png' }
   }
   if (pathname === '/resume') {
     return { title: `Résumé · ${profile.name}`, description: defaultDescription }

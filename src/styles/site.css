@@ -1576,6 +1576,35 @@ main {
   line-height: 1.6;
 }
 
+/* ---- /tilde/card ---- */
+.card-page-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-page-hero img {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  filter: drop-shadow(0 20px 36px rgb(0 0 0 / 50%));
+}
+
+.card-page-intro {
+  max-width: 46rem;
+}
+
+/* Four steps: two by two on wide screens (the phone rule further down still makes it one column). */
+.card-page-steps {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-page-backs {
+  max-width: 46rem;
+  margin-top: 1.5rem;
+}
+
 .privacy-list li + li {
   border-top: 1px solid var(--line);
 }
