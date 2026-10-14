@@ -941,6 +941,340 @@
         "links": [],
         "line": "<i>Hi</i> & <img src=x onerror=alert(1)>"
       }
+    },
+    {
+      "name": "C16: an emoji sequence at the cut is left out whole, not cut after its first emoji",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx👩‍💻"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 76,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    },
+    {
+      "name": "C16: a sequence that fits is kept",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx👩‍💻"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB",
+      "uriRecordBytes": 107,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx👩‍💻"
+      }
+    },
+    {
+      "name": "C16: a flag at the cut is left out whole, not cut to one letter",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx🇵🇹"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 136,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "C16: the cut falls between two flags",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx🇵🇹🇵🇹"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx%F0%9F%87%B5%F0%9F%87%B9",
+      "uriRecordBytes": 99,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx🇵🇹"
+      }
+    },
+    {
+      "name": "C16: a letter and its accent go together",
+      "fields": {
+        "name": "Jane Doe",
+        "company": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxé"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;o=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 136,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "C16: a skin tone goes with its emoji",
+      "fields": {
+        "name": "Jane Doe",
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx👍🏽"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;p=+351%20912%20345%20678,xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 99,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [
+          {
+            "number": "+351 912 345 678",
+            "label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "name": "C16: a variation selector goes with its emoji",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx❤️"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=janedoe.example/,xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 93,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C16: a tag flag goes whole",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 74,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    },
+    {
+      "name": "C17: CR LF becomes one space",
+      "fields": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "line": "Web Summit 2026\r\nLisbon"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;l=Web%20Summit%202026%20Lisbon",
+      "uriRecordBytes": 81,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "Web Summit 2026 Lisbon"
+      }
+    },
+    {
+      "name": "C17: runs of spaces and tabs become one space",
+      "fields": {
+        "name": "Jane  Doe",
+        "title": "Design \t lead",
+        "company": "North   wind"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;t=Design%20lead;o=North%20wind",
+      "uriRecordBytes": 65,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "Design lead",
+        "company": "North wind",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "C20: numeric IPv4 hosts are written as dotted decimal",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "http://0x7f.1/"
+          },
+          {
+            "url": "https://2130706433/"
+          },
+          {
+            "url": "https://1.2.3/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=http://127.0.0.1/;u=127.0.0.1/;u=1.2.0.3/",
+      "uriRecordBytes": 78,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "http://127.0.0.1/",
+            "label": "Website"
+          },
+          {
+            "url": "https://127.0.0.1/",
+            "label": "Website"
+          },
+          {
+            "url": "https://1.2.0.3/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: hosts that end in a number but aren’t IPv4 are left out",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://999.1.1.1/"
+          },
+          {
+            "url": "https://example.123/"
+          },
+          {
+            "url": "https://example.0x1/"
+          },
+          {
+            "url": "https://11111111111111111111111111111111/"
+          },
+          {
+            "url": "https://janedoe.example/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=janedoe.example/",
+      "uriRecordBytes": 53,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: IPv6 hosts are kept, in brackets",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://[::1]/"
+          },
+          {
+            "url": "http://[2001:DB8:0:0::1]:8080/notes"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=%5B::1%5D/;u=http://%5B2001:db8::1%5D:8080/notes",
+      "uriRecordBytes": 85,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://[::1]/",
+            "label": "Website"
+          },
+          {
+            "url": "http://[2001:db8::1]:8080/notes",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: a host label over 63 characters is kept",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.example/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.example/",
+      "uriRecordBytes": 110,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.example/",
+            "label": "Website"
+          }
+        ]
+      }
     }
   ],
   "decode": [
@@ -2164,6 +2498,177 @@
       "name": "l: a broken escape is damaged",
       "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=%ZZ",
       "error": "damaged"
+    },
+    {
+      "name": "C20: numeric IPv4 hosts are read as dotted decimal",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=0x7f.1/;u=2130706433/;u=http://1.2.3/;u=127.1/x;u=0x7f.0.0.1/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://127.0.0.1/",
+            "label": "Website"
+          },
+          {
+            "url": "https://127.0.0.1/",
+            "label": "Website"
+          },
+          {
+            "url": "http://1.2.0.3/",
+            "label": "Website"
+          },
+          {
+            "url": "https://127.0.0.1/x",
+            "label": "Website"
+          },
+          {
+            "url": "https://127.0.0.1/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: hosts that end in a number but aren’t IPv4 are left out",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=999.1.1.1/;u=example.123/;u=example.0x1/;u=11111111111111111111111111111111/;u=1.2.3.4.5/;u=janedoe.example/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: IPv6 hosts are kept, in brackets",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=%5B::1%5D/;u=http://%5B2001:DB8:0:0::1%5D:8080/notes;u=[::2]/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://[::1]/",
+            "label": "Website"
+          },
+          {
+            "url": "http://[2001:db8::1]:8080/notes",
+            "label": "Website"
+          },
+          {
+            "url": "https://[::2]/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: a broken IPv6 host is left out",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=%5B::1/;u=%5B::g%5D/;u=::1/;u=janedoe.example/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C20: a host label over 63 characters is kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.example/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C15: a katakana middle dot between Japanese words keeps the label",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=janedoe.example,%E3%82%B8%E3%82%A7%E3%83%BC%E3%83%B3%E3%83%BB%E3%83%89%E3%82%A6;u=janedoe.example/blog,%E3%83%96%E3%83%AD%E3%82%B0%EF%BD%A5%E8%A8%98%E4%BA%8B;u=janedoe.example/x,%E3%83%9A%E3%82%A4%E3%83%91%E3%83%AB%E3%83%BB%E3%82%B3%E3%83%A0",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "ジェーン・ドウ"
+          },
+          {
+            "url": "https://janedoe.example/blog",
+            "label": "ブログ･記事"
+          },
+          {
+            "url": "https://janedoe.example/x",
+            "label": "ペイパル・コム"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C15: a katakana middle dot next to Latin or digits is still a dot",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=evil.example,paypal%E3%83%BBcom;u=evil.example/a,paypal%EF%BD%A5com;u=evil.example/b,%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%BBcom;u=evil.example/c,paypal%E3%83%BB%E3%82%B3%E3%83%A0;u=evil.example/d,%E4%BE%8B%E3%81%88%E3%83%BBjp;u=evil.example/e,Jane%E3%83%BBDoe",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://evil.example/",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/a",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/b",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/c",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/d",
+            "label": "Website"
+          },
+          {
+            "url": "https://evil.example/e",
+            "label": "Website"
+          }
+        ]
+      }
     }
   ],
   "vcard": [

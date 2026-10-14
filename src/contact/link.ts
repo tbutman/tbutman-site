@@ -128,7 +128,47 @@ const PLATFORMS: [string, string[]][] = [
 ]
 
 const length = (value: string) => [...value].length
-const truncate = (value: string, max: number) => [...value].slice(0, max).join('').trim()
+
+// Code points a cut never comes before (checker C16): marks, ZWNJ and ZWJ, variation selectors,
+// skin-tone modifiers and tag characters, which belong to the character before them. A simple rule
+// the app's Kotlin matches without ICU's grapheme tables.
+const EXTEND: [number, number][] = [
+  [0x200c, 0x200d],
+  [0xfe00, 0xfe0f],
+  [0x1f3fb, 0x1f3ff],
+  [0xe0020, 0xe007f],
+  [0xe0100, 0xe01ef],
+]
+const inRange = (char: string, [from, to]: [number, number]) => (char.codePointAt(0) ?? 0) >= from && (char.codePointAt(0) ?? 0) <= to
+const extendsPrevious = (char: string) => /^\p{M}$/u.test(char) || EXTEND.some((range) => inRange(char, range))
+const isRegional = (char: string) => inRange(char, [0x1f1e6, 0x1f1ff])
+
+/**
+ * At most `max` code points, cut between characters as a reader sees them (checker C16): the cut
+ * moves back while the next code point extends the one before it, the one before it is a ZWJ, or it
+ * would split a flag's pair of regional indicators. Then trimmed.
+ */
+function truncate(value: string, max: number): string {
+  const cps = [...value]
+  if (cps.length <= max) return value.trim()
+  let cut = max
+  while (cut > 0) {
+    if (extendsPrevious(cps[cut]) || cps[cut - 1] === '\u200d') {
+      cut--
+      continue
+    }
+    if (isRegional(cps[cut]) && isRegional(cps[cut - 1])) {
+      let run = 0
+      while (cut - 1 - run >= 0 && isRegional(cps[cut - 1 - run])) run++
+      if (run % 2 === 1) {
+        cut--
+        continue
+      }
+    }
+    break
+  }
+  return cps.slice(0, cut).join('').trim()
+}
 
 /** What every text value goes through, in the encoder and the decoder alike. */
 const tidy = (value: string) =>
@@ -137,9 +177,12 @@ const tidy = (value: string) =>
     .replace(MARKS, '$1')
     .trim()
 
-/** The encoder's cleaning: control characters become spaces; "" when nothing visible is left. */
+/**
+ * The encoder's cleaning: control characters become spaces, and a run of spaces becomes one, so a
+ * line typed with CR LF has one space (checker C17); "" when nothing visible is left.
+ */
 function clean(value: string | undefined): string {
-  const tidied = tidy((value ?? '').replace(CONTROL, ' '))
+  const tidied = tidy((value ?? '').replace(CONTROL, ' ')).replace(/ {2,}/g, ' ')
   return isVisible(tidied) ? tidied : ''
 }
 
@@ -163,6 +206,11 @@ const CLAIMED_HOST = /(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+\p{L}[\p
 // small and one-dot-leader dots): 。 ｡ ꓸ · · ‧ ∙ ⋅ ・ ܁ ۔ ⸱ ⸼ ᛫ ᐧ ˙ ։ ¸.
 const LOOKALIKE_DOT = /[\u3002\uff61\ua4f8\u00b7\u0387\u2027\u2219\u22c5\u30fb\u0701\u06d4\u2e31\u2e3c\u16eb\u1427\u02d9\u0589\u00b8]/g
 
+// The katakana middle dot between two Japanese words ("ジェーン・ドウ", "ブログ・記事") separates
+// them; it isn't a dot in a domain (checker C15). It becomes a space first, so only a ・ or ･ with
+// Latin, digits or nothing on one side still folds to a dot ("paypal・com", "Jane・Doe").
+const KATAKANA_MIDDLE_DOT = /(?<=[\p{scx=Han}\p{scx=Hiragana}\p{scx=Katakana}])[\u30fb\uff65](?=[\p{scx=Han}\p{scx=Hiragana}\p{scx=Katakana}])/gu
+
 // Any other non-ASCII punctuation mark (\p{Po}) between two letters or digits, which can pass for a
 // dot too (checker V3-S1: ܂ ⸳ ་ • ⸰ ꓿), so the list above needn't be complete. Not the ideographic
 // and Arabic commas 、 and ، ("東京、大阪" isn't a domain); the fullwidth comma is ASCII after NFKC.
@@ -179,11 +227,12 @@ const PUNCTUATION_DOT = /(?<=[\p{L}\p{N}])(?![\p{ASCII}\u3001\u060c])\p{Po}(?=[\
  */
 function posesAsOtherHost(label: string, url: string): boolean {
   const host = new URL(url).hostname.replace(/^www\./, '')
-  // Invisible characters go (checker V3-M1: a variation selector or ZWJ before the dot), dot-like
-  // marks become dots (middle dots, ideographic and Lisu dots, and other punctuation between
-  // letters), and blanks before a dot go. The dots fold before NFKC too, which turns ˙ and ¸ into a
-  // space and a combining mark.
+  // A katakana middle dot between Japanese words becomes a space (C15). Invisible characters go
+  // (checker V3-M1: a variation selector or ZWJ before the dot), dot-like marks become dots (middle
+  // dots, ideographic and Lisu dots, and other punctuation between letters), and blanks before a
+  // dot go. The dots fold before NFKC too, which turns ˙ and ¸ into a space and a combining mark.
   const text = label
+    .replace(KATAKANA_MIDDLE_DOT, ' ')
     .replace(LOOKALIKE_DOT, '.')
     .normalize('NFKC')
     .replace(/\p{DI}/gu, '')
