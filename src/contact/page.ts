@@ -272,36 +272,21 @@ function footer(): HTMLElement {
   return foot
 }
 
-// How Save contact hands the file to the phone. iOS Safari's best way is settled by the iPhone test
-// (spec section 7, T2); until then `?save=` picks one. The query never carries contact data.
-type SaveMethod = 'blob' | 'data' | 'download' | 'share'
+// How Save contact hands the file to the phone (spec section 4). iOS Safari opens the blob URL and
+// shows its new-contact sheet (test T2); everything else downloads the file, which Android's
+// contacts app opens.
 const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-const asked = new URLSearchParams(location.search).get('save')
-const method: SaveMethod = asked === 'blob' || asked === 'data' || asked === 'download' || asked === 'share' ? asked : isIos ? 'blob' : 'download'
 
-async function save(contact: Contact) {
+function save(contact: Contact) {
   const day = new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(new Date())
   const text = vcard(contact, { mobile: t.mobileWord, note: t.note.replace('%s', day) })
-  const name = vcardFileName(contact)
-  const blob = new Blob([text], { type: 'text/vcard;charset=utf-8' })
-  if (method === 'share') {
-    const file = new File([blob], name, { type: 'text/vcard' })
-    if (navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file] }).catch(() => undefined)
-      return
-    }
-  }
-  if (method === 'data') {
-    location.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(text)}`
-    return
-  }
-  const url = URL.createObjectURL(blob)
-  if (method === 'blob') {
+  const url = URL.createObjectURL(new Blob([text], { type: 'text/vcard;charset=utf-8' }))
+  if (isIos) {
     location.href = url
   } else {
     const a = el('a')
     a.href = url
-    a.download = name
+    a.download = vcardFileName(contact)
     document.body.append(a)
     a.click()
     a.remove()
@@ -353,7 +338,7 @@ function showContact(root: HTMLElement, contact: Contact) {
   const button = el('button', 'save')
   button.type = 'button'
   button.append(icon('add'), t.save)
-  button.addEventListener('click', () => void save(contact))
+  button.addEventListener('click', () => save(contact))
   root.append(face, button, el('p', 'under', t.asks))
 
   const labels = emailLabels(contact)
