@@ -22,7 +22,7 @@ const en = {
       heading: 'what stays on your phone',
       points: [
         'Your cards, their photos and your Met list are stored only on your phone. Tilde opts out of Android’s cloud backup.',
-        'A backup is a file saved wherever you choose. It isn’t encrypted, so keep it somewhere private. The Guest Wi-Fi password is only included if you check it.',
+        'A backup is a file saved wherever you choose. It isn’t encrypted, so keep it somewhere private. The Guest Wi-Fi and Hotspot passwords are only included if you check the box for them.',
         '**Delete all data** (Settings → About, from the gear on the Cards tab) removes everything from the phone, as uninstalling Tilde would.',
       ],
     },
@@ -80,7 +80,7 @@ const pt: TildePrivacyText = {
       heading: 'o que fica no teu telemóvel',
       points: [
         'Os teus cartões, as fotografias deles e a tua lista Conhecidos ficam guardados apenas no teu telemóvel. A Tilde fica de fora das cópias de segurança na nuvem do Android.',
-        'Uma cópia de segurança é um ficheiro guardado onde escolheres. Não é encriptado, por isso guarda-o num sítio privado. A palavra-passe do Wi-Fi para convidados só é incluída se a marcares.',
+        'Uma cópia de segurança é um ficheiro guardado onde escolheres. Não é encriptado, por isso guarda-o num sítio privado. As palavras-passe do Wi-Fi para convidados e do hotspot só são incluídas se marcares a opção.',
         '**Apagar todos os dados** (Definições → Acerca de, na roda dentada do separador Cartões) apaga tudo do telemóvel, como se desinstalasses a Tilde.',
       ],
     },
