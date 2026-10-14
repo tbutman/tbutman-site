@@ -23,7 +23,7 @@ import {
 
 // The vectors' SHA-256, pinned in the spec's header and in the app's ContactLinkTest too: a change
 // to the vectors fails every suite until each copy and each pin is updated (checker improvement 3).
-const X1_VECTORS_SHA256 = 'd0a15a8b3d83f885fba2da8fd035ff951dbc58694a371aac2527119cb180af8b'
+const X1_VECTORS_SHA256 = '8b9b11e6e5eaec9975cf5404a8405d36ba43329e55ecde0aa3dd91c2354fd8c5'
 const vectorsFile = readFileSync(new URL('./vectors.json', import.meta.url))
 const vectors = JSON.parse(vectorsFile.toString('utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')

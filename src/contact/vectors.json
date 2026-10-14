@@ -1275,6 +1275,72 @@
           }
         ]
       }
+    },
+    {
+      "name": "B22-M1: punycode that decodes past U+10FFFF is left out",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://xn--w416146o.com/"
+          },
+          {
+            "url": "https://xn--2116146o/"
+          },
+          {
+            "url": "https://janedoe.example/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=janedoe.example/",
+      "uriRecordBytes": 53,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C23: a ZWJ before a letter joins nothing, so the cut stays at 100",
+      "fields": {
+        "name": "x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x"
+      },
+      "url": "https://taptilde.com/c#1;n=x%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8Dx%E2%80%8D",
+      "uriRecordBytes": 527,
+      "decoded": {
+        "name": "x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍x‍",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "C23: a ZWJ before a symbol below U+1F000 still joins it",
+      "fields": {
+        "name": "Jane Doe",
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx🏳️‍⚧️"
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;l=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "uriRecordBytes": 74,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [],
+        "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
     }
   ],
   "decode": [
@@ -2665,6 +2731,23 @@
           },
           {
             "url": "https://evil.example/e",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "B22-M1: punycode that decodes past U+10FFFF is left out",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=https%3A%2F%2Fxn--w416146o.com;u=xn--2116146o/;u=janedoe.example/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
             "label": "Website"
           }
         ]

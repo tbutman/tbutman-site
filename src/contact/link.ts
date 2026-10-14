@@ -142,18 +142,22 @@ const EXTEND: [number, number][] = [
 const inRange = (char: string, [from, to]: [number, number]) => (char.codePointAt(0) ?? 0) >= from && (char.codePointAt(0) ?? 0) <= to
 const extendsPrevious = (char: string) => /^\p{M}$/u.test(char) || EXTEND.some((range) => inRange(char, range))
 const isRegional = (char: string) => inRange(char, [0x1f1e6, 0x1f1ff])
+// What a ZWJ joins into one emoji (checker C23, UAX #29's rule GB11): anything in U+1F000–U+1FAFF,
+// assigned or not, or another symbol (\p{So}) before it, such as ⚧ or ❤. A ZWJ before a letter
+// joins nothing, so "x‍x‍x…" is cut like any text.
+const isPictograph = (char: string) => inRange(char, [0x1f000, 0x1faff]) || ((char.codePointAt(0) ?? 0) < 0x1f000 && /^\p{So}$/u.test(char))
 
 /**
  * At most `max` code points, cut between characters as a reader sees them (checker C16): the cut
- * moves back while the next code point extends the one before it, the one before it is a ZWJ, or it
- * would split a flag's pair of regional indicators. Then trimmed.
+ * moves back while the next code point extends the one before it, the one before it is a ZWJ and
+ * the next a pictograph (C23), or it would split a flag's pair of regional indicators. Then trimmed.
  */
 function truncate(value: string, max: number): string {
   const cps = [...value]
   if (cps.length <= max) return value.trim()
   let cut = max
   while (cut > 0) {
-    if (extendsPrevious(cps[cut]) || cps[cut - 1] === '\u200d') {
+    if (extendsPrevious(cps[cut]) || (cps[cut - 1] === '\u200d' && isPictograph(cps[cut]))) {
       cut--
       continue
     }
@@ -277,6 +281,9 @@ function webLink(text: string): string | null {
   }
   if (DEVIATION.test(host)) return null
   if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) return null
+  // A punycode label must decode (checker B22-M1). Browsers' parsers keep some that don't, such as
+  // xn--w416146o, which decodes past U+10FFFF, while Node's refuses them: the page mustn't depend on which.
+  if (url.hostname.split('.').some((label) => label.startsWith('xn--') && !punyDecodes(label.slice(4)))) return null
   return length(url.href) <= LIMITS.url ? url.href : null
 }
 
@@ -516,6 +523,15 @@ function punyDecode(input: string): string {
     out.splice(i++, 0, n)
   }
   return String.fromCodePoint(...out)
+}
+
+function punyDecodes(label: string): boolean {
+  try {
+    punyDecode(label)
+    return true
+  } catch {
+    return false
+  }
 }
 
 // Hosts shown as written (design rec. 3): ASCII letters, digits, dots and hyphens, plus the Latin-1
