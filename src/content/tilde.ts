@@ -46,7 +46,7 @@ const en = {
     webm: '/tilde/video/tilde-card-16x9.webm',
     mp4: '/tilde/video/tilde-card-16x9.mp4',
     poster: '/tilde/video/tilde-card-16x9.jpg',
-    label: 'A 26-second video: a phone taps a Tilde Card and opens its link, the card is printed in four colors, scanned, and an NFC sticker is sealed inside.',
+    label: 'A 26-second video: a phone taps a Tilde Card and opens its link, the card is printed in four colors, scanned, and an NFC sticker goes inside.',
   } as Video,
   heroPhone: {
     src: '/tilde/share.webp',
@@ -130,7 +130,7 @@ const en = {
   cardHeading: 'the tilde card (optional)',
   cardBody: [
     'Tilde works on its own, but if you have a 3D printer there’s a free Tilde Card to go with it. A QR code on the front opens your website, and an optional NFC sticker inside lets people tap it too.',
-    'Type in your name, links and colors, choose a back (a terminal window, a plain one or none), and print it all at once on a multi-color printer. Tilde can write your link or your whole contact card onto its NFC sticker, and lock it if you want it never to change.',
+    'Type in your name, links and colors, choose a back (a terminal window, a plain one or none), and print it on a multi-color printer. By default it prints in two pieces with no pause, and the sticker goes between them; a one-piece build pauses halfway to put it in. Tilde can write your link or your whole contact card onto its NFC sticker, and lock it if you want it never to change.',
   ],
   cardFrontAlt: 'The Tilde Card, front',
   backs: [
@@ -217,7 +217,7 @@ const pt: TildeText = {
     webm: '/tilde/video/tilde-card-pt-16x9.webm',
     mp4: '/tilde/video/tilde-card-pt-16x9.mp4',
     poster: '/tilde/video/tilde-card-pt-16x9.jpg',
-    label: 'Um vídeo de 26 segundos: um telemóvel encosta a um cartão Tilde e abre a ligação, o cartão é impresso em quatro cores, lido com a câmara, e um autocolante NFC fica selado lá dentro.',
+    label: 'Um vídeo de 26 segundos: um telemóvel encosta a um cartão Tilde e abre a ligação, o cartão é impresso em quatro cores, lido com a câmara, e um autocolante NFC é posto lá dentro.',
   },
   heroPhone: {
     src: '/tilde/share-pt.webp',
@@ -301,7 +301,7 @@ const pt: TildeText = {
   cardHeading: 'o cartão tilde (opcional)',
   cardBody: [
     'A Tilde funciona sozinha, mas, se tiveres uma impressora 3D, há um cartão Tilde grátis para a acompanhar. Um código QR na frente abre o teu site, e um autocolante NFC opcional lá dentro permite que também o encostem.',
-    'Escreve o teu nome, as tuas ligações e as cores, escolhe um verso (uma janela de terminal, um simples ou nenhum) e imprime-o de uma só vez numa impressora multicolor. A Tilde pode gravar a tua ligação ou o teu cartão de contacto completo no autocolante NFC, e bloqueá-lo se quiseres que nunca mude.',
+    'Escreve o teu nome, as tuas ligações e as cores, escolhe um verso (uma janela de terminal, um simples ou nenhum) e imprime-o numa impressora multicolor. Por predefinição, imprime-se em duas peças, sem pausa, e o autocolante vai entre elas; a versão numa só peça faz uma pausa a meio para o pores lá dentro. A Tilde pode gravar a tua ligação ou o teu cartão de contacto completo no autocolante NFC, e bloqueá-lo se quiseres que nunca mude.',
   ],
   cardFrontAlt: 'O cartão Tilde, frente',
   backs: [
