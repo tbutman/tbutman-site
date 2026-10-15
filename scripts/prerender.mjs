@@ -51,6 +51,9 @@ async function pageWeight(html) {
 
 for (const path of paths) {
   const { html, meta } = render(path)
+  // A draft's placeholders (a MakerWorld link or a print time not known yet) build locally, but CI
+  // stops on them, so they can't be released.
+  if (process.env.CI && /PLACEHOLDER|\[TBD\]/.test(html)) throw new Error(`${path}: a draft placeholder is still on the page`)
   // The images are drawn by `npm run og` and committed; catch a page whose card was never drawn.
   if (!(await readFile(join(dist, meta.image)).then(() => true, () => false))) {
     throw new Error(`${path}: missing link-preview image ${meta.image}; run npm run og`)

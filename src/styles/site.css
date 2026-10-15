@@ -1649,9 +1649,23 @@ main {
   max-width: 46rem;
 }
 
-/* Four steps: two by two on wide screens (the phone rule further down still makes it one column). */
+/* The steps: two by two on wide screens (the phone rule further down still makes it one column),
+   and an odd last step across both columns. */
 .card-page-steps {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-page-steps li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.card-page-keyrings {
+  max-width: 46rem;
+  margin-top: 1.5rem;
+}
+
+.card-page-keyrings + .button-row {
+  margin-top: 1rem;
 }
 
 .card-page-backs {

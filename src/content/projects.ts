@@ -168,7 +168,7 @@ export const projects: Project[] = [
       {
         heading: 'a 3D model that checks itself',
         body: [
-          'The card is a parametric OpenSCAD model in four colors of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. The printer pauses halfway, the NFC sticker goes in, and the rest of the card seals it.',
+          'The card is a parametric OpenSCAD model in four colors of PLA, printed face-down because the first sample showed the plate side comes out flat and matte. It prints as two pieces side by side, so both faces get that finish and there’s no pause: the NFC sticker goes into the front piece, and the back piece clicks in past a 0.2 mm lip. Unglued, it opens again to swap the sticker. The first version printed in one piece and paused halfway for the sticker, and that build is still an option.',
           'Every build rasterizes the exported model, decodes the QR code and checks every letter stroke and gap against what the nozzle can print, before anything reaches the printer. To let anyone customize the card on MakerWorld, which runs a single OpenSCAD file with no scripts, I wrote a QR encoder in OpenSCAD from the ISO standard; a test compares it with a reference library module for module across every size and mask the card uses.',
         ],
       },
@@ -195,7 +195,8 @@ export const projects: Project[] = [
       'Several cards, each a complete identity with its own choice of what its contact card includes, managed on a Cards tab; backup and restore through a file; a light theme; the Tilde QR code home-screen widget; and the whole app in English and European Portuguese.',
       'A contact page for iPhones: the contact travels in the link’s fragment, so no server receives it; one self-contained request with a hash-based Content Security Policy, a decoder shared with the app through test vectors, and the .vcf built on the phone.',
       'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK to about 2 MB).',
-      'A parametric OpenSCAD card in four colors: QR code only or with an NFC sticker sealed inside (thin or thick), three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
+      'A parametric OpenSCAD card in four colors: QR code only, or two pieces that click together around an NFC sticker (thin or thick), with a one-piece build that pauses for it; three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
+      'Two keyrings from the same code, each two pieces around a sticker: a QR tag that grows with its link, and a round NFC fob with a quarter-turn twist-lock that a coin opens.',
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     outcomes: [

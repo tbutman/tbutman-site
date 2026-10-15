@@ -6,11 +6,12 @@ import { tildeText } from '../content/tilde'
 import { tildeCardText } from '../content/tildeCard'
 import { type Locale, translations } from '../i18n'
 
-// /tilde/card: the Tilde Card for makers, in the product page's style. The video, real photos and
-// the MakerWorld button come later (see content/tildeCard.ts).
+// /tilde/card: the Tilde Card and its keyrings for makers, in the product page's style. Real photos
+// come later (see content/tildeCard.ts).
 export default function TildeCard({ locale }: { locale: Locale }) {
   const card = tildeCardText[locale]
   const { guide, source, makerWorld } = card.links
+  const keyringsLink = card.keyringsLink
   return (
     <article className="product">
       <LangSwitch locale={locale} paths={{ en: '/tilde/card', pt: translations['/tilde/card'] }} />
@@ -121,6 +122,27 @@ export default function TildeCard({ locale }: { locale: Locale }) {
         </ul>
       </section>
 
+      <section className="section" aria-labelledby="keyrings-heading">
+        <div className="section-head">
+          <h2 id="keyrings-heading">{card.keyringsHeading}</h2>
+        </div>
+        <p className="product-body card-page-intro">{card.keyringsBody}</p>
+        <ul className="privacy-list panel card-page-keyrings">
+          {card.keyrings.map((item) => (
+            <li key={item}>
+              <RichText text={item} />
+            </li>
+          ))}
+        </ul>
+        {keyringsLink && (
+          <div className="button-row">
+            <a className="button" href={keyringsLink.href}>
+              {keyringsLink.label} ↗
+            </a>
+          </div>
+        )}
+      </section>
+
       <section className="section" aria-labelledby="faq-heading">
         <div className="section-head">
           <h2 id="faq-heading">{card.faqHeading}</h2>
@@ -142,7 +164,12 @@ export default function TildeCard({ locale }: { locale: Locale }) {
           <b>~</b> {card.ctaText}
         </p>
         <div className="button-row">
-          <a className="button primary" href={guide.href}>
+          {makerWorld && (
+            <a className="button primary" href={makerWorld.href}>
+              {makerWorld.label} ↗
+            </a>
+          )}
+          <a className={makerWorld ? 'button' : 'button primary'} href={guide.href}>
             {guide.label} ↗
           </a>
           <Link className="button" to={card.appLink.to}>
