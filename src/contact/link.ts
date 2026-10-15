@@ -282,9 +282,10 @@ function webLink(text: string): string | null {
   }
   if (DEVIATION.test(host)) return null
   if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) return null
-  // A punycode label must decode (checker B22-M1). Browsers' parsers keep some that don't, such as
-  // xn--w416146o, which decodes past U+10FFFF, while Node's refuses them: the page mustn't depend on which.
-  if (url.hostname.split('.').some((label) => label.startsWith('xn--') && !punyDecodes(label.slice(4)))) return null
+  // A punycode label must decode, and not to a label that starts with a mark (checker B22-M1, C24).
+  // Browsers' parsers keep some that Node's refuses, such as xn--w416146o, which decodes past
+  // U+10FFFF, and xn--mmc (ூ): the page mustn't depend on which.
+  if (url.hostname.split('.').some((label) => label.startsWith('xn--') && !punycodeOk(label.slice(4)))) return null
   return length(url.href) <= LIMITS.url ? url.href : null
 }
 
@@ -526,10 +527,9 @@ function punyDecode(input: string): string {
   return String.fromCodePoint(...out)
 }
 
-function punyDecodes(label: string): boolean {
+function punycodeOk(label: string): boolean {
   try {
-    punyDecode(label)
-    return true
+    return !/^\p{M}/u.test(punyDecode(label))
   } catch {
     return false
   }

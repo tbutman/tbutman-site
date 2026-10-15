@@ -1370,6 +1370,113 @@
         "links": [],
         "line": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
+    },
+    {
+      "name": "C24: hosts with characters mapped since Unicode 3.2 are written as UTS #46 maps them",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://Ɏ.com/"
+          },
+          {
+            "url": "https://Აბ.ge/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xn--ina.com/;u=xn--lodc.ge/",
+      "uriRecordBytes": 64,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--ina.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://xn--lodc.ge/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C24: a punycode label that starts with a mark is left out",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://xn--mmc.com/"
+          },
+          {
+            "url": "https://xn--mmc/"
+          },
+          {
+            "url": "https://janedoe.example/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=janedoe.example/",
+      "uriRecordBytes": 53,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "B23-S1: ẞ in upper case, percent-encoded or before a trailing dot is left out; the hosts it could become are kept",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://GLAẞDOOR.COM/jobs"
+          },
+          {
+            "url": "https://gla%E1%BA%9Edoor.com/"
+          },
+          {
+            "url": "https://glaẞdoor.com./"
+          },
+          {
+            "url": "https://xn--gladoor-2va.com/"
+          },
+          {
+            "url": "https://glassdoor.com/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xn--gladoor-2va.com/;u=glassdoor.com/",
+      "uriRecordBytes": 74,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--gladoor-2va.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://glassdoor.com/",
+            "label": "Website"
+          }
+        ]
+      }
     }
   ],
   "decode": [
@@ -2789,6 +2896,73 @@
         "links": [
           {
             "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C24: hosts with characters mapped since Unicode 3.2 are read as UTS #46 maps them",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=%C9%8E.com/;u=%E1%B2%90%E1%B2%91.ge/;u=xn--ina.com/;u=xn--lodc.ge/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--ina.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://xn--lodc.ge/",
+            "label": "Website"
+          },
+          {
+            "url": "https://xn--ina.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://xn--lodc.ge/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "C24: a punycode label that starts with a mark is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=xn--mmc.com/;u=xn--mmc/;u=janedoe.example/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://janedoe.example/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "B23-S1: ẞ in upper case or double-encoded is skipped; the hosts it could become are kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=GLA%E1%BA%9EDOOR.COM/;u=gla%25E1%25BA%259Edoor.com/;u=xn--gladoor-2va.com/;u=glassdoor.com/",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://xn--gladoor-2va.com/",
+            "label": "Website"
+          },
+          {
+            "url": "https://glassdoor.com/",
             "label": "Website"
           }
         ]
