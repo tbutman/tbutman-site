@@ -588,6 +588,35 @@
       }
     },
     {
+      "name": "round 3: a host with ẞ (capital sharp s) is left out too, as Unicode tables before and after 15.1 map it differently",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://glaẞdoor.com/"
+          },
+          {
+            "url": "https://example.com/"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=example.com/",
+      "uriRecordBytes": 49,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://example.com/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
       "name": "round 2: combining marks joined by ZWJ are cut to three",
       "fields": {
         "name": "Jané́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍́́́‍ Doe"
@@ -1849,6 +1878,18 @@
     {
       "name": "round 2: a link to ς.gr is skipped",
       "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=%CF%82.gr",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": []
+      }
+    },
+    {
+      "name": "round 3: a link to glaẞdoor.com (capital sharp s) is skipped",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=gla%E1%BA%9Edoor.com",
       "contact": {
         "name": "Jane Doe",
         "title": "",

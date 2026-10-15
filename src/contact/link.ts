@@ -105,8 +105,9 @@ const VISIBLE = /[\p{L}\p{N}\p{P}\p{S}]/u
 const isVisible = (value: string) => VISIBLE.test(value.replace(/\u2800/g, ''))
 // Hosts on which the two IDNA standards disagree: UTS #46 (the WHATWG parser, the page) keeps ß
 // and final sigma and gives xn--strae-oqa.de, while IDNA2003 (java.net.IDN, the app) maps them to
-// strasse.de and σ, someone else's domain. Links on such hosts are left out on both sides.
-const DEVIATION = /[\u00df\u03c2\u200c\u200d]/u
+// strasse.de and σ, someone else's domain. Capital ẞ too (checker B23-S1): UTS #46 maps it to ss
+// before Unicode 15.1 and to ß after. Links on such hosts are left out on both sides.
+const DEVIATION = /[\u00df\u1e9e\u03c2\u200c\u200d]/u
 const EMAIL = /^[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
 // A phone number: an optional +, then digits in groups separated by single spaces.
 const PHONE = /^\+?[0-9]+( [0-9]+)*$/
