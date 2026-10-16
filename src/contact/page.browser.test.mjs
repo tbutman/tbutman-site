@@ -69,8 +69,9 @@ for (const [engine, type] of [
 
     /** Opens the page on a fragment, and returns what it showed, asked for and complained about. */
     async function open(fragment, options = {}) {
-      const { time, ...contextOptions } = options
+      const { time, setup, ...contextOptions } = options
       const context = await browser.newContext({ locale: 'en-US', acceptDownloads: true, ...contextOptions })
+      if (setup) await setup(context)
       const page = await context.newPage()
       if (time) await page.clock.setFixedTime(time)
       const problems = []
@@ -246,17 +247,60 @@ for (const [engine, type] of [
       }
     })
 
-    // On an iPhone, Save contact opens the .vcf's blob URL, and Safari shows its new-contact sheet
-    // (spec section 4, test T2). WebKit with an iPhone's user agent takes that path.
+    // On an iPhone, Save contact opens the .vcf's blob URL in the page itself, and Safari shows its
+    // new-contact sheet (spec section 4, test T2). WebKit with an iPhone's user agent takes that path.
+    // What the engine then does with a text/vcard page differs by port: macOS WebKit opens it, while
+    // Linux WebKit (GTK/WPE, as in CI) turns any top-level text/vcard navigation into a download,
+    // with or without this page. So the test checks the page's own action on both: one blob of the
+    // exact .vcf, opened by navigating to it, and no download link clicked.
     if (engine === 'webkit') {
-      test('Save contact on an iPhone opens the blob, not a download', async () => {
+      test('Save contact on an iPhone opens the blob, not a download link', async () => {
         const userAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1'
-        const { context, page } = await open('#1;n=Jane%20Doe', { userAgent })
+        const v = vectors.vcard[0]
+        const saved = []
+        const setup = async (context) => {
+          await context.exposeBinding('reportSave', (_source, entry) => saved.push(entry))
+          await context.addInitScript(() => {
+            const create = URL.createObjectURL
+            URL.createObjectURL = (object) => {
+              const url = create.call(URL, object)
+              window.reportSave({ kind: 'blob', url, type: object.type })
+              return url
+            }
+            document.addEventListener('click', (event) => {
+              const link = event.target instanceof Element ? event.target.closest('a[download]') : null
+              if (link) window.reportSave({ kind: 'download link', url: link.href })
+            }, true)
+          })
+        }
+        const { context, page } = await open(fragmentOf(v.url), { userAgent, locale: v.locale, time: new Date(2026, 9, 13, 12), setup })
         try {
           const downloads = []
           page.on('download', (download) => downloads.push(download))
-          await Promise.all([page.waitForURL(/^blob:/), page.locator('.save').click()])
-          assert.deepEqual(downloads, [])
+          const never = new Promise(() => {})
+          const outcome = await Promise.race([
+            page.waitForURL(/^blob:/).then(() => 'opened', () => never),
+            page.waitForEvent('download').then(() => 'downloaded'),
+            page.locator('.save').click().then(() => never),
+          ])
+          const blobs = saved.filter((entry) => entry.kind === 'blob')
+          assert.deepEqual(saved.filter((entry) => entry.kind !== 'blob'), [])
+          assert.deepEqual(blobs.map((blob) => blob.type), ['text/vcard;charset=utf-8'])
+          let text
+          if (outcome === 'opened') {
+            assert.equal(page.url(), blobs[0].url)
+            assert.deepEqual(downloads, [])
+            // WebKit shows it as plain text, which turns CR LF into LF; the file's own line ends are
+            // checked where it downloads.
+            const shown = await page.evaluate(() => ({ type: document.contentType, text: document.querySelector('pre')?.textContent }))
+            assert.equal(shown.type, 'text/vcard')
+            text = shown.text.replace(/\n/g, '\r\n')
+          } else {
+            assert.equal(downloads.length, 1)
+            assert.equal(downloads[0].url(), blobs[0].url)
+            text = await readFile(await downloads[0].path(), 'utf8')
+          }
+          assert.equal(text, v.vcard)
         } finally {
           await context.close()
         }
