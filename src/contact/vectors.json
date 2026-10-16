@@ -1477,6 +1477,61 @@
           }
         ]
       }
+    },
+    {
+      "name": "B32-C1: a host with anything but letters, digits, dots and hyphens is left out; IPv4, IPv6 and hyphenated hosts are kept",
+      "fields": {
+        "name": "Jane Doe",
+        "links": [
+          {
+            "url": "https://a*b.example/"
+          },
+          {
+            "url": "https://my_site.example.com/"
+          },
+          {
+            "url": "https://＊mé.com/"
+          },
+          {
+            "url": "https://a!b.com/"
+          },
+          {
+            "url": "https://a~b.com/"
+          },
+          {
+            "url": "https://127.0.0.1/"
+          },
+          {
+            "url": "https://[::1]/"
+          },
+          {
+            "url": "https://jane-doe.example./"
+          }
+        ]
+      },
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=127.0.0.1/;u=%5B::1%5D/;u=jane-doe.example./",
+      "uriRecordBytes": 81,
+      "decoded": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://127.0.0.1/",
+            "label": "Website"
+          },
+          {
+            "url": "https://[::1]/",
+            "label": "Website"
+          },
+          {
+            "url": "https://jane-doe.example./",
+            "label": "Website"
+          }
+        ]
+      }
     }
   ],
   "decode": [
@@ -2963,6 +3018,31 @@
           },
           {
             "url": "https://glassdoor.com/",
+            "label": "Website"
+          }
+        ]
+      }
+    },
+    {
+      "name": "B32-C1: a host with anything but letters, digits, dots and hyphens is skipped, as written or as Chromium escapes it; IPv4, IPv6 and hyphenated hosts are kept",
+      "url": "https://taptilde.com/c#1;n=Jane%20Doe;u=a*b.example/;u=my_site.example.com/;u=xn--*m-cja.com/;u=xn--%252Am-5vf.com/;u=%EF%BC%8Am.com/;u=a%E2%80%A8b.com/;u=a$b.com/;u=127.0.0.1/;u=%5B::1%5D/;u=jane-doe.example./",
+      "contact": {
+        "name": "Jane Doe",
+        "title": "",
+        "company": "",
+        "emails": [],
+        "phones": [],
+        "links": [
+          {
+            "url": "https://127.0.0.1/",
+            "label": "Website"
+          },
+          {
+            "url": "https://[::1]/",
+            "label": "Website"
+          },
+          {
+            "url": "https://jane-doe.example./",
             "label": "Website"
           }
         ]

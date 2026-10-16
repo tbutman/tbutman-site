@@ -108,6 +108,9 @@ const isVisible = (value: string) => VISIBLE.test(value.replace(/\u2800/g, ''))
 // strasse.de and σ, someone else's domain. Capital ẞ too (checker B23-S1): UTS #46 maps it to ss
 // before Unicode 15.1 and to ß after. Links on such hosts are left out on both sides.
 const DEVIATION = /[\u00df\u1e9e\u03c2\u200c\u200d]/u
+// A link's host as the parser serializes it: ASCII letters, digits, dots and hyphens, or an IPv6
+// address in brackets (checker B32-C1).
+const HOST = /^(?:[a-z0-9.-]+|\[[0-9a-f:]+\])$/
 const EMAIL = /^[A-Za-z0-9.!$'*+/=^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
 // A phone number: an optional +, then digits in groups separated by single spaces.
 const PHONE = /^\+?[0-9]+( [0-9]+)*$/
@@ -286,6 +289,10 @@ function webLink(text: string): string | null {
   // Browsers' parsers keep some that Node's refuses, such as xn--w416146o, which decodes past
   // U+10FFFF, and xn--mmc (ூ): the page mustn't depend on which.
   if (url.hostname.split('.').some((label) => label.startsWith('xn--') && !punycodeOk(label.slice(4)))) return null
+  // Only letters, digits, dots and hyphens, or an IPv6 address in brackets (checker B32-C1). The
+  // parser keeps other characters in a host (my_site, a*b), and Chromium writes some as %2A or %20,
+  // which no browser can resolve; the engines also differ on which they keep.
+  if (!HOST.test(url.hostname)) return null
   return length(url.href) <= LIMITS.url ? url.href : null
 }
 
