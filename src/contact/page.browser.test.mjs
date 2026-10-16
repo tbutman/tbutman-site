@@ -246,6 +246,23 @@ for (const [engine, type] of [
       }
     })
 
+    // On an iPhone, Save contact opens the .vcf's blob URL, and Safari shows its new-contact sheet
+    // (spec section 4, test T2). WebKit with an iPhone's user agent takes that path.
+    if (engine === 'webkit') {
+      test('Save contact on an iPhone opens the blob, not a download', async () => {
+        const userAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1'
+        const { context, page } = await open('#1;n=Jane%20Doe', { userAgent })
+        try {
+          const downloads = []
+          page.on('download', (download) => downloads.push(download))
+          await Promise.all([page.waitForURL(/^blob:/), page.locator('.save').click()])
+          assert.deepEqual(downloads, [])
+        } finally {
+          await context.close()
+        }
+      })
+    }
+
     // Downloads are how Save contact works outside iOS (spec section 4); WebKit here is not iOS.
     // Each vector is the page in its language on October 13, 2026 (the note carries the date).
     for (const v of vectors.vcard) {
