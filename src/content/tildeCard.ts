@@ -42,7 +42,7 @@ const en = {
     '**A 0.4 mm nozzle,** the one most printers come with, or a 0.2 mm nozzle for the sharpest small text.',
     '**A textured PEI plate** (recommended): the front comes out matte, so the QR code doesn’t reflect light.',
     '**Optional, for a card people can tap:** a round NTAG215 NFC sticker for each card, 22–25 mm across and 25.5 mm at most. They cost about $0.25 to $0.65 each (prices as listed in October 2026).',
-    '**Optional, to make it permanent:** superglue gel (not the thin kind). Without glue, the card stays shut and opens again to swap the sticker.',
+    '**Optional, to make it permanent:** superglue gel (not the thin kind). Without glue, it holds, and opens again to swap the sticker.',
   ],
 
   stepsHeading: 'make it yours',
@@ -161,7 +161,7 @@ const pt: TildeCardText = {
     '**Um bico de 0,4 mm,** o que vem com a maioria das impressoras, ou um bico de 0,2 mm para o texto pequeno mais nítido.',
     '**Uma placa PEI texturada** (recomendada): a frente fica mate, para o código QR não refletir a luz.',
     '**Opcional, para um cartão que se possa encostar:** um autocolante NFC redondo NTAG215 por cartão, com 22–25 mm de diâmetro e 25,5 mm no máximo. Custam cerca de 0,25 a 0,65 dólares cada (preços de outubro de 2026).',
-    '**Opcional, para o tornar permanente:** cola instantânea em gel (não a líquida). Sem cola, o cartão fica fechado e volta a abrir-se para trocares o autocolante.',
+    '**Opcional, para o tornar permanente:** cola instantânea em gel (não a líquida). Sem cola, segura-se, e volta a abrir-se para trocares o autocolante.',
   ],
 
   stepsHeading: 'faz o teu',

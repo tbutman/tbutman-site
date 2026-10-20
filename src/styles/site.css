@@ -2185,6 +2185,11 @@ main {
   gap: 0.5rem;
 }
 
+.booth-grid figure {
+  margin: 0;
+}
+
+.booth-grid figcaption,
 .booth-grid-pairs span,
 .booth-grid-icons span {
   display: block;
@@ -2193,6 +2198,7 @@ main {
   color: var(--dim);
 }
 
+.booth-grid figcaption,
 .booth-grid-pairs span {
   text-align: center;
 }

@@ -43,7 +43,7 @@ export const cardsPage: BoothPage = {
     ['per design', { slot: 'themes', layout: 'pairs', ratio: 'card' }],
     // No render is planned for the front styles yet (card's entries in site-renders.json).
     ['one card in each front style', { layout: 'grid', ratio: 'card' }],
-    ['the alternate backs', { slot: ['backs', 'alternate-backs'], layout: 'grid', ratio: 'card' }],
+    ['the alternate backs', { slot: ['backs', 'alternate-backs'], layout: 'small', ratio: 'card' }],
     ['a two-piece card', { slot: ['builds', 'construction'], layout: 'grid', ratio: 'photo' }],
     ['the 3-card pocket case', { slot: 'holders', layout: 'grid', ratio: 'photo' }],
   ],

@@ -49,11 +49,32 @@ export function Render({ image, id, ratio, size, eager }: { image?: BoothImage; 
 const words: Record<string, string> = { usa: 'USA' }
 const themeName = (key: string) => {
   const theme = key.replace(/^card-/, '')
-  if (theme === 'tap') return 'The tap card'
+  if (theme === 'tap' || theme === 'tap-card') return 'The tap card'
   return theme
     .split('-')
     .map((word) => words[word] ?? word[0].toUpperCase() + word.slice(1))
     .join(' ')
+}
+
+// A short caption for a render in a grid, from its export id, where the picture alone doesn't say
+// which one it is. Lowercase, like the site's other labels.
+const fixed: Record<string, string> = {
+  'fob-tag-front': 'a tag’s front: the code',
+  'fob-tag-back': 'a tag’s back: the icon',
+  'card-two-piece': 'two-piece, taken apart',
+  'card-two-piece-back': 'two-piece, from the back',
+  'card-solid-back': 'solid, from the back',
+  'holder-pocket-3': '3-card pocket case',
+  'holder-pocket-5': '5-card pocket case',
+  'holder-cards-only-box': 'the cards-only box',
+}
+function captionFor(id: string): string | undefined {
+  if (fixed[id]) return fixed[id]
+  const fob = id.match(/^fob-(base|premium)-(coin|tag)-(\w+)$/)
+  if (fob) return `${fob[1]} ${fob[2]} · ${fob[3]}`
+  const back = id.match(/^card-back-([a-z]+)-(.+)$/)
+  if (back) return `${back[1] === 'usa' ? 'USA' : back[1]} · ${back[2].replace(/-/g, ' ')}`
+  return undefined
 }
 
 /** The renders one of docs' [image: …] lines stands for, laid out. */
@@ -116,9 +137,17 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
 
   return (
     <div className={`booth-grid booth-grid-${layout}`}>
-      {images.map(({ id, image }) => (
-        <Render key={id} image={image} id={id} ratio={ratio} size={layout} />
-      ))}
+      {images.map(({ id, image }) => {
+        const caption = layout === 'wide' || layout === 'tag' ? undefined : captionFor(id)
+        return caption ? (
+          <figure key={id}>
+            <Render image={image} id={id} ratio={ratio} size={layout} />
+            <figcaption>{caption}</figcaption>
+          </figure>
+        ) : (
+          <Render key={id} image={image} id={id} ratio={ratio} size={layout} />
+        )
+      })}
     </div>
   )
 }

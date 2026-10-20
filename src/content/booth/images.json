@@ -1,6 +1,6 @@
 {
-  "manifest": "d533044dea0bed5474474d497b55609d566f1406b8bad2715467d2fd89f7c76d",
-  "exported": "2026-10-20T06:05:12+01:00",
+  "manifest": "a4f37b348bb2ad3b6b08bbc9de1508256b549351073af4ffb73ec17f5f20a040",
+  "exported": "2026-10-20T06:54:49+01:00",
   "images": {
     "booth-table-open": {
       "pages": [
@@ -162,275 +162,25 @@
         }
       ]
     },
-    "card-classic-dark-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Classic Dark, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-classic-dark-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Classic Dark, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-classic-light-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Classic Light, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-classic-light-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Classic Light, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-tap-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of the tap card (C1), a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-tap-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of the tap card (C1), its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-solid-black-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of the black solid card, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-solid-black-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of the black solid card, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-solid-white-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of the white solid card, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-solid-white-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of the white solid card, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-retro-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Retro, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-retro-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Retro, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-mystery-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Mystery, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-mystery-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Mystery, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-signal-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Signal, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-signal-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Signal, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-usa-light-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of USA Light, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-usa-light-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of USA Light, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-usa-dark-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of USA Dark, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-usa-dark-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of USA Dark, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-brasil-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Brasil, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-brasil-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Brasil, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-portugal-front": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The front of Portugal, a Tilde card for Jane Doe.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-portugal-back": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "themes",
-      "alt": "The back of Portugal, its default back.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-two-piece": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "construction",
-      "alt": "A two-piece card apart: the front piece and the back piece, the NFC sticker between them.",
-      "status": "missing",
-      "sources": []
-    },
-    "card-solid": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "construction",
-      "alt": "A solid card: one piece, both faces printed, the sticker sealed inside.",
-      "status": "missing",
-      "sources": []
-    },
-    "holder-pocket-5": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "holders",
-      "alt": "The 5-card pocket case, its drawer half out with cards and a premium coin and tag.",
-      "status": "missing",
-      "sources": []
-    },
-    "holder-pocket-3": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "holders",
-      "alt": "The 3-card pocket case, its drawer half out.",
-      "status": "missing",
-      "sources": []
-    },
-    "holder-cards-only-box": {
-      "pages": [
-        "cards"
-      ],
-      "slot": "holders",
-      "alt": "The cards-only box filled with the card set.",
-      "status": "missing",
-      "sources": []
-    },
     "fob-base-coin-tilde": {
       "pages": [
         "fobs"
       ],
       "slot": "types",
       "alt": "A base coin in the tilde theme, orange on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-tilde-720.webp",
+          "width": 720,
+          "height": 437
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-tilde-1400.webp",
+          "width": 1400,
+          "height": 849
+        }
+      ]
     },
     "fob-base-coin-dark": {
       "pages": [
@@ -438,8 +188,19 @@
       ],
       "slot": "types",
       "alt": "A base coin in the dark theme, khaki on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-dark-720.webp",
+          "width": 720,
+          "height": 437
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-dark-1400.webp",
+          "width": 1400,
+          "height": 849
+        }
+      ]
     },
     "fob-base-coin-light": {
       "pages": [
@@ -447,8 +208,19 @@
       ],
       "slot": "types",
       "alt": "A base coin in the light theme, black on khaki.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-light-720.webp",
+          "width": 720,
+          "height": 437
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-light-1400.webp",
+          "width": 1400,
+          "height": 849
+        }
+      ]
     },
     "fob-base-tag-tilde": {
       "pages": [
@@ -456,8 +228,19 @@
       ],
       "slot": "types",
       "alt": "A base tag in the tilde theme, orange on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-tilde-720.webp",
+          "width": 720,
+          "height": 444
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-tilde-1400.webp",
+          "width": 1400,
+          "height": 863
+        }
+      ]
     },
     "fob-base-tag-dark": {
       "pages": [
@@ -465,8 +248,19 @@
       ],
       "slot": "types",
       "alt": "A base tag in the dark theme, khaki on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-dark-720.webp",
+          "width": 720,
+          "height": 444
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-dark-1400.webp",
+          "width": 1400,
+          "height": 863
+        }
+      ]
     },
     "fob-base-tag-light": {
       "pages": [
@@ -474,8 +268,19 @@
       ],
       "slot": "types",
       "alt": "A base tag in the light theme, black on khaki.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-light-720.webp",
+          "width": 720,
+          "height": 444
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-light-1400.webp",
+          "width": 1400,
+          "height": 863
+        }
+      ]
     },
     "fob-premium-coin-tilde": {
       "pages": [
@@ -483,8 +288,19 @@
       ],
       "slot": "types",
       "alt": "A premium coin in the tilde theme, orange on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-tilde-720.webp",
+          "width": 720,
+          "height": 485
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-tilde-1397.webp",
+          "width": 1397,
+          "height": 942
+        }
+      ]
     },
     "fob-premium-coin-dark": {
       "pages": [
@@ -492,8 +308,19 @@
       ],
       "slot": "types",
       "alt": "A premium coin in the dark theme, khaki on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-dark-720.webp",
+          "width": 720,
+          "height": 485
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-dark-1397.webp",
+          "width": 1397,
+          "height": 942
+        }
+      ]
     },
     "fob-premium-coin-light": {
       "pages": [
@@ -501,8 +328,19 @@
       ],
       "slot": "types",
       "alt": "A premium coin in the light theme, black on khaki.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-light-720.webp",
+          "width": 720,
+          "height": 485
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-light-1397.webp",
+          "width": 1397,
+          "height": 942
+        }
+      ]
     },
     "fob-premium-tag-tilde": {
       "pages": [
@@ -510,8 +348,19 @@
       ],
       "slot": "types",
       "alt": "A premium tag in the tilde theme, orange on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-tilde-720.webp",
+          "width": 720,
+          "height": 465
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-tilde-1381.webp",
+          "width": 1381,
+          "height": 892
+        }
+      ]
     },
     "fob-premium-tag-dark": {
       "pages": [
@@ -519,8 +368,19 @@
       ],
       "slot": "types",
       "alt": "A premium tag in the dark theme, khaki on black.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-dark-720.webp",
+          "width": 720,
+          "height": 465
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-dark-1381.webp",
+          "width": 1381,
+          "height": 892
+        }
+      ]
     },
     "fob-premium-tag-light": {
       "pages": [
@@ -528,8 +388,19 @@
       ],
       "slot": "types",
       "alt": "A premium tag in the light theme, black on khaki.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-light-720.webp",
+          "width": 720,
+          "height": 465
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-light-1381.webp",
+          "width": 1381,
+          "height": 892
+        }
+      ]
     },
     "fob-premium-coin-orange": {
       "pages": [
@@ -537,8 +408,19 @@
       ],
       "slot": "special",
       "alt": "The orange premium coin from the pocket cases, black tap waves.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-orange-720.webp",
+          "width": 720,
+          "height": 485
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-orange-1397.webp",
+          "width": 1397,
+          "height": 942
+        }
+      ]
     },
     "fob-premium-tag-orange": {
       "pages": [
@@ -546,8 +428,19 @@
       ],
       "slot": "special",
       "alt": "The orange premium tag from the pocket cases.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-orange-720.webp",
+          "width": 720,
+          "height": 465
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-orange-1381.webp",
+          "width": 1381,
+          "height": 892
+        }
+      ]
     },
     "fob-tag-front": {
       "pages": [
@@ -555,8 +448,19 @@
       ],
       "slot": "tag-faces",
       "alt": "A tag's front: its QR code.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-tag-front-720.webp",
+          "width": 720,
+          "height": 610
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-tag-front-1180.webp",
+          "width": 1180,
+          "height": 1000
+        }
+      ]
     },
     "fob-tag-back": {
       "pages": [
@@ -564,8 +468,19 @@
       ],
       "slot": "tag-faces",
       "alt": "A tag's back: its icon.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-tag-back-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-tag-back-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "fob-demo-keychain": {
       "pages": [
@@ -574,8 +489,789 @@
       ],
       "slot": "demo-keychain",
       "alt": "The demo keychain fanned out: a ring of tags, each a different use.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-demo-keychain-720.webp",
+          "width": 720,
+          "height": 654
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-demo-keychain-1440.webp",
+          "width": 1440,
+          "height": 1308
+        }
+      ]
+    },
+    "icons-booking": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Booking icon.",
+      "status": "ok",
+      "icon": "booking",
+      "name": "Booking",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-booking-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-booking-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-calendar": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Calendar icon.",
+      "status": "ok",
+      "icon": "calendar",
+      "name": "Calendar",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-calendar-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-calendar-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-chat": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Chat icon.",
+      "status": "ok",
+      "icon": "chat",
+      "name": "Chat",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-chat-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-chat-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-contact": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Contact icon.",
+      "status": "ok",
+      "icon": "contact",
+      "name": "Contact card",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-contact-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-contact-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-fitness": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Fitness icon.",
+      "status": "ok",
+      "icon": "fitness",
+      "name": "Fitness",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-fitness-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-fitness-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-food": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Food icon.",
+      "status": "ok",
+      "icon": "food",
+      "name": "Food",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-food-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-food-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-found_it": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Found it icon.",
+      "status": "ok",
+      "icon": "found_it",
+      "name": "Found it?",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-found_it-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-found_it-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-handset": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Handset icon.",
+      "status": "ok",
+      "icon": "handset",
+      "name": "Handset",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-handset-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-handset-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-home": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Home icon.",
+      "status": "ok",
+      "icon": "home",
+      "name": "Home",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-home-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-home-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-hotspot": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Hotspot icon.",
+      "status": "ok",
+      "icon": "hotspot",
+      "name": "Hotspot",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-hotspot-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-hotspot-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-key": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Key icon.",
+      "status": "ok",
+      "icon": "key",
+      "name": "Key",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-key-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-key-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-link": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Link icon.",
+      "status": "ok",
+      "icon": "link",
+      "name": "Link",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-link-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-link-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-location": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Location icon.",
+      "status": "ok",
+      "icon": "location",
+      "name": "Location",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-location-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-location-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-mail": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Mail icon.",
+      "status": "ok",
+      "icon": "mail",
+      "name": "Envelope",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-mail-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-mail-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-music": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Music icon.",
+      "status": "ok",
+      "icon": "music",
+      "name": "Music",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-music-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-music-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-news": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The News icon.",
+      "status": "ok",
+      "icon": "news",
+      "name": "News",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-news-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-news-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-package": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Package icon.",
+      "status": "ok",
+      "icon": "package",
+      "name": "Package",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-package-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-package-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-parking": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Parking icon.",
+      "status": "ok",
+      "icon": "parking",
+      "name": "Parking",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-parking-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-parking-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-payment": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Payment icon.",
+      "status": "ok",
+      "icon": "payment",
+      "name": "Payment",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-payment-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-payment-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-person": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Person icon.",
+      "status": "ok",
+      "icon": "person",
+      "name": "Person",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-person-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-person-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-pet": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Pet icon.",
+      "status": "ok",
+      "icon": "pet",
+      "name": "Pet",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-pet-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-pet-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-phone": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Phone icon.",
+      "status": "ok",
+      "icon": "phone",
+      "name": "Phone",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-phone-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-phone-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-phone_tap": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Phone tap icon.",
+      "status": "ok",
+      "icon": "phone_tap",
+      "name": "Phone with tap waves",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-phone_tap-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-phone_tap-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-shop": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Shop icon.",
+      "status": "ok",
+      "icon": "shop",
+      "name": "Shop",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-shop-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-shop-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-short_t": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Short t icon.",
+      "status": "ok",
+      "icon": "short_t",
+      "name": "t short mark",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-short_t-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-short_t-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-short_tw": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Short tw icon.",
+      "status": "ok",
+      "icon": "short_tw",
+      "name": "~/t short mark",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-short_tw-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-short_tw-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-soccer": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Soccer icon.",
+      "status": "ok",
+      "icon": "soccer",
+      "name": "Soccer ball",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-soccer-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-soccer-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-sports": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Sports icon.",
+      "status": "ok",
+      "icon": "sports",
+      "name": "Sports",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-sports-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-sports-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-tap": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Tap icon.",
+      "status": "ok",
+      "icon": "tap",
+      "name": "Tap waves",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-tap-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-tap-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-tilde": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Tilde icon.",
+      "status": "ok",
+      "icon": "tilde",
+      "name": "~/",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-tilde-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-tilde-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-train": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Train icon.",
+      "status": "ok",
+      "icon": "train",
+      "name": "Train",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-train-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-train-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-transit": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Transit icon.",
+      "status": "ok",
+      "icon": "transit",
+      "name": "Transit",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-transit-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-transit-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-weather": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Weather icon.",
+      "status": "ok",
+      "icon": "weather",
+      "name": "Weather",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-weather-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-weather-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-wifi": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Wifi icon.",
+      "status": "ok",
+      "icon": "wifi",
+      "name": "Wi-Fi",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-wifi-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-wifi-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-wifi_key": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Wifi key icon.",
+      "status": "ok",
+      "icon": "wifi_key",
+      "name": "Wi-Fi password",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-wifi_key-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-wifi_key-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
     },
     "use-family": {
       "pages": [
@@ -583,8 +1279,19 @@
       ],
       "slot": "stacks",
       "alt": "The Family tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-family-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-family-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-contact-card": {
       "pages": [
@@ -592,8 +1299,19 @@
       ],
       "slot": "stacks",
       "alt": "The Contact card tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-contact-card-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-contact-card-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-link": {
       "pages": [
@@ -601,8 +1319,19 @@
       ],
       "slot": "stacks",
       "alt": "The Link tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-link-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-link-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-whatsapp": {
       "pages": [
@@ -610,8 +1339,19 @@
       ],
       "slot": "stacks",
       "alt": "The WhatsApp (a generic chat icon) tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-whatsapp-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-whatsapp-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-guest-wifi": {
       "pages": [
@@ -619,8 +1359,19 @@
       ],
       "slot": "stacks",
       "alt": "The Guest Wi-Fi tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-guest-wifi-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-guest-wifi-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-share-number": {
       "pages": [
@@ -628,8 +1379,19 @@
       ],
       "slot": "stacks",
       "alt": "The Share your number tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-share-number-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-share-number-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-lost-item": {
       "pages": [
@@ -637,8 +1399,19 @@
       ],
       "slot": "stacks",
       "alt": "The Lost item tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-lost-item-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-lost-item-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
     },
     "use-book-meeting": {
       "pages": [
@@ -646,8 +1419,1319 @@
       ],
       "slot": "stacks",
       "alt": "The Book a meeting tag from the giveaway box.",
-      "status": "missing",
-      "sources": []
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--use-book-meeting-720.webp",
+          "width": 720,
+          "height": 601
+        },
+        {
+          "src": "/tilde/booth/uses--use-book-meeting-1198.webp",
+          "width": 1198,
+          "height": 1000
+        }
+      ]
+    },
+    "card-classic-dark-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Classic Dark card's front: black, with ~/janedoe, Jane Doe, taptilde.com in orange and a QR code on a white field. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-classic-dark-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Classic Dark card's back: black, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-classic-light-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Classic Light card's front: off-white, with ~/janedoe, Jane Doe and a black QR code, taptilde.com in orange. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-classic-light-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-light-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-classic-light-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Classic Light card's back: off-white, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black and orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-classic-light-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-light-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-tap-card-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Dark tap card card's front: plain black, with nothing printed: the card is only tapped. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-tap-card-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-tap-card-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-tap-card-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Dark tap card card's back: black, with an orange ring of tap waves where the NFC sticker sits.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-tap-card-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-tap-card-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-solid-black-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Black solid card's front: black, as Classic Dark, printed in one piece. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-black-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-black-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-solid-black-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Black solid card's back: black, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-black-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-black-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-solid-white-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The White solid card's front: off-white, as Classic Light, printed in one piece. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-white-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-white-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-solid-white-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The White solid card's back: off-white, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black and orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-white-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-white-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-retro-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Retro card's front: gray, with dark text, a wine-red underline and taptilde.com, the QR code on a khaki field. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-retro-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-retro-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-retro-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Retro card's back: gray, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in dark gray and wine red.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-retro-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-retro-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-mystery-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Mystery card's front: black, with only a QR code on a white field and the tap mark: no name. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-mystery-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-mystery-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-mystery-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Mystery card's back: plain black.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-mystery-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-mystery-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-signal-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Signal card's front: yellow, with ~/janedoe, Jane Doe, taptilde.com and the QR code in black. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-signal-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-signal-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-signal-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Signal card's back: yellow, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-signal-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-signal-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-usa-light-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The USA Light card's front: white, with navy text, a red ~/ and underline, taptilde.com in red, a navy QR code. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-usa-light-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-light-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-usa-light-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The USA Light card's back: white, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy and red.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-usa-light-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-light-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-usa-dark-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The USA Dark card's front: navy, with white text, a red ~/ and underline, the QR code on a white field. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-usa-dark-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The USA Dark card's back: navy, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and red.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-brasil-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Brasil card's front: yellow, with navy text, a green ~/ and underline, a navy QR code on a white field. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-brasil-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-brasil-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-brasil-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Brasil card's back: yellow, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy and green.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-brasil-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-brasil-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-portugal-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Portugal card's front: green, with white text, a yellow ~/ and underline, a red QR code on a white field. Jane Doe is a made-up example.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-portugal-front-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-portugal-front-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-portugal-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The Portugal card's back: red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and yellow.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-portugal-back-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-portugal-back-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-dark-tap": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Classic Dark card (Tap: black, white window, black mark): black, with a white window holding a black ring of tap waves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-dark-tap-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-dark-tap-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-dark-code": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Classic Dark card (Code): black, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in white and orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-dark-code-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-dark-code-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-light-tap": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Classic Light card (Tap: white, black window, white mark): off-white, with a black window holding an off-white ring of tap waves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-light-tap-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-light-tap-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-light-code": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Classic Light card (Code): off-white, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in black and orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-light-code-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-light-code-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-tap-light": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Dark tap card card (The same in Light): off-white, with an orange ring of tap waves (the Light tap card).",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-tap-light-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-tap-light-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-retro-wine-white": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Retro card ((a) wine, white text): wine red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-retro-wine-white-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-wine-white-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-retro-wine-khaki": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Retro card ((a) wine, khaki text): wine red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in khaki.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-retro-khaki-black": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Retro card ((b) khaki, black text): khaki, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-retro-khaki-black-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-khaki-black-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-retro-khaki-red": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Retro card ((b) khaki, red text): khaki, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in wine red.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-retro-khaki-red-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-khaki-red-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-retro-code": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Retro card (Code): gray, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in dark gray and wine red.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-retro-code-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-code-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-signal-plain-black": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Signal card (Plain, yellow on black): black, with plain yellow text.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-signal-plain-black-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-signal-plain-black-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-signal-tap": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Signal card (Tap: yellow, black window, yellow mark): yellow, with a black window holding a yellow ring of tap waves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-signal-tap-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-signal-tap-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-signal-code": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Signal card (Code): yellow, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in black.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-signal-code-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-signal-code-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-usa-red": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the USA Light card (Terminal, red): red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-usa-red-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-usa-red-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-usa-tap": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the USA Light card (Tap: navy, white window, red mark): navy, with a white window holding a red ring of tap waves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-usa-tap-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-usa-tap-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-usa-code": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the USA Light card (Code, white): white, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in navy and red.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-usa-code-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-usa-code-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-brasil-green": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Brasil card (Terminal, green, navy text): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-green-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-green-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-brasil-green-white": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Brasil card (Terminal, green, white text): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-green-white-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-green-white-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-brasil-plain-window": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Brasil card (Plain, green Color window): yellow, with a green circle (a Color window over the sticker) and jane doe, product designer and jane@example.com in navy and green.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-plain-window-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-plain-window-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-brasil-tap": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Brasil card (Tap: green, yellow window, green mark): green, with a yellow window holding a green ring of tap waves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-tap-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-tap-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-portugal-green": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Portugal card (Terminal, green): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-green-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-green-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-portugal-tap": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Portugal card (Tap: red, green window, yellow mark): red, with a green window holding a yellow ring of tap waves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-tap-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-tap-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-back-portugal-code": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "backs",
+      "alt": "An alternate back for the Portugal card (Code): red, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in white and yellow.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-code-720.webp",
+          "width": 720,
+          "height": 458
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-code-1041.webp",
+          "width": 1041,
+          "height": 662
+        }
+      ]
+    },
+    "card-two-piece": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "builds",
+      "alt": "The two-piece Classic Dark card taken apart, back up: the back piece lifted off, the round NFC sticker, and the front piece, a shallow tray with the sticker's pocket. The back piece presses in and snaps past a lip on the rim; glued, it's permanent. The black is drawn lighter here so the shapes show.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-two-piece-720.webp",
+          "width": 720,
+          "height": 592
+        },
+        {
+          "src": "/tilde/booth/cards--card-two-piece-1301.webp",
+          "width": 1301,
+          "height": 1069
+        }
+      ]
+    },
+    "card-two-piece-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "builds",
+      "alt": "The two-piece Classic Dark card's back at an angle: the back piece sits flush in the front piece's rim, with a thin seam round it, a notch at the top edge and a pill at the bottom.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-two-piece-back-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-two-piece-back-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-solid-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "builds",
+      "alt": "The solid Classic Dark card's back at an angle: one piece, no seam. It prints in one go, with a pause to put the NFC sticker in.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-back-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-back-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "holder-pocket-3": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "holders",
+      "alt": "The 3-card pocket case open: the drawer out beside its sleeve, with a premium coin and tag in their wells, and its 3 cards lifted out and fanned (Classic Dark, Classic Light, Dark tap card).",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--holder-pocket-3-720.webp",
+          "width": 720,
+          "height": 302
+        },
+        {
+          "src": "/tilde/booth/cards--holder-pocket-3-1389.webp",
+          "width": 1389,
+          "height": 582
+        }
+      ]
+    },
+    "holder-pocket-5": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "holders",
+      "alt": "The 5-card pocket case open: the drawer out beside its sleeve, with a premium coin and tag in their wells, and its 5 cards lifted out and fanned (Black solid, Classic Dark, Classic Light, Dark tap card, Retro).",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--holder-pocket-5-720.webp",
+          "width": 720,
+          "height": 333
+        },
+        {
+          "src": "/tilde/booth/cards--holder-pocket-5-1390.webp",
+          "width": 1390,
+          "height": 642
+        }
+      ]
+    },
+    "holder-cards-only-box": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "holders",
+      "alt": "The cards-only box open: ten assembled cards in the front bay (Black solid, White solid, Classic Dark, Classic Light, Dark tap card, Retro, Mystery, Signal, USA Light, USA Dark; the Black solid card in front), four loose fronts in the middle bay (Brasil in front, then Portugal, Classic Dark and Classic Light) and six loose backs at the back (Portugal's tap back in front). The pieces swap, so one box shows many combinations.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--holder-cards-only-box-720.webp",
+          "width": 720,
+          "height": 624
+        },
+        {
+          "src": "/tilde/booth/cards--holder-cards-only-box-1182.webp",
+          "width": 1182,
+          "height": 1025
+        }
+      ]
+    },
+    "card-classic-dark-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Classic Dark card at an angle, front up: black, with ~/janedoe, Jane Doe, taptilde.com in orange and a QR code on a white field.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-classic-light-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Classic Light card at an angle, front up: off-white, with ~/janedoe, Jane Doe and a black QR code, taptilde.com in orange.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-classic-light-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-light-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-tap-card-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Dark tap card card at an angle, front up: plain black, with nothing printed: the card is only tapped.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-tap-card-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-tap-card-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-solid-black-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Black solid card at an angle, front up: black, as Classic Dark, printed in one piece.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-black-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-black-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-solid-white-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The White solid card at an angle, front up: off-white, as Classic Light, printed in one piece.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-solid-white-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-white-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-retro-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Retro card at an angle, front up: gray, with dark text, a wine-red underline and taptilde.com, the QR code on a khaki field.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-retro-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-retro-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-mystery-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Mystery card at an angle, front up: black, with only a QR code on a white field and the tap mark: no name.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-mystery-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-mystery-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-signal-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Signal card at an angle, front up: yellow, with ~/janedoe, Jane Doe, taptilde.com and the QR code in black.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-signal-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-signal-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-usa-light-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The USA Light card at an angle, front up: white, with navy text, a red ~/ and underline, taptilde.com in red, a navy QR code.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-usa-light-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-light-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-usa-dark-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The USA Dark card at an angle, front up: navy, with white text, a red ~/ and underline, the QR code on a white field.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-brasil-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Brasil card at an angle, front up: yellow, with navy text, a green ~/ and underline, a navy QR code on a white field.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-brasil-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-brasil-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
+    },
+    "card-portugal-angle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "angles",
+      "alt": "The Portugal card at an angle, front up: green, with white text, a yellow ~/ and underline, a red QR code on a white field.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-portugal-angle-720.webp",
+          "width": 720,
+          "height": 364
+        },
+        {
+          "src": "/tilde/booth/cards--card-portugal-angle-1302.webp",
+          "width": 1302,
+          "height": 658
+        }
+      ]
     }
   },
   "icons": [
