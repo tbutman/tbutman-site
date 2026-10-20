@@ -2018,8 +2018,9 @@ main {
   border-radius: 0.75rem;
 }
 
+/* A screenshot on a hub tile shows its top, at about the station renders' shape (1.46–1.55). */
 .booth-tile-screen img {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 22 / 15;
   object-fit: cover;
   object-position: top;
 }

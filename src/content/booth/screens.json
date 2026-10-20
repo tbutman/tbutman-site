@@ -1,33 +1,14 @@
 {
-  "source": "242c1b4ccc87c8134f43ff303001834fbd1954f81678bbd369bb9af580665b76",
+  "source": "6da3571a0b93a998c183fa416a88fa16c4aee5b065ddaa64f7b2a40a7a9d972e",
   "images": {
-    "app-01-share": {
-      "pages": [
-        "app"
-      ],
-      "slot": "screens",
-      "alt": "[TBD] alt text for 01-share.png",
-      "status": "unrecorded",
-      "sources": [
-        {
-          "src": "/tilde/screens/app-01-share-360.webp",
-          "width": 360,
-          "height": 800
-        },
-        {
-          "src": "/tilde/screens/app-01-share-720.webp",
-          "width": 720,
-          "height": 1600
-        }
-      ]
-    },
     "app-02-welcome-1": {
       "pages": [
         "app"
       ],
       "slot": "screens",
-      "alt": "[TBD] alt text for 02-welcome-1.png",
-      "status": "unrecorded",
+      "alt": "First run, screen 1: \"Your business card, on your phone\": tap, scan, stickers; Restore a backup",
+      "status": "ok",
+      "caption": "First run, screen 1",
       "sources": [
         {
           "src": "/tilde/screens/app-02-welcome-1-360.webp",
@@ -46,8 +27,9 @@
         "app"
       ],
       "slot": "screens",
-      "alt": "[TBD] alt text for 03-welcome-card.png",
-      "status": "unrecorded",
+      "alt": "Make your card: name and job title typed; the preview updates",
+      "status": "ok",
+      "caption": "Make your card",
       "sources": [
         {
           "src": "/tilde/screens/app-03-welcome-card-360.webp",
@@ -66,8 +48,9 @@
         "app"
       ],
       "slot": "screens",
-      "alt": "[TBD] alt text for 04-welcome-contact.png",
-      "status": "unrecorded",
+      "alt": "How people reach you: email, mobile, Link to share (all optional)",
+      "status": "ok",
+      "caption": "How people reach you",
       "sources": [
         {
           "src": "/tilde/screens/app-04-welcome-contact-360.webp",
@@ -86,8 +69,9 @@
         "app"
       ],
       "slot": "screens",
-      "alt": "[TBD] alt text for 05-first-card-ready.png",
-      "status": "unrecorded",
+      "alt": "Your card is ready: how to share, and Write a sticker right there",
+      "status": "ok",
+      "caption": "Your card is ready",
       "sources": [
         {
           "src": "/tilde/screens/app-05-first-card-ready-360.webp",
@@ -96,6 +80,237 @@
         },
         {
           "src": "/tilde/screens/app-05-first-card-ready-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-06-cards-tab": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "The Cards tab: Jane's two cards (Work, Web Summit), Edit card, the start of Share options",
+      "status": "ok",
+      "caption": "The Cards tab",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-06-cards-tab-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-06-cards-tab-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-06b-cards-tab-more": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Cards tab, scrolled: every share option (contact card, contact page, phone number, website, LinkedIn, Instagram, Guest Wi-Fi) with the quick-option stars",
+      "status": "ok",
+      "caption": "Cards tab, scrolled",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-06b-cards-tab-more-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-06b-cards-tab-more-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-07-write-sticker": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Write a sticker: what it opens (janedoe.com), Protect with this phone, \"Hold the sticker … to the back of your phone\"",
+      "status": "ok",
+      "caption": "Write a sticker",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-07-write-sticker-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-07-write-sticker-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-08-write-done": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Written and protected: the result after one tap",
+      "status": "ok",
+      "caption": "Written and protected",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-08-write-done-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-08-write-done-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-09-tap-ready": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Tap phone to phone: the Web Summit card sharing the contact card, \"Tap or scan to share\", \"Event: Web Summit · 3 sent today\"",
+      "status": "ok",
+      "caption": "Tap phone to phone",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-09-tap-ready-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-09-tap-ready-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-09b-tap-sent": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Sent: \"Your contact card is on their phone\", with Add a note",
+      "status": "ok",
+      "caption": "Sent",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-09b-tap-sent-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-09b-tap-sent-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-10-met": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Met: today's Web Summit taps with notes, and yesterday's",
+      "status": "ok",
+      "caption": "Met",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-10-met-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-10-met-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-11-new-card-template": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "New card: Copy, Start blank, Start from a template (Family picked)",
+      "status": "ok",
+      "caption": "New card",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-11-new-card-template-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-11-new-card-template-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-11b-templates": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "The five templates: Family, Work, Socials, Lost & found, Guest Wi-Fi, each with one line",
+      "status": "ok",
+      "caption": "The five templates",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-11b-templates-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-11b-templates-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-12-template-family": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Edit card from the Family template: its note (\"A stranger reads this card…\"), blank and ready to fill",
+      "status": "ok",
+      "caption": "Edit card from the Family template",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-12-template-family-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-12-template-family-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-13-family-card-share": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "A filled Family card on Share: \"The Doe family · If I'm lost, please call\", Phone number on Call, Mom's number",
+      "status": "ok",
+      "caption": "A filled Family card on Share",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-13-family-card-share-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-13-family-card-share-720.webp",
           "width": 720,
           "height": 1600
         }

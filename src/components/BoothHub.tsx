@@ -58,7 +58,7 @@ export default function BoothHub() {
             return (
               <li key={cell}>
                 <Link className="panel" to={link?.[2] ?? '/tilde'}>
-                  {/* A screenshot shows its top, at the tiles' 4:3. */}
+                  {/* A screenshot shows only its top, about the renders' shape. */}
                   <div className={boothImages[id]?.slot === 'screens' || id.startsWith('app-') ? 'booth-tile-screen' : undefined}>
                     <Render image={boothImages[id]} id={id || (marker?.[1] ?? cell)} ratio="photo" size="grid" />
                   </div>

@@ -126,8 +126,9 @@ export const usesPage: BoothPage = {
 
 // The App station (tilde-review/briefs/booth-kit.md, item 5): the app as a booth agent shows it to a
 // new visitor, in docs' copy (site-content/app.md), with the app agent's screenshots
-// (booth-kit/app-screens/, ids as screens.json gives them). Its hero is the screen docs' opening
-// names, the Share screen; the headline is Thomas's two pitches.
+// (booth-kit/app-screens/, ids as screens.json gives them). Its hero is Tap phone to phone, ready
+// (the coordinator: not the Share screen, whose code opens janedoe.com, a domain we don’t own); the headline
+// is Thomas's two pitches.
 const screens = (ids: string[]): Placement => ({ ids, layout: 'screens', ratio: 'phone' })
 export const appPage: BoothPage = {
   page: 'app',
@@ -137,18 +138,22 @@ export const appPage: BoothPage = {
   status: 'android · free · open source',
   name: 'Tilde for Android',
   headline: ['Write your own fob.', 'Your phone is one.'],
-  hero: 'app-01-share',
+  hero: 'app-09-tap-ready',
   heroRatio: 'phone',
   copy: appCopy as BoothCopy,
   images: [
     // "In the app": docs' four screens as one row, in docs' order, under the app agent's captions.
-    ['the Share screen, with the option card', screens(['app-share-options', 'app-cards', 'app-write-sticker', 'app-met'])],
+    // The Share screen with its option card open isn't among the app agent's shots yet (Site 32).
+    ['the Share screen, with the option card', screens(['app-share-options', 'app-06-cards-tab', 'app-07-write-sticker', 'app-10-met'])],
     ['the Cards tab', { layout: 'omit', ratio: 'phone' }],
     ['Write a sticker', { layout: 'omit', ratio: 'phone' }],
     ['the Met tab', { layout: 'omit', ratio: 'phone' }],
-    // Docs' first card has no [image: …] line yet; this is the line asked of docs (Site 31).
+    // Lines asked of docs, for the shots the app agent took beyond docs' list (Sites 31 and 32).
     ['the welcome screens', screens(['app-02-welcome-1', 'app-03-welcome-card', 'app-04-welcome-contact', 'app-05-first-card-ready'])],
-    ['two phones back to back', { ids: ['app-tap'], layout: 'wide', ratio: 'photo' }],
+    ['writing a sticker', screens(['app-07-write-sticker', 'app-08-write-done'])],
+    ['the templates', screens(['app-11-new-card-template', 'app-11b-templates', 'app-12-template-family', 'app-13-family-card-share'])],
+    // Docs asks for a photo of two phones; until one exists, the app's Sent screen (Ready is the hero).
+    ['two phones back to back', screens(['app-09b-tap-sent'])],
   ],
 }
 
@@ -162,7 +167,7 @@ export const hubSection = {
     ["a card's front", 'card-classic-dark-front'],
     ['a coin and a tag', 'fob-premium-tag-tilde'],
     ['a stack of booth tags', 'station-uses-open'],
-    ['the Share screen', 'app-01-share'],
+    ['the Share screen', 'app-09-tap-ready'],
   ] as [string, string][],
   stations: [cardsPage, fobsPage, usesPage, appPage],
 }

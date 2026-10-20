@@ -4,8 +4,8 @@
 //   into public/tilde/booth/, and src/content/booth/images.json with each image's page, slot, alt,
 //   status and widths, and the manifest's hash;
 // - the App page's screenshots: the app agent's tilde-review/booth-kit/app-screens/ (PNG files, and
-//   screens.json with each one's id, alt and caption) as WebP in public/tilde/screens/, and
-//   src/content/booth/screens.json in images.json's shape;
+//   screens.json with each one's id, alt and caption, or else its README's table: | `file` | Shows |)
+//   as WebP in public/tilde/screens/, and src/content/booth/screens.json in images.json's shape;
 // - the icons' names, from the model's Icon list (tilde-card/keyring.scad), never copied by hand;
 // - the copy: tilde-review/site-content/{cards,fobs,uses,app,hub}.md as blocks
 //   (scripts/booth-copy.mjs) in src/content/booth/copy/, and icon-uses.json beside them.
@@ -199,20 +199,37 @@ async function syncImages() {
 // The phone's own pixels, from the app agent's dev build with Jane Doe's data. Shown about 230 px
 // wide, so 360 and 720 px WebP files cover a phone at 3x and a desktop at 2x.
 const SCREEN_WIDTHS = [360, 720]
+// Never copied: 01-share.png carries a scannable code to janedoe.com, a real domain we don't own
+// (the coordinator, October 20: only with the code blurred out).
+const SCREEN_SKIP = new Set(['01-share.png'])
 
 async function syncScreens() {
   if (!existsSync(screensDir)) return console.log(`screens: none yet (${relative(personal, screensDir)})`)
   const listPath = join(screensDir, 'screens.json')
   const list = (await readJson(listPath))?.screens ?? null
+  // Without screens.json, the app agent's README table: each file's "Shows" cell is its alt text,
+  // and the cell's bold lead its caption ("**The Cards tab:** Jane's two cards…" → "The Cards tab").
+  const readmePath = join(screensDir, 'README.md')
+  const readme = list || !existsSync(readmePath) ? '' : await readFile(readmePath, 'utf8')
+  const described = new Map(
+    [...readme.matchAll(/^\| `([^`]+\.png)` \| (.+?) \|/gm)].map(([, file, shows]) => {
+      const lead = shows.match(/^\*\*(.+?)\*\*/)?.[1].replace(/[:.]$/, '')
+      const alt = shows.replace(/\*\*/g, '').trim()
+      return [file, { alt, ...(lead ? { caption: lead } : {}) }]
+    }),
+  )
   const files = list
     ? list.map((entry, index) => {
         if (typeof entry?.file !== 'string') fail(`screens.json: screens[${index}] has no file`)
         return entry
-      })
-    : (await readdir(screensDir)).filter((name) => name.endsWith('.png')).sort().map((file) => ({ file }))
+      }).filter((entry) => !SCREEN_SKIP.has(entry.file))
+    : (await readdir(screensDir))
+        .filter((name) => name.endsWith('.png') && !SCREEN_SKIP.has(name))
+        .sort()
+        .map((file) => ({ file, ...described.get(file) }))
   if (files.length === 0) return console.log('screens: no PNG files yet')
   // The listing and every file's bytes: what --check compares.
-  const digest = createHash('sha256').update(list ? await readFile(listPath) : '')
+  const digest = createHash('sha256').update(list ? await readFile(listPath) : readme)
   const read = []
   for (const entry of files) {
     const from = resolve(screensDir, entry.file)
