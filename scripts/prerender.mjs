@@ -66,9 +66,9 @@ const boothPaths = new Set(['/tilde', '/tilde/card', '/tilde/fobs', '/tilde/uses
 
 for (const path of paths) {
   const { html, meta } = render(path)
-  // A draft's placeholders (a MakerWorld link or a print time not known yet, a booth render not made
-  // yet, a line that waits on a test, a render older than its model) build locally, but CI stops on
-  // them, so they can't be released.
+  // A draft's placeholders build locally, but CI stops on them, so they can't go live: a MakerWorld
+  // link or a print time not known yet, a booth render not made yet or older than its model, and a
+  // line whose truth waits on a phone or print test. (No line waits on a release: Thomas, October 20.)
   if (process.env.CI && /PLACEHOLDER|\[TBD\]|\[depends on |MAKERWORLD-[A-Z]+-URL|data-render-status=/.test(html)) {
     throw new Error(`${path}: a draft placeholder is still on the page`)
   }

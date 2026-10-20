@@ -4,7 +4,8 @@ import { Link } from 'react-router'
 // Content strings with **bold** and [links](url). A link to one of the site's own pages (a path
 // starting with /) uses the router; any other opens as a normal link. The booth pages' copy (docs'
 // Markdown) also has `code`, links inside bold, and [depends on …] gates: a line that waits on a
-// test or a launch, shown as a badge, and blocked from release by CI (scripts/prerender.mjs).
+// phone or print test (there are no release gates: Thomas, October 20), shown as a badge, and
+// blocked from going live by CI (scripts/prerender.mjs).
 const TOKEN = /(\*\*[^*]+\*\*|\[depends on [^\]]+\]|\[[^\]]+\]\([^)\s]+\)|`[^`]+`)/
 
 export default function RichText({ text }: { text: string }) {

@@ -1,5 +1,5 @@
 {
-  "source": "be500703ba9bb9eb64f1658256006aeb1ea7211a0fbf26fcce81e3b2412d6b93",
+  "source": "c75fc850a16971163e931cf8a64205d34af82fdc9ac0e4f74c9e0cbae72c1cb8",
   "blocks": [
     {
       "type": "h2",
@@ -8,7 +8,7 @@
     },
     {
       "type": "p",
-      "text": "**This is the Tilde Card: a business card you print yourself, in a design you put together.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card if it fits. Pick a front, a back and your colors: the combinations are countless, and the cards here are a few examples. `[depends on the card release]`"
+      "text": "**This is the Tilde Card: a business card you print yourself, in a design you put together.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card if it fits. Pick a front, a back and your colors: the combinations are countless, and the cards here are a few examples."
     },
     {
       "type": "h2",
@@ -27,7 +27,7 @@
           "sub": []
         },
         {
-          "text": "**Free and open source.** The model is free to download, print and change. Its source is MIT-licensed, and the printable files on MakerWorld are CC BY 4.0. `[depends on U3]` for “on MakerWorld”.",
+          "text": "**Free and open source.** The model is free to download, print and change. Its source is MIT-licensed, and the printable files on MakerWorld are CC BY 4.0.",
           "sub": []
         },
         {
@@ -64,7 +64,7 @@
     },
     {
       "type": "p",
-      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes, so a card with several links needs an NTAG216. A full card that doesn’t fit is written as its contact link, which opens your contact page and needs internet. `[depends on 1.3.0, T1–T4]` for the contact link. Tilde’s Write a sticker tells you which sizes fit before it writes. `[depends on T-W1–T-W7]` On an iPhone, a tap opens a page with your card and **Save contact**, which needs internet. `[depends on T1–T4]` for the iPhone line."
+      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes, so a card with several links needs an NTAG216. A full card that doesn’t fit is written as its contact link, which opens your contact page and needs internet. `[depends on T1–T4]` for the contact link. Tilde’s Write a sticker tells you which sizes fit before it writes. `[depends on T-W1–T-W7]` On an iPhone, a tap opens a page with your card and **Save contact**, which needs internet. `[depends on T1–T4]` for the iPhone line."
     },
     {
       "type": "h2",
@@ -73,7 +73,7 @@
     },
     {
       "type": "p",
-      "text": "**Countless designs.** In the Model Maker, you put your own card together: `[depends on the card release]`"
+      "text": "**Countless designs.** In the Model Maker, you put your own card together:"
     },
     {
       "type": "ul",
@@ -106,8 +106,8 @@
     },
     {
       "type": "h3",
-      "text": "Fronts `[depends on the card release]`",
-      "id": "fronts-depends-on-the-card-release"
+      "text": "Fronts",
+      "id": "fronts"
     },
     {
       "type": "p",
@@ -167,11 +167,11 @@
           "sub": []
         },
         {
-          "text": "**Contact:** your lines, with icons (phone, email, web and more). `[depends on the card release]`",
+          "text": "**Contact:** your lines, with icons (phone, email, web and more).",
           "sub": []
         },
         {
-          "text": "**Code:** your lines as a short JSON-style block. `[depends on the card release]`",
+          "text": "**Code:** your lines as a short JSON-style block.",
           "sub": []
         },
         {
@@ -182,7 +182,7 @@
     },
     {
       "type": "p",
-      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The examples below have 23, each in its design’s row. They include: `[depends on the card release]`"
+      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The examples below have 23, each in its design’s row. They include:"
     },
     {
       "type": "ul",
@@ -240,7 +240,7 @@
     },
     {
       "type": "p",
-      "text": "These twelve are examples of what you can make, not a set to choose from. Each design is a front and its default back (two need the next release). `[depends on the card release]` Its alternate backs sit beside it. To start, try **Classic Dark** or **Classic Light**, then change what you like. Every one is rendered from the model with the sample person, Jane Doe."
+      "text": "These twelve are examples of what you can make, not a set to choose from. Each design is a front and its default back, with its alternate backs beside it. To start, try **Classic Dark** or **Classic Light**, then change what you like. Every one is rendered from the model with the sample person, Jane Doe."
     },
     {
       "type": "table",
@@ -314,7 +314,7 @@
     },
     {
       "type": "p",
-      "text": "Retro with khaki and USA Dark use custom colors. The Theme menu’s Retro is cream, and its USA is the white one (USA Light). `[depends on the card release]` for the Theme menu."
+      "text": "Retro with khaki and USA Dark use custom colors. The Theme menu’s Retro is cream, and its USA is the white one (USA Light)."
     },
     {
       "type": "image",
@@ -359,11 +359,11 @@
       "type": "ol",
       "items": [
         {
-          "text": "**Print your own.** Click **Customize** on MakerWorld (MAKERWORLD-CARD-URL), type your name, your link and your back’s lines, pick a theme, and download the 3MF. Or open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card). The printing guide below has the rest. `[depends on U3]` for MakerWorld. `[depends on the card release]` for “pick a theme” and the GitHub model.",
+          "text": "**Print your own.** Click **Customize** on MakerWorld (MAKERWORLD-CARD-URL), type your name, your link and your back’s lines, pick a theme, and download the 3MF. Or open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card). The printing guide below has the rest.",
           "sub": []
         },
         {
-          "text": "**Add an NFC sticker** if you want people to tap it: a round NTAG215, 22–25 mm across. Write it before it goes in, with Tilde (Android: Cards → Write a sticker `[depends on 1.3.0]`) or the free NFC Tools app (iPhone and Android).",
+          "text": "**Add an NFC sticker** if you want people to tap it: a round NTAG215, 22–25 mm across. Write it before it goes in, with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
           "sub": []
         },
         {

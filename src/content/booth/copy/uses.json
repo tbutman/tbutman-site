@@ -1,5 +1,5 @@
 {
-  "source": "b14c1d068f700b2c6297a8bb0f7d802cf4389860fa1b43c1b9d63e77c80d6606",
+  "source": "eb673eac5d97c5fe122101cfac33558e144a1befdd5d0085169ae77fcf97d58b",
   "blocks": [
     {
       "type": "h2",
@@ -27,7 +27,7 @@
           "sub": []
         },
         {
-          "text": "**You write it.** Tilde for Android writes any of these in a few taps, for free: Cards → **Write a sticker**, then choose what it opens. `[depends on 1.3.0]` On an iPhone, the free NFC Tools app writes a link.",
+          "text": "**You write it.** Tilde for Android writes any of these in a few taps, for free: Cards → **Write a sticker**, then choose what it opens. On an iPhone, the free NFC Tools app writes a link.",
           "sub": []
         },
         {
@@ -80,7 +80,7 @@
           ]
         },
         {
-          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Family → Create**. It’s named “Call my family” and shares your number, ready to call. Then use **Write a sticker**. `[depends on templates]`",
+          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Family → Create**. It’s named “Call my family” and shares your number, ready to call. Then use **Write a sticker**.",
           "sub": []
         },
         {
@@ -106,7 +106,7 @@
       "type": "ul",
       "items": [
         {
-          "text": "**Android:** a tap offers to save your contact card, if it fits the sticker. A full card that doesn’t fit is written as its contact link, which opens your contact page with **Save contact** and needs internet. `[depends on T-B2]`; `[depends on 1.3.0, T1–T4]` for the contact link.",
+          "text": "**Android:** a tap offers to save your contact card, if it fits the sticker. A full card that doesn’t fit is written as its contact link, which opens your contact page with **Save contact** and needs internet. `[depends on T-B2]`; `[depends on T1–T4]` for the contact link.",
           "sub": []
         },
         {
@@ -120,7 +120,7 @@
           "sub": []
         },
         {
-          "text": "**Keep in mind:** anyone who taps it gets your contact card. In Edit card, uncheck your phone number or email under **What they save** if you’d rather leave them off. `[depends on 1.3.0]`",
+          "text": "**Keep in mind:** anyone who taps it gets your contact card. In Edit card, uncheck your phone number or email under **What they save** if you’d rather leave them off.",
           "sub": []
         }
       ]
@@ -284,7 +284,7 @@
           ]
         },
         {
-          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Lost & found → Create**. Its line is “Found this? Call or text me”, and it shares your number, ready to call. Then **Write a sticker**. `[depends on templates]`",
+          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Lost & found → Create**. Its line is “Found this? Call or text me”, and it shares your number, ready to call. Then **Write a sticker**.",
           "sub": []
         },
         {
@@ -449,7 +449,7 @@
           "sub": []
         },
         {
-          "text": "**Print your own:** coins and tags on the Tilde Keyrings listing (MAKERWORLD-KEYRINGS-URL). `[depends on keyrings listing]`",
+          "text": "**Print your own:** coins and tags on the Tilde Keyrings listing (MAKERWORLD-KEYRINGS-URL).",
           "sub": []
         },
         {

@@ -1,5 +1,5 @@
 {
-  "source": "4045803228c33057016eb43ff583ae6d8f5f25bb4fa5f0131ab3a9f9231a77e9",
+  "source": "42a48880e9e90327f6e2ddab031a930b423ad396c6d7101bf70e908ff867258b",
   "blocks": [
     {
       "type": "h2",
@@ -164,11 +164,11 @@
       "type": "ol",
       "items": [
         {
-          "text": "**Print your own.** Click **Customize** on the Tilde Keyrings listing on MakerWorld (MAKERWORLD-KEYRINGS-URL): choose a coin or a tag, Base or Premium, your colors and your icon, then download the 3MF. `[depends on keyrings listing]`",
+          "text": "**Print your own.** Click **Customize** on the Tilde Keyrings listing on MakerWorld (MAKERWORLD-KEYRINGS-URL): choose a coin or a tag, Base or Premium, your colors and your icon, then download the 3MF.",
           "sub": []
         },
         {
-          "text": "**Add a round NFC sticker** and write it with Tilde (Android: Cards → Write a sticker `[depends on 1.3.0]`) or the free NFC Tools app (iPhone and Android).",
+          "text": "**Add a round NFC sticker** and write it with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
           "sub": []
         },
         {

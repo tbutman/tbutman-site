@@ -2103,7 +2103,7 @@ main {
   color: var(--text);
 }
 
-/* A line that waits on a test or a launch: shown in the draft, and CI won't release it. */
+/* A line that waits on a phone or print test: shown in the draft, and CI won't let it go live. */
 .gate {
   display: inline-block;
   margin: 0 0.125rem;
