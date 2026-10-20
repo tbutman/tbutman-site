@@ -1,13 +1,13 @@
 {
-  "manifest": "8deb350df216acefde21e197913c864ea3393c025c882f146a09f2515dd455dd",
-  "exported": "2026-10-20T07:46:09+01:00",
+  "manifest": "02876a6a52bb566b9a6492b3303336ccc2f2c0a0a5ed5cd8b5590f7c08c25f0d",
+  "exported": "2026-10-20T08:33:12+01:00",
   "images": {
     "booth-table-open": {
       "pages": [
         "hub"
       ],
       "slot": "hero",
-      "alt": "The Tilde booth table: the two giveaway boxes open with their eight stacks of base tags, beside the closed cards-only box, the fob storage box and the 5- and 3-card pocket cases.",
+      "alt": "The Tilde booth table: the two giveaway boxes open with their eight stacks of base tags and the fob storage box open with its four stacks of fobs, beside the closed cards-only box and the 5- and 3-card pocket cases.",
       "status": "ok",
       "sources": [
         {
@@ -67,7 +67,7 @@
         "cards"
       ],
       "slot": "station-open",
-      "alt": "The cards-only box open and empty, its three bays (for 10 cards, 6 loose fronts and 6 loose backs), the lid set face up beside it.",
+      "alt": "The cards-only box open and empty: its three bays, for 10 assembled cards, 4 loose fronts and 6 loose backs, the lid set face up beside it.",
       "status": "ok",
       "sources": [
         {
@@ -107,7 +107,7 @@
         "fobs"
       ],
       "slot": "station-open",
-      "alt": "The fob storage box open and empty: four wells, each with a finger channel, the sliding lid set face up beside it.",
+      "alt": "The fob storage box open, its four stacks of fobs in the three themes, the sliding lid beside it: base coins (on top, Tap waves, orange on black), base tags (Wi-Fi password, black on khaki), premium coins (Tap waves, khaki on black) and premium tags (Person, orange on black).",
       "status": "ok",
       "sources": [
         {
@@ -167,8 +167,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A base coin in the tilde theme, orange on black.",
+      "alt": "A base coin, orange on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "base coin · orange on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-base-coin-tilde-360.webp",
@@ -192,8 +193,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A base coin in the dark theme, khaki on black.",
+      "alt": "A base coin, khaki on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "base coin · khaki on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-base-coin-dark-360.webp",
@@ -217,8 +219,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A base coin in the light theme, black on khaki.",
+      "alt": "A base coin, black on khaki: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "base coin · black on khaki",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-base-coin-light-360.webp",
@@ -242,8 +245,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A base tag in the tilde theme, orange on black.",
+      "alt": "A base tag, orange on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "base tag · orange on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-base-tag-tilde-360.webp",
@@ -267,8 +271,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A base tag in the dark theme, khaki on black.",
+      "alt": "A base tag, khaki on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "base tag · khaki on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-base-tag-dark-360.webp",
@@ -292,8 +297,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A base tag in the light theme, black on khaki.",
+      "alt": "A base tag, black on khaki: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "base tag · black on khaki",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-base-tag-light-360.webp",
@@ -317,8 +323,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A premium coin in the tilde theme, orange on black.",
+      "alt": "A premium coin, orange on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "premium coin · orange on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-tilde-360.webp",
@@ -342,8 +349,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A premium coin in the dark theme, khaki on black.",
+      "alt": "A premium coin, khaki on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "premium coin · khaki on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-dark-360.webp",
@@ -367,8 +375,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A premium coin in the light theme, black on khaki.",
+      "alt": "A premium coin, black on khaki: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "premium coin · black on khaki",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-light-360.webp",
@@ -392,8 +401,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A premium tag in the tilde theme, orange on black.",
+      "alt": "A premium tag, orange on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "premium tag · orange on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-tag-tilde-360.webp",
@@ -417,8 +427,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A premium tag in the dark theme, khaki on black.",
+      "alt": "A premium tag, khaki on black: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "premium tag · khaki on black",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-tag-dark-360.webp",
@@ -442,8 +453,9 @@
         "fobs"
       ],
       "slot": "types",
-      "alt": "A premium tag in the light theme, black on khaki.",
+      "alt": "A premium tag, black on khaki: both pieces, the front and the back.",
       "status": "ok",
+      "caption": "premium tag · black on khaki",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-tag-light-360.webp",
@@ -467,8 +479,9 @@
         "fobs"
       ],
       "slot": "special",
-      "alt": "The orange premium coin from the pocket cases, black tap waves.",
+      "alt": "The pocket case premium coin: orange, with black tap waves.",
       "status": "ok",
+      "caption": "premium coin · black on orange",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-orange-360.webp",
@@ -492,8 +505,9 @@
         "fobs"
       ],
       "slot": "special",
-      "alt": "The orange premium tag from the pocket cases.",
+      "alt": "The pocket case premium tag: orange, with a black person icon and its code black on white.",
       "status": "ok",
+      "caption": "premium tag · black on orange",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-premium-tag-orange-360.webp",
@@ -517,8 +531,9 @@
         "fobs"
       ],
       "slot": "tag-faces",
-      "alt": "A tag's front: its QR code.",
+      "alt": "A tag's front, orange on black: its QR code.",
       "status": "ok",
+      "caption": "tag front · the code",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-tag-front-360.webp",
@@ -542,8 +557,9 @@
         "fobs"
       ],
       "slot": "tag-faces",
-      "alt": "A tag's back: its icon.",
+      "alt": "A tag's back, orange on black: its icon.",
       "status": "ok",
+      "caption": "tag back · the icon",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-tag-back-360.webp",
@@ -568,8 +584,9 @@
         "uses"
       ],
       "slot": "demo-keychain",
-      "alt": "The demo keychain fanned out: a ring of tags, each a different use.",
+      "alt": "The demo keychain fanned out: a ring of orange on black tags, each a different use.",
       "status": "ok",
+      "caption": "the demo keychain",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-demo-keychain-720.webp",
@@ -1236,7 +1253,7 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The T short mark icon.",
+      "alt": "The t short mark icon.",
       "status": "ok",
       "icon": "short_t",
       "name": "t short mark",
@@ -1535,6 +1552,7 @@
       "slot": "stacks",
       "alt": "The Family tag from the giveaway box.",
       "status": "ok",
+      "caption": "Family",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-family-720.webp",
@@ -1555,6 +1573,7 @@
       "slot": "stacks",
       "alt": "The Contact card tag from the giveaway box.",
       "status": "ok",
+      "caption": "Contact card",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-contact-card-720.webp",
@@ -1575,6 +1594,7 @@
       "slot": "stacks",
       "alt": "The Link tag from the giveaway box.",
       "status": "ok",
+      "caption": "Link",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-link-720.webp",
@@ -1595,6 +1615,7 @@
       "slot": "stacks",
       "alt": "The WhatsApp (a generic chat icon) tag from the giveaway box.",
       "status": "ok",
+      "caption": "WhatsApp",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-whatsapp-720.webp",
@@ -1615,6 +1636,7 @@
       "slot": "stacks",
       "alt": "The Guest Wi-Fi tag from the giveaway box.",
       "status": "ok",
+      "caption": "Guest Wi-Fi",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-guest-wifi-720.webp",
@@ -1635,6 +1657,7 @@
       "slot": "stacks",
       "alt": "The Share your number tag from the giveaway box.",
       "status": "ok",
+      "caption": "Share your number",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-share-number-720.webp",
@@ -1655,6 +1678,7 @@
       "slot": "stacks",
       "alt": "The Lost item tag from the giveaway box.",
       "status": "ok",
+      "caption": "Lost item",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-lost-item-720.webp",
@@ -1675,6 +1699,7 @@
       "slot": "stacks",
       "alt": "The Book a meeting tag from the giveaway box.",
       "status": "ok",
+      "caption": "Book a meeting",
       "sources": [
         {
           "src": "/tilde/booth/uses--use-book-meeting-720.webp",
@@ -1695,6 +1720,7 @@
       "slot": "themes",
       "alt": "The Classic Dark card's front: black, with ~/janedoe, Jane Doe, taptilde.com in orange and a QR code on a white field. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Classic Dark · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-classic-dark-front-360.webp",
@@ -1720,6 +1746,7 @@
       "slot": "themes",
       "alt": "The Classic Dark card's back: black, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and orange.",
       "status": "ok",
+      "caption": "Classic Dark · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-classic-dark-back-360.webp",
@@ -1745,6 +1772,7 @@
       "slot": "themes",
       "alt": "The Classic Light card's front: off-white, with ~/janedoe, Jane Doe and a black QR code, taptilde.com in orange. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Classic Light · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-classic-light-front-360.webp",
@@ -1770,6 +1798,7 @@
       "slot": "themes",
       "alt": "The Classic Light card's back: off-white, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black and orange.",
       "status": "ok",
+      "caption": "Classic Light · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-classic-light-back-360.webp",
@@ -1795,6 +1824,7 @@
       "slot": "themes",
       "alt": "The Dark tap card card's front: plain black, with nothing printed: the card is only tapped. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Dark tap card · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-tap-card-front-360.webp",
@@ -1820,6 +1850,7 @@
       "slot": "themes",
       "alt": "The Dark tap card card's back: black, with an orange ring of tap waves where the NFC sticker sits.",
       "status": "ok",
+      "caption": "Dark tap card · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-tap-card-back-360.webp",
@@ -1845,6 +1876,7 @@
       "slot": "themes",
       "alt": "The Black solid card's front: black, as Classic Dark, printed in one piece. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Black solid · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-black-front-360.webp",
@@ -1870,6 +1902,7 @@
       "slot": "themes",
       "alt": "The Black solid card's back: black, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and orange.",
       "status": "ok",
+      "caption": "Black solid · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-black-back-360.webp",
@@ -1895,6 +1928,7 @@
       "slot": "themes",
       "alt": "The White solid card's front: off-white, as Classic Light, printed in one piece. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "White solid · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-white-front-360.webp",
@@ -1920,6 +1954,7 @@
       "slot": "themes",
       "alt": "The White solid card's back: off-white, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black and orange.",
       "status": "ok",
+      "caption": "White solid · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-white-back-360.webp",
@@ -1945,6 +1980,7 @@
       "slot": "themes",
       "alt": "The Retro card's front: gray, with dark text, a wine-red underline and taptilde.com, the QR code on a khaki field. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Retro · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-retro-front-360.webp",
@@ -1970,6 +2006,7 @@
       "slot": "themes",
       "alt": "The Retro card's back: gray, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in dark gray and wine red.",
       "status": "ok",
+      "caption": "Retro · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-retro-back-360.webp",
@@ -1995,6 +2032,7 @@
       "slot": "themes",
       "alt": "The Mystery card's front: black, with only a QR code on a white field and the tap mark: no name. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Mystery · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-mystery-front-360.webp",
@@ -2020,6 +2058,7 @@
       "slot": "themes",
       "alt": "The Mystery card's back: plain black.",
       "status": "ok",
+      "caption": "Mystery · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-mystery-back-360.webp",
@@ -2045,6 +2084,7 @@
       "slot": "themes",
       "alt": "The Signal card's front: yellow, with ~/janedoe, Jane Doe, taptilde.com and the QR code in black. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Signal · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-signal-front-360.webp",
@@ -2070,6 +2110,7 @@
       "slot": "themes",
       "alt": "The Signal card's back: yellow, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black.",
       "status": "ok",
+      "caption": "Signal · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-signal-back-360.webp",
@@ -2095,6 +2136,7 @@
       "slot": "themes",
       "alt": "The USA Light card's front: white, with navy text, a red ~/ and underline, taptilde.com in red, a navy QR code. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "USA Light · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-usa-light-front-360.webp",
@@ -2120,6 +2162,7 @@
       "slot": "themes",
       "alt": "The USA Light card's back: white, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy and red.",
       "status": "ok",
+      "caption": "USA Light · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-usa-light-back-360.webp",
@@ -2145,6 +2188,7 @@
       "slot": "themes",
       "alt": "The USA Dark card's front: navy, with white text, a red ~/ and underline, the QR code on a white field. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "USA Dark · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-usa-dark-front-360.webp",
@@ -2170,6 +2214,7 @@
       "slot": "themes",
       "alt": "The USA Dark card's back: navy, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and red.",
       "status": "ok",
+      "caption": "USA Dark · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-usa-dark-back-360.webp",
@@ -2195,6 +2240,7 @@
       "slot": "themes",
       "alt": "The Brasil card's front: yellow, with navy text, a green ~/ and underline, a navy QR code on a white field. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Brasil · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-brasil-front-360.webp",
@@ -2220,6 +2266,7 @@
       "slot": "themes",
       "alt": "The Brasil card's back: yellow, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy and green.",
       "status": "ok",
+      "caption": "Brasil · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-brasil-back-360.webp",
@@ -2245,6 +2292,7 @@
       "slot": "themes",
       "alt": "The Portugal card's front: green, with white text, a yellow ~/ and underline, a red QR code on a white field. Jane Doe is a made-up example.",
       "status": "ok",
+      "caption": "Portugal · front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-portugal-front-360.webp",
@@ -2270,6 +2318,7 @@
       "slot": "themes",
       "alt": "The Portugal card's back: red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white and yellow.",
       "status": "ok",
+      "caption": "Portugal · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-portugal-back-360.webp",
@@ -2295,6 +2344,7 @@
       "slot": "fronts",
       "alt": "The Classic front style on a Classic Dark card: the ~/janedoe handle, Jane Doe, taptilde.com and the QR code, with the tap mark.",
       "status": "ok",
+      "caption": "Classic front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-classic-720.webp",
@@ -2315,6 +2365,7 @@
       "slot": "fronts",
       "alt": "The Minimal front style on a Classic Dark card: the name, larger, and the QR code.",
       "status": "ok",
+      "caption": "Minimal front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-minimal-720.webp",
@@ -2335,6 +2386,7 @@
       "slot": "fronts",
       "alt": "The Mystery front style on a Classic Dark card: only the QR code, in the middle.",
       "status": "ok",
+      "caption": "Mystery front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-mystery-720.webp",
@@ -2355,6 +2407,7 @@
       "slot": "fronts",
       "alt": "The Handle front style on a Classic Dark card: the ~/janedoe handle, large, and the QR code.",
       "status": "ok",
+      "caption": "Handle front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-handle-720.webp",
@@ -2375,6 +2428,7 @@
       "slot": "fronts",
       "alt": "The Badge front style on a Classic Dark card: the first name large, then the last name and the role, and the QR code.",
       "status": "ok",
+      "caption": "Badge front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-badge-720.webp",
@@ -2395,6 +2449,7 @@
       "slot": "fronts",
       "alt": "The Tap only front style on a Classic Dark card: the name and a large tap mark, with no code.",
       "status": "ok",
+      "caption": "Tap only front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-taponly-720.webp",
@@ -2415,6 +2470,7 @@
       "slot": "fronts",
       "alt": "The Blank front style on a Classic Dark card: nothing printed at all.",
       "status": "ok",
+      "caption": "Blank front",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-front-blank-720.webp",
@@ -2435,6 +2491,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Classic Dark card (Tap: black, white window, black mark): black, with a white window holding a black ring of tap waves.",
       "status": "ok",
+      "caption": "Classic Dark · tap back, white window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-dark-tap-360.webp",
@@ -2460,6 +2517,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Classic Dark card (Code): black, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in white and orange.",
       "status": "ok",
+      "caption": "Classic Dark · code back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-dark-code-360.webp",
@@ -2485,6 +2543,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Classic Light card (Tap: white, black window, white mark): off-white, with a black window holding an off-white ring of tap waves.",
       "status": "ok",
+      "caption": "Classic Light · tap back, black window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-light-tap-360.webp",
@@ -2510,6 +2569,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Classic Light card (Code): off-white, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in black and orange.",
       "status": "ok",
+      "caption": "Classic Light · code back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-light-code-360.webp",
@@ -2535,6 +2595,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Dark tap card card (The same in Light): off-white, with an orange ring of tap waves (the Light tap card).",
       "status": "ok",
+      "caption": "Tap card · the light version",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-tap-light-360.webp",
@@ -2560,6 +2621,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Retro card ((a) wine, white text): wine red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white.",
       "status": "ok",
+      "caption": "Retro · wine back, white text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-retro-wine-white-360.webp",
@@ -2585,6 +2647,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Retro card ((a) wine, khaki text): wine red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in khaki.",
       "status": "ok",
+      "caption": "Retro · wine back, khaki text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-retro-wine-khaki-360.webp",
@@ -2610,6 +2673,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Retro card ((b) khaki, black text): khaki, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in black.",
       "status": "ok",
+      "caption": "Retro · khaki back, black text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-retro-khaki-black-360.webp",
@@ -2635,6 +2699,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Retro card ((b) khaki, red text): khaki, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in wine red.",
       "status": "ok",
+      "caption": "Retro · khaki back, wine text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-retro-khaki-red-360.webp",
@@ -2660,6 +2725,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Retro card (Code): gray, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in dark gray and wine red.",
       "status": "ok",
+      "caption": "Retro · code back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-retro-code-360.webp",
@@ -2685,6 +2751,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Signal card (Plain, yellow on black): black, with plain yellow text.",
       "status": "ok",
+      "caption": "Signal · black back, yellow text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-signal-plain-black-360.webp",
@@ -2710,6 +2777,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Signal card (Tap: yellow, black window, yellow mark): yellow, with a black window holding a yellow ring of tap waves.",
       "status": "ok",
+      "caption": "Signal · tap back, black window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-signal-tap-360.webp",
@@ -2735,6 +2803,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Signal card (Code): yellow, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in black.",
       "status": "ok",
+      "caption": "Signal · code back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-signal-code-360.webp",
@@ -2760,6 +2829,7 @@
       "slot": "backs",
       "alt": "An alternate back for the USA Light card (Terminal, red): red, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com.",
       "status": "ok",
+      "caption": "USA · red back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-usa-red-360.webp",
@@ -2785,6 +2855,7 @@
       "slot": "backs",
       "alt": "An alternate back for the USA Light card (Tap: navy, white window, red mark): navy, with a white window holding a red ring of tap waves.",
       "status": "ok",
+      "caption": "USA · navy tap back, white window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-usa-tap-360.webp",
@@ -2810,6 +2881,7 @@
       "slot": "backs",
       "alt": "An alternate back for the USA Light card (Code, white): white, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in navy and red.",
       "status": "ok",
+      "caption": "USA · white code back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-usa-code-360.webp",
@@ -2835,6 +2907,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Brasil card (Terminal, green, navy text): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy.",
       "status": "ok",
+      "caption": "Brasil · green back, navy text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-brasil-green-360.webp",
@@ -2860,6 +2933,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Brasil card (Terminal, green, white text): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white.",
       "status": "ok",
+      "caption": "Brasil · green back, white text",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-brasil-green-white-360.webp",
@@ -2885,6 +2959,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Brasil card (Plain, green Color window): yellow, with a green circle (a Color window over the sticker) and jane doe, product designer and jane@example.com in navy and green.",
       "status": "ok",
+      "caption": "Brasil · yellow back, green window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-brasil-plain-window-360.webp",
@@ -2910,6 +2985,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Brasil card (Tap: green, yellow window, green mark): green, with a yellow window holding a green ring of tap waves.",
       "status": "ok",
+      "caption": "Brasil · green tap back, yellow window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-brasil-tap-360.webp",
@@ -2935,6 +3011,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Portugal card (Terminal, green): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com.",
       "status": "ok",
+      "caption": "Portugal · green back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-portugal-green-360.webp",
@@ -2960,6 +3037,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Portugal card (Tap: red, green window, yellow mark): red, with a green window holding a yellow ring of tap waves.",
       "status": "ok",
+      "caption": "Portugal · red tap back, green window",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-portugal-tap-360.webp",
@@ -2985,6 +3063,7 @@
       "slot": "backs",
       "alt": "An alternate back for the Portugal card (Code): red, with a code block with Jane's details: { \"name\": \"jane doe\", \"role\": \"product designer\", \"email\": \"jane@example.com\" }, in white and yellow.",
       "status": "ok",
+      "caption": "Portugal · red code back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-back-portugal-code-360.webp",
@@ -3010,6 +3089,7 @@
       "slot": "builds",
       "alt": "The two-piece Classic Dark card taken apart, back up: the back piece lifted off, the round NFC sticker, and the front piece, a shallow tray with the sticker's pocket. The back piece presses in and snaps past a lip on the rim; glued, it's permanent. The black is drawn lighter here so the shapes show.",
       "status": "ok",
+      "caption": "Two-piece card, taken apart",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-two-piece-720.webp",
@@ -3030,6 +3110,7 @@
       "slot": "builds",
       "alt": "The two-piece Classic Dark card's back at an angle: the back piece sits flush in the front piece's rim, with a thin seam round it, a notch at the top edge and a pill at the bottom.",
       "status": "ok",
+      "caption": "Two-piece card · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-two-piece-back-720.webp",
@@ -3050,6 +3131,7 @@
       "slot": "builds",
       "alt": "The solid Classic Dark card's back at an angle: one piece, no seam. It prints in one go, with a pause to put the NFC sticker in.",
       "status": "ok",
+      "caption": "Solid card · back",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-back-720.webp",
@@ -3070,6 +3152,7 @@
       "slot": "holders",
       "alt": "The 3-card pocket case open: the drawer out beside its sleeve, with a premium coin and tag in their wells, and its 3 cards lifted out and fanned (Classic Dark, Classic Light, Dark tap card).",
       "status": "ok",
+      "caption": "3-card pocket case",
       "sources": [
         {
           "src": "/tilde/booth/cards--holder-pocket-3-720.webp",
@@ -3090,6 +3173,7 @@
       "slot": "holders",
       "alt": "The 5-card pocket case open: the drawer out beside its sleeve, with a premium coin and tag in their wells, and its 5 cards lifted out and fanned (Black solid, Classic Dark, Classic Light, Dark tap card, Retro).",
       "status": "ok",
+      "caption": "5-card pocket case",
       "sources": [
         {
           "src": "/tilde/booth/cards--holder-pocket-5-720.webp",
@@ -3110,6 +3194,7 @@
       "slot": "holders",
       "alt": "The cards-only box open: ten assembled cards in the front bay (Black solid, White solid, Classic Dark, Classic Light, Dark tap card, Retro, Mystery, Signal, USA Light, USA Dark; the Black solid card in front), four loose fronts in the middle bay (Brasil in front, then Portugal, Classic Dark and Classic Light) and six loose backs at the back (Portugal's tap back in front). The pieces swap, so one box shows many combinations.",
       "status": "ok",
+      "caption": "Cards-only box",
       "sources": [
         {
           "src": "/tilde/booth/cards--holder-cards-only-box-720.webp",
@@ -3130,6 +3215,7 @@
       "slot": "angles",
       "alt": "The Classic Dark card at an angle, front up: black, with ~/janedoe, Jane Doe, taptilde.com in orange and a QR code on a white field.",
       "status": "ok",
+      "caption": "Classic Dark",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-classic-dark-angle-720.webp",
@@ -3150,6 +3236,7 @@
       "slot": "angles",
       "alt": "The Classic Light card at an angle, front up: off-white, with ~/janedoe, Jane Doe and a black QR code, taptilde.com in orange.",
       "status": "ok",
+      "caption": "Classic Light",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-classic-light-angle-720.webp",
@@ -3170,6 +3257,7 @@
       "slot": "angles",
       "alt": "The Dark tap card card at an angle, front up: plain black, with nothing printed: the card is only tapped.",
       "status": "ok",
+      "caption": "Dark tap card",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-tap-card-angle-720.webp",
@@ -3190,6 +3278,7 @@
       "slot": "angles",
       "alt": "The Black solid card at an angle, front up: black, as Classic Dark, printed in one piece.",
       "status": "ok",
+      "caption": "Black solid",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-black-angle-720.webp",
@@ -3210,6 +3299,7 @@
       "slot": "angles",
       "alt": "The White solid card at an angle, front up: off-white, as Classic Light, printed in one piece.",
       "status": "ok",
+      "caption": "White solid",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-solid-white-angle-720.webp",
@@ -3230,6 +3320,7 @@
       "slot": "angles",
       "alt": "The Retro card at an angle, front up: gray, with dark text, a wine-red underline and taptilde.com, the QR code on a khaki field.",
       "status": "ok",
+      "caption": "Retro",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-retro-angle-720.webp",
@@ -3250,6 +3341,7 @@
       "slot": "angles",
       "alt": "The Mystery card at an angle, front up: black, with only a QR code on a white field and the tap mark: no name.",
       "status": "ok",
+      "caption": "Mystery",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-mystery-angle-720.webp",
@@ -3270,6 +3362,7 @@
       "slot": "angles",
       "alt": "The Signal card at an angle, front up: yellow, with ~/janedoe, Jane Doe, taptilde.com and the QR code in black.",
       "status": "ok",
+      "caption": "Signal",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-signal-angle-720.webp",
@@ -3290,6 +3383,7 @@
       "slot": "angles",
       "alt": "The USA Light card at an angle, front up: white, with navy text, a red ~/ and underline, taptilde.com in red, a navy QR code.",
       "status": "ok",
+      "caption": "USA Light",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-usa-light-angle-720.webp",
@@ -3310,6 +3404,7 @@
       "slot": "angles",
       "alt": "The USA Dark card at an angle, front up: navy, with white text, a red ~/ and underline, the QR code on a white field.",
       "status": "ok",
+      "caption": "USA Dark",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-usa-dark-angle-720.webp",
@@ -3330,6 +3425,7 @@
       "slot": "angles",
       "alt": "The Brasil card at an angle, front up: yellow, with navy text, a green ~/ and underline, a navy QR code on a white field.",
       "status": "ok",
+      "caption": "Brasil",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-brasil-angle-720.webp",
@@ -3350,6 +3446,7 @@
       "slot": "angles",
       "alt": "The Portugal card at an angle, front up: green, with white text, a yellow ~/ and underline, a red QR code on a white field.",
       "status": "ok",
+      "caption": "Portugal",
       "sources": [
         {
           "src": "/tilde/booth/cards--card-portugal-angle-720.webp",

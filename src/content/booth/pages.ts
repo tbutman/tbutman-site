@@ -22,6 +22,19 @@ export type BoothPage = {
   images: [string, Placement][]
 }
 
+/**
+ * A gate's fallback that docs' notes give but its page copy doesn't have yet, applied here until docs
+ * writes it in: [the text as docs wrote it, the text the page shows]. The build stops if the first
+ * isn't in the copy, so an edit can't outlive the line it changes. Logged in booth-site-decisions.md.
+ */
+function withEdits(copy: BoothCopy, edits: [string, string][]): BoothCopy {
+  for (const [from] of edits) {
+    if (!copy.blocks.some((block) => 'text' in block && block.text.includes(from))) throw new Error(`booth copy: "${from}" isn't in docs' copy any more`)
+  }
+  const edit = (text: string) => edits.reduce((out, [from, to]) => out.replace(from, to), text)
+  return { ...copy, blocks: copy.blocks.map((block) => (block.type === 'p' ? { ...block, text: edit(block.text) } : block)) }
+}
+
 const tag = (id: string): Placement => ({ ids: [id], layout: 'tag', ratio: 'square' })
 
 export const cardsPage: BoothPage = {
@@ -32,9 +45,14 @@ export const cardsPage: BoothPage = {
   name: 'Tilde Card',
   headline: ['Every design,', 'front and back.'],
   hero: 'station-cards-closed',
-  copy: cardsCopy as BoothCopy,
+  // Docs' fallback for [depends on the card release] (cards.md's notes): Mystery's front and the tap
+  // card's Blank front aren't in the public model yet.
+  copy: withEdits(cardsCopy as BoothCopy, [
+    ['Each design is a front and its default back.', 'Each design is a front and its default back (two need the next release).'],
+  ]),
   images: [
-    ['the cards-only box, open', { ids: ['station-cards-open'], layout: 'wide', ratio: 'photo' }],
+    // The card agent's box with the real cards; design's station-cards-open is the empty box (design 17).
+    ['the cards-only box, open', { ids: ['holder-cards-only-box'], layout: 'wide', ratio: 'photo' }],
     ['per design', { slot: 'themes', layout: 'pairs', ratio: 'card' }],
     ['one card in each front style', { slot: 'fronts', layout: 'small', ratio: 'card' }],
     ['the alternate backs', { slot: ['backs', 'alternate-backs'], layout: 'small', ratio: 'card' }],

@@ -56,30 +56,6 @@ const themeName = (key: string) => {
     .join(' ')
 }
 
-// A short caption for a render in a grid, where the picture alone doesn't say which one it is: the
-// owner's own (site-renders.json's `caption`), or else one from its export id, lowercase like the
-// site's other labels.
-const fixed: Record<string, string> = {
-  'fob-tag-front': 'a tag’s front: the code',
-  'fob-tag-back': 'a tag’s back: the icon',
-  'card-two-piece': 'two-piece, taken apart',
-  'card-two-piece-back': 'two-piece, from the back',
-  'card-solid-back': 'solid, from the back',
-  'holder-pocket-3': '3-card pocket case',
-  'holder-pocket-5': '5-card pocket case',
-  'holder-cards-only-box': 'the cards-only box',
-}
-function captionFor(id: string): string | undefined {
-  if (fixed[id]) return fixed[id]
-  const front = id.match(/^card-front-(\w+)$/)
-  if (front) return front[1] === 'taponly' ? 'tap only' : front[1]
-  const fob = id.match(/^fob-(base|premium)-(coin|tag)-(\w+)$/)
-  if (fob) return `${fob[1]} ${fob[2]} · ${fob[3]}`
-  const back = id.match(/^card-back-([a-z]+)-(.+)$/)
-  if (back) return `${back[1] === 'usa' ? 'USA' : back[1]} · ${back[2].replace(/-/g, ' ')}`
-  return undefined
-}
-
 /** The renders one of docs' [image: …] lines stands for, laid out. */
 export function Placed({ page, placement, marker }: { page: string; placement: Placement | null; marker: string }) {
   if (!placement) {
@@ -131,7 +107,7 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
                 <Render key={id} image={image} id={id} ratio={ratio} size="small" />
               ))}
             </div>
-            <span>{themeName(key)}</span>
+            <span>{sides[0].image?.caption?.replace(/ · front$/, '') ?? themeName(key)}</span>
           </li>
         ))}
       </ul>
@@ -141,7 +117,8 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
   return (
     <div className={`booth-grid booth-grid-${layout}`}>
       {images.map(({ id, image }) => {
-        const caption = layout === 'wide' || layout === 'tag' ? undefined : (image?.caption ?? captionFor(id))
+        // The owner's caption from site-renders.json; a wide image or a use's tag has its heading instead.
+        const caption = layout === 'wide' || layout === 'tag' ? undefined : image?.caption
         return caption ? (
           <figure key={id}>
             <Render image={image} id={id} ratio={ratio} size={layout} />
