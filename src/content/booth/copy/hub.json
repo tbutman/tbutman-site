@@ -1,0 +1,83 @@
+{
+  "source": "ea7314ca6140dcd3328cb0a0dac19680a2f4635a65427a75631cc53b5fe7a6ee",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "The opening",
+      "id": "the-opening"
+    },
+    {
+      "type": "p",
+      "text": "**Tilde is a business card for a tap or a scan.** On your Android phone, it’s an app: hold your phone to someone else’s and they get your contact card, your website or your WhatsApp. To hand out, it’s a card or a tag you print yourself, with a QR code and an NFC sticker inside."
+    },
+    {
+      "type": "h2",
+      "text": "The concept",
+      "id": "the-concept"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Tap or scan.** The other person doesn’t need an app, and any phone camera reads the code.",
+          "sub": []
+        },
+        {
+          "text": "**The app is free and open source,** with no account and no internet: your details stay on your phone until you share them.",
+          "sub": []
+        },
+        {
+          "text": "**Print what you hand out,** or pick up a tag at our booth.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "See everything",
+      "id": "see-everything"
+    },
+    {
+      "type": "p",
+      "text": "Three short tours of what’s on our table, and what isn’t."
+    },
+    {
+      "type": "table",
+      "head": [
+        "",
+        "",
+        ""
+      ],
+      "rows": [
+        [
+          "[image: a card’s front] **[Cards](/tilde/card)**",
+          "[image: a coin and a tag] **[Fobs](/tilde/fobs)**",
+          "[image: a stack of booth tags] **[Use cases](/tilde/uses)**"
+        ],
+        [
+          "Every card design, front and back, and how to print yours.",
+          "Coins and tags for your keys, and every icon.",
+          "Eight jobs a tag can do, on an iPhone and on Android, and how to make each one."
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to get it",
+      "id": "how-to-get-it"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**The app:** the install steps are just below. It takes about a minute, on Android 8.0 or newer.",
+          "sub": []
+        },
+        {
+          "text": "**A card or a tag:** [print your own](/tilde/card), or find us at the booth.",
+          "sub": []
+        }
+      ]
+    }
+  ]
+}

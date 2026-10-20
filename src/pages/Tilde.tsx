@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import BoothHub from '../components/BoothHub'
+import { BoothHub } from '../booth'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'

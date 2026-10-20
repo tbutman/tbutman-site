@@ -1,5 +1,799 @@
 {
-  "manifest": null,
-  "exported": null,
-  "images": {}
+  "manifest": "d533044dea0bed5474474d497b55609d566f1406b8bad2715467d2fd89f7c76d",
+  "exported": "2026-10-20T06:05:12+01:00",
+  "images": {
+    "booth-table-open": {
+      "pages": [
+        "hub"
+      ],
+      "slot": "hero",
+      "alt": "The Tilde booth table, lids off: the cards-only box full of cards, the fob storage box with its stacks of coins and tags, two giveaway boxes of base tags, and the 5- and 3-card pocket cases with their drawers half out.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/hub--booth-table-open-720.webp",
+          "width": 720,
+          "height": 379
+        },
+        {
+          "src": "/tilde/booth/hub--booth-table-open-1440.webp",
+          "width": 1440,
+          "height": 758
+        }
+      ]
+    },
+    "booth-table-closed": {
+      "pages": [
+        "hub"
+      ],
+      "slot": "table-closed",
+      "alt": "The same booth table with every lid on: black card box lid and engraved storage lid, two olive giveaway lids, and the black pocket-case sleeves.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/hub--booth-table-closed-720.webp",
+          "width": 720,
+          "height": 399
+        },
+        {
+          "src": "/tilde/booth/hub--booth-table-closed-1440.webp",
+          "width": 1440,
+          "height": 798
+        }
+      ]
+    },
+    "station-cards-closed": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "station",
+      "alt": "The cards-only box closed: a khaki base under a black lid with a QR code, the orange and white ~/tilde wordmark and taptilde.com.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--station-cards-closed-720.webp",
+          "width": 720,
+          "height": 655
+        },
+        {
+          "src": "/tilde/booth/cards--station-cards-closed-1428.webp",
+          "width": 1428,
+          "height": 1300
+        }
+      ]
+    },
+    "station-cards-open": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "station-open",
+      "alt": "The cards-only box open, its three bays full of cards, the lid set face up beside it.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--station-cards-open-720.webp",
+          "width": 720,
+          "height": 406
+        },
+        {
+          "src": "/tilde/booth/cards--station-cards-open-1440.webp",
+          "width": 1440,
+          "height": 813
+        }
+      ]
+    },
+    "station-fobs-closed": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "station",
+      "alt": "The fob storage box closed: a khaki base under a black sliding lid with the ~/tilde lockup engraved, a thumb hole at the front edge.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--station-fobs-closed-720.webp",
+          "width": 720,
+          "height": 535
+        },
+        {
+          "src": "/tilde/booth/fobs--station-fobs-closed-1440.webp",
+          "width": 1440,
+          "height": 1070
+        }
+      ]
+    },
+    "station-fobs-open": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "station-open",
+      "alt": "The fob storage box open, four flat stacks of fobs (base coins, base tags, premium coins, premium tags), its lid set beside it.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--station-fobs-open-720.webp",
+          "width": 720,
+          "height": 372
+        },
+        {
+          "src": "/tilde/booth/fobs--station-fobs-open-1440.webp",
+          "width": 1440,
+          "height": 743
+        }
+      ]
+    },
+    "station-uses-closed": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "station",
+      "alt": "The giveaway box closed: a long khaki base under an olive lid with a khaki QR code, the ~/tilde wordmark with an orange ~/ and tap waves, and taptilde.com.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--station-uses-closed-720.webp",
+          "width": 720,
+          "height": 383
+        },
+        {
+          "src": "/tilde/booth/uses--station-uses-closed-1440.webp",
+          "width": 1440,
+          "height": 766
+        }
+      ]
+    },
+    "station-uses-open": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "station-open",
+      "alt": "The giveaway box open: four stacks of ten base tags in one row, each with its icon on top, its olive lid set beside it.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/uses--station-uses-open-720.webp",
+          "width": 720,
+          "height": 448
+        },
+        {
+          "src": "/tilde/booth/uses--station-uses-open-1440.webp",
+          "width": 1440,
+          "height": 895
+        }
+      ]
+    },
+    "card-classic-dark-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Classic Dark, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-classic-dark-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Classic Dark, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-classic-light-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Classic Light, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-classic-light-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Classic Light, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-tap-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of the tap card (C1), a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-tap-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of the tap card (C1), its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-solid-black-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of the black solid card, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-solid-black-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of the black solid card, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-solid-white-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of the white solid card, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-solid-white-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of the white solid card, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-retro-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Retro, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-retro-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Retro, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-mystery-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Mystery, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-mystery-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Mystery, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-signal-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Signal, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-signal-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Signal, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-usa-light-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of USA Light, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-usa-light-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of USA Light, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-usa-dark-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of USA Dark, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-usa-dark-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of USA Dark, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-brasil-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Brasil, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-brasil-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Brasil, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-portugal-front": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The front of Portugal, a Tilde card for Jane Doe.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-portugal-back": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "themes",
+      "alt": "The back of Portugal, its default back.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-two-piece": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "construction",
+      "alt": "A two-piece card apart: the front piece and the back piece, the NFC sticker between them.",
+      "status": "missing",
+      "sources": []
+    },
+    "card-solid": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "construction",
+      "alt": "A solid card: one piece, both faces printed, the sticker sealed inside.",
+      "status": "missing",
+      "sources": []
+    },
+    "holder-pocket-5": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "holders",
+      "alt": "The 5-card pocket case, its drawer half out with cards and a premium coin and tag.",
+      "status": "missing",
+      "sources": []
+    },
+    "holder-pocket-3": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "holders",
+      "alt": "The 3-card pocket case, its drawer half out.",
+      "status": "missing",
+      "sources": []
+    },
+    "holder-cards-only-box": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "holders",
+      "alt": "The cards-only box filled with the card set.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-base-coin-tilde": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A base coin in the tilde theme, orange on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-base-coin-dark": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A base coin in the dark theme, khaki on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-base-coin-light": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A base coin in the light theme, black on khaki.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-base-tag-tilde": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A base tag in the tilde theme, orange on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-base-tag-dark": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A base tag in the dark theme, khaki on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-base-tag-light": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A base tag in the light theme, black on khaki.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-coin-tilde": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A premium coin in the tilde theme, orange on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-coin-dark": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A premium coin in the dark theme, khaki on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-coin-light": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A premium coin in the light theme, black on khaki.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-tag-tilde": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A premium tag in the tilde theme, orange on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-tag-dark": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A premium tag in the dark theme, khaki on black.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-tag-light": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "types",
+      "alt": "A premium tag in the light theme, black on khaki.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-coin-orange": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "special",
+      "alt": "The orange premium coin from the pocket cases, black tap waves.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-premium-tag-orange": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "special",
+      "alt": "The orange premium tag from the pocket cases.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-tag-front": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "tag-faces",
+      "alt": "A tag's front: its QR code.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-tag-back": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "tag-faces",
+      "alt": "A tag's back: its icon.",
+      "status": "missing",
+      "sources": []
+    },
+    "fob-demo-keychain": {
+      "pages": [
+        "fobs",
+        "uses"
+      ],
+      "slot": "demo-keychain",
+      "alt": "The demo keychain fanned out: a ring of tags, each a different use.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-family": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Family tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-contact-card": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Contact card tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-link": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Link tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-whatsapp": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The WhatsApp (a generic chat icon) tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-guest-wifi": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Guest Wi-Fi tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-share-number": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Share your number tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-lost-item": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Lost item tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    },
+    "use-book-meeting": {
+      "pages": [
+        "uses"
+      ],
+      "slot": "stacks",
+      "alt": "The Book a meeting tag from the giveaway box.",
+      "status": "missing",
+      "sources": []
+    }
+  },
+  "icons": [
+    [
+      "tap",
+      "Tap waves"
+    ],
+    [
+      "wifi",
+      "Wi-Fi"
+    ],
+    [
+      "link",
+      "Link"
+    ],
+    [
+      "phone",
+      "Phone"
+    ],
+    [
+      "phone_tap",
+      "Phone with tap waves"
+    ],
+    [
+      "mail",
+      "Envelope"
+    ],
+    [
+      "person",
+      "Person"
+    ],
+    [
+      "home",
+      "Home"
+    ],
+    [
+      "key",
+      "Key"
+    ],
+    [
+      "tilde",
+      "~/"
+    ],
+    [
+      "wifi_key",
+      "Wi-Fi password"
+    ],
+    [
+      "found_it",
+      "Found it?"
+    ],
+    [
+      "calendar",
+      "Calendar"
+    ],
+    [
+      "hotspot",
+      "Hotspot"
+    ],
+    [
+      "handset",
+      "Handset"
+    ],
+    [
+      "pet",
+      "Pet"
+    ],
+    [
+      "fitness",
+      "Fitness"
+    ],
+    [
+      "package",
+      "Package"
+    ],
+    [
+      "weather",
+      "Weather"
+    ],
+    [
+      "location",
+      "Location"
+    ],
+    [
+      "transit",
+      "Transit"
+    ],
+    [
+      "music",
+      "Music"
+    ],
+    [
+      "shop",
+      "Shop"
+    ],
+    [
+      "food",
+      "Food"
+    ],
+    [
+      "news",
+      "News"
+    ],
+    [
+      "soccer",
+      "Soccer ball"
+    ],
+    [
+      "sports",
+      "Sports"
+    ],
+    [
+      "booking",
+      "Booking"
+    ],
+    [
+      "parking",
+      "Parking"
+    ],
+    [
+      "train",
+      "Train"
+    ],
+    [
+      "contact",
+      "Contact card"
+    ],
+    [
+      "payment",
+      "Payment"
+    ],
+    [
+      "chat",
+      "Chat"
+    ],
+    [
+      "short_tw",
+      "~/t short mark"
+    ],
+    [
+      "short_t",
+      "t short mark"
+    ],
+    [
+      "luggage",
+      "Luggage tag"
+    ]
+  ]
 }

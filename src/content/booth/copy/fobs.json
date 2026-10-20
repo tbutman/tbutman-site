@@ -1,0 +1,228 @@
+{
+  "source": "c9057bc81def06821951f73a003224060b171bebf5813e5b24f188207ea782b3",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "The opening",
+      "id": "the-opening"
+    },
+    {
+      "type": "p",
+      "text": "**These are Tilde fobs: coins and tags for your keys, with an NFC sticker inside.** Tap one with a phone and it opens whatever’s on the sticker: a link, your contact card, your Wi-Fi. The tags have a QR code too. The box holds a few; here’s every shape, color and icon."
+    },
+    {
+      "type": "h2",
+      "text": "How it works",
+      "id": "how-it-works"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Tap it.** Any phone with NFC reads the sticker inside, and the other person doesn’t need an app.",
+          "sub": []
+        },
+        {
+          "text": "**Change it any time.** A phone rewrites the sticker through the plastic, so the same fob can open something new without a reprint. You only open it to replace the sticker. `[depends on U15]`",
+          "sub": []
+        },
+        {
+          "text": "**Scan a tag.** A tag’s QR code opens a short link (up to 53 characters, such as a website). The code is printed, so it doesn’t change. A coin has no code: it’s for tapping only.",
+          "sub": []
+        },
+        {
+          "text": "**You print it yourself** on a multi-color printer, in two pieces with no pause. Or pick up a tag at our booth.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The lineup",
+      "id": "the-lineup"
+    },
+    {
+      "type": "image",
+      "text": "the fob storage box, open: flat stacks of every fob type"
+    },
+    {
+      "type": "h3",
+      "text": "Two shapes, two series",
+      "id": "two-shapes-two-series"
+    },
+    {
+      "type": "table",
+      "head": [
+        "",
+        "Coin",
+        "Tag"
+      ],
+      "rows": [
+        [
+          "**What it does**",
+          "Tap only: a round 32 mm disc with no code",
+          "Tap or scan: a QR code on the front, and the sticker inside"
+        ],
+        [
+          "**Base**",
+          "Thin, quick and cheap to print. The back twists on a quarter turn and locks. Open it by hand, or with a coin in its slot if you add one.",
+          "Thin. The key ring goes through both pieces and holds them together without glue, so the sticker can be swapped. Glue it for the most durable tag."
+        ],
+        [
+          "**Premium**",
+          "Thicker and heavier: one solid body with a round back rim. The back sits flush, clicks shut at the end of its quarter turn, and opens with a coin (a US quarter or a 20 euro cent).",
+          "The same premium body and back, as a tag with a code."
+        ]
+      ]
+    },
+    {
+      "type": "image",
+      "text": "per fob type: base coin, base tag, premium coin, premium tag; a tag's front (the code) and back (the icon)"
+    },
+    {
+      "type": "p",
+      "text": "**A tag’s size follows its link:** 28.8 × 35.3 mm for up to 17 characters, 31 × 37.5 mm for up to 32, and 35 × 41.5 mm for up to 53. A link is all a tag’s code holds: a contact card is far too much for a code this small. `[depends on U16]` for “scans”."
+    },
+    {
+      "type": "h3",
+      "text": "Colors",
+      "id": "colors"
+    },
+    {
+      "type": "p",
+      "text": "Three standard themes, each two colors. The code always takes the body’s color, with no patch of another color. `[depends on T-B1]` for the tilde and dark codes."
+    },
+    {
+      "type": "table",
+      "head": [
+        "Theme",
+        "Look"
+      ],
+      "rows": [
+        [
+          "**tilde**",
+          "Orange on black"
+        ],
+        [
+          "**dark**",
+          "Khaki on black"
+        ],
+        [
+          "**light**",
+          "Black on khaki"
+        ]
+      ]
+    },
+    {
+      "type": "image",
+      "text": "each fob type in each standard theme"
+    },
+    {
+      "type": "p",
+      "text": "**Special:** the pocket case fobs, orange with black icons. They ride in the card pocket cases (see Cards)."
+    },
+    {
+      "type": "p",
+      "text": "The model also has the cards’ themes (Signal, USA, Brasil, Portugal and Retro), or your own colors."
+    },
+    {
+      "type": "image",
+      "text": "the orange pocket case fobs"
+    },
+    {
+      "type": "h3",
+      "text": "The storage box",
+      "id": "the-storage-box"
+    },
+    {
+      "type": "p",
+      "text": "A 2 × 2 box of flat stacks: 3 premium coins, 3 premium tags, 5 base coins and 8 base tags, under a sliding lid with the wordmark engraved. We made it for the booth. Its print files aren’t published."
+    },
+    {
+      "type": "image",
+      "text": "the storage box, closed and open"
+    },
+    {
+      "type": "h2",
+      "text": "Icons",
+      "id": "icons"
+    },
+    {
+      "type": "p",
+      "text": "**Tell a set apart** with an icon on the back, and a short label if you like, in a color you choose. Every icon is generic: no brand logos, so a chat bubble rather than any app’s logo."
+    },
+    {
+      "type": "generated",
+      "text": "one image per built icon, with its name from the model and its line from `icon-uses.json`"
+    },
+    {
+      "type": "p",
+      "text": "The icons’ images and names come from the model’s export. Their one-line uses come from `site-content/icon-uses.json`, keyed by the model’s icon value, and `check_icon_uses.py` keeps the two in step. Some uses need a feature that’s still being tested:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Phone number** (`phone`, `handset`, `found_it`, `home`) `[depends on T-N2, T-N4]`;",
+          "sub": []
+        },
+        {
+          "text": "**guest Wi-Fi on an iPhone** `[depends on T-WF]`;",
+          "sub": []
+        },
+        {
+          "text": "the **contact card** on an iPhone `[depends on T1–T4]`.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The Uses page has the details."
+    },
+    {
+      "type": "h2",
+      "text": "How to get one",
+      "id": "how-to-get-one"
+    },
+    {
+      "type": "ol",
+      "items": [
+        {
+          "text": "**Print your own.** Click **Customize** on the Tilde Keyrings listing on MakerWorld (MAKERWORLD-KEYRINGS-URL): choose a coin or a tag, Base or Premium, your colors and your icon, then download the 3MF. `[depends on keyrings listing]`",
+          "sub": []
+        },
+        {
+          "text": "**Add a round NFC sticker** and write it with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
+          "sub": []
+        },
+        {
+          "text": "**Or pick one up at our booth.** Take a tag from the giveaway boxes, and we’ll show you how to write it (see the Uses page).",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "See more",
+      "id": "see-more"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Liked your fob? See what else a tag can do:** [Use cases](/tilde/uses)",
+          "sub": []
+        },
+        {
+          "text": "**The card that goes with it:** [Cards](/tilde/card)",
+          "sub": []
+        },
+        {
+          "text": "**The app:** [Tilde for Android](/tilde)",
+          "sub": []
+        }
+      ]
+    }
+  ]
+}

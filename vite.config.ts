@@ -1,7 +1,8 @@
 import { execSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 
 function gitCommit() {
   try {
@@ -23,9 +24,22 @@ function tildeRelease() {
   }
 }
 
+// The booth pages' parts load lazily in the browser (src/booth/index.tsx): there, src/booth/direct.ts
+// is src/booth/none.ts, so the copy and the render index stay out of the main bundle. The prerender
+// keeps the real file.
+const boothParts: Plugin = {
+  name: 'booth-parts',
+  enforce: 'pre',
+  resolveId(source, importer, options) {
+    if (source === './direct' && importer?.endsWith('/src/booth/index.tsx') && !options?.ssr) {
+      return fileURLToPath(new URL('./src/booth/none.ts', import.meta.url))
+    }
+  },
+}
+
 // https://vite.dev/config/
 export default defineConfig(({ isPreview }) => ({
-  plugins: [react()],
+  plugins: [react(), boothParts],
   // In development, forward the contact form to a local `node services/contact/server.mjs`.
   server: { proxy: { '/api': 'http://127.0.0.1:3000' } },
   define: {

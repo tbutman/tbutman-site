@@ -13,8 +13,7 @@ import Thanks from './pages/Thanks'
 import Tilde from './pages/Tilde'
 import TildePrivacy from './pages/TildePrivacy'
 import TildeCard from './pages/TildeCard'
-import TildeFobs from './pages/TildeFobs'
-import TildeUses from './pages/TildeUses'
+import { FobsPage, UsesPage } from './booth'
 
 function useDocumentMeta() {
   const { pathname, hash } = useLocation()
@@ -52,8 +51,8 @@ export default function App() {
           <Route path="/tilde/card" element={<TildeCard locale="en" />} />
           <Route path="/pt/tilde/card" element={<TildeCard locale="pt" />} />
           {/* The booth's stations (English only): taptilde.com/fobs and /uses. */}
-          <Route path="/tilde/fobs" element={<TildeFobs />} />
-          <Route path="/tilde/uses" element={<TildeUses />} />
+          <Route path="/tilde/fobs" element={<FobsPage />} />
+          <Route path="/tilde/uses" element={<UsesPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

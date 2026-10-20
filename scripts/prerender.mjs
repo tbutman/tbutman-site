@@ -49,11 +49,20 @@ async function pageWeight(html) {
   return `${Math.round(total / 1000)} kB`
 }
 
+// The booth pages' lazy chunk (src/booth/index.tsx): preloaded where a page draws it, so it arrives
+// with the main bundle instead of after it, and counts in that page's weight.
+const boothChunk = assetFiles.find((file) => /^parts-[\w-]+\.js$/.test(file))
+if (!boothChunk) throw new Error('no booth chunk (assets/parts-*.js) in the build')
+const boothPaths = new Set(['/tilde', '/tilde/card', '/tilde/fobs', '/tilde/uses'])
+
 for (const path of paths) {
   const { html, meta } = render(path)
-  // A draft's placeholders (a MakerWorld link or a print time not known yet) build locally, but CI
-  // stops on them, so they can't be released.
-  if (process.env.CI && /PLACEHOLDER|\[TBD\]/.test(html)) throw new Error(`${path}: a draft placeholder is still on the page`)
+  // A draft's placeholders (a MakerWorld link or a print time not known yet, a booth render not made
+  // yet, a line that waits on a test, a render older than its model) build locally, but CI stops on
+  // them, so they can't be released.
+  if (process.env.CI && /PLACEHOLDER|\[TBD\]|\[depends on |MAKERWORLD-[A-Z]+-URL|data-render-status=/.test(html)) {
+    throw new Error(`${path}: a draft placeholder is still on the page`)
+  }
   // The images are drawn by `npm run og` and committed; catch a page whose card was never drawn.
   if (!(await readFile(join(dist, meta.image)).then(() => true, () => false))) {
     throw new Error(`${path}: missing link-preview image ${meta.image}; run npm run og`)
@@ -61,6 +70,7 @@ for (const path of paths) {
   const url = path === '/' || path === '/404' ? `${siteUrl}/` : `${siteUrl}${path}`
   const head = [
     `<title>${escapeHtml(meta.title)}</title>`,
+    boothPaths.has(path) ? `<link rel="modulepreload" crossorigin href="/assets/${boothChunk}" />` : '',
     `<meta name="description" content="${escapeHtml(meta.description)}" />`,
     path === '/404' ? '' : `<link rel="canonical" href="${url}" />`,
     indexable && path !== '/404' && !meta.noindex ? '' : '<meta name="robots" content="noindex" />',

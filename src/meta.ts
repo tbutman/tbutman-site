@@ -5,9 +5,7 @@ import { helloText } from './content/hello'
 import { tildeText } from './content/tilde'
 import { tildePrivacyText } from './content/tildePrivacy'
 import { tildeCardText } from './content/tildeCard'
-import { fobs } from './content/booth/fobs'
-import { uses } from './content/booth/uses'
-import { cards } from './content/booth/cards'
+import boothLedes from './content/booth/copy/ledes.json'
 import { alternatesFor, htmlLang, localeOf, type Locale } from './i18n'
 
 export type Meta = {
@@ -67,13 +65,13 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
   }
   // The booth's stations: until media draws their own previews, they use /tilde's and /tilde/card's.
   if (pathname === '/tilde/fobs') {
-    return { title: 'Tilde Fobs · your details on your keys', description: fobs.opening, image: '/og/tilde.png' }
+    return { title: 'Tilde Fobs · every shape, color and icon', description: boothLedes.fobs, image: '/og/tilde.png' }
   }
   if (pathname === '/tilde/uses') {
-    return { title: 'Tilde Tags · one tap, many uses', description: uses.opening, image: '/og/tilde.png' }
+    return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde.png' }
   }
   if (pathname === '/tilde/card') {
-    return { title: 'Tilde Card · a business card people can tap', description: cards.opening, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }
+    return { title: 'Tilde Card · every design, and how to print yours', description: boothLedes.cards, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }
   }
   if (pathname === '/pt/tilde/card') {
     return { title: 'Cartão Tilde · imprime o teu cartão de visita', description: tildeCardText.pt.lede, image: '/og/tilde-card-pt.png', imageAlt: 'Cartão Tilde: Imprime o teu cartão de visita. Uma fotografia de um cartão Tilde preto impresso para Jane Doe, com um código QR, numa mão.' }

@@ -1,0 +1,369 @@
+{
+  "source": "36d4e7edfd1dfcc39248fdd891cda3367a61da25761ee50b7e7c437f74243e85",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "The opening",
+      "id": "the-opening"
+    },
+    {
+      "type": "p",
+      "text": "**This is the Tilde Card: a business card you print yourself.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card. The box only holds a few, so here’s every design."
+    },
+    {
+      "type": "h2",
+      "text": "How it works",
+      "id": "how-it-works"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Scan it.** The QR code on the front opens your link, up to 53 characters, in any phone’s camera.",
+          "sub": []
+        },
+        {
+          "text": "**Tap it.** With an NFC sticker inside, iPhones and Android phones with NFC open your link from a tap, and they don’t need an app. (Older iPhones need the NFC reader in Control Center.)",
+          "sub": []
+        },
+        {
+          "text": "**Free and open source.** The model is free to download, print and change. Its source is MIT-licensed, and the printable files on MakerWorld are CC BY 4.0. `[depends on U3]` for “on MakerWorld”.",
+          "sub": []
+        },
+        {
+          "text": "**You print it yourself,** all at once, on a multi-color printer such as a Bambu Lab printer with an AMS or AMS lite.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Scanned or tapped",
+      "id": "scanned-or-tapped"
+    },
+    {
+      "type": "table",
+      "head": [
+        "",
+        "What the other phone gets"
+      ],
+      "rows": [
+        [
+          "**Scan the code**",
+          "Your link, from the code printed on the front. It’s printed for good, so it can’t change."
+        ],
+        [
+          "**Tap the card**",
+          "Whatever you wrote to the sticker: a link, or your whole contact card if it fits. A phone rewrites the sticker, so you can change it later without a reprint."
+        ],
+        [
+          "**The tap card**",
+          "It has no code. A tap is all it does."
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes. A full card that doesn’t fit is written as its contact link, which opens your contact page and needs internet. NTAG216 holds more, and Tilde’s Write a sticker tells you before it writes. On an iPhone, a tap opens a page with your card and **Save contact**, which needs internet. `[depends on T1–T4]` for the iPhone line."
+    },
+    {
+      "type": "h2",
+      "text": "The lineup",
+      "id": "the-lineup"
+    },
+    {
+      "type": "image",
+      "text": "the cards-only box, open, all twelve designs"
+    },
+    {
+      "type": "h3",
+      "text": "Twelve designs",
+      "id": "twelve-designs"
+    },
+    {
+      "type": "p",
+      "text": "Each design is a front and its default back. Every one is rendered from the model with the sample person, Jane Doe."
+    },
+    {
+      "type": "table",
+      "head": [
+        "Design",
+        "Front",
+        "Back"
+      ],
+      "rows": [
+        [
+          "**Classic Dark**",
+          "Black, with white text and orange accents",
+          "A terminal window: `$ whoami` and three lines"
+        ],
+        [
+          "**Classic Light**",
+          "White, with black text and orange",
+          "The same terminal window, in white"
+        ],
+        [
+          "**The tap card**",
+          "Plain black, with no code and no text",
+          "Black, with the tap waves in an orange ring over the sticker"
+        ],
+        [
+          "**Solid black**",
+          "Classic Dark’s front, printed as one piece",
+          "Its terminal window"
+        ],
+        [
+          "**Solid white**",
+          "Classic Light’s front, printed as one piece",
+          "Its terminal window"
+        ],
+        [
+          "**Retro**",
+          "Gray and wine red, with the code on khaki: an old console’s colors",
+          "Light gray, with a terminal window"
+        ],
+        [
+          "**Mystery**",
+          "Only the code, centered, with your handle and the tap mark",
+          "Plain black"
+        ],
+        [
+          "**Signal**",
+          "Yellow on black",
+          "Yellow on black"
+        ],
+        [
+          "**USA Light**",
+          "White, with navy and red",
+          "White, navy and red"
+        ],
+        [
+          "**USA Dark**",
+          "Navy, with white and red",
+          "Navy, white and red"
+        ],
+        [
+          "**Brasil**",
+          "Yellow, green and navy",
+          "Yellow"
+        ],
+        [
+          "**Portugal**",
+          "Green, red and yellow",
+          "Red"
+        ]
+      ]
+    },
+    {
+      "type": "image",
+      "text": "per design: the front, and the back from behind"
+    },
+    {
+      "type": "p",
+      "text": "**The tap card** is made only to be tapped, for example in a wallet’s outside pocket, so a tap reaches the sticker through it. `[depends on a tap through a wallet pocket: USE-CASES 1.7 says it's untested]`. Until that passes, cut the wallet clause: “It’s made only to be tapped.”"
+    },
+    {
+      "type": "h3",
+      "text": "Fronts",
+      "id": "fronts"
+    },
+    {
+      "type": "p",
+      "text": "Seven front styles. The lineup shows mostly **Classic**: your handle, your name, your website and the code."
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Minimal:** your name, larger, and the code.",
+          "sub": []
+        },
+        {
+          "text": "**Mystery:** only the code, in the middle.",
+          "sub": []
+        },
+        {
+          "text": "**Handle:** your `~/handle`, large.",
+          "sub": []
+        },
+        {
+          "text": "**Badge:** your first name, large, with your last name and your role.",
+          "sub": []
+        },
+        {
+          "text": "**Tap only:** no code, just the tap mark.",
+          "sub": []
+        },
+        {
+          "text": "**Blank:** nothing printed at all.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The code comes in three sizes: Full, Medium and Small."
+    },
+    {
+      "type": "image",
+      "text": "one card in each front style"
+    },
+    {
+      "type": "h3",
+      "text": "Backs",
+      "id": "backs"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Terminal window:** a `$` command, such as `$ whoami`, and your three lines.",
+          "sub": []
+        },
+        {
+          "text": "**Plain:** your lines.",
+          "sub": []
+        },
+        {
+          "text": "**Contact:** your lines, each with its icon (phone, email, web and more).",
+          "sub": []
+        },
+        {
+          "text": "**Code:** your lines as a short JSON-style block.",
+          "sub": []
+        },
+        {
+          "text": "**None:** plain, and the quickest to print.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The lineup has 23. They include:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "tap backs: no text, a window over the sticker, and the tap waves in a ring;",
+          "sub": []
+        },
+        {
+          "text": "code backs, for Classic Dark and Light, Signal, USA, Portugal and Retro;",
+          "sub": []
+        },
+        {
+          "text": "Retro in wine or khaki.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "text": "the alternate backs, each beside its design's default back"
+    },
+    {
+      "type": "h3",
+      "text": "Two-piece or solid `[depends on two-piece card]`",
+      "id": "two-piece-or-solid-depends-on-two-piece-card"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Two-piece** (the default): the card prints as two pieces, side by side and face down, so both faces come out smooth and matte. There’s no pause. Stick the NFC sticker into the front piece, then press the back piece in: it clicks past a lip and sits flush.",
+          "sub": [
+            "**Unglued, it holds,** and the back lifts out at a corner with a fingernail, so you can swap the sticker.",
+            "**Glued** with superglue gel, it’s permanent: the most durable card.",
+            "**Mix and match:** a back fits any front printed with the same settings (the same sticker and the same edge marks), so one card can have several backs.",
+            "**Edge marks:** a notch or a pill on the top or bottom edge shows the front piece’s color through the back. A notched front fits only a notched back.",
+            "**The seam:** a thin line runs round the back, about 1.45 mm in from the edge."
+          ]
+        },
+        {
+          "text": "**Solid:** one piece. The print pauses for you to drop the sticker in, and the rest of the card seals it inside.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "text": "a two-piece card, open beside closed; a solid card"
+    },
+    {
+      "type": "h3",
+      "text": "Holders",
+      "id": "holders"
+    },
+    {
+      "type": "image",
+      "text": "the 3-card pocket case and the 5-card pocket case, open; the cards-only box, open"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Pocket cases,** for 3 or 5 cards. A drawer slides out of a branded sleeve, holding your cards plus a premium coin and a premium tag (see Fobs).",
+          "sub": []
+        },
+        {
+          "text": "**The cards-only box** (the one on our table) has three bays: 10 finished cards, 6 loose fronts and 6 loose backs, for mixing and matching. It sits under a lid that carries the wordmark.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "We made the holders for the booth. Their print files aren’t published."
+    },
+    {
+      "type": "h2",
+      "text": "How to get one",
+      "id": "how-to-get-one"
+    },
+    {
+      "type": "ol",
+      "items": [
+        {
+          "text": "**Print your own.** Click **Customize** on MakerWorld (MAKERWORLD-CARD-URL), type your name, your link and your back’s lines, pick a theme, and download the 3MF. Or open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card). The printing guide below has the rest. `[depends on U3]` for MakerWorld.",
+          "sub": []
+        },
+        {
+          "text": "**Add an NFC sticker** if you want people to tap it: a round NTAG215, 22–25 mm across. Write it before it goes in, with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
+          "sub": []
+        },
+        {
+          "text": "**Get the app,** if you like. Tilde is free for Android: your phone becomes the same card. The printed card works without it.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "(The page’s current print sections follow here: what you need, the steps, the times, the sticker and the FAQ.)"
+    },
+    {
+      "type": "h2",
+      "text": "See more",
+      "id": "see-more"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Your keys can do this too.** Coins and tags in the same colors, and every icon: [Fobs](/tilde/fobs)",
+          "sub": []
+        },
+        {
+          "text": "**What can a tap open?** A family’s number, your Wi-Fi, a meeting: [Use cases](/tilde/uses)",
+          "sub": []
+        },
+        {
+          "text": "**The app:** [Tilde for Android](/tilde)",
+          "sub": []
+        }
+      ]
+    }
+  ]
+}
