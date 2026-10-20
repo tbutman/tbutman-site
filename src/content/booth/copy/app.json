@@ -1,5 +1,5 @@
 {
-  "source": "910a645aea5128482f86b58a0acfa83e9b2ab14e2cd9504eaf8aced076694ddb",
+  "source": "70b70559d1c572e2a3ff8c34347cb3e8774c8597d4f1ad6874fa47b63a1b2498",
   "blocks": [
     {
       "type": "h2",
@@ -109,10 +109,22 @@
           "sub": []
         },
         {
-          "text": "**Create my card.** Tilde opens on Share: hold your phone to a friend’s.",
+          "text": "**Create my card.** Your card is ready: hold your phone to a friend’s, or write it to a sticker.",
           "sub": []
         }
       ]
+    },
+    {
+      "type": "image",
+      "text": "the welcome screens, in order: the first screen, Make your card, How people reach you, and Your card is ready"
+    },
+    {
+      "type": "p",
+      "text": "**Or start from a template.** On the Cards tab, tap **+** (New card), then **Start from a template**: Family, Work, Socials, Lost & found or Guest Wi-Fi. Each is a card for one use, with a short note on what to fill in. `[depends on T-L1–T-L3]`"
+    },
+    {
+      "type": "image",
+      "text": "the templates: New card, the five templates, Edit card from the Family template, and a Family card on Share"
     },
     {
       "type": "h2",
@@ -145,6 +157,10 @@
           "sub": []
         }
       ]
+    },
+    {
+      "type": "image",
+      "text": "writing a sticker: Write a sticker, ready for the tap, then Written and protected"
     },
     {
       "type": "p",

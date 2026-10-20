@@ -1,5 +1,5 @@
 {
-  "source": "6da3571a0b93a998c183fa416a88fa16c4aee5b065ddaa64f7b2a40a7a9d972e",
+  "source": "873f132eb7468e0ecdcf9bbc3e805e0d5345f05b6a19298b16b93457875bb71a",
   "images": {
     "app-02-welcome-1": {
       "pages": [
@@ -311,6 +311,48 @@
         },
         {
           "src": "/tilde/screens/app-13-family-card-share-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-14-share-choose-option": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Choose what a tap shares: the option card's list open on Share (\"What should a tap share?\"): contact card (chosen), website, LinkedIn, Instagram, starred as quick options. No code showing",
+      "status": "ok",
+      "caption": "Choose what a tap shares",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-14-share-choose-option-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-14-share-choose-option-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-14b-share-choose-option-more": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "Every option: the same list with More options open: contact page, phone number, Guest Wi-Fi",
+      "status": "ok",
+      "caption": "Every option",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-14b-share-choose-option-more-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-14b-share-choose-option-more-720.webp",
           "width": 720,
           "height": 1600
         }

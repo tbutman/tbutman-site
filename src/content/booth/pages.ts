@@ -143,8 +143,7 @@ export const appPage: BoothPage = {
   copy: appCopy as BoothCopy,
   images: [
     // "In the app": docs' four screens as one row, in docs' order, under the app agent's captions.
-    // The Share screen with its option card open isn't among the app agent's shots yet (Site 32).
-    ['the Share screen, with the option card', screens(['app-share-options', 'app-06-cards-tab', 'app-07-write-sticker', 'app-10-met'])],
+    ['the Share screen, with the option card', screens(['app-14-share-choose-option', 'app-06-cards-tab', 'app-07-write-sticker', 'app-10-met'])],
     ['the Cards tab', { layout: 'omit', ratio: 'phone' }],
     ['Write a sticker', { layout: 'omit', ratio: 'phone' }],
     ['the Met tab', { layout: 'omit', ratio: 'phone' }],

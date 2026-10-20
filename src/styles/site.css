@@ -2264,7 +2264,7 @@ main {
    still takes the 720 px file), and up to five across on a desktop. */
 .booth-screens {
   grid-auto-columns: min(12rem, 52%);
-  margin-top: 1.25rem;
+  margin: 1.25rem 0;
 }
 
 .booth-screens img {
