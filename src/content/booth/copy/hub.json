@@ -1,5 +1,5 @@
 {
-  "source": "043f65e86756c55eccf55d2c6756f9df13506cb256d7978d2f38a58e1f2bedd2",
+  "source": "2f5f0c511a5b3b78ae12ec58b66da177fef87529642119c45d3edd5c96714d9b",
   "blocks": [
     {
       "type": "h2",
@@ -23,7 +23,7 @@
           "sub": []
         },
         {
-          "text": "**The app is free and open source,** with no account and no internet: your details stay on your phone until you share them.",
+          "text": "**The app is free and open source,** with no account and no internet: your details stay on your phone until you share them. It’s on Google Play for Android; the iPhone app is coming soon.",
           "sub": []
         },
         {
@@ -39,11 +39,12 @@
     },
     {
       "type": "p",
-      "text": "Three short tours of what’s on our table, and what isn’t."
+      "text": "Four short tours of what’s on our table, and what isn’t."
     },
     {
       "type": "table",
       "head": [
+        "",
         "",
         "",
         ""
@@ -52,12 +53,14 @@
         [
           "[image: a card’s front] **[Cards](/tilde/card)**",
           "[image: a coin and a tag] **[Fobs](/tilde/fobs)**",
-          "[image: a stack of booth tags] **[Use cases](/tilde/uses)**"
+          "[image: a stack of booth tags] **[Use cases](/tilde/uses)**",
+          "[image: the Share screen] **[App](/tilde/app)**"
         ],
         [
           "Make your own design, with a few to start from, and print it yourself.",
           "Coins and tags for your keys, and every icon.",
-          "Eight jobs a tag can do, on an iPhone and on Android, and how to make each one."
+          "Eight jobs a tag can do, on an iPhone and on Android, and how to make each one.",
+          "Your card on your phone: tap to share, write your own tags, and remember who you met."
         ]
       ]
     },
@@ -70,8 +73,10 @@
       "type": "ul",
       "items": [
         {
-          "text": "**The app:** the install steps are just below. It takes about a minute, on Android 8.0 or newer.",
-          "sub": []
+          "text": "**The app:** Get Tilde on Google Play, on Android 8.0 or newer (`taptilde.com/app`). iPhone app coming soon. Your iPhone already opens every Tilde tap and code, no app needed. `[depends on T1–T4, T-WF1–T-WF4]`",
+          "sub": [
+            "If T1–T4 or T-WF fail, the last sentence becomes “Your iPhone already opens Tilde’s links and codes, no app needed.”"
+          ]
         },
         {
           "text": "**A card or a tag:** [print your own](/tilde/card), or find us at the booth.",

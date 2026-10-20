@@ -1,0 +1,284 @@
+{
+  "source": "910a645aea5128482f86b58a0acfa83e9b2ab14e2cd9504eaf8aced076694ddb",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "The opening",
+      "id": "the-opening"
+    },
+    {
+      "type": "p",
+      "text": "**Tilde puts your business card on your phone.** Hold your phone to someone else’s and they get your contact card, your website or your WhatsApp. Or they scan the code on your screen. Their phone doesn’t need an app. Tilde also writes NFC stickers, so a card or a tag on your keys can share for you."
+    },
+    {
+      "type": "image",
+      "text": "the Share screen: Jane Doe's card, her code, and the option card"
+    },
+    {
+      "type": "h2",
+      "text": "The concept",
+      "id": "the-concept"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Tap or scan.** A tap works on iPhones and Android phones with NFC. Any phone’s camera reads the code.",
+          "sub": []
+        },
+        {
+          "text": "**One card or several.** A card for work, one for an event, one with just your socials. Swipe to switch.",
+          "sub": []
+        },
+        {
+          "text": "**Free and open source,** with no account, no sign-up and no ads. Tilde has no internet permission, so it can’t send anything anywhere: your details stay on your phone until you share them.",
+          "sub": []
+        },
+        {
+          "text": "**Android first.** iPhone app coming soon. Your iPhone already opens every Tilde tap and code, no app needed. `[depends on T1–T4, T-WF1–T-WF4]`",
+          "sub": [
+            "If T1–T4 or T-WF fail, say: “Your iPhone already opens Tilde’s links and codes, no app needed.”"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "In the app",
+      "id": "in-the-app"
+    },
+    {
+      "type": "image",
+      "text": "the Share screen, with the option card's choices open: website, contact card, LinkedIn, WhatsApp, Guest Wi-Fi"
+    },
+    {
+      "type": "image",
+      "text": "the Cards tab: Jane's Work and Web Summit cards, with Edit card and Write a sticker"
+    },
+    {
+      "type": "image",
+      "text": "Write a sticker: what the sticker opens, and the Protection choices"
+    },
+    {
+      "type": "image",
+      "text": "the Met tab: the people Jane shared with, by day, with a note"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Share:** what the other person sees. Swipe the option card to change what a tap shares.",
+          "sub": []
+        },
+        {
+          "text": "**Cards:** your cards, as people see them. Edit each one, and write it to a sticker.",
+          "sub": []
+        },
+        {
+          "text": "**Met:** every phone you tapped, with the time and the card. Add a note so you remember who it was.",
+          "sub": []
+        },
+        {
+          "text": "**Receive:** read someone else’s NFC business card, sticker or phone.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Make your first card",
+      "id": "make-your-first-card"
+    },
+    {
+      "type": "p",
+      "text": "It takes about a minute, on three short screens."
+    },
+    {
+      "type": "ol",
+      "items": [
+        {
+          "text": "**Get Tilde on Google Play,** on an Android phone (Android 8.0 or newer), open it and tap **Get started**.",
+          "sub": []
+        },
+        {
+          "text": "**Make your card:** your name, and your job title if you like. The preview shows what people see.",
+          "sub": []
+        },
+        {
+          "text": "**How people reach you:** your email, your numbers and your link (your website, portfolio or LinkedIn), all optional. Your email and numbers go on your contact card, which you share only when you choose to. The link is what a tap or a scan opens; leave it empty and a tap shares your contact card instead.",
+          "sub": []
+        },
+        {
+          "text": "**Create my card.** Tilde opens on Share: hold your phone to a friend’s.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Write your own fob",
+      "id": "write-your-own-fob"
+    },
+    {
+      "type": "p",
+      "text": "**Tilde writes any card or tag.** Put your link, your contact card, your WhatsApp, your guest Wi-Fi or your number on an NFC sticker, inside a Tilde Card or a fob, and it shares even when your phone stays in your pocket."
+    },
+    {
+      "type": "ol",
+      "items": [
+        {
+          "text": "On the **Cards** tab, tap **Write a sticker** for the card shown.",
+          "sub": []
+        },
+        {
+          "text": "Choose what the sticker opens. Tilde says which sticker sizes fit your full contact card. `[depends on T-W1–T-W7]`",
+          "sub": []
+        },
+        {
+          "text": "Choose its protection: **Protect with this phone** (any phone reads it; only yours can change it), **Don’t protect**, or **Lock for good**. `[depends on T-S1, T-S2]`",
+          "sub": [
+            "If T-S1 or T-S2 fail, this step goes."
+          ]
+        },
+        {
+          "text": "Hold the sticker to the back of your phone until it buzzes.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "**Tilde reads the sticker first.** If it’s blank or yours, the same tap writes it. If it holds something else, Tilde shows it and asks before replacing it. `[depends on T-W1–T-W7]`"
+    },
+    {
+      "type": "h2",
+      "text": "Your phone is a fob",
+      "id": "your-phone-is-a-fob"
+    },
+    {
+      "type": "p",
+      "text": "**Your phone works like the tags on this page.** With Tilde open, hold your Android phone to someone else’s: theirs reads yours the way it reads an NFC sticker or a contactless business card. It shares with phones; it doesn’t open doors or pay."
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Android:** with NFC on, a tap offers to save your contact card, or opens your link.",
+          "sub": []
+        },
+        {
+          "text": "**iPhone** (XS or newer, unlocked): a tap opens your link. With your contact card, it opens a page to save it. `[depends on T1–T4]`",
+          "sub": [
+            "If T1–T4 fail, say: “iPhone: a tap opens your link. To save your contact card, an iPhone scans your code.”"
+          ]
+        },
+        {
+          "text": "**Only when you mean it.** Tilde answers taps only while it’s on screen, so nothing shares from your pocket. You can switch on sharing with Tilde closed (phone unlocked) in Settings → Sharing.",
+          "sub": []
+        },
+        {
+          "text": "**Met keeps count.** Each tap is listed under Met with the time, the card and what you shared. It never records who tapped: you add that in a note.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "text": "two phones back to back, Jane's Share screen on one"
+    },
+    {
+      "type": "h2",
+      "text": "What people use it for",
+      "id": "what-people-use-it-for"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**At an event:** a card with the event’s name, so the visits to your website show where they came from.",
+          "sub": []
+        },
+        {
+          "text": "**Friends over:** share your guest Wi-Fi with a tap. On an iPhone, it opens a page with the password. `[depends on T-WF1–T-WF4]`",
+          "sub": [
+            "If T-WF fails, say: “iPhones scan the Wi-Fi code on your Share screen.”"
+          ]
+        },
+        {
+          "text": "**Your number, ready to call:** share your number for a call or a new text, without saving a contact. `[depends on T-N1–T-N7]`",
+          "sub": []
+        },
+        {
+          "text": "**A tag for every job:** call my family, lost item, book a meeting and more, on the [Use cases](/tilde/uses) page.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Add-ons, if you like",
+      "id": "add-ons-if-you-like"
+    },
+    {
+      "type": "p",
+      "text": "Tilde works on its own. If you have a 3D printer and want something to hand out too:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**The Tilde Card:** a business card you print yourself, with a code on the front and a sticker inside. [Cards](/tilde/card)",
+          "sub": []
+        },
+        {
+          "text": "**Fobs:** coins and tags for your keys, each with an icon. [Fobs](/tilde/fobs)",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to get it",
+      "id": "how-to-get-it"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Android:** Get Tilde on Google Play. (`taptilde.com/app`)",
+          "sub": []
+        },
+        {
+          "text": "**iPhone:** iPhone app coming soon. Your iPhone already opens every Tilde tap and code, no app needed. `[depends on T1–T4, T-WF1–T-WF4]` (the same fallback as above)",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "See more",
+      "id": "see-more"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**What a tag can do:** [Use cases](/tilde/uses)",
+          "sub": []
+        },
+        {
+          "text": "**Print a card:** [Cards](/tilde/card)",
+          "sub": []
+        },
+        {
+          "text": "**Coins and tags for your keys:** [Fobs](/tilde/fobs)",
+          "sub": []
+        },
+        {
+          "text": "**Install steps, FAQ and privacy:** [Tilde](/tilde)",
+          "sub": []
+        }
+      ]
+    }
+  ]
+}

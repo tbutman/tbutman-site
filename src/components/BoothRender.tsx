@@ -14,6 +14,7 @@ const sizes = {
   icons: '(max-width: 680px) 30vw, 130px',
   tag: '(max-width: 680px) 40vw, 200px',
   set: '(max-width: 680px) 56vw, 230px',
+  screen: '(max-width: 680px) 52vw, 230px',
 }
 
 type Size = keyof typeof sizes
@@ -92,6 +93,21 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
         .find((found) => found.length)
         ?.map((image) => ({ id: image.id, image })) ?? [])
   if (images.length === 0) images.push({ id: slotNames.length ? `${page} · ${slotNames[0]}: ${marker}` : marker })
+
+  if (layout === 'screens') {
+    // The app's screens side by side, each under the app agent's caption: on a phone the row scrolls
+    // sideways inside itself, as a design's cards do.
+    return (
+      <ul className="booth-set-row booth-screens" tabIndex={0} aria-label="Screens from the app">
+        {images.map(({ id, image }) => (
+          <li key={id}>
+            <Render image={image} id={id} ratio={ratio} size="screen" />
+            {image?.caption && <span>{image.caption}</span>}
+          </li>
+        ))}
+      </ul>
+    )
+  }
 
   if (layout === 'sets') {
     // One row per design (Thomas's review note): its front, its default back, then its alternate

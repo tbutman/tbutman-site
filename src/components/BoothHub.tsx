@@ -7,6 +7,8 @@ import RichText from './RichText'
 // /tilde's booth section (#booth), from docs' hub copy: for anyone who reached taptilde.com without
 // tapping a lid. Its opening and concept, the whole booth table, a way into each station (docs' "See
 // everything" table: a picture and a link above, a line below), and how to get it. English only.
+// A station the table doesn't link yet (the App page, until docs adds its column) still gets a tile,
+// whose line is a [TBD] that CI won't build.
 
 export default function BoothHub() {
   const all = sections(hubSection.copy.blocks)
@@ -43,18 +45,26 @@ export default function BoothHub() {
       {text(see?.blocks.filter((block) => block.type !== 'table') ?? [])}
       {table && (
         <ul className="booth-stations">
-          {table.rows[0].map((cell, index) => {
+          {[
+            ...table.rows[0].map((cell, index) => [cell, table.rows[1]?.[index] ?? ''] as const),
+            ...hubSection.stations
+              .filter((page) => !table.rows[0].some((cell) => cell.includes(`](${page.path})`)))
+              .map((page) => [`**[${page.label}](${page.path})**`, `[TBD] docs’ line for the ${page.label} tile (hub.md)`] as const),
+          ].map(([cell, line]) => {
             const marker = cell.match(/^\[image: ([^\]]+)\]\s*/)
             const link = cell.match(/\[([^\]]+)\]\((\/[^)]+)\)/)
-            const id = hubSection.images.find(([start]) => marker?.[1].startsWith(start))?.[1] ?? ''
             const station = hubSection.stations.find((page) => page.path === link?.[2])
+            const id = hubSection.images.find(([start]) => marker?.[1].startsWith(start))?.[1] ?? station?.hero ?? ''
             return (
               <li key={cell}>
                 <Link className="panel" to={link?.[2] ?? '/tilde'}>
-                  <Render image={boothImages[id]} id={id || (marker?.[1] ?? cell)} ratio="photo" size="grid" />
+                  {/* A screenshot shows its top, at the tiles' 4:3. */}
+                  <div className={boothImages[id]?.slot === 'screens' || id.startsWith('app-') ? 'booth-tile-screen' : undefined}>
+                    <Render image={boothImages[id]} id={id || (marker?.[1] ?? cell)} ratio="photo" size="grid" />
+                  </div>
                   <b>{link?.[1]} →</b>
                   <span>
-                    <RichText text={table.rows[1]?.[index] ?? ''} />
+                    <RichText text={line} />
                   </span>
                   {station && <small>{station.shortLink}</small>}
                 </Link>

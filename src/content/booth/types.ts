@@ -1,9 +1,11 @@
 // The booth site (tilde-review/briefs/booth-site.md): the booth's stations as pages, each opening the
 // way the booth agent at that station would, so each page is that agent's script. Both halves come in
 // by npm run booth:sync, never by hand: the copy is docs' (tilde-review/site-content/*.md, as blocks
-// in copy/), and the images are design's render export (images.json). pages.ts says where each of
-// docs' [image: …] lines takes its renders from.
+// in copy/), and the images are design's render export (images.json) and, on the App page, the app
+// agent's screenshots (screens.json). pages.ts says where each of docs' [image: …] lines takes its
+// renders from.
 import exported from './images.json'
+import screens from './screens.json'
 
 /** One image in the render export. `sources` is empty until its render exists (status "missing"). */
 export type BoothImage = {
@@ -22,7 +24,7 @@ export type BoothImage = {
 }
 
 export const boothImages: Record<string, BoothImage> = Object.fromEntries(
-  Object.entries(exported.images as Record<string, Omit<BoothImage, 'id'>>).map(([id, image]) => [id, { id, ...image }]),
+  Object.entries({ ...exported.images, ...screens.images } as Record<string, Omit<BoothImage, 'id'>>).map(([id, image]) => [id, { id, ...image }]),
 )
 /** The export this build carries: its manifest's SHA-256. */
 export const boothManifest = exported.manifest as string | null
@@ -32,14 +34,14 @@ export const modelIcons = ((exported as { icons?: string[][] }).icons ?? []) as 
 /** The images in one page's slot, in the export's order. */
 export const slotImages = (page: string, slot: string) => Object.values(boothImages).filter((image) => image.pages.includes(page) && image.slot === slot)
 
-/** A placeholder's shape until its render lands: a card (85.6 × 54), square, 4:3 or 16:9. */
-export type Ratio = 'card' | 'square' | 'photo' | 'wide'
+/** A placeholder's shape until its render lands: a card (85.6 × 54), square, 4:3, 16:9 or a phone's screen (9:20). */
+export type Ratio = 'card' | 'square' | 'photo' | 'wide' | 'phone'
 
 /**
  * How a group of renders is laid out: one wide, a grid, small ones, one row per design (front, back,
- * then its alternate backs), a tag beside its text, the icons, or not at all.
+ * then its alternate backs), a tag beside its text, the icons, a row of app screenshots, or not at all.
  */
-export type Layout = 'wide' | 'grid' | 'small' | 'sets' | 'tag' | 'icons' | 'omit'
+export type Layout = 'wide' | 'grid' | 'small' | 'sets' | 'tag' | 'icons' | 'screens' | 'omit'
 
 /** Where one of docs' [image: …] lines takes its renders from: export ids, or a whole slot (the first of several names that has images). */
 export type Placement = {

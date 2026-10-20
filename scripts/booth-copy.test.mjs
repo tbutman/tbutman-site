@@ -55,6 +55,18 @@ test('docs’ subset becomes blocks, without docs’ notes', () => {
   assert.doesNotThrow(() => checkFidelity(sample, blocks, 'sample'))
 })
 
+test('an [image: …] line wrapped over two lines is one marker', () => {
+  const markdown = '---\n\n[image: the Share screen, with its\nchoices open]\n\nAfter.\n'
+  const blocks = parseCopy(markdown, 'wrapped')
+  assert.deepEqual(blocks, [
+    { type: 'image', text: 'the Share screen, with its choices open' },
+    { type: 'p', text: 'After.' },
+  ])
+  assert.doesNotThrow(() => checkFidelity(markdown, blocks, 'wrapped'))
+  // Unclosed, it stops the sync instead of looping (it used to hang).
+  assert.throws(() => parseCopy('---\n\n[image: never closed\n\nNext.\n'), /without its \]/)
+})
+
 test('a line the converter doesn’t read stops it', () => {
   assert.throws(() => parseCopy('---\n\n> a quote\n'), /doesn’t read/)
   assert.throws(() => parseCopy('no notes'), /no ---/)

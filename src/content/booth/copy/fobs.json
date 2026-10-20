@@ -1,5 +1,5 @@
 {
-  "source": "42a48880e9e90327f6e2ddab031a930b423ad396c6d7101bf70e908ff867258b",
+  "source": "1bbac418f4945cfb2e8db41c00d19ac78c6ae34efcec0355a95ba3f4ce0d372a",
   "blocks": [
     {
       "type": "h2",
@@ -90,7 +90,7 @@
     },
     {
       "type": "p",
-      "text": "Our table has three color sets, each two colors, made with the model’s color options. In these three, the code takes the body’s color, with no patch of another color. `[depends on T-B1]` for orange on black and khaki on black."
+      "text": "Our table has three color sets, each two colors, made with the model’s color options. In these three, the code takes the body’s color, with no patch of another color."
     },
     {
       "type": "ul",
@@ -100,7 +100,7 @@
           "sub": []
         },
         {
-          "text": "**Khaki on black**",
+          "text": "**Khaki on black:** our giveaway tags",
           "sub": []
         },
         {

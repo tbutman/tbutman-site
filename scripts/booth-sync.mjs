@@ -3,16 +3,22 @@
 // - the renders: tilde-card's presskit/site-export/ (design's site_export.py, from site-renders.json)
 //   into public/tilde/booth/, and src/content/booth/images.json with each image's page, slot, alt,
 //   status and widths, and the manifest's hash;
+// - the App page's screenshots: the app agent's tilde-review/booth-kit/app-screens/ (PNG files, and
+//   screens.json with each one's id, alt and caption) as WebP in public/tilde/screens/, and
+//   src/content/booth/screens.json in images.json's shape;
 // - the icons' names, from the model's Icon list (tilde-card/keyring.scad), never copied by hand;
-// - the copy: tilde-review/site-content/{cards,fobs,uses,hub}.md as blocks
+// - the copy: tilde-review/site-content/{cards,fobs,uses,app,hub}.md as blocks
 //   (scripts/booth-copy.mjs) in src/content/booth/copy/, and icon-uses.json beside them.
 //
 //   npm run booth:sync             bring everything in
 //   npm run booth:sync -- --check  only report what's newer at the source than here
+//   npm run booth:sync -- --only=copy,screens   bring in only these (images, screens, copy)
 //
 // Every web file is checked against the manifest's size and SHA-1 before anything is copied, and
-// files the manifest no longer lists are removed. Paths: BOOTH_CARD (default ../tilde-card) and
-// BOOTH_CONTENT (default ../tilde-review/site-content), next to this repo's checkout.
+// files the manifest no longer lists are removed. Paths: BOOTH_CARD (default ../tilde-card),
+// BOOTH_CONTENT (default ../tilde-review/site-content) and BOOTH_SCREENS (default
+// ../tilde-review/booth-kit/app-screens), next to this repo's checkout. The screenshots need cwebp.
+import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync } from 'node:fs'
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
@@ -30,8 +36,13 @@ const publicDir = join(root, 'public', 'tilde', 'booth')
 const boothDir = join(root, 'src', 'content', 'booth')
 const imagesJson = join(boothDir, 'images.json')
 const copyDir = join(boothDir, 'copy')
-const PAGES = ['cards', 'fobs', 'uses', 'hub']
+const screensDir = resolve(process.env.BOOTH_SCREENS ?? join(personal, 'tilde-review', 'booth-kit', 'app-screens'))
+const screensPublic = join(root, 'public', 'tilde', 'screens')
+const screensJson = join(boothDir, 'screens.json')
+const PAGES = ['cards', 'fobs', 'uses', 'app', 'hub']
 const check = process.argv.includes('--check')
+const only = process.argv.find((arg) => arg.startsWith('--only='))?.slice('--only='.length).split(',')
+const wanted = (part) => !only || only.includes(part)
 
 const hash = (algorithm, bytes) => createHash(algorithm).update(bytes).digest('hex')
 const fail = (message) => {
@@ -184,5 +195,69 @@ async function syncImages() {
   )
 }
 
-await syncImages()
-await syncCopy()
+// ---------- The App page's screenshots ----------
+// The phone's own pixels, from the app agent's dev build with Jane Doe's data. Shown about 230 px
+// wide, so 360 and 720 px WebP files cover a phone at 3x and a desktop at 2x.
+const SCREEN_WIDTHS = [360, 720]
+
+async function syncScreens() {
+  if (!existsSync(screensDir)) return console.log(`screens: none yet (${relative(personal, screensDir)})`)
+  const listPath = join(screensDir, 'screens.json')
+  const list = (await readJson(listPath))?.screens ?? null
+  const files = list
+    ? list.map((entry, index) => {
+        if (typeof entry?.file !== 'string') fail(`screens.json: screens[${index}] has no file`)
+        return entry
+      })
+    : (await readdir(screensDir)).filter((name) => name.endsWith('.png')).sort().map((file) => ({ file }))
+  if (files.length === 0) return console.log('screens: no PNG files yet')
+  // The listing and every file's bytes: what --check compares.
+  const digest = createHash('sha256').update(list ? await readFile(listPath) : '')
+  const read = []
+  for (const entry of files) {
+    const from = resolve(screensDir, entry.file)
+    if (relative(screensDir, from).startsWith('..') || !from.endsWith('.png')) fail(`screens: ${entry.file} must be a PNG file in app-screens/`)
+    const bytes = await readFile(from).catch(() => fail(`screens: ${entry.file} is listed but not there`))
+    // A PNG's size, from its IHDR chunk.
+    if (bytes.toString('latin1', 12, 16) !== 'IHDR') fail(`screens: ${entry.file} isn't a PNG`)
+    read.push({ ...entry, from, width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) })
+    digest.update(hash('sha256', bytes))
+  }
+  const source = digest.digest('hex')
+  const current = await readJson(screensJson)
+  if (current?.source === source) return console.log(`screens: up to date (${read.length})`)
+  if (check) return console.log('screens: the app agent’s screenshots are NEWER than the site’s copy')
+
+  await rm(screensPublic, { recursive: true, force: true })
+  await mkdir(screensPublic, { recursive: true })
+  const images = {}
+  for (const entry of read) {
+    const id = entry.id ?? `app-${entry.file.replace(/\.png$/, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`
+    if (images[id]) fail(`screens: two screenshots have the id ${id}`)
+    const sources = []
+    for (const width of SCREEN_WIDTHS.filter((width) => width < entry.width).concat(Math.min(entry.width, SCREEN_WIDTHS.at(-1)))) {
+      if (sources.some((source) => source.width === width)) continue
+      const name = `${id}-${width}.webp`
+      execFileSync('cwebp', ['-quiet', '-q', '82', '-resize', String(width), '0', entry.from, '-o', join(screensPublic, name)])
+      sources.push({ src: `/tilde/screens/${name}`, width, height: Math.round((entry.height * width) / entry.width) })
+    }
+    const alt = typeof entry.alt === 'string' ? entry.alt.trim() : ''
+    images[id] = {
+      pages: ['app'],
+      slot: entry.slot ?? 'screens',
+      // Without the app agent's alt text the screenshot can preview, but CI won't build it.
+      alt: alt || `[TBD] alt text for ${entry.file}`,
+      status: alt ? 'ok' : 'unrecorded',
+      ...(typeof entry.caption === 'string' && entry.caption.trim() ? { caption: entry.caption.trim() } : {}),
+      sources,
+    }
+  }
+  // Generated by scripts/booth-sync.mjs from tilde-review/booth-kit/app-screens/: don't edit.
+  await writeJson(screensJson, { source, images })
+  const unrecorded = Object.values(images).filter((image) => image.status !== 'ok').length
+  console.log(`screens: ${read.length} in public/tilde/screens/${unrecorded ? ` (${unrecorded} without alt text)` : ''}`)
+}
+
+if (wanted('images')) await syncImages()
+if (wanted('screens')) await syncScreens()
+if (wanted('copy')) await syncCopy()

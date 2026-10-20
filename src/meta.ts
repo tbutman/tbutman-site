@@ -70,6 +70,10 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
   if (pathname === '/tilde/uses') {
     return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde.png' }
   }
+  if (pathname === '/tilde/app') {
+    // Until docs' app.md lands, /tilde's own description.
+    return { title: 'Tilde for Android · write your own fob, or tap your phone', description: (boothLedes as Record<string, string>).app ?? tildeText.en.lede, image: '/og/tilde.png' }
+  }
   if (pathname === '/tilde/card') {
     return { title: 'Tilde Card · countless designs, and how to print yours', description: boothLedes.cards, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }
   }

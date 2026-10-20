@@ -1,5 +1,5 @@
 {
-  "source": "eb673eac5d97c5fe122101cfac33558e144a1befdd5d0085169ae77fcf97d58b",
+  "source": "64b180814eee08d6c2c33c98f3f02ab6b296cca7c52c7bcdc11ac652ac9e0a72",
   "blocks": [
     {
       "type": "h2",
@@ -42,7 +42,7 @@
     },
     {
       "type": "p",
-      "text": "**The code on our tags:** some of the booth’s tags have a QR code on the front. It opens Tilde’s page (`taptilde.com`), not what’s on your sticker. `[depends on T-B1]` A tag you print yourself carries your own link in its code."
+      "text": "**The code on our tags:** some of the booth’s tags have a QR code on the front. It opens Tilde’s page (`taptilde.com`), not what’s on your sticker. A tag you print yourself carries your own link in its code."
     },
     {
       "type": "h2",
@@ -52,6 +52,10 @@
     {
       "type": "image",
       "text": "the two giveaway boxes, open: four stacks each"
+    },
+    {
+      "type": "p",
+      "text": "Our giveaway tags are khaki on black, with each job’s icon on the back."
     },
     {
       "type": "h3",

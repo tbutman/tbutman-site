@@ -1994,7 +1994,7 @@ main {
   }
 }
 
-/* ---------- Booth pages (/tilde/card's showcase, /tilde/fobs, /tilde/uses, /tilde#booth) ---------- */
+/* ---------- Booth pages (/tilde/card's showcase, /tilde/fobs, /tilde/uses, /tilde/app, /tilde#booth) ---------- */
 /* Mobile first: a visitor taps a lid on conference cellular data. Every image is a render from the
    export, lazy and sized; until one lands, .booth-pending holds its place at the same shape. The copy
    is docs' Markdown as blocks: paragraphs, lists, tables, ### headings and [depends on …] gates. */
@@ -2005,6 +2005,23 @@ main {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* The App page's hero is a screenshot: phone-sized, not the column's width. */
+.booth-hero-phone {
+  justify-self: center;
+  width: min(15rem, 62%);
+}
+
+.booth-hero-phone img {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+
+.booth-tile-screen img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top;
 }
 
 .booth-pending {
@@ -2035,6 +2052,10 @@ main {
 
 .booth-ratio-wide {
   aspect-ratio: 16 / 9;
+}
+
+.booth-ratio-phone {
+  aspect-ratio: 9 / 20;
 }
 
 .booth-section .product-body,
@@ -2238,6 +2259,54 @@ main {
   }
 }
 
+/* The App page's screenshots: a row like a design's cards, a little narrower (52%: a 3x phone
+   still takes the 720 px file), and up to five across on a desktop. */
+.booth-screens {
+  grid-auto-columns: min(12rem, 52%);
+  margin-top: 1.25rem;
+}
+
+.booth-screens img {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+
+@media (min-width: 861px) {
+  .booth-screens {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 13rem));
+  }
+}
+
+/* Every station page ends with the others, in walk order. */
+.booth-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  margin: 2.5rem 0 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  font: 400 0.8125rem/1.4 var(--font-mono);
+}
+
+.booth-nav > a {
+  color: var(--dim);
+}
+
+.booth-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.booth-nav [aria-current] {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .booth-grid figure {
   margin: 0;
 }
@@ -2288,11 +2357,24 @@ main {
 
 .booth-stations {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  /* Four stations: one column on a phone, two on a tablet, four across on a desktop. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   margin: 1.5rem 0;
   padding: 0;
   list-style: none;
+}
+
+@media (min-width: 561px) {
+  .booth-stations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 861px) {
+  .booth-stations {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .booth-stations a {

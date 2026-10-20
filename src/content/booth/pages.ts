@@ -2,22 +2,27 @@
 // (the closed box the visitor just tapped), and where each of docs' [image: …] lines takes its renders
 // from in design's export (presskit/site-renders.json), matched by how the line starts. A line with
 // no match shows a placeholder, which CI won't build. Decisions: tilde-review/booth-site-decisions.md.
+import appCopy from './copy/app.json'
 import cardsCopy from './copy/cards.json'
 import fobsCopy from './copy/fobs.json'
 import hubCopy from './copy/hub.json'
 import usesCopy from './copy/uses.json'
-import type { BoothCopy, Placement } from './types'
+import type { BoothCopy, Placement, Ratio } from './types'
 
 export type BoothPage = {
-  page: 'cards' | 'fobs' | 'uses'
+  page: 'cards' | 'fobs' | 'uses' | 'app'
   path: string
   shortLink: string
   status: string
   name: string
+  /** Its name among the stations, as docs' hub table and the station links write it. */
+  label: string
   /** The hero's two lines, in docs' words (Cards: its "Countless designs." and "Make your own"). */
   headline: [string, string]
-  /** The station's closed box, as the visitor saw it on the table. */
+  /** The station's closed box, as the visitor saw it on the table (the App page: the app's Share screen). */
   hero: string
+  /** The hero's shape, if not a 4:3 render. */
+  heroRatio?: Ratio
   /** The section the hero's first button leads to, by its id; else the one after "How it works". */
   lineup?: string
   copy: BoothCopy
@@ -43,6 +48,7 @@ const tag = (id: string): Placement => ({ ids: [id], layout: 'tag', ratio: 'squa
 
 export const cardsPage: BoothPage = {
   page: 'cards',
+  label: 'Cards',
   path: '/tilde/card',
   shortLink: 'taptilde.com/card',
   status: 'free · open source · 3d-printable',
@@ -67,6 +73,7 @@ export const cardsPage: BoothPage = {
 
 export const fobsPage: BoothPage = {
   page: 'fobs',
+  label: 'Fobs',
   path: '/tilde/fobs',
   shortLink: 'taptilde.com/fobs',
   status: 'nfc · qr · 3d-printable',
@@ -95,6 +102,7 @@ export const fobsPage: BoothPage = {
 
 export const usesPage: BoothPage = {
   page: 'uses',
+  label: 'Use cases',
   path: '/tilde/uses',
   shortLink: 'taptilde.com/uses',
   status: 'nfc · android · iphone',
@@ -116,18 +124,47 @@ export const usesPage: BoothPage = {
   ],
 }
 
+// The App station (tilde-review/briefs/booth-kit.md, item 5): the app as a booth agent shows it to a
+// new visitor, in docs' copy (site-content/app.md), with the app agent's screenshots
+// (booth-kit/app-screens/, ids as screens.json gives them). Its hero is the screen docs' opening
+// names, the Share screen; the headline is Thomas's two pitches.
+const screens = (ids: string[]): Placement => ({ ids, layout: 'screens', ratio: 'phone' })
+export const appPage: BoothPage = {
+  page: 'app',
+  label: 'App',
+  path: '/tilde/app',
+  shortLink: 'taptilde.com/app',
+  status: 'android · free · open source',
+  name: 'Tilde for Android',
+  headline: ['Write your own fob.', 'Your phone is one.'],
+  hero: 'app-01-share',
+  heroRatio: 'phone',
+  copy: appCopy as BoothCopy,
+  images: [
+    // "In the app": docs' four screens as one row, in docs' order, under the app agent's captions.
+    ['the Share screen, with the option card', screens(['app-share-options', 'app-cards', 'app-write-sticker', 'app-met'])],
+    ['the Cards tab', { layout: 'omit', ratio: 'phone' }],
+    ['Write a sticker', { layout: 'omit', ratio: 'phone' }],
+    ['the Met tab', { layout: 'omit', ratio: 'phone' }],
+    // Docs' first card has no [image: …] line yet; this is the line asked of docs (Site 31).
+    ['the welcome screens', screens(['app-02-welcome-1', 'app-03-welcome-card', 'app-04-welcome-contact', 'app-05-first-card-ready'])],
+    ['two phones back to back', { ids: ['app-tap'], layout: 'wide', ratio: 'photo' }],
+  ],
+}
+
 /** /tilde's booth section: docs' hub copy, the whole table, and a picture for each station. */
 export const hubSection = {
   copy: hubCopy as BoothCopy,
   table: 'booth-table-open',
-  /** The pictures in docs' "See everything" table, by how each cell's [image: …] starts. */
+  /** The pictures in docs' "See everything" table, by how each cell's [image: …] starts; else the station's hero. */
   images: [
     ['a card’s front', 'card-classic-dark-front'],
     ["a card's front", 'card-classic-dark-front'],
     ['a coin and a tag', 'fob-premium-tag-tilde'],
     ['a stack of booth tags', 'station-uses-open'],
+    ['the Share screen', 'app-01-share'],
   ] as [string, string][],
-  stations: [cardsPage, fobsPage, usesPage],
+  stations: [cardsPage, fobsPage, usesPage, appPage],
 }
 
 export const placementFor = (page: BoothPage, marker: string): Placement | null => page.images.find(([start]) => marker.startsWith(start))?.[1] ?? null

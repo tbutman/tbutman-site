@@ -1,7 +1,8 @@
 import { Fragment, type ReactNode } from 'react'
+import { Link } from 'react-router'
 import { Placed, Render } from '../components/BoothRender'
 import RichText from '../components/RichText'
-import { type BoothPage as Page, placementFor } from '../content/booth/pages'
+import { type BoothPage as Page, hubSection, placementFor } from '../content/booth/pages'
 import { type Block, boothImages, type Section, sections } from '../content/booth/types'
 
 // A booth station as a page (tilde-review/briefs/booth-site.md), from docs' copy as written: its
@@ -136,10 +137,33 @@ function Hero({ page, opening, lineup, get }: { page: Page; opening?: Section; l
           )}
         </div>
       </div>
-      <div className="booth-hero-visual">
-        <Render image={boothImages[page.hero]} id={page.hero} ratio="photo" size="wide" eager />
+      <div className={`booth-hero-visual${page.heroRatio === 'phone' ? ' booth-hero-phone' : ''}`}>
+        <Render image={boothImages[page.hero]} id={page.hero} ratio={page.heroRatio ?? 'photo'} size={page.heroRatio === 'phone' ? 'screen' : 'wide'} eager />
       </div>
     </section>
+  )
+}
+
+/**
+ * The booth's stations in walk order, this one marked: a way from any station to the others, the App
+ * page included, whatever each page's own "See more" lists.
+ */
+function Stations({ page }: { page: Page }) {
+  return (
+    <nav className="booth-nav" aria-label="The booth’s stations">
+      <Link to="/tilde#booth">the booth</Link>
+      <ul>
+        {hubSection.stations.map((station) => (
+          <li key={station.page}>
+            {station === page ? (
+              <span aria-current="page">{station.label.toLowerCase()}</span>
+            ) : (
+              <Link to={station.path}>{station.label.toLowerCase()}</Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 
@@ -174,12 +198,13 @@ export function BoothBody({ page, insert, end }: { page: Page; insert?: ReactNod
           </Fragment>
         )
       })}
+      <Stations page={page} />
       {end}
     </>
   )
 }
 
-/** /tilde/fobs and /tilde/uses: a whole station page. */
+/** /tilde/fobs, /tilde/uses and /tilde/app: a whole station page. */
 export default function BoothPage({ page }: { page: Page }) {
   return (
     <article className="product booth">

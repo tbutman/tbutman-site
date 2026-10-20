@@ -62,7 +62,7 @@ async function pageWeight(html) {
 // with the main bundle instead of after it, and counts in that page's weight.
 const boothChunk = assetFiles.find((file) => /^parts-[\w-]+\.js$/.test(file))
 if (!boothChunk) throw new Error('no booth chunk (assets/parts-*.js) in the build')
-const boothPaths = new Set(['/tilde', '/tilde/card', '/tilde/fobs', '/tilde/uses'])
+const boothPaths = new Set(['/tilde', '/tilde/card', '/tilde/fobs', '/tilde/uses', '/tilde/app'])
 
 for (const path of paths) {
   const { html, meta } = render(path)

@@ -1,0 +1,105 @@
+{
+  "source": "242c1b4ccc87c8134f43ff303001834fbd1954f81678bbd369bb9af580665b76",
+  "images": {
+    "app-01-share": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "[TBD] alt text for 01-share.png",
+      "status": "unrecorded",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-01-share-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-01-share-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-02-welcome-1": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "[TBD] alt text for 02-welcome-1.png",
+      "status": "unrecorded",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-02-welcome-1-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-02-welcome-1-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-03-welcome-card": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "[TBD] alt text for 03-welcome-card.png",
+      "status": "unrecorded",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-03-welcome-card-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-03-welcome-card-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-04-welcome-contact": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "[TBD] alt text for 04-welcome-contact.png",
+      "status": "unrecorded",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-04-welcome-contact-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-04-welcome-contact-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    },
+    "app-05-first-card-ready": {
+      "pages": [
+        "app"
+      ],
+      "slot": "screens",
+      "alt": "[TBD] alt text for 05-first-card-ready.png",
+      "status": "unrecorded",
+      "sources": [
+        {
+          "src": "/tilde/screens/app-05-first-card-ready-360.webp",
+          "width": 360,
+          "height": 800
+        },
+        {
+          "src": "/tilde/screens/app-05-first-card-ready-720.webp",
+          "width": 720,
+          "height": 1600
+        }
+      ]
+    }
+  }
+}

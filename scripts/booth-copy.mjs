@@ -64,9 +64,12 @@ export function parseCopy(markdown, name = 'copy') {
       i++
       continue
     }
-    // [image: …], and [image per design: …] for one render per item.
-    const marker = line.match(/^\[(image|generated)(?:: | (?=per ))(.+)\]$/)
-    if (marker) {
+    // [image: …], and [image per design: …] for one render per item, wrapped over lines or not.
+    if (/^\[(image|generated)(: | per )/.test(line)) {
+      let whole = line
+      while (!whole.endsWith(']') && i + 1 < lines.length && lines[i + 1].trim()) whole += ` ${lines[++i].trim()}`
+      const marker = whole.match(/^\[(image|generated)(?:: | (?=per ))(.+)\]$/)
+      if (!marker) fail('an [image: …] line without its ]')
       blocks.push({ type: marker[1], text: marker[2] })
       i++
       continue
@@ -102,6 +105,8 @@ export function parseCopy(markdown, name = 'copy') {
     // A paragraph: lines up to a blank line or another block.
     const text = []
     while (i < lines.length && lines[i].trim() && !/^(#{2,3} |\||- |\d+\. |\[(image|generated)(: | per ))/.test(lines[i])) text.push(lines[i++].trim())
+    // Every pass takes at least a line: one no rule takes stops here rather than loop.
+    if (!text.length) fail('a line this converter doesn’t read')
     blocks.push({ type: 'p', text: text.join(' ') })
   }
   return blocks.map((block) => {

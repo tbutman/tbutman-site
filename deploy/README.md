@@ -89,20 +89,32 @@ Redirect Rules → Create rule; type **Static**; status **302**, so a target can
 | Tilde Cards link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/card" "/card/" "/cards" "/cards/"})` | `https://tbutman.com/tilde/card` |
 | Tilde Fobs link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/fobs" "/fobs/"})` | `https://tbutman.com/tilde/fobs` |
 | Tilde Uses link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/uses" "/uses/"})` | `https://tbutman.com/tilde/uses` |
+| Tilde App link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/app" "/app/"})` | `https://tbutman.com/tilde/app` |
 
-Drag all three above the catch-all, and add them to its exclusions so the result doesn't depend on
-order: `… and not http.request.uri.path in {"/c" "/w" "/card" "/card/" "/cards" "/cards/" "/fobs" "/fobs/" "/uses" "/uses/"}`
+Drag all four above the catch-all, and add them to its exclusions so the result doesn't depend on
+order: `… and not http.request.uri.path in {"/c" "/w" "/card" "/card/" "/cards" "/cards/" "/fobs" "/fobs/" "/uses" "/uses/" "/app" "/app/"}`
 (keep `/c`, and `/w` once the Wi-Fi rule exists). `taptilde.com` itself stays on the catch-all: the
-hub is `/tilde`, whose `#booth` section leads to the three stations.
+hub is `/tilde`, whose `#booth` section leads to the four stations.
+
+**The App link moves later.** Every printed app link (the phone plate, the app sheet) is
+`taptilde.com/app`, so it can change target without a reprint. Until the Google Play listing is
+live it goes to the App page. Once it's live, edit only the **Tilde App link** rule: Static URL
+`https://play.google.com/store/apps/details?id=com.tbutman.tilde`, still **302**, and turn
+**Preserve query string off**: the listing's URL has its own query (`?id=`), and Play ignores
+`from=`. (To keep the booth's count, use
+`https://play.google.com/store/apps/details?id=com.tbutman.tilde&referrer=utm_source%3Dbooth`
+instead: Play Console then shows the installs from it.) The App page stays at `/tilde/app` for
+links from the other pages.
 
 Check each, then the catch-all:
 
 ```bash
-for p in card cards fobs uses; do curl -sI "https://taptilde.com/$p?from=tag" | grep -iE '^(HTTP|location)'; done
+for p in card cards fobs uses app; do curl -sI "https://taptilde.com/$p?from=tag" | grep -iE '^(HTTP|location)'; done
 curl -sI https://taptilde.com/ | grep -iE '^(HTTP|location)'   # still 301 to https://tbutman.com/tilde
 ```
 
-Expect `302` and `location: https://tbutman.com/tilde/card?from=tag` (and `/fobs`, `/uses`). A phone
+Expect `302` and `location: https://tbutman.com/tilde/card?from=tag` (and `/fobs`, `/uses`, `/app`;
+after the switch, `/app` goes to `play.google.com` without `from=tag`). A phone
 that opened `taptilde.com/card` before the rule existed has cached the catch-all's 301 and lands on
 `/tilde`, where `#booth` links to the stations.
 
