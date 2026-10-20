@@ -1,24 +1,24 @@
 {
-  "manifest": "a4f37b348bb2ad3b6b08bbc9de1508256b549351073af4ffb73ec17f5f20a040",
-  "exported": "2026-10-20T06:54:49+01:00",
+  "manifest": "8deb350df216acefde21e197913c864ea3393c025c882f146a09f2515dd455dd",
+  "exported": "2026-10-20T07:46:09+01:00",
   "images": {
     "booth-table-open": {
       "pages": [
         "hub"
       ],
       "slot": "hero",
-      "alt": "The Tilde booth table, lids off: the cards-only box full of cards, the fob storage box with its stacks of coins and tags, two giveaway boxes of base tags, and the 5- and 3-card pocket cases with their drawers half out.",
+      "alt": "The Tilde booth table: the two giveaway boxes open with their eight stacks of base tags, beside the closed cards-only box, the fob storage box and the 5- and 3-card pocket cases.",
       "status": "ok",
       "sources": [
         {
           "src": "/tilde/booth/hub--booth-table-open-720.webp",
           "width": 720,
-          "height": 379
+          "height": 399
         },
         {
           "src": "/tilde/booth/hub--booth-table-open-1440.webp",
           "width": 1440,
-          "height": 758
+          "height": 798
         }
       ]
     },
@@ -27,7 +27,7 @@
         "hub"
       ],
       "slot": "table-closed",
-      "alt": "The same booth table with every lid on: black card box lid and engraved storage lid, two olive giveaway lids, and the black pocket-case sleeves.",
+      "alt": "The Tilde booth table with every lid on: the cards-only box and its black lid, the fob storage box and its engraved lid, two olive giveaway lids, and the 5- and 3-card pocket cases.",
       "status": "ok",
       "sources": [
         {
@@ -67,18 +67,18 @@
         "cards"
       ],
       "slot": "station-open",
-      "alt": "The cards-only box open, its three bays full of cards, the lid set face up beside it.",
+      "alt": "The cards-only box open and empty, its three bays (for 10 cards, 6 loose fronts and 6 loose backs), the lid set face up beside it.",
       "status": "ok",
       "sources": [
         {
           "src": "/tilde/booth/cards--station-cards-open-720.webp",
           "width": 720,
-          "height": 406
+          "height": 377
         },
         {
           "src": "/tilde/booth/cards--station-cards-open-1440.webp",
           "width": 1440,
-          "height": 813
+          "height": 754
         }
       ]
     },
@@ -107,7 +107,7 @@
         "fobs"
       ],
       "slot": "station-open",
-      "alt": "The fob storage box open, four flat stacks of fobs (base coins, base tags, premium coins, premium tags), its lid set beside it.",
+      "alt": "The fob storage box open and empty: four wells, each with a finger channel, the sliding lid set face up beside it.",
       "status": "ok",
       "sources": [
         {
@@ -147,18 +147,18 @@
         "uses"
       ],
       "slot": "station-open",
-      "alt": "The giveaway box open: four stacks of ten base tags in one row, each with its icon on top, its olive lid set beside it.",
+      "alt": "The two giveaway boxes open, ten base tags in each stack, icons up. Box 1: Family (a house), Contact card, Link and chat. Box 2: Guest Wi-Fi (Wi-Fi password), Share your number (a handset), Lost item (Found it?) and Book a meeting (booking).",
       "status": "ok",
       "sources": [
         {
           "src": "/tilde/booth/uses--station-uses-open-720.webp",
           "width": 720,
-          "height": 448
+          "height": 493
         },
         {
           "src": "/tilde/booth/uses--station-uses-open-1440.webp",
           "width": 1440,
-          "height": 895
+          "height": 986
         }
       ]
     },
@@ -170,6 +170,11 @@
       "alt": "A base coin in the tilde theme, orange on black.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-tilde-360.webp",
+          "width": 360,
+          "height": 218
+        },
         {
           "src": "/tilde/booth/fobs--fob-base-coin-tilde-720.webp",
           "width": 720,
@@ -191,6 +196,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-base-coin-dark-360.webp",
+          "width": 360,
+          "height": 218
+        },
+        {
           "src": "/tilde/booth/fobs--fob-base-coin-dark-720.webp",
           "width": 720,
           "height": 437
@@ -210,6 +220,11 @@
       "alt": "A base coin in the light theme, black on khaki.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-coin-light-360.webp",
+          "width": 360,
+          "height": 218
+        },
         {
           "src": "/tilde/booth/fobs--fob-base-coin-light-720.webp",
           "width": 720,
@@ -231,6 +246,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-base-tag-tilde-360.webp",
+          "width": 360,
+          "height": 222
+        },
+        {
           "src": "/tilde/booth/fobs--fob-base-tag-tilde-720.webp",
           "width": 720,
           "height": 444
@@ -250,6 +270,11 @@
       "alt": "A base tag in the dark theme, khaki on black.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-base-tag-dark-360.webp",
+          "width": 360,
+          "height": 222
+        },
         {
           "src": "/tilde/booth/fobs--fob-base-tag-dark-720.webp",
           "width": 720,
@@ -271,6 +296,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-base-tag-light-360.webp",
+          "width": 360,
+          "height": 222
+        },
+        {
           "src": "/tilde/booth/fobs--fob-base-tag-light-720.webp",
           "width": 720,
           "height": 444
@@ -290,6 +320,11 @@
       "alt": "A premium coin in the tilde theme, orange on black.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-tilde-360.webp",
+          "width": 360,
+          "height": 243
+        },
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-tilde-720.webp",
           "width": 720,
@@ -311,6 +346,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-premium-coin-dark-360.webp",
+          "width": 360,
+          "height": 243
+        },
+        {
           "src": "/tilde/booth/fobs--fob-premium-coin-dark-720.webp",
           "width": 720,
           "height": 485
@@ -330,6 +370,11 @@
       "alt": "A premium coin in the light theme, black on khaki.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-light-360.webp",
+          "width": 360,
+          "height": 243
+        },
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-light-720.webp",
           "width": 720,
@@ -351,6 +396,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-premium-tag-tilde-360.webp",
+          "width": 360,
+          "height": 233
+        },
+        {
           "src": "/tilde/booth/fobs--fob-premium-tag-tilde-720.webp",
           "width": 720,
           "height": 465
@@ -370,6 +420,11 @@
       "alt": "A premium tag in the dark theme, khaki on black.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-tag-dark-360.webp",
+          "width": 360,
+          "height": 233
+        },
         {
           "src": "/tilde/booth/fobs--fob-premium-tag-dark-720.webp",
           "width": 720,
@@ -391,6 +446,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-premium-tag-light-360.webp",
+          "width": 360,
+          "height": 233
+        },
+        {
           "src": "/tilde/booth/fobs--fob-premium-tag-light-720.webp",
           "width": 720,
           "height": 465
@@ -410,6 +470,11 @@
       "alt": "The orange premium coin from the pocket cases, black tap waves.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-premium-coin-orange-360.webp",
+          "width": 360,
+          "height": 243
+        },
         {
           "src": "/tilde/booth/fobs--fob-premium-coin-orange-720.webp",
           "width": 720,
@@ -431,6 +496,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-premium-tag-orange-360.webp",
+          "width": 360,
+          "height": 233
+        },
+        {
           "src": "/tilde/booth/fobs--fob-premium-tag-orange-720.webp",
           "width": 720,
           "height": 465
@@ -451,6 +521,11 @@
       "status": "ok",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--fob-tag-front-360.webp",
+          "width": 360,
+          "height": 305
+        },
+        {
           "src": "/tilde/booth/fobs--fob-tag-front-720.webp",
           "width": 720,
           "height": 610
@@ -470,6 +545,11 @@
       "alt": "A tag's back: its icon.",
       "status": "ok",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-tag-back-360.webp",
+          "width": 360,
+          "height": 301
+        },
         {
           "src": "/tilde/booth/fobs--fob-tag-back-720.webp",
           "width": 720,
@@ -514,6 +594,11 @@
       "name": "Booking",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-booking-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-booking-720.webp",
           "width": 720,
           "height": 781
@@ -535,6 +620,11 @@
       "icon": "calendar",
       "name": "Calendar",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-calendar-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-calendar-720.webp",
           "width": 720,
@@ -558,6 +648,11 @@
       "name": "Chat",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-chat-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-chat-720.webp",
           "width": 720,
           "height": 781
@@ -574,11 +669,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Contact icon.",
+      "alt": "The Contact card icon.",
       "status": "ok",
       "icon": "contact",
       "name": "Contact card",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-contact-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-contact-720.webp",
           "width": 720,
@@ -602,6 +702,11 @@
       "name": "Fitness",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-fitness-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-fitness-720.webp",
           "width": 720,
           "height": 781
@@ -624,6 +729,11 @@
       "name": "Food",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-food-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-food-720.webp",
           "width": 720,
           "height": 781
@@ -640,11 +750,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Found it icon.",
+      "alt": "The Found it? icon.",
       "status": "ok",
       "icon": "found_it",
       "name": "Found it?",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-found_it-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-found_it-720.webp",
           "width": 720,
@@ -668,6 +783,11 @@
       "name": "Handset",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-handset-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-handset-720.webp",
           "width": 720,
           "height": 781
@@ -689,6 +809,11 @@
       "icon": "home",
       "name": "Home",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-home-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-home-720.webp",
           "width": 720,
@@ -712,6 +837,11 @@
       "name": "Hotspot",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-hotspot-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-hotspot-720.webp",
           "width": 720,
           "height": 781
@@ -733,6 +863,11 @@
       "icon": "key",
       "name": "Key",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-key-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-key-720.webp",
           "width": 720,
@@ -756,6 +891,11 @@
       "name": "Link",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-link-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-link-720.webp",
           "width": 720,
           "height": 781
@@ -778,6 +918,11 @@
       "name": "Location",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-location-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-location-720.webp",
           "width": 720,
           "height": 781
@@ -794,11 +939,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Mail icon.",
+      "alt": "The Envelope icon.",
       "status": "ok",
       "icon": "mail",
       "name": "Envelope",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-mail-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-mail-720.webp",
           "width": 720,
@@ -822,6 +972,11 @@
       "name": "Music",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-music-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-music-720.webp",
           "width": 720,
           "height": 781
@@ -843,6 +998,11 @@
       "icon": "news",
       "name": "News",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-news-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-news-720.webp",
           "width": 720,
@@ -866,6 +1026,11 @@
       "name": "Package",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-package-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-package-720.webp",
           "width": 720,
           "height": 781
@@ -887,6 +1052,11 @@
       "icon": "parking",
       "name": "Parking",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-parking-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-parking-720.webp",
           "width": 720,
@@ -910,6 +1080,11 @@
       "name": "Payment",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-payment-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-payment-720.webp",
           "width": 720,
           "height": 781
@@ -931,6 +1106,11 @@
       "icon": "person",
       "name": "Person",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-person-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-person-720.webp",
           "width": 720,
@@ -954,6 +1134,11 @@
       "name": "Pet",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-pet-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-pet-720.webp",
           "width": 720,
           "height": 781
@@ -976,6 +1161,11 @@
       "name": "Phone",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-phone-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-phone-720.webp",
           "width": 720,
           "height": 781
@@ -992,11 +1182,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Phone tap icon.",
+      "alt": "The Phone with tap waves icon.",
       "status": "ok",
       "icon": "phone_tap",
       "name": "Phone with tap waves",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-phone_tap-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-phone_tap-720.webp",
           "width": 720,
@@ -1020,6 +1215,11 @@
       "name": "Shop",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-shop-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-shop-720.webp",
           "width": 720,
           "height": 781
@@ -1036,11 +1236,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Short t icon.",
+      "alt": "The T short mark icon.",
       "status": "ok",
       "icon": "short_t",
       "name": "t short mark",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-short_t-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-short_t-720.webp",
           "width": 720,
@@ -1058,11 +1263,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Short tw icon.",
+      "alt": "The ~/t short mark icon.",
       "status": "ok",
       "icon": "short_tw",
       "name": "~/t short mark",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-short_tw-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-short_tw-720.webp",
           "width": 720,
@@ -1080,11 +1290,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Soccer icon.",
+      "alt": "The Soccer ball icon.",
       "status": "ok",
       "icon": "soccer",
       "name": "Soccer ball",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-soccer-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-soccer-720.webp",
           "width": 720,
@@ -1108,6 +1323,11 @@
       "name": "Sports",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-sports-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-sports-720.webp",
           "width": 720,
           "height": 781
@@ -1124,11 +1344,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Tap icon.",
+      "alt": "The Tap waves icon.",
       "status": "ok",
       "icon": "tap",
       "name": "Tap waves",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-tap-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-tap-720.webp",
           "width": 720,
@@ -1146,11 +1371,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Tilde icon.",
+      "alt": "The ~/ icon.",
       "status": "ok",
       "icon": "tilde",
       "name": "~/",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-tilde-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-tilde-720.webp",
           "width": 720,
@@ -1174,6 +1404,11 @@
       "name": "Train",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-train-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-train-720.webp",
           "width": 720,
           "height": 781
@@ -1195,6 +1430,11 @@
       "icon": "transit",
       "name": "Transit",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-transit-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-transit-720.webp",
           "width": 720,
@@ -1218,6 +1458,11 @@
       "name": "Weather",
       "sources": [
         {
+          "src": "/tilde/booth/fobs--icons-weather-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
           "src": "/tilde/booth/fobs--icons-weather-720.webp",
           "width": 720,
           "height": 781
@@ -1234,11 +1479,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Wifi icon.",
+      "alt": "The Wi-Fi icon.",
       "status": "ok",
       "icon": "wifi",
       "name": "Wi-Fi",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-wifi-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-wifi-720.webp",
           "width": 720,
@@ -1256,11 +1506,16 @@
         "fobs"
       ],
       "slot": "icons",
-      "alt": "The Wifi key icon.",
+      "alt": "The Wi-Fi password icon.",
       "status": "ok",
       "icon": "wifi_key",
       "name": "Wi-Fi password",
       "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-wifi_key-360.webp",
+          "width": 360,
+          "height": 390
+        },
         {
           "src": "/tilde/booth/fobs--icons-wifi_key-720.webp",
           "width": 720,
@@ -1442,14 +1697,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-classic-dark-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-classic-dark-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-classic-dark-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-classic-dark-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1462,14 +1722,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-classic-dark-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-classic-dark-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-classic-dark-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-classic-dark-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-dark-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1482,14 +1747,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-classic-light-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-classic-light-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-classic-light-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-classic-light-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-light-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1502,14 +1772,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-classic-light-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-classic-light-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-classic-light-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-classic-light-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-classic-light-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1522,14 +1797,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-tap-card-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-tap-card-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-tap-card-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-tap-card-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-tap-card-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1542,14 +1822,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-tap-card-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-tap-card-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-tap-card-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-tap-card-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-tap-card-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1562,14 +1847,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-solid-black-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-solid-black-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-solid-black-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-solid-black-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-black-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1582,14 +1872,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-solid-black-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-solid-black-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-solid-black-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-solid-black-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-black-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1602,14 +1897,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-solid-white-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-solid-white-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-solid-white-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-solid-white-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-white-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1622,14 +1922,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-solid-white-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-solid-white-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-solid-white-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-solid-white-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-solid-white-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1642,14 +1947,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-retro-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-retro-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-retro-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-retro-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-retro-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1662,14 +1972,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-retro-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-retro-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-retro-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-retro-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-retro-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1682,14 +1997,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-mystery-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-mystery-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-mystery-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-mystery-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-mystery-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1702,14 +2022,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-mystery-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-mystery-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-mystery-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-mystery-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-mystery-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1722,14 +2047,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-signal-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-signal-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-signal-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-signal-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-signal-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1742,14 +2072,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-signal-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-signal-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-signal-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-signal-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-signal-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1762,14 +2097,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-usa-light-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-usa-light-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-usa-light-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-usa-light-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-light-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1782,14 +2122,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-usa-light-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-usa-light-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-usa-light-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-usa-light-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-light-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1802,14 +2147,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-usa-dark-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-usa-dark-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-usa-dark-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-usa-dark-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1822,14 +2172,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-usa-dark-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-usa-dark-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-usa-dark-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-usa-dark-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-usa-dark-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1842,14 +2197,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-brasil-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-brasil-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-brasil-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-brasil-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-brasil-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1862,14 +2222,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-brasil-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-brasil-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-brasil-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-brasil-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-brasil-back-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1882,14 +2247,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-portugal-front-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-portugal-front-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-portugal-front-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-portugal-front-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-portugal-front-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1902,14 +2272,159 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-portugal-back-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-portugal-back-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-portugal-back-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-portugal-back-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-portugal-back-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-classic": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Classic front style on a Classic Dark card: the ~/janedoe handle, Jane Doe, taptilde.com and the QR code, with the tap mark.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-classic-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-classic-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-minimal": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Minimal front style on a Classic Dark card: the name, larger, and the QR code.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-minimal-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-minimal-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-mystery": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Mystery front style on a Classic Dark card: only the QR code, in the middle.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-mystery-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-mystery-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-handle": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Handle front style on a Classic Dark card: the ~/janedoe handle, large, and the QR code.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-handle-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-handle-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-badge": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Badge front style on a Classic Dark card: the first name large, then the last name and the role, and the QR code.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-badge-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-badge-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-taponly": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Tap only front style on a Classic Dark card: the name and a large tap mark, with no code.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-taponly-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-taponly-1187.webp",
+          "width": 1187,
+          "height": 808
+        }
+      ]
+    },
+    "card-front-blank": {
+      "pages": [
+        "cards"
+      ],
+      "slot": "fronts",
+      "alt": "The Blank front style on a Classic Dark card: nothing printed at all.",
+      "status": "ok",
+      "sources": [
+        {
+          "src": "/tilde/booth/cards--card-front-blank-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-front-blank-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1922,14 +2437,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-dark-tap-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-dark-tap-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-dark-tap-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-dark-tap-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-dark-tap-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1942,14 +2462,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-dark-code-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-dark-code-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-dark-code-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-dark-code-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-dark-code-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1962,14 +2487,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-light-tap-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-light-tap-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-light-tap-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-light-tap-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-light-tap-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -1982,14 +2512,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-light-code-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-light-code-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-light-code-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-light-code-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-light-code-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2002,14 +2537,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-tap-light-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-tap-light-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-tap-light-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-tap-light-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-tap-light-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2022,14 +2562,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-retro-wine-white-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-retro-wine-white-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-retro-wine-white-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-retro-wine-white-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-wine-white-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2042,14 +2587,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-wine-khaki-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2062,14 +2612,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-retro-khaki-black-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-retro-khaki-black-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-retro-khaki-black-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-retro-khaki-black-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-khaki-black-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2082,14 +2637,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-retro-khaki-red-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-retro-khaki-red-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-retro-khaki-red-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-retro-khaki-red-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-khaki-red-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2102,14 +2662,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-retro-code-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-retro-code-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-retro-code-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-retro-code-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-retro-code-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2122,14 +2687,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-signal-plain-black-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-signal-plain-black-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-signal-plain-black-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-signal-plain-black-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-signal-plain-black-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2142,14 +2712,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-signal-tap-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-signal-tap-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-signal-tap-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-signal-tap-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-signal-tap-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2162,14 +2737,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-signal-code-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-signal-code-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-signal-code-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-signal-code-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-signal-code-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2182,14 +2762,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-usa-red-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-usa-red-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-usa-red-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-usa-red-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-usa-red-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2202,14 +2787,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-usa-tap-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-usa-tap-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-usa-tap-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-usa-tap-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-usa-tap-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2222,14 +2812,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-usa-code-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-usa-code-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-usa-code-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-usa-code-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-usa-code-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2242,14 +2837,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-brasil-green-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-brasil-green-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-brasil-green-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-brasil-green-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-green-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2262,14 +2862,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-brasil-green-white-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-brasil-green-white-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-brasil-green-white-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-brasil-green-white-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-green-white-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2282,14 +2887,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-brasil-plain-window-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-brasil-plain-window-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-brasil-plain-window-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-brasil-plain-window-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-plain-window-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2302,14 +2912,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-brasil-tap-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-brasil-tap-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-brasil-tap-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-brasil-tap-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-brasil-tap-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2322,14 +2937,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-portugal-green-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-portugal-green-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-portugal-green-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-portugal-green-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-green-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2342,14 +2962,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-portugal-tap-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-portugal-tap-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-portugal-tap-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-portugal-tap-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-tap-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2362,14 +2987,19 @@
       "status": "ok",
       "sources": [
         {
-          "src": "/tilde/booth/cards--card-back-portugal-code-720.webp",
-          "width": 720,
-          "height": 458
+          "src": "/tilde/booth/cards--card-back-portugal-code-360.webp",
+          "width": 360,
+          "height": 245
         },
         {
-          "src": "/tilde/booth/cards--card-back-portugal-code-1041.webp",
-          "width": 1041,
-          "height": 662
+          "src": "/tilde/booth/cards--card-back-portugal-code-720.webp",
+          "width": 720,
+          "height": 490
+        },
+        {
+          "src": "/tilde/booth/cards--card-back-portugal-code-1187.webp",
+          "width": 1187,
+          "height": 808
         }
       ]
     },
@@ -2384,12 +3014,12 @@
         {
           "src": "/tilde/booth/cards--card-two-piece-720.webp",
           "width": 720,
-          "height": 592
+          "height": 607
         },
         {
-          "src": "/tilde/booth/cards--card-two-piece-1301.webp",
-          "width": 1301,
-          "height": 1069
+          "src": "/tilde/booth/cards--card-two-piece-1440.webp",
+          "width": 1440,
+          "height": 1215
         }
       ]
     },
@@ -2404,12 +3034,12 @@
         {
           "src": "/tilde/booth/cards--card-two-piece-back-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-two-piece-back-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-two-piece-back-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2424,12 +3054,12 @@
         {
           "src": "/tilde/booth/cards--card-solid-back-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-solid-back-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-solid-back-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2444,12 +3074,12 @@
         {
           "src": "/tilde/booth/cards--holder-pocket-3-720.webp",
           "width": 720,
-          "height": 302
+          "height": 353
         },
         {
-          "src": "/tilde/booth/cards--holder-pocket-3-1389.webp",
-          "width": 1389,
-          "height": 582
+          "src": "/tilde/booth/cards--holder-pocket-3-1440.webp",
+          "width": 1440,
+          "height": 706
         }
       ]
     },
@@ -2464,12 +3094,12 @@
         {
           "src": "/tilde/booth/cards--holder-pocket-5-720.webp",
           "width": 720,
-          "height": 333
+          "height": 380
         },
         {
-          "src": "/tilde/booth/cards--holder-pocket-5-1390.webp",
-          "width": 1390,
-          "height": 642
+          "src": "/tilde/booth/cards--holder-pocket-5-1440.webp",
+          "width": 1440,
+          "height": 760
         }
       ]
     },
@@ -2484,12 +3114,12 @@
         {
           "src": "/tilde/booth/cards--holder-cards-only-box-720.webp",
           "width": 720,
-          "height": 624
+          "height": 636
         },
         {
-          "src": "/tilde/booth/cards--holder-cards-only-box-1182.webp",
-          "width": 1182,
-          "height": 1025
+          "src": "/tilde/booth/cards--holder-cards-only-box-1348.webp",
+          "width": 1348,
+          "height": 1191
         }
       ]
     },
@@ -2504,12 +3134,12 @@
         {
           "src": "/tilde/booth/cards--card-classic-dark-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-classic-dark-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-classic-dark-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2524,12 +3154,12 @@
         {
           "src": "/tilde/booth/cards--card-classic-light-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-classic-light-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-classic-light-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2544,12 +3174,12 @@
         {
           "src": "/tilde/booth/cards--card-tap-card-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-tap-card-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-tap-card-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2564,12 +3194,12 @@
         {
           "src": "/tilde/booth/cards--card-solid-black-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-solid-black-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-solid-black-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2584,12 +3214,12 @@
         {
           "src": "/tilde/booth/cards--card-solid-white-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-solid-white-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-solid-white-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2604,12 +3234,12 @@
         {
           "src": "/tilde/booth/cards--card-retro-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-retro-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-retro-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2624,12 +3254,12 @@
         {
           "src": "/tilde/booth/cards--card-mystery-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-mystery-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-mystery-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2644,12 +3274,12 @@
         {
           "src": "/tilde/booth/cards--card-signal-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-signal-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-signal-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2664,12 +3294,12 @@
         {
           "src": "/tilde/booth/cards--card-usa-light-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-usa-light-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-usa-light-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2684,12 +3314,12 @@
         {
           "src": "/tilde/booth/cards--card-usa-dark-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-usa-dark-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-usa-dark-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2704,12 +3334,12 @@
         {
           "src": "/tilde/booth/cards--card-brasil-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-brasil-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-brasil-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     },
@@ -2724,12 +3354,12 @@
         {
           "src": "/tilde/booth/cards--card-portugal-angle-720.webp",
           "width": 720,
-          "height": 364
+          "height": 408
         },
         {
-          "src": "/tilde/booth/cards--card-portugal-angle-1302.webp",
-          "width": 1302,
-          "height": 658
+          "src": "/tilde/booth/cards--card-portugal-angle-1440.webp",
+          "width": 1440,
+          "height": 815
         }
       ]
     }

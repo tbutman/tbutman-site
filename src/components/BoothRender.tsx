@@ -71,6 +71,8 @@ const fixed: Record<string, string> = {
 }
 function captionFor(id: string): string | undefined {
   if (fixed[id]) return fixed[id]
+  const front = id.match(/^card-front-(\w+)$/)
+  if (front) return front[1] === 'taponly' ? 'tap only' : front[1]
   const fob = id.match(/^fob-(base|premium)-(coin|tag)-(\w+)$/)
   if (fob) return `${fob[1]} ${fob[2]} · ${fob[3]}`
   const back = id.match(/^card-back-([a-z]+)-(.+)$/)

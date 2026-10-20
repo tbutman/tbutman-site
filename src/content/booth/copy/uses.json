@@ -1,5 +1,5 @@
 {
-  "source": "d08d476b86b80e0ffa0403dde1e11558857474ae6f413d89a482d21c6506bd03",
+  "source": "b14c1d068f700b2c6297a8bb0f7d802cf4389860fa1b43c1b9d63e77c80d6606",
   "blocks": [
     {
       "type": "h2",
@@ -8,7 +8,7 @@
     },
     {
       "type": "p",
-      "text": "**One tag, one job.** Everything in these boxes is a tag with an NFC sticker inside. Tap it with a phone and it does one thing: calls your family, shares your contact, joins the Wi-Fi. Here are the eight jobs in our boxes, what each does on an iPhone and on Android, and how to make your own."
+      "text": "**One tag, one job.** Everything in these boxes is a tag with an NFC sticker inside. Tap it with a phone and it does one thing: gets your family’s number ready to call, shares your contact, joins the Wi-Fi. Here are the eight jobs in our boxes, what each does on an iPhone and on Android, and how to make your own."
     },
     {
       "type": "h2",
@@ -27,11 +27,11 @@
           "sub": []
         },
         {
-          "text": "**You write it.** Tilde for Android writes any of these in a few taps, for free: Cards → **Write a sticker**, then choose what it opens. On an iPhone, the free NFC Tools app writes a link.",
+          "text": "**You write it.** Tilde for Android writes any of these in a few taps, for free: Cards → **Write a sticker**, then choose what it opens. `[depends on 1.3.0]` On an iPhone, the free NFC Tools app writes a link.",
           "sub": []
         },
         {
-          "text": "**You can rewrite it.** A phone rewrites the sticker through the plastic, so a tag can change jobs.",
+          "text": "**You can rewrite it.** A phone rewrites the sticker through the plastic, so a tag can change jobs. `[depends on U15]` If Tilde protected the sticker, only the phone that wrote it can change it. `[depends on T-S1, T-S2]`",
           "sub": []
         },
         {
@@ -42,7 +42,7 @@
     },
     {
       "type": "p",
-      "text": "**The code on our tags:** some of the booth’s tags have a QR code on the front. It opens Tilde’s page (`taptilde.com`), not what’s on your sticker. A tag you print yourself carries your own link in its code."
+      "text": "**The code on our tags:** some of the booth’s tags have a QR code on the front. It opens Tilde’s page (`taptilde.com`), not what’s on your sticker. `[depends on T-B1]` A tag you print yourself carries your own link in its code."
     },
     {
       "type": "h2",
@@ -64,7 +64,7 @@
     },
     {
       "type": "p",
-      "text": "**If your child loses their phone, whoever finds them taps the tag on their backpack and calls you.**"
+      "text": "**If your child loses their phone, whoever finds them taps the tag on their backpack, and your number is ready to call.**"
     },
     {
       "type": "ul",
@@ -80,7 +80,7 @@
           ]
         },
         {
-          "text": "**Make one:** in Tilde, **+ New card → Start from a template → Family**. It’s named “Call my family” and shares your number, ready to call. Then use **Write a sticker**. `[depends on templates]`",
+          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Family → Create**. It’s named “Call my family” and shares your number, ready to call. Then use **Write a sticker**. `[depends on templates]`",
           "sub": []
         },
         {
@@ -100,13 +100,13 @@
     },
     {
       "type": "p",
-      "text": "**Swap contacts between an iPhone and an Android phone: tap the tag, save the contact.**"
+      "text": "**Share your contact with any iPhone or Android phone: tap the tag, save the contact.**"
     },
     {
       "type": "ul",
       "items": [
         {
-          "text": "**Android:** a tap offers to save your contact card, if it fits the sticker. A full card that doesn’t fit is written as its contact link, which opens your contact page with **Save contact** and needs internet. `[depends on T-B2]`",
+          "text": "**Android:** a tap offers to save your contact card, if it fits the sticker. A full card that doesn’t fit is written as its contact link, which opens your contact page with **Save contact** and needs internet. `[depends on T-B2]`; `[depends on 1.3.0, T1–T4]` for the contact link.",
           "sub": []
         },
         {
@@ -116,11 +116,11 @@
           ]
         },
         {
-          "text": "**Make one:** **Write a sticker → Contact card**. Before you tap, Tilde says which sticker sizes fit your full card (NTAG215 and 216 usually do), and asks first if yours doesn’t.",
+          "text": "**Make one:** **Write a sticker → Contact card**. Before you tap, Tilde says which sticker sizes fit your full card (a card with several links needs an NTAG216), and asks first if yours doesn’t. `[depends on T-W1–T-W7]`",
           "sub": []
         },
         {
-          "text": "**Keep in mind:** anyone who taps it gets your contact card. Turn off **On contact card** for your phone number or email in Edit card if you’d rather leave them off.",
+          "text": "**Keep in mind:** anyone who taps it gets your contact card. In Edit card, uncheck your phone number or email under **What they save** if you’d rather leave them off. `[depends on 1.3.0]`",
           "sub": []
         }
       ]
@@ -212,7 +212,7 @@
           ]
         },
         {
-          "text": "**Make one:** set up **Guest Wi-Fi** in Tilde’s Settings, then **Write a sticker → Guest Wi-Fi**. With a long network name and password, the iPhone page needs an NTAG215 or 216 sticker, and Tilde says so before you write. `[depends on T-WF]` for the sticker size.",
+          "text": "**Make one:** set up **Guest Wi-Fi** in Tilde’s Settings, then **Write a sticker → Guest Wi-Fi** (it’s named **Wi-Fi** if you’ve set up Hotspot too). With a long network name and password, the iPhone page needs an NTAG215 or 216 sticker, and Tilde says so before you write. `[depends on T-WF]` for the sticker size.",
           "sub": []
         },
         {
@@ -248,7 +248,7 @@
           ]
         },
         {
-          "text": "**Make one:** choose **Phone number** on a card, pick **Text** or **Call**, then **Write a sticker**.",
+          "text": "**Make one:** **Write a sticker → Phone number**, then pick **Text** or **Call**. `[depends on T-N1–T-N7]`",
           "sub": []
         },
         {
@@ -268,17 +268,23 @@
     },
     {
       "type": "p",
-      "text": "**Found this? Tap to call or text the owner.** For your keys or your bag."
+      "text": "**Found this? Tap to call the owner.** For your keys or your bag."
     },
     {
       "type": "ul",
       "items": [
         {
-          "text": "**Android and iPhone:** the same as Share your number: a tap offers to call you. `[depends on T-N2, T-N4, T-B6]`",
+          "text": "**Android:** a tap opens the phone app with your number filled in, ready to call. `[depends on T-N4, T-B6]`",
           "sub": []
         },
         {
-          "text": "**Make one:** **+ New card → Start from a template → Lost & found**. Its line is “Found this? Call or text me”, and it shares your number, ready to call. Then **Write a sticker**. `[depends on templates]`",
+          "text": "**iPhone:** a tap shows a notification to call your number. `[depends on T-N2, T-B6]`",
+          "sub": [
+            "If T-N2 fails, say: “iPhones can’t call from this tag yet: it’s for Android phones.”"
+          ]
+        },
+        {
+          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Lost & found → Create**. Its line is “Found this? Call or text me”, and it shares your number, ready to call. Then **Write a sticker**. `[depends on templates]`",
           "sub": []
         },
         {

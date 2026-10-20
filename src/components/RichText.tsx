@@ -17,10 +17,11 @@ export default function RichText({ text }: { text: string }) {
         </b>
       )
     }
-    if (/^\[depends on [^\]]+\]$/.test(part)) {
+    // A gate, bare or in backticks as docs writes it.
+    if (/^`?\[depends on [^\]]+\]`?$/.test(part)) {
       return (
         <span key={index} className="gate">
-          {part}
+          {part.replace(/`/g, '')}
         </span>
       )
     }

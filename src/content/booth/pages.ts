@@ -36,8 +36,7 @@ export const cardsPage: BoothPage = {
   images: [
     ['the cards-only box, open', { ids: ['station-cards-open'], layout: 'wide', ratio: 'photo' }],
     ['per design', { slot: 'themes', layout: 'pairs', ratio: 'card' }],
-    // No render is planned for the front styles yet (card's entries in site-renders.json).
-    ['one card in each front style', { layout: 'grid', ratio: 'card' }],
+    ['one card in each front style', { slot: 'fronts', layout: 'small', ratio: 'card' }],
     ['the alternate backs', { slot: ['backs', 'alternate-backs'], layout: 'small', ratio: 'card' }],
     ['a two-piece card', { slot: ['builds', 'construction'], layout: 'grid', ratio: 'photo' }],
     ['the 3-card pocket case', { slot: 'holders', layout: 'grid', ratio: 'photo' }],
@@ -63,7 +62,8 @@ export const fobsPage: BoothPage = {
         ratio: 'square',
       },
     ],
-    ['each fob type in each standard theme', { slot: 'types', layout: 'small', ratio: 'square' }],
+    // "in each standard theme" until docs' October 20 fixes, "in each color set" since.
+    ['each fob type in each', { slot: 'types', layout: 'small', ratio: 'square' }],
     ['the orange pocket case fobs', { slot: 'special', layout: 'small', ratio: 'square' }],
     ['the storage box, closed and open', { ids: ['station-fobs-closed', 'station-fobs-open'], layout: 'grid', ratio: 'photo' }],
     ['one image per built icon', { slot: 'icons', layout: 'icons', ratio: 'square' }],
