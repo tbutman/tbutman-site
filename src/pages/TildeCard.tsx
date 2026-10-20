@@ -3,49 +3,76 @@ import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
 import { tildeText } from '../content/tilde'
+import { cards } from '../content/booth/cards'
 import { tildeCardText } from '../content/tildeCard'
 import { type Locale, translations } from '../i18n'
+import { StationConcept, StationCross, StationGet, StationHero, StationLineup } from './BoothStation'
 
-// /tilde/card: the Tilde Card and its keyrings for makers, in the product page's style. Real photos
-// come later (see content/tildeCard.ts).
+// /tilde/card: the Tilde Card and its keyrings for makers, in the product page's style. In English
+// it's also the cards-only box's station at the booth (taptilde.com/card): the showcase first, from
+// the render export, then this print guide under #print (tilde-review/briefs/booth-site.md). Real
+// photos come later (see content/tildeCard.ts).
 export default function TildeCard({ locale }: { locale: Locale }) {
   const card = tildeCardText[locale]
   const { guide, source, makerWorld } = card.links
   const keyringsLink = card.keyringsLink
+  const station = locale === 'en' ? cards : null
+  const printButtons = (
+    <div className="button-row">
+      {makerWorld && (
+        <a className="button primary" href={makerWorld.href}>
+          {makerWorld.label} ↗
+        </a>
+      )}
+      <a className={makerWorld ? 'button' : 'button primary'} href={guide.href}>
+        {guide.label} ↗
+      </a>
+      <a className="button" href={source.href}>
+        {source.label} ↗
+      </a>
+    </div>
+  )
   return (
-    <article className="product">
+    <article className={station ? 'product booth' : 'product'}>
       <LangSwitch locale={locale} paths={{ en: '/tilde/card', pt: translations['/tilde/card'] }} />
-      <section className="product-hero" aria-labelledby="card-heading">
-        <div className="product-hero-text">
-          <p className="status">
-            <span className="status-dot" aria-hidden="true" />
-            {card.status}
-          </p>
-          <p className="product-name">
-            <b>~</b> {card.name}
-          </p>
-          <h1 id="card-heading">
-            {card.headline[0]} <span>{card.headline[1]}</span>
-          </h1>
-          <p className="lede">{card.lede}</p>
-          <div className="button-row">
-            {makerWorld && (
-              <a className="button primary" href={makerWorld.href}>
-                {makerWorld.label} ↗
-              </a>
-            )}
-            <a className={makerWorld ? 'button' : 'button primary'} href={guide.href}>
-              {guide.label} ↗
-            </a>
-            <a className="button" href={source.href}>
-              {source.label} ↗
-            </a>
+      {station ? (
+        <>
+          <StationHero station={station} />
+          <StationConcept station={station} />
+          <StationLineup station={station} />
+          <StationGet station={station} />
+          {/* The print guide: where the showcase's "Print your own" leads. */}
+          <section id="print" className="section" aria-labelledby="print-heading">
+            <div className="section-head">
+              <h2 id="print-heading">
+                {card.headline[0]} {card.headline[1]}
+              </h2>
+            </div>
+            <p className="product-body booth-intro">{card.lede}</p>
+            {printButtons}
+          </section>
+        </>
+      ) : (
+        <section className="product-hero" aria-labelledby="card-heading">
+          <div className="product-hero-text">
+            <p className="status">
+              <span className="status-dot" aria-hidden="true" />
+              {card.status}
+            </p>
+            <p className="product-name">
+              <b>~</b> {card.name}
+            </p>
+            <h1 id="card-heading">
+              {card.headline[0]} <span>{card.headline[1]}</span>
+            </h1>
+            <p className="lede">{card.lede}</p>
+            {printButtons}
           </div>
-        </div>
-        <div className="card-page-hero">
-          <img src="/tilde/card.webp" alt={card.heroAlt} width={1200} height={603} />
-        </div>
-      </section>
+          <div className="card-page-hero">
+            <img src="/tilde/card.webp" alt={card.heroAlt} width={1200} height={603} />
+          </div>
+        </section>
+      )}
 
       <figure className="product-video panel">
         <ProductVideo video={tildeText[locale].video} />
@@ -94,20 +121,23 @@ export default function TildeCard({ locale }: { locale: Locale }) {
         <p className="product-body">{card.timeBody}</p>
       </section>
 
-      <section className="section" aria-labelledby="backs-heading">
-        <div className="section-head">
-          <h2 id="backs-heading">{card.backsHeading}</h2>
-        </div>
-        <p className="product-body card-page-intro">{card.backsBody}</p>
-        <div className="product-backs card-page-backs">
-          {card.backs.map((back) => (
-            <figure key={back.src}>
-              <img src={back.src} alt={back.alt} width={800} height={505} loading="lazy" decoding="async" />
-              <figcaption>{back.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      {/* With the showcase, the lineup has every back, from the render export. */}
+      {!station && (
+        <section className="section" aria-labelledby="backs-heading">
+          <div className="section-head">
+            <h2 id="backs-heading">{card.backsHeading}</h2>
+          </div>
+          <p className="product-body card-page-intro">{card.backsBody}</p>
+          <div className="product-backs card-page-backs">
+            {card.backs.map((back) => (
+              <figure key={back.src}>
+                <img src={back.src} alt={back.alt} width={800} height={505} loading="lazy" decoding="async" />
+                <figcaption>{back.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="section" aria-labelledby="sticker-heading">
         <div className="section-head">
@@ -158,6 +188,8 @@ export default function TildeCard({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
+
+      {station && <StationCross station={station} />}
 
       <section className="product-cta panel" aria-label={card.ctaText}>
         <p>

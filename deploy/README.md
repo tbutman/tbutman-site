@@ -76,6 +76,36 @@ sudo docker compose exec website nginx -t
 sudo docker compose exec website nginx -s reload
 ```
 
+## taptilde.com short links (Cloudflare, Thomas)
+
+The booth's lids and printed material carry short links that never change. Each is a Cloudflare
+Redirect Rule on taptilde.com, above the catch-all (`taptilde.com/*` → `https://tbutman.com/tilde`,
+301), made like the contact link's (tilde-review/specs/x1-contact-link.md, section 3): Rules →
+Redirect Rules → Create rule; type **Static**; status **302**, so a target can still change;
+**Preserve query string on**, so `?from=tag` reaches the stats.
+
+| Rule name | When the expression matches | Static URL |
+| --- | --- | --- |
+| Tilde Cards link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/card" "/card/" "/cards" "/cards/"})` | `https://tbutman.com/tilde/card` |
+| Tilde Fobs link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/fobs" "/fobs/"})` | `https://tbutman.com/tilde/fobs` |
+| Tilde Uses link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/uses" "/uses/"})` | `https://tbutman.com/tilde/uses` |
+
+Drag all three above the catch-all, and add them to its exclusions so the result doesn't depend on
+order: `… and not http.request.uri.path in {"/c" "/w" "/card" "/card/" "/cards" "/cards/" "/fobs" "/fobs/" "/uses" "/uses/"}`
+(keep `/c`, and `/w` once the Wi-Fi rule exists). `taptilde.com` itself stays on the catch-all: the
+hub is `/tilde`, whose `#booth` section leads to the three stations.
+
+Check each, then the catch-all:
+
+```bash
+for p in card cards fobs uses; do curl -sI "https://taptilde.com/$p?from=tag" | grep -iE '^(HTTP|location)'; done
+curl -sI https://taptilde.com/ | grep -iE '^(HTTP|location)'   # still 301 to https://tbutman.com/tilde
+```
+
+Expect `302` and `location: https://tbutman.com/tilde/card?from=tag` (and `/fobs`, `/uses`). A phone
+that opened `taptilde.com/card` before the rule existed has cached the catch-all's 301 and lands on
+`/tilde`, where `#booth` links to the stations.
+
 ## Site URL
 
 The release workflow builds with the `SITE_URL` repository variable, defaulting to

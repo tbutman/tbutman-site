@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import BoothHub from '../components/BoothHub'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
@@ -73,6 +74,10 @@ export default function Tilde({ locale }: { locale: Locale }) {
           <Phone {...tilde.heroPhone} eager />
         </div>
       </section>
+
+      {/* The booth's stations (Web Summit), English only, right under the hero for anyone who reached
+          taptilde.com without tapping a lid. */}
+      {locale === 'en' && <BoothHub />}
 
       {/* The Tilde Card video: full width, framed, on its beige studio backdrop (launch plan 7a). */}
       <figure className="product-video panel">
