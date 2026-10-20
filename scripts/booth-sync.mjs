@@ -108,7 +108,16 @@ function image(entry, index) {
   for (const file of files) {
     if (!file.path?.endsWith('.webp') || !(file.width > 0 && file.height > 0)) fail(`${where}: a file without a WebP path, width and height`)
   }
-  return { id: entry.id, pages: entry.pages, slot: entry.slot, alt: entry.alt.trim(), status: entry.status, files: files.sort((a, b) => a.width - b.width) }
+  return {
+    id: entry.id,
+    pages: entry.pages,
+    slot: entry.slot,
+    alt: entry.alt.trim(),
+    status: entry.status,
+    // The owner's short caption for a grid, if the list gives one (card's, checker Could 7).
+    ...(typeof entry.caption === 'string' && entry.caption.trim() ? { caption: entry.caption.trim() } : {}),
+    files: files.sort((a, b) => a.width - b.width),
+  }
 }
 
 async function syncImages() {

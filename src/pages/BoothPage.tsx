@@ -11,25 +11,6 @@ import { type Block, boothImages, type Section, sections } from '../content/boot
 // Docs' note where a page's own sections follow ("(The page's current print sections follow here…)").
 const isNote = (block: Block) => block.type === 'p' && /^\(The page’?'?s /.test(block.text)
 
-/** The blocks without docs' notes to us (pages.ts): a note, and the list after a note that ends in ":". */
-function visible(page: Page, blocks: Block[]): Block[] {
-  const out: Block[] = []
-  let skipList = false
-  for (const block of blocks) {
-    if (block.type === 'p' && page.notes?.some((start) => block.text.startsWith(start))) {
-      skipList = block.text.endsWith(':')
-      continue
-    }
-    if (skipList && (block.type === 'ul' || block.type === 'ol')) {
-      skipList = false
-      continue
-    }
-    skipList = false
-    out.push(block)
-  }
-  return out
-}
-
 function List({ block }: { block: Extract<Block, { type: 'ul' | 'ol' }> }) {
   const Tag = block.type
   return (
@@ -187,7 +168,7 @@ export function BoothBody({ page, insert, end }: { page: Page; insert?: ReactNod
               <div className="section-head">
                 <h2 id={`${section.heading.id}-heading`}>{section.heading.text.toLowerCase()}</h2>
               </div>
-              <Blocks page={page} blocks={visible(page, section.blocks).filter((block) => !isNote(block))} />
+              <Blocks page={page} blocks={section.blocks.filter((block) => !isNote(block))} />
             </section>
             {note && insert}
           </Fragment>

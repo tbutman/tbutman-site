@@ -1,5 +1,5 @@
 {
-  "source": "c9057bc81def06821951f73a003224060b171bebf5813e5b24f188207ea782b3",
+  "source": "9f585e32f140ecd9f77513d5ee33f1885f8e7db284bf5faec9009a919fbfd858",
   "blocks": [
     {
       "type": "h2",
@@ -23,7 +23,7 @@
           "sub": []
         },
         {
-          "text": "**Change it any time.** A phone rewrites the sticker through the plastic, so the same fob can open something new without a reprint. You only open it to replace the sticker. `[depends on U15]`",
+          "text": "**Change it any time.** A phone rewrites the sticker through the plastic, so the same fob can open something new without a reprint. You only open it to replace the sticker. `[depends on U15]` If Tilde protected the sticker, only the phone that wrote it can change it. `[depends on T-S1, T-S2]`",
           "sub": []
         },
         {
@@ -81,7 +81,7 @@
     },
     {
       "type": "p",
-      "text": "**A tag’s size follows its link:** 28.8 × 35.3 mm for up to 17 characters, 31 × 37.5 mm for up to 32, and 35 × 41.5 mm for up to 53. A link is all a tag’s code holds: a contact card is far too much for a code this small. `[depends on U16]` for “scans”."
+      "text": "**A tag’s size follows its link.** A base tag is 28.8 × 35.3 mm for up to 17 characters, 31 × 37.5 mm for up to 32, and 35 × 41.5 mm for up to 53. A premium tag is 36 × 44 mm for up to 32 characters, and 37 × 44.5 mm for up to 53. A link is all a tag’s code holds: a contact card is far too much for a code this small. `[depends on U16]` for “scans”."
     },
     {
       "type": "h3",
@@ -90,40 +90,40 @@
     },
     {
       "type": "p",
-      "text": "Three standard themes, each two colors. The code always takes the body’s color, with no patch of another color. `[depends on T-B1]` for the tilde and dark codes."
+      "text": "Our table has three color sets, each two colors, made with the model’s color options. In these three, the code takes the body’s color, with no patch of another color. `[depends on T-B1]` for orange on black and khaki on black."
     },
     {
-      "type": "table",
-      "head": [
-        "Theme",
-        "Look"
-      ],
-      "rows": [
-        [
-          "**tilde**",
-          "Orange on black"
-        ],
-        [
-          "**dark**",
-          "Khaki on black"
-        ],
-        [
-          "**light**",
-          "Black on khaki"
-        ]
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Orange on black**",
+          "sub": []
+        },
+        {
+          "text": "**Khaki on black**",
+          "sub": []
+        },
+        {
+          "text": "**Black on khaki**",
+          "sub": []
+        }
       ]
     },
     {
+      "type": "p",
+      "text": "In the model, a tag’s code sits on a light field unless you choose otherwise (**QR Background**)."
+    },
+    {
       "type": "image",
-      "text": "each fob type in each standard theme"
+      "text": "each fob type in each color set"
     },
     {
       "type": "p",
-      "text": "**Special:** the pocket case fobs, orange with black icons. They ride in the card pocket cases (see Cards)."
+      "text": "**Special:** the pocket case fobs, orange, with black icons and the code black on white. They ride in the card pocket cases (see Cards)."
     },
     {
       "type": "p",
-      "text": "The model also has the cards’ themes (Signal, USA, Brasil, Portugal and Retro), or your own colors."
+      "text": "The model’s Theme menu has the cards’ themes (Dark, Light, Signal, USA, Brasil, Portugal and Retro), not our three sets. Or pick your own colors."
     },
     {
       "type": "image",
@@ -156,31 +156,6 @@
       "text": "one image per built icon, with its name from the model and its line from `icon-uses.json`"
     },
     {
-      "type": "p",
-      "text": "The icons’ images and names come from the model’s export. Their one-line uses come from `site-content/icon-uses.json`, keyed by the model’s icon value, and `check_icon_uses.py` keeps the two in step. Some uses need a feature that’s still being tested:"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Phone number** (`phone`, `handset`, `found_it`, `home`) `[depends on T-N2, T-N4]`;",
-          "sub": []
-        },
-        {
-          "text": "**guest Wi-Fi on an iPhone** `[depends on T-WF]`;",
-          "sub": []
-        },
-        {
-          "text": "the **contact card** on an iPhone `[depends on T1–T4]`.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "p",
-      "text": "The Uses page has the details."
-    },
-    {
       "type": "h2",
       "text": "How to get one",
       "id": "how-to-get-one"
@@ -193,7 +168,7 @@
           "sub": []
         },
         {
-          "text": "**Add a round NFC sticker** and write it with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
+          "text": "**Add a round NFC sticker** and write it with Tilde (Android: Cards → Write a sticker `[depends on 1.3.0]`) or the free NFC Tools app (iPhone and Android).",
           "sub": []
         },
         {

@@ -13,6 +13,8 @@ export type BoothImage = {
   alt: string
   /** ok, stale (a model changed since), unrecorded, or missing. */
   status: string
+  /** The owner's short caption for a grid, from site-renders.json, if it gives one. */
+  caption?: string
   /** For icons: the value in the model's Icon list, and its name there. */
   icon?: string
   name?: string

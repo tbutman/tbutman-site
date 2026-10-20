@@ -1,5 +1,5 @@
 {
-  "source": "36d4e7edfd1dfcc39248fdd891cda3367a61da25761ee50b7e7c437f74243e85",
+  "source": "3d84cac120a313b1b85939e83a875018b17ab0ee0e34fba97f23005543aeea15",
   "blocks": [
     {
       "type": "h2",
@@ -8,7 +8,7 @@
     },
     {
       "type": "p",
-      "text": "**This is the Tilde Card: a business card you print yourself.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card. The box only holds a few, so here’s every design."
+      "text": "**This is the Tilde Card: a business card you print yourself.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card if it fits. The box only holds a few, so here’s every design."
     },
     {
       "type": "h2",
@@ -64,7 +64,7 @@
     },
     {
       "type": "p",
-      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes. A full card that doesn’t fit is written as its contact link, which opens your contact page and needs internet. NTAG216 holds more, and Tilde’s Write a sticker tells you before it writes. On an iPhone, a tap opens a page with your card and **Save contact**, which needs internet. `[depends on T1–T4]` for the iPhone line."
+      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes, so a card with several links needs an NTAG216. A full card that doesn’t fit is written as its contact link, which opens your contact page and needs internet. `[depends on 1.3.0, T1–T4]` for the contact link. Tilde’s Write a sticker tells you which sizes fit before it writes. `[depends on T-W1–T-W7]` On an iPhone, a tap opens a page with your card and **Save contact**, which needs internet. `[depends on T1–T4]` for the iPhone line."
     },
     {
       "type": "h2",
@@ -120,17 +120,17 @@
         [
           "**Retro**",
           "Gray and wine red, with the code on khaki: an old console’s colors",
-          "Light gray, with a terminal window"
+          "The same gray, with a terminal window"
         ],
         [
           "**Mystery**",
-          "Only the code, centered, with your handle and the tap mark",
+          "Only the code, centered, with the tap mark",
           "Plain black"
         ],
         [
           "**Signal**",
-          "Yellow on black",
-          "Yellow on black"
+          "Black on yellow",
+          "Black on yellow, with a terminal window"
         ],
         [
           "**USA Light**",
@@ -155,6 +155,10 @@
       ]
     },
     {
+      "type": "p",
+      "text": "Retro with khaki and USA Dark use custom colors. The Theme menu’s Retro is cream, and its USA is the white one (USA Light). `[depends on the card release]` for the Theme menu."
+    },
+    {
       "type": "image",
       "text": "per design: the front, and the back from behind"
     },
@@ -164,8 +168,8 @@
     },
     {
       "type": "h3",
-      "text": "Fronts",
-      "id": "fronts"
+      "text": "Fronts `[depends on the card release]`",
+      "id": "fronts-depends-on-the-card-release"
     },
     {
       "type": "p",
@@ -179,19 +183,19 @@
           "sub": []
         },
         {
-          "text": "**Mystery:** only the code, in the middle.",
+          "text": "**Mystery:** only the code, in the middle. With a smaller code, your handle sits at the top left.",
           "sub": []
         },
         {
-          "text": "**Handle:** your `~/handle`, large.",
+          "text": "**Handle:** your `~/handle`, large, and the code.",
           "sub": []
         },
         {
-          "text": "**Badge:** your first name, large, with your last name and your role.",
+          "text": "**Badge:** your first name, large, with your last name, your role and the code.",
           "sub": []
         },
         {
-          "text": "**Tap only:** no code, just the tap mark.",
+          "text": "**Tap only:** your name and large tap waves, with no code.",
           "sub": []
         },
         {
@@ -225,11 +229,11 @@
           "sub": []
         },
         {
-          "text": "**Contact:** your lines, each with its icon (phone, email, web and more).",
+          "text": "**Contact:** your lines, with icons (phone, email, web and more). `[depends on the card release]`",
           "sub": []
         },
         {
-          "text": "**Code:** your lines as a short JSON-style block.",
+          "text": "**Code:** your lines as a short JSON-style block. `[depends on the card release]`",
           "sub": []
         },
         {
@@ -240,7 +244,7 @@
     },
     {
       "type": "p",
-      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The lineup has 23. They include:"
+      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The lineup has 23. They include: `[depends on the card release]`"
     },
     {
       "type": "ul",
@@ -278,7 +282,7 @@
             "**Glued** with superglue gel, it’s permanent: the most durable card.",
             "**Mix and match:** a back fits any front printed with the same settings (the same sticker and the same edge marks), so one card can have several backs.",
             "**Edge marks:** a notch or a pill on the top or bottom edge shows the front piece’s color through the back. A notched front fits only a notched back.",
-            "**The seam:** a thin line runs round the back, about 1.45 mm in from the edge."
+            "**The seam:** a thin line runs around the back, about 1.45 mm in from the edge."
           ]
         },
         {
@@ -308,7 +312,7 @@
           "sub": []
         },
         {
-          "text": "**The cards-only box** (the one on our table) has three bays: 10 finished cards, 6 loose fronts and 6 loose backs, for mixing and matching. It sits under a lid that carries the wordmark.",
+          "text": "**The cards-only box** (the one on our table) has three bays: 10 finished cards, 4 loose fronts and 6 loose backs, for mixing and matching. It sits under a lid that carries the wordmark.",
           "sub": []
         }
       ]
@@ -326,11 +330,11 @@
       "type": "ol",
       "items": [
         {
-          "text": "**Print your own.** Click **Customize** on MakerWorld (MAKERWORLD-CARD-URL), type your name, your link and your back’s lines, pick a theme, and download the 3MF. Or open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card). The printing guide below has the rest. `[depends on U3]` for MakerWorld.",
+          "text": "**Print your own.** Click **Customize** on MakerWorld (MAKERWORLD-CARD-URL), type your name, your link and your back’s lines, pick a theme, and download the 3MF. Or open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card). The printing guide below has the rest. `[depends on U3]` for MakerWorld. `[depends on the card release]` for “pick a theme” and the GitHub model.",
           "sub": []
         },
         {
-          "text": "**Add an NFC sticker** if you want people to tap it: a round NTAG215, 22–25 mm across. Write it before it goes in, with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
+          "text": "**Add an NFC sticker** if you want people to tap it: a round NTAG215, 22–25 mm across. Write it before it goes in, with Tilde (Android: Cards → Write a sticker `[depends on 1.3.0]`) or the free NFC Tools app (iPhone and Android).",
           "sub": []
         },
         {
@@ -352,7 +356,11 @@
       "type": "ul",
       "items": [
         {
-          "text": "**Your keys can do this too.** Coins and tags in the same colors, and every icon: [Fobs](/tilde/fobs)",
+          "text": "**Your keys can do this too.** Coins and tags in the same colors: [Fobs](/tilde/fobs)",
+          "sub": []
+        },
+        {
+          "text": "**Every icon** for a fob’s back: [Fobs, icons](/tilde/fobs#icons)",
           "sub": []
         },
         {

@@ -20,11 +20,6 @@ export type BoothPage = {
   hero: string
   copy: BoothCopy
   images: [string, Placement][]
-  /**
-   * Paragraphs of docs' copy that are notes to us, not the page (how a section is made), by how they
-   * start; a note ending in ":" takes the list after it too. Logged for docs to move above its ---.
-   */
-  notes?: string[]
 }
 
 const tag = (id: string): Placement => ({ ids: [id], layout: 'tag', ratio: 'square' })
@@ -58,7 +53,6 @@ export const fobsPage: BoothPage = {
   headline: ['Every shape,', 'color and icon.'],
   hero: 'station-fobs-closed',
   copy: fobsCopy as BoothCopy,
-  notes: ['The icons’ images and names come from the model’s export'],
   images: [
     ['the fob storage box, open', { ids: ['station-fobs-open'], layout: 'wide', ratio: 'photo' }],
     [

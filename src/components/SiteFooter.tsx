@@ -1,7 +1,8 @@
 import { profile } from '../content/profile'
 
 // scripts/prerender.mjs measures each page after the build and swaps this token for the
-// real size, mirroring it into a meta tag so hydration reads the same value.
+// real size, mirroring it into a meta tag so hydration reads the same value: what the first
+// screen costs (code, fonts and the images it loads at once).
 const PAGE_WEIGHT_TOKEN = '__PAGE_WEIGHT__'
 
 // The build date in US style ("October 7, 2026"). UTC, so the server and the browser agree.

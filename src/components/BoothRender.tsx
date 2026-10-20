@@ -56,8 +56,9 @@ const themeName = (key: string) => {
     .join(' ')
 }
 
-// A short caption for a render in a grid, from its export id, where the picture alone doesn't say
-// which one it is. Lowercase, like the site's other labels.
+// A short caption for a render in a grid, where the picture alone doesn't say which one it is: the
+// owner's own (site-renders.json's `caption`), or else one from its export id, lowercase like the
+// site's other labels.
 const fixed: Record<string, string> = {
   'fob-tag-front': 'a tag’s front: the code',
   'fob-tag-back': 'a tag’s back: the icon',
@@ -138,7 +139,7 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
   return (
     <div className={`booth-grid booth-grid-${layout}`}>
       {images.map(({ id, image }) => {
-        const caption = layout === 'wide' || layout === 'tag' ? undefined : captionFor(id)
+        const caption = layout === 'wide' || layout === 'tag' ? undefined : (image?.caption ?? captionFor(id))
         return caption ? (
           <figure key={id}>
             <Render image={image} id={id} ratio={ratio} size={layout} />

@@ -28,8 +28,11 @@ function outputFile(path) {
   return `${path.slice(1)}.html`
 }
 
-// Bytes a first visit transfers: gzipped HTML, JS and CSS, plus the Latin font files
-// (already compressed; the other subsets only load for characters this site never uses).
+// Bytes a first visit transfers before any scrolling: gzipped HTML, JS and CSS, the Latin font files
+// (already compressed; the other subsets only load for characters this site never uses), and the
+// images the page loads at once, those not marked loading="lazy" (the heroes), at their full size,
+// the most a phone fetches. Lazy images and the video load as the visitor scrolls, so they don't
+// count (checker S15).
 const assetFiles = await readdir(join(dist, 'assets'))
 const fontBytes = await sumBytes(
   assetFiles.filter((file) => /-latin-wght-normal-.*\.woff2$/.test(file)),
@@ -45,7 +48,13 @@ async function sumBytes(files, load) {
 async function pageWeight(html) {
   const linked = [...html.matchAll(/(?:src|href)="\/assets\/([^"]+\.(?:js|css))"/g)].map((match) => match[1])
   const code = await sumBytes(linked, async (file) => gzipSync(await readFile(join(dist, 'assets', file))))
-  const total = gzipSync(html).length + code + fontBytes
+  const eager = [...html.matchAll(/<img\b[^>]*>/g)]
+    .map(([tag]) => tag)
+    .filter((tag) => !/\sloading="lazy"/.test(tag))
+    .map((tag) => tag.match(/\ssrc="(\/[^"]+)"/)?.[1])
+    .filter(Boolean)
+  const images = await sumBytes(eager, (src) => readFile(join(dist, src)))
+  const total = gzipSync(html).length + code + fontBytes + images
   return `${Math.round(total / 1000)} kB`
 }
 
