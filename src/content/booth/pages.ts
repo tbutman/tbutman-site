@@ -57,7 +57,8 @@ export const cardsPage: BoothPage = {
     ['one card in each front style', { slot: 'fronts', layout: 'small', ratio: 'card' }],
     ['the alternate backs', { slot: ['backs', 'alternate-backs'], layout: 'small', ratio: 'card' }],
     ['a two-piece card', { slot: ['builds', 'construction'], layout: 'grid', ratio: 'photo' }],
-    ['the 3-card pocket case', { slot: 'holders', layout: 'grid', ratio: 'photo' }],
+    // The pocket cases only: the cards-only box is the lineup's picture already (checker, third pass, Could 1).
+    ['the 3-card pocket case', { ids: ['holder-pocket-3', 'holder-pocket-5'], layout: 'grid', ratio: 'photo' }],
   ],
 }
 
@@ -83,7 +84,8 @@ export const fobsPage: BoothPage = {
     // "in each standard theme" until docs' October 20 fixes, "in each color set" since.
     ['each fob type in each', { slot: 'types', layout: 'small', ratio: 'square' }],
     ['the orange pocket case fobs', { slot: 'special', layout: 'small', ratio: 'square' }],
-    ['the storage box, closed and open', { ids: ['station-fobs-closed', 'station-fobs-open'], layout: 'grid', ratio: 'photo' }],
+    // Closed only: the lineup opens with the open box (checker, third pass, S1).
+    ['the storage box, closed and open', { ids: ['station-fobs-closed'], layout: 'grid', ratio: 'photo' }],
     ['one image per built icon', { slot: 'icons', layout: 'icons', ratio: 'square' }],
   ],
 }
