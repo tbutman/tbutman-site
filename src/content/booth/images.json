@@ -1,6 +1,6 @@
 {
-  "manifest": "02876a6a52bb566b9a6492b3303336ccc2f2c0a0a5ed5cd8b5590f7c08c25f0d",
-  "exported": "2026-10-20T08:33:12+01:00",
+  "manifest": "017d472b30a66669d0dcb10cf35ce6b939d376ccee5f71444a01172734f1fc49",
+  "exported": "2026-10-20T08:55:28+01:00",
   "images": {
     "booth-table-open": {
       "pages": [
@@ -107,7 +107,7 @@
         "fobs"
       ],
       "slot": "station-open",
-      "alt": "The fob storage box open, its four stacks of fobs in the three themes, the sliding lid beside it: base coins (on top, Tap waves, orange on black), base tags (Wi-Fi password, black on khaki), premium coins (Tap waves, khaki on black) and premium tags (Person, orange on black).",
+      "alt": "The fob storage box open, its four stacks of fobs in the three color sets, the sliding lid beside it: base coins (on top, Tap waves, orange on black), base tags (Wi-Fi password, black on khaki), premium coins (Tap waves, khaki on black) and premium tags (Person, orange on black).",
       "status": "ok",
       "sources": [
         {

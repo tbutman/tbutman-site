@@ -1,5 +1,5 @@
 {
-  "source": "2e4dc442ac65266f326f33c3c35c61e2ef1c5ab64d1e4aee2da181e139cfb21d",
+  "source": "c476d5ceb862d095b9cb23fe1c3795240c9cf922bd25557dac22b852b5793cc5",
   "blocks": [
     {
       "type": "h2",
@@ -82,7 +82,7 @@
     },
     {
       "type": "p",
-      "text": "Each design is a front and its default back. Every one is rendered from the model with the sample person, Jane Doe."
+      "text": "Each design is a front and its default back (two need the next release). `[depends on the card release]` Every one is rendered from the model with the sample person, Jane Doe."
     },
     {
       "type": "table",

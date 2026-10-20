@@ -22,17 +22,19 @@ export type BoothPage = {
   images: [string, Placement][]
 }
 
-/**
- * A gate's fallback that docs' notes give but its page copy doesn't have yet, applied here until docs
- * writes it in: [the text as docs wrote it, the text the page shows]. The build stops if the first
- * isn't in the copy, so an edit can't outlive the line it changes. Logged in booth-site-decisions.md.
- */
-function withEdits(copy: BoothCopy, edits: [string, string][]): BoothCopy {
-  for (const [from] of edits) {
-    if (!copy.blocks.some((block) => 'text' in block && block.text.includes(from))) throw new Error(`booth copy: "${from}" isn't in docs' copy any more`)
-  }
-  const edit = (text: string) => edits.reduce((out, [from, to]) => out.replace(from, to), text)
-  return { ...copy, blocks: copy.blocks.map((block) => (block.type === 'p' ? { ...block, text: edit(block.text) } : block)) }
+// Thomas's review note (October 20): each design's alternate backs go in its row, after its front
+// and default back. The backs carry no design field, so their export ids say which design: by
+// prefix, to the designs' ids in the themes slot. The USA backs fit both USA cards. The build stops
+// if a back matches no design (src/components/BoothRender.tsx).
+const alternateBacks: Record<string, string[]> = {
+  'card-back-dark-': ['card-classic-dark'],
+  'card-back-light-': ['card-classic-light'],
+  'card-back-tap-': ['card-tap-card'],
+  'card-back-retro-': ['card-retro'],
+  'card-back-signal-': ['card-signal'],
+  'card-back-usa-': ['card-usa-light', 'card-usa-dark'],
+  'card-back-brasil-': ['card-brasil'],
+  'card-back-portugal-': ['card-portugal'],
 }
 
 const tag = (id: string): Placement => ({ ids: [id], layout: 'tag', ratio: 'square' })
@@ -45,17 +47,14 @@ export const cardsPage: BoothPage = {
   name: 'Tilde Card',
   headline: ['Every design,', 'front and back.'],
   hero: 'station-cards-closed',
-  // Docs' fallback for [depends on the card release] (cards.md's notes): Mystery's front and the tap
-  // card's Blank front aren't in the public model yet.
-  copy: withEdits(cardsCopy as BoothCopy, [
-    ['Each design is a front and its default back.', 'Each design is a front and its default back (two need the next release).'],
-  ]),
+  copy: cardsCopy as BoothCopy,
   images: [
     // The card agent's box with the real cards; design's station-cards-open is the empty box (design 17).
     ['the cards-only box, open', { ids: ['holder-cards-only-box'], layout: 'wide', ratio: 'photo' }],
-    ['per design', { slot: 'themes', layout: 'pairs', ratio: 'card' }],
+    ['per design', { slot: 'themes', layout: 'sets', ratio: 'card', alternates: { slot: 'backs', designs: alternateBacks } }],
     ['one card in each front style', { slot: 'fronts', layout: 'small', ratio: 'card' }],
-    ['the alternate backs', { slot: ['backs', 'alternate-backs'], layout: 'small', ratio: 'card' }],
+    // Shown in each design's row above (Thomas's review note), so not again here.
+    ['the alternate backs', { layout: 'omit', ratio: 'card' }],
     ['a two-piece card', { slot: ['builds', 'construction'], layout: 'grid', ratio: 'photo' }],
     // The pocket cases only: the cards-only box is the lineup's picture already (checker, third pass, Could 1).
     ['the 3-card pocket case', { ids: ['holder-pocket-3', 'holder-pocket-5'], layout: 'grid', ratio: 'photo' }],

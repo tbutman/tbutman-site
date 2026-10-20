@@ -13,6 +13,7 @@ const sizes = {
   small: '(max-width: 680px) 45vw, 200px',
   icons: '(max-width: 680px) 30vw, 130px',
   tag: '(max-width: 680px) 40vw, 200px',
+  set: '(max-width: 680px) 56vw, 230px',
 }
 
 type Size = keyof typeof sizes
@@ -66,6 +67,7 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
     )
   }
   const { layout, ratio } = placement
+  if (layout === 'omit') return null
   const slotNames = placement.slot === undefined ? [] : [placement.slot].flat()
 
   if (layout === 'icons') {
@@ -91,25 +93,42 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
         ?.map((image) => ({ id: image.id, image })) ?? [])
   if (images.length === 0) images.push({ id: slotNames.length ? `${page} · ${slotNames[0]}: ${marker}` : marker })
 
-  if (layout === 'pairs') {
-    // Each design's front and back side by side, under its name.
-    const pairs = new Map<string, typeof images>()
+  if (layout === 'sets') {
+    // One row per design (Thomas's review note): its front, its default back, then its alternate
+    // backs, each under the owner's caption without the design's name, which heads the row. On a
+    // phone the row scrolls sideways inside itself; on a desktop it wraps.
+    const rows = new Map<string, typeof images>()
     for (const entry of images) {
       const key = entry.id.replace(/-(front|back)$/, '')
-      pairs.set(key, [...(pairs.get(key) ?? []), entry])
+      rows.set(key, [...(rows.get(key) ?? []), entry])
+    }
+    if (placement.alternates) {
+      const { slot, designs } = placement.alternates
+      for (const image of slotImages(page, slot)) {
+        const prefix = Object.keys(designs).find((start) => image.id.startsWith(start))
+        const owners = prefix ? designs[prefix].filter((design) => rows.has(design)) : []
+        if (!owners.length) throw new Error(`booth: the back ${image.id} belongs to no design (alternateBacks in pages.ts)`)
+        for (const design of owners) rows.get(design)?.push({ id: image.id, image })
+      }
     }
     return (
-      <ul className="booth-grid booth-grid-pairs">
-        {[...pairs].map(([key, sides]) => (
-          <li key={key}>
-            <div className="booth-pair">
-              {sides.map(({ id, image }) => (
-                <Render key={id} image={image} id={id} ratio={ratio} size="small" />
-              ))}
-            </div>
-            <span>{sides[0].image?.caption?.replace(/ · front$/, '') ?? themeName(key)}</span>
-          </li>
-        ))}
+      <ul className="booth-sets">
+        {[...rows].map(([key, items]) => {
+          const name = items[0].image?.caption?.replace(/ · front$/, '') ?? themeName(key)
+          return (
+            <li key={key}>
+              <b className="booth-set-name">{name}</b>
+              <ul className="booth-set-row" tabIndex={0} aria-label={`${name}: its front, its back and its other backs`}>
+                {items.map(({ id, image }) => (
+                  <li key={id}>
+                    <Render image={image} id={id} ratio={ratio} size="set" />
+                    <span>{image?.caption?.split(' · ').slice(1).join(' · ') || image?.caption}</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )
+        })}
       </ul>
     )
   }

@@ -35,11 +35,21 @@ export const slotImages = (page: string, slot: string) => Object.values(boothIma
 /** A placeholder's shape until its render lands: a card (85.6 × 54), square, 4:3 or 16:9. */
 export type Ratio = 'card' | 'square' | 'photo' | 'wide'
 
-/** How a group of renders is laid out: one wide, a grid, small ones, front-and-back pairs, a tag beside its text, or the icons. */
-export type Layout = 'wide' | 'grid' | 'small' | 'pairs' | 'tag' | 'icons'
+/**
+ * How a group of renders is laid out: one wide, a grid, small ones, one row per design (front, back,
+ * then its alternate backs), a tag beside its text, the icons, or not at all.
+ */
+export type Layout = 'wide' | 'grid' | 'small' | 'sets' | 'tag' | 'icons' | 'omit'
 
 /** Where one of docs' [image: …] lines takes its renders from: export ids, or a whole slot (the first of several names that has images). */
-export type Placement = { ids?: string[]; slot?: string | string[]; layout: Layout; ratio: Ratio }
+export type Placement = {
+  ids?: string[]
+  slot?: string | string[]
+  layout: Layout
+  ratio: Ratio
+  /** For `sets`: another slot's renders, each added to the rows of the designs its id prefix names. */
+  alternates?: { slot: string; designs: Record<string, string[]> }
+}
 
 /** One block of docs' copy (scripts/booth-copy.mjs). */
 export type Block =
