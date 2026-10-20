@@ -155,7 +155,7 @@ export function BoothBody({ page, insert, end }: { page: Page; insert?: ReactNod
   const get = rest.find((section) => /^how to get/i.test(section.heading.text))
   return (
     <>
-      <Hero page={page} opening={opening} lineup={rest[1]} get={get} />
+      <Hero page={page} opening={opening} lineup={rest.find((section) => section.heading.id === page.lineup) ?? rest[1]} get={get} />
       {rest.map((section) => {
         const note = section.blocks.some(isNote)
         return (

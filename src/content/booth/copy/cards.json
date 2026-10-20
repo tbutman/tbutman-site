@@ -1,5 +1,5 @@
 {
-  "source": "c476d5ceb862d095b9cb23fe1c3795240c9cf922bd25557dac22b852b5793cc5",
+  "source": "be500703ba9bb9eb64f1658256006aeb1ea7211a0fbf26fcce81e3b2412d6b93",
   "blocks": [
     {
       "type": "h2",
@@ -8,7 +8,7 @@
     },
     {
       "type": "p",
-      "text": "**This is the Tilde Card: a business card you print yourself.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card if it fits. The box only holds a few, so here’s every design."
+      "text": "**This is the Tilde Card: a business card you print yourself, in a design you put together.** Scan its code and your website opens. Tap it and the phone gets whatever you wrote to the NFC sticker inside: your link, or your whole contact card if it fits. Pick a front, a back and your colors: the combinations are countless, and the cards here are a few examples. `[depends on the card release]`"
     },
     {
       "type": "h2",
@@ -68,21 +68,179 @@
     },
     {
       "type": "h2",
-      "text": "The lineup",
-      "id": "the-lineup"
+      "text": "Make your own",
+      "id": "make-your-own"
+    },
+    {
+      "type": "p",
+      "text": "**Countless designs.** In the Model Maker, you put your own card together: `[depends on the card release]`"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "a front style, and the code’s size;",
+          "sub": []
+        },
+        {
+          "text": "a back, with your own lines;",
+          "sub": []
+        },
+        {
+          "text": "a theme, or your own colors: four colors you pick, and which part of the card takes each;",
+          "sub": []
+        },
+        {
+          "text": "tap waves on the front or the back, and a mark over the sticker;",
+          "sub": []
+        },
+        {
+          "text": "on a two-piece card, a window over the sticker and a notch or pill on its edges. `[depends on two-piece card]`",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "It’s your text, your code and the model’s own marks, in the colors you choose. There’s no way to add a picture or a logo of your own."
+    },
+    {
+      "type": "h3",
+      "text": "Fronts `[depends on the card release]`",
+      "id": "fronts-depends-on-the-card-release"
+    },
+    {
+      "type": "p",
+      "text": "Seven front styles. The examples below are mostly **Classic**: your handle, your name, your website and the code."
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Minimal:** your name, larger, and the code.",
+          "sub": []
+        },
+        {
+          "text": "**Mystery:** only the code, in the middle. With a smaller code, your handle sits at the top left.",
+          "sub": []
+        },
+        {
+          "text": "**Handle:** your `~/handle`, large, and the code.",
+          "sub": []
+        },
+        {
+          "text": "**Badge:** your first name, large, with your last name, your role and the code.",
+          "sub": []
+        },
+        {
+          "text": "**Tap only:** your name and large tap waves, with no code.",
+          "sub": []
+        },
+        {
+          "text": "**Blank:** nothing printed at all.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The code comes in three sizes: Full, Medium and Small."
+    },
+    {
+      "type": "image",
+      "text": "one card in each front style"
+    },
+    {
+      "type": "h3",
+      "text": "Backs",
+      "id": "backs"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Terminal window:** a `$` command, such as `$ whoami`, and your three lines.",
+          "sub": []
+        },
+        {
+          "text": "**Plain:** your lines.",
+          "sub": []
+        },
+        {
+          "text": "**Contact:** your lines, with icons (phone, email, web and more). `[depends on the card release]`",
+          "sub": []
+        },
+        {
+          "text": "**Code:** your lines as a short JSON-style block. `[depends on the card release]`",
+          "sub": []
+        },
+        {
+          "text": "**None:** plain, and the quickest to print.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The examples below have 23, each in its design’s row. They include: `[depends on the card release]`"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "tap backs: no text, a window over the sticker, and the tap waves in a ring;",
+          "sub": []
+        },
+        {
+          "text": "code backs, for Classic Dark and Light, Signal, USA, Portugal and Retro;",
+          "sub": []
+        },
+        {
+          "text": "Retro in wine or khaki.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Two-piece or solid `[depends on two-piece card]`",
+      "id": "two-piece-or-solid-depends-on-two-piece-card"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Two-piece** (the default): the card prints as two pieces, side by side and face down, so both faces come out smooth and matte. There’s no pause. Stick the NFC sticker into the front piece, then press the back piece in: it clicks past a lip and sits flush.",
+          "sub": [
+            "**Unglued, it holds,** and the back lifts out at a corner with a fingernail, so you can swap the sticker.",
+            "**Glued** with superglue gel, it’s permanent: the most durable card.",
+            "**Mix and match:** a back fits any front printed with the same settings (the same sticker and the same edge marks), so one card can have several backs.",
+            "**Edge marks:** a notch or a pill on the top or bottom edge shows the front piece’s color through the back. A notched front fits only a notched back.",
+            "**The seam:** a thin line runs around the back, about 1.45 mm in from the edge."
+          ]
+        },
+        {
+          "text": "**Solid:** one piece. The print pauses for you to drop the sticker in, and the rest of the card seals it inside.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "text": "a two-piece card, open beside closed; a solid card"
+    },
+    {
+      "type": "h2",
+      "text": "Some designs to start from",
+      "id": "some-designs-to-start-from"
     },
     {
       "type": "image",
       "text": "the cards-only box, open: ten designs, plus loose fronts and backs"
     },
     {
-      "type": "h3",
-      "text": "Twelve designs",
-      "id": "twelve-designs"
-    },
-    {
       "type": "p",
-      "text": "Each design is a front and its default back (two need the next release). `[depends on the card release]` Every one is rendered from the model with the sample person, Jane Doe."
+      "text": "These twelve are examples of what you can make, not a set to choose from. Each design is a front and its default back (two need the next release). `[depends on the card release]` Its alternate backs sit beside it. To start, try **Classic Dark** or **Classic Light**, then change what you like. Every one is rendered from the model with the sample person, Jane Doe."
     },
     {
       "type": "table",
@@ -167,136 +325,7 @@
       "text": "**The tap card** is made only to be tapped, for example in a wallet’s outside pocket, so a tap reaches the sticker through it. `[depends on a tap through a wallet pocket: USE-CASES 1.7 says it's untested]`. Until that passes, cut the wallet clause: “It’s made only to be tapped.”"
     },
     {
-      "type": "h3",
-      "text": "Fronts `[depends on the card release]`",
-      "id": "fronts-depends-on-the-card-release"
-    },
-    {
-      "type": "p",
-      "text": "Seven front styles. The lineup shows mostly **Classic**: your handle, your name, your website and the code."
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Minimal:** your name, larger, and the code.",
-          "sub": []
-        },
-        {
-          "text": "**Mystery:** only the code, in the middle. With a smaller code, your handle sits at the top left.",
-          "sub": []
-        },
-        {
-          "text": "**Handle:** your `~/handle`, large, and the code.",
-          "sub": []
-        },
-        {
-          "text": "**Badge:** your first name, large, with your last name, your role and the code.",
-          "sub": []
-        },
-        {
-          "text": "**Tap only:** your name and large tap waves, with no code.",
-          "sub": []
-        },
-        {
-          "text": "**Blank:** nothing printed at all.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "p",
-      "text": "The code comes in three sizes: Full, Medium and Small."
-    },
-    {
-      "type": "image",
-      "text": "one card in each front style"
-    },
-    {
-      "type": "h3",
-      "text": "Backs",
-      "id": "backs"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Terminal window:** a `$` command, such as `$ whoami`, and your three lines.",
-          "sub": []
-        },
-        {
-          "text": "**Plain:** your lines.",
-          "sub": []
-        },
-        {
-          "text": "**Contact:** your lines, with icons (phone, email, web and more). `[depends on the card release]`",
-          "sub": []
-        },
-        {
-          "text": "**Code:** your lines as a short JSON-style block. `[depends on the card release]`",
-          "sub": []
-        },
-        {
-          "text": "**None:** plain, and the quickest to print.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "p",
-      "text": "**Alternate backs** swap a design’s colors, or swap its text for a tap mark. The lineup has 23. They include: `[depends on the card release]`"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "tap backs: no text, a window over the sticker, and the tap waves in a ring;",
-          "sub": []
-        },
-        {
-          "text": "code backs, for Classic Dark and Light, Signal, USA, Portugal and Retro;",
-          "sub": []
-        },
-        {
-          "text": "Retro in wine or khaki.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "text": "the alternate backs, each beside its design's default back"
-    },
-    {
-      "type": "h3",
-      "text": "Two-piece or solid `[depends on two-piece card]`",
-      "id": "two-piece-or-solid-depends-on-two-piece-card"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Two-piece** (the default): the card prints as two pieces, side by side and face down, so both faces come out smooth and matte. There’s no pause. Stick the NFC sticker into the front piece, then press the back piece in: it clicks past a lip and sits flush.",
-          "sub": [
-            "**Unglued, it holds,** and the back lifts out at a corner with a fingernail, so you can swap the sticker.",
-            "**Glued** with superglue gel, it’s permanent: the most durable card.",
-            "**Mix and match:** a back fits any front printed with the same settings (the same sticker and the same edge marks), so one card can have several backs.",
-            "**Edge marks:** a notch or a pill on the top or bottom edge shows the front piece’s color through the back. A notched front fits only a notched back.",
-            "**The seam:** a thin line runs around the back, about 1.45 mm in from the edge."
-          ]
-        },
-        {
-          "text": "**Solid:** one piece. The print pauses for you to drop the sticker in, and the rest of the card seals it inside.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "text": "a two-piece card, open beside closed; a solid card"
-    },
-    {
-      "type": "h3",
+      "type": "h2",
       "text": "Holders",
       "id": "holders"
     },

@@ -14,10 +14,12 @@ export type BoothPage = {
   shortLink: string
   status: string
   name: string
-  /** The hero's two lines, from docs' opening ("here's every design"). */
+  /** The hero's two lines, in docs' words (Cards: its "Countless designs." and "Make your own"). */
   headline: [string, string]
   /** The station's closed box, as the visitor saw it on the table. */
   hero: string
+  /** The section the hero's first button leads to, by its id; else the one after "How it works". */
+  lineup?: string
   copy: BoothCopy
   images: [string, Placement][]
 }
@@ -45,8 +47,10 @@ export const cardsPage: BoothPage = {
   shortLink: 'taptilde.com/card',
   status: 'free · open source · 3d-printable',
   name: 'Tilde Card',
-  headline: ['Every design,', 'front and back.'],
+  headline: ['Countless designs.', 'Make your own.'],
   hero: 'station-cards-closed',
+  // Thomas's note (~10:45): lead with countless designs, so the button goes to docs' "Make your own".
+  lineup: 'make-your-own',
   copy: cardsCopy as BoothCopy,
   images: [
     // The card agent's box with the real cards; design's station-cards-open is the empty box (design 17).

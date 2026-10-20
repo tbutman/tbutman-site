@@ -89,7 +89,8 @@ async function syncCopy() {
     for (const page of PAGES) {
       const copy = await readJson(join(copyDir, `${page}.json`))
       const opening = copy?.blocks.find((block) => block.type === 'p')?.text
-      if (opening) ledes[page] = opening.replace(/\*\*|`/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      // Without its gates: those are for the draft's readers, not search results.
+      if (opening) ledes[page] = opening.replace(/\s*`?\[depends on [^\]]+\]`?/g, '').replace(/\*\*|`/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     }
     await writeJson(join(copyDir, 'ledes.json'), ledes)
   }

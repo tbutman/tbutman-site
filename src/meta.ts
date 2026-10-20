@@ -71,7 +71,7 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
     return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde.png' }
   }
   if (pathname === '/tilde/card') {
-    return { title: 'Tilde Card · every design, and how to print yours', description: boothLedes.cards, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }
+    return { title: 'Tilde Card · countless designs, and how to print yours', description: boothLedes.cards, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }
   }
   if (pathname === '/pt/tilde/card') {
     return { title: 'Cartão Tilde · imprime o teu cartão de visita', description: tildeCardText.pt.lede, image: '/og/tilde-card-pt.png', imageAlt: 'Cartão Tilde: Imprime o teu cartão de visita. Uma fotografia de um cartão Tilde preto impresso para Jane Doe, com um código QR, numa mão.' }
