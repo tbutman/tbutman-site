@@ -99,7 +99,7 @@ const en = {
     'Two small companions to the card, made the same way: two pieces printed face down in color, with no pause, and the same NFC sticker inside. Neither needs glue, so the sticker can be swapped.',
   keyrings: [
     '**The QR tag:** a small rectangle with a QR code on the front for a short link, such as your website, and a sticker inside so phones can tap it too. The tag grows with the link: up to 17 characters makes a 28.8 × 35.3 mm tag, up to 53 a 35 × 41.5 mm one. A contact card is far too much for a code this small. The key ring goes through both pieces and holds them together.',
-    '**The round fob:** a 32 mm disc for NFC only, with no QR code. Its back twists on with a quarter turn and locks, and a coin in the slot on the back turns it open again to swap the sticker. A phone rewrites the sticker through the plastic, so you rarely need to.',
+    '**The round fob:** a 32 mm disc for NFC only, with no QR code. Its back twists on with a quarter turn and locks, and turns open again to swap the sticker: by hand, or with its small printed key on a premium fob. A phone rewrites the sticker through the plastic, so you rarely need to.',
     '**Tell a set apart** with an icon (tap waves, Wi-Fi, a link, a phone, an envelope, a person or ~/) and a short label, inlaid in a second color or engraved.',
   ],
   keyringsLink: { label: 'keyrings on makerworld', href: makerWorldKeyring } as Link | null,
@@ -218,7 +218,7 @@ const pt: TildeCardText = {
     'Dois pequenos companheiros do cartão, feitos da mesma forma: duas peças impressas viradas para baixo, a cores, sem pausa, com o mesmo autocolante NFC lá dentro. Nenhum precisa de cola, por isso o autocolante pode ser trocado.',
   keyrings: [
     '**A etiqueta QR:** um pequeno retângulo com um código QR na frente, para uma ligação curta como o teu site, e um autocolante lá dentro para que também a possam encostar. A etiqueta cresce com a ligação: até 17 carateres dá uma etiqueta de 28,8 × 35,3 mm, até 53 uma de 35 × 41,5 mm. Um cartão de contacto é demasiado para um código tão pequeno. A argola passa pelas duas peças e mantém-nas juntas.',
-    '**O porta-chaves redondo:** um disco de 32 mm só para NFC, sem código QR. A tampa encaixa com um quarto de volta e fica trancada, e uma moeda na ranhura de trás volta a abri-la para trocares o autocolante. Um telemóvel regrava o autocolante através do plástico, por isso raramente é preciso.',
+    '**O porta-chaves redondo:** um disco de 32 mm só para NFC, sem código QR. A tampa encaixa com um quarto de volta e fica trancada, e volta a abrir-se para trocares o autocolante: à mão, ou com a pequena chave impressa, no porta-chaves premium. Um telemóvel regrava o autocolante através do plástico, por isso raramente é preciso.',
     '**Distingue um conjunto** com um ícone (ondas de toque, Wi-Fi, uma ligação, um telemóvel, um envelope, uma pessoa ou ~/) e um nome curto, embutidos noutra cor ou gravados.',
   ],
   keyringsLink: { label: 'porta-chaves no makerworld', href: makerWorldKeyring },

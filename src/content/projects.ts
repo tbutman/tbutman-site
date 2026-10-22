@@ -196,7 +196,7 @@ export const projects: Project[] = [
       'A contact page for iPhones: the contact travels in the link’s fragment, so no server receives it; one self-contained request with a hash-based Content Security Policy, a decoder shared with the app through test vectors, and the .vcf built on the phone.',
       'Unit tests for the tag protocol, NDEF records, vCards, saved links and the Met log, plus CI and tag-triggered, signed GitHub releases (R8 keeps the APK to about 2 MB).',
       'A parametric OpenSCAD card in four colors: QR code only, or two pieces that click together around an NFC sticker (thin or thick), with a one-piece build that pauses for it; three back styles, 0.2 mm and 0.4 mm nozzle versions, and text that shrinks to fit using the font’s own metrics.',
-      'Two keyrings from the same code, each two pieces around a sticker: a QR tag that grows with its link, and a round NFC fob with a quarter-turn twist-lock that a coin opens.',
+      'Two keyrings from the same code, each two pieces around a sticker: a QR tag that grows with its link, and a round NFC fob whose back locks with a quarter turn, opened by hand or, on the premium fob, with a small printed key.',
       'A QR encoder written in OpenSCAD and a build pipeline that decodes the QR code and measures strokes and gaps on the exported model before printing.',
     ],
     outcomes: [
