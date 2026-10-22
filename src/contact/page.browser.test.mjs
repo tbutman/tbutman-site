@@ -69,8 +69,9 @@ for (const [engine, type] of [
 
     /** Opens the page on a fragment, and returns what it showed, asked for and complained about. */
     async function open(fragment, options = {}) {
-      const { time, ...contextOptions } = options
+      const { time, setup, ...contextOptions } = options
       const context = await browser.newContext({ locale: 'en-US', acceptDownloads: true, ...contextOptions })
+      if (setup) await setup(context)
       const page = await context.newPage()
       if (time) await page.clock.setFixedTime(time)
       const problems = []
@@ -110,10 +111,12 @@ for (const [engine, type] of [
             assert.equal(shown.face, `face k-${contact.color ?? 'amber'}`)
             assert.equal(shown.name, contact.name)
             assert.equal(shown.handle, contact.handle ? `~/${contact.handle}` : null)
-            assert.equal(shown.role, [contact.title, contact.company].filter(Boolean).join(' · '))
+            // The owner's line, else title · company; with a line, title and company get rows of their own.
+            assert.equal(shown.role, contact.line ?? [contact.title, contact.company].filter(Boolean).join(' · '))
+            const roleRows = contact.line === undefined ? [] : [contact.title, contact.company].filter(Boolean)
             // Initials are letters only: never an emoji, a flag or a symbol.
             assert.match(shown.ring, /^(\p{L}\p{M}*){0,2}$/u)
-            assert.deepEqual(shown.details, [...contact.emails, ...contact.phones.map((p) => p.number), ...contact.links.map((l) => displayAddress(l.url))])
+            assert.deepEqual(shown.details, [...roleRows, ...contact.emails, ...contact.phones.map((p) => p.number), ...contact.links.map((l) => displayAddress(l.url))])
             // Phones and emails link to exactly what they show; websites never link (design rec. 1).
             assert.deepEqual(shown.taps, [...contact.emails.map((e) => [mailtoHref(e), e]), ...contact.phones.map((p) => [telHref(p.number), p.number])])
             for (const [href] of shown.taps) assert.match(href, /^(tel:\+?[0-9]+|mailto:[^?&#%,\s]+)$/)
@@ -210,6 +213,31 @@ for (const [engine, type] of [
       }
     })
 
+    test('the line under the name, with title and company as rows (design §17 rec. 8)', async () => {
+      const fragment = '#1;n=Jane%20Doe;t=Design%20lead;o=Northwind;e=jane@example.com;c=sea;l=Web%20Summit%202026%20%C2%B7%20Lisbon'
+      for (const [locale, labels] of [
+        ['en-US', ['Title', 'Company', 'Email']],
+        ['pt-PT', ['Cargo', 'Empresa', 'Email']],
+      ]) {
+        const { context, page } = await open(fragment, { locale })
+        try {
+          assert.equal(await page.locator('.face .role').textContent(), 'Web Summit 2026 · Lisbon')
+          assert.deepEqual(await page.locator('.details dt').allTextContents(), labels)
+          assert.deepEqual(await page.locator('.details dd').allTextContents(), ['Design lead', 'Northwind', 'jane@example.com'])
+        } finally {
+          await context.close()
+        }
+      }
+      // Without a line, the face has title · company and no rows repeat them.
+      const { context, page } = await open('#1;n=Jane%20Doe;t=Design%20lead;o=Northwind;e=jane@example.com')
+      try {
+        assert.equal(await page.locator('.face .role').textContent(), 'Design lead · Northwind')
+        assert.deepEqual(await page.locator('.details dt').allTextContents(), ['Email'])
+      } finally {
+        await context.close()
+      }
+    })
+
     test('the Portuguese tip (rec. 6)', async () => {
       const { context, page } = await open('#1;n=%ZZ', { locale: 'pt-PT' })
       try {
@@ -218,6 +246,66 @@ for (const [engine, type] of [
         await context.close()
       }
     })
+
+    // On an iPhone, Save contact opens the .vcf's blob URL in the page itself, and Safari shows its
+    // new-contact sheet (spec section 4, test T2). WebKit with an iPhone's user agent takes that path.
+    // What the engine then does with a text/vcard page differs by port: macOS WebKit opens it, while
+    // Linux WebKit (GTK/WPE, as in CI) turns any top-level text/vcard navigation into a download,
+    // with or without this page. So the test checks the page's own action on both: one blob of the
+    // exact .vcf, opened by navigating to it, and no download link clicked.
+    if (engine === 'webkit') {
+      test('Save contact on an iPhone opens the blob, not a download link', async () => {
+        const userAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1'
+        const v = vectors.vcard[0]
+        const saved = []
+        const setup = async (context) => {
+          await context.exposeBinding('reportSave', (_source, entry) => saved.push(entry))
+          await context.addInitScript(() => {
+            const create = URL.createObjectURL
+            URL.createObjectURL = (object) => {
+              const url = create.call(URL, object)
+              window.reportSave({ kind: 'blob', url, type: object.type })
+              return url
+            }
+            document.addEventListener('click', (event) => {
+              const link = event.target instanceof Element ? event.target.closest('a[download]') : null
+              if (link) window.reportSave({ kind: 'download link', url: link.href })
+            }, true)
+          })
+        }
+        const { context, page } = await open(fragmentOf(v.url), { userAgent, locale: v.locale, time: new Date(2026, 9, 13, 12), setup })
+        try {
+          const downloads = []
+          page.on('download', (download) => downloads.push(download))
+          const never = new Promise(() => {})
+          const outcome = await Promise.race([
+            page.waitForURL(/^blob:/).then(() => 'opened', () => never),
+            page.waitForEvent('download').then(() => 'downloaded'),
+            page.locator('.save').click().then(() => never),
+          ])
+          const blobs = saved.filter((entry) => entry.kind === 'blob')
+          assert.deepEqual(saved.filter((entry) => entry.kind !== 'blob'), [])
+          assert.deepEqual(blobs.map((blob) => blob.type), ['text/vcard;charset=utf-8'])
+          let text
+          if (outcome === 'opened') {
+            assert.equal(page.url(), blobs[0].url)
+            assert.deepEqual(downloads, [])
+            // WebKit shows it as plain text, which turns CR LF into LF; the file's own line ends are
+            // checked where it downloads.
+            const shown = await page.evaluate(() => ({ type: document.contentType, text: document.querySelector('pre')?.textContent }))
+            assert.equal(shown.type, 'text/vcard')
+            text = shown.text.replace(/\n/g, '\r\n')
+          } else {
+            assert.equal(downloads.length, 1)
+            assert.equal(downloads[0].url(), blobs[0].url)
+            text = await readFile(await downloads[0].path(), 'utf8')
+          }
+          assert.equal(text, v.vcard)
+        } finally {
+          await context.close()
+        }
+      })
+    }
 
     // Downloads are how Save contact works outside iOS (spec section 4); WebKit here is not iOS.
     // Each vector is the page in its language on October 13, 2026 (the note carries the date).

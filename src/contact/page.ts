@@ -31,6 +31,8 @@ const copy = {
     phone: 'Phone',
     mobile: 'Mobile',
     website: 'Website',
+    jobTitle: 'Title',
+    company: 'Company',
     callTo: 'Call %s',
     writeTo: 'Email %s',
     // The saved contact's words: the app's "mobile (US)", and a note with the day it was saved.
@@ -56,6 +58,8 @@ const copy = {
     phone: 'Telefone',
     mobile: 'Telemóvel',
     website: 'Site',
+    jobTitle: 'Cargo',
+    company: 'Empresa',
     callTo: 'Ligar para %s',
     writeTo: 'Enviar email para %s',
     mobileWord: 'telemóvel',
@@ -268,36 +272,21 @@ function footer(): HTMLElement {
   return foot
 }
 
-// How Save contact hands the file to the phone. iOS Safari's best way is settled by the iPhone test
-// (spec section 7, T2); until then `?save=` picks one. The query never carries contact data.
-type SaveMethod = 'blob' | 'data' | 'download' | 'share'
+// How Save contact hands the file to the phone (spec section 4). iOS Safari opens the blob URL and
+// shows its new-contact sheet (test T2); everything else downloads the file, which Android's
+// contacts app opens.
 const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-const asked = new URLSearchParams(location.search).get('save')
-const method: SaveMethod = asked === 'blob' || asked === 'data' || asked === 'download' || asked === 'share' ? asked : isIos ? 'blob' : 'download'
 
-async function save(contact: Contact) {
+function save(contact: Contact) {
   const day = new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(new Date())
   const text = vcard(contact, { mobile: t.mobileWord, note: t.note.replace('%s', day) })
-  const name = vcardFileName(contact)
-  const blob = new Blob([text], { type: 'text/vcard;charset=utf-8' })
-  if (method === 'share') {
-    const file = new File([blob], name, { type: 'text/vcard' })
-    if (navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file] }).catch(() => undefined)
-      return
-    }
-  }
-  if (method === 'data') {
-    location.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(text)}`
-    return
-  }
-  const url = URL.createObjectURL(blob)
-  if (method === 'blob') {
+  const url = URL.createObjectURL(new Blob([text], { type: 'text/vcard;charset=utf-8' }))
+  if (isIos) {
     location.href = url
   } else {
     const a = el('a')
     a.href = url
-    a.download = name
+    a.download = vcardFileName(contact)
     document.body.append(a)
     a.click()
     a.remove()
@@ -336,7 +325,8 @@ function showContact(root: HTMLElement, contact: Contact) {
   name.replaceChildren(...lines.map((line) => el('span', undefined, line)))
   // Read as one name, not two lines.
   name.setAttribute('aria-label', contact.name)
-  const role = [contact.title, contact.company].filter(Boolean).join(' · ')
+  // The owner's line under the name (design §17 rec. 8), or else title · company.
+  const role = contact.line ?? [contact.title, contact.company].filter(Boolean).join(' · ')
   face.append(
     name,
     decorative(el('div', 'rule')),
@@ -348,11 +338,21 @@ function showContact(root: HTMLElement, contact: Contact) {
   const button = el('button', 'save')
   button.type = 'button'
   button.append(icon('add'), t.save)
-  button.addEventListener('click', () => void save(contact))
+  button.addEventListener('click', () => save(contact))
   root.append(face, button, el('p', 'under', t.asks))
 
   const labels = emailLabels(contact)
   const rows: [string, HTMLElement][] = [
+    // With a line on the face, title and company get rows of their own, so they still show.
+    ...(contact.line === undefined
+      ? []
+      : ([
+          [t.jobTitle, contact.title],
+          [t.company, contact.company],
+        ] as const)
+    )
+      .filter(([, text]) => text)
+      .map(([label, text]): [string, HTMLElement] => [label, value('dd', 'text', text)]),
     ...contact.emails.map((email, i): [string, HTMLElement] => [labels[i], tappable(email, seams(email, '', '.@'), mailtoHref(email), 'mail')]),
     ...contact.phones.map((phone): [string, HTMLElement] => [
       phoneLabel(phone.label),

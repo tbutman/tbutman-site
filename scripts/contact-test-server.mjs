@@ -1,6 +1,6 @@
 // Serves the built site on the local network for testing the contact page (X1) on a real iPhone
 // before anything is deployed (spec: tilde-review/specs/x1-contact-link.md, section 7, T1 and T2).
-// Open the printed /x1-test address on the phone: it lists every test vector, and each save method.
+// Open the printed /x1-test address on the phone: it lists every test vector, and Save contact on the typical card.
 // Files resolve like deploy/nginx.conf: the path, then .html, then index.html. Local use only.
 import { createReadStream, readFileSync, statSync } from 'node:fs'
 import { createServer } from 'node:http'
@@ -40,8 +40,8 @@ function testIndex() {
 <title>X1 test links</title><style>body{font:16px/1.5 system-ui,sans-serif;margin:16px;max-width:40rem}li{margin:.6em 0}small{color:#666;word-break:break-all}</style></head><body>
 <h1>X1 contact page: test links</h1>
 <p>For the iPhone test (spec section 7). The page is always dark. Set the phone's language to Portuguese for the PT copy. Open a contact twice: the second time the fonts come from the cache (Inter and JetBrains Mono); a first visit on a slow network keeps the system font.</p>
-<h2>T2: Save contact, by method</h2><p>Each opens the typical card. Press Save contact and note what the phone does.</p><ul>
-${['blob', 'data', 'download', 'share'].map((m) => item(`/tilde/c?save=${m}${fragment}`, `save=${m}`, m === 'share' ? 'needs https: expect it to fall back to blob here' : '')).join('\n')}
+<h2>T2: Save contact</h2><p>Opens the typical card. Press Save contact: an iPhone shows Safari's new-contact sheet, and Android downloads the file (Chrome warns before Keep over plain http).</p><ul>
+${item(typical, 'Save contact on the typical card')}
 </ul>
 <h2>T1: contacts (encode vectors)</h2><ul>
 ${vectors.encode.map((v) => item(pagePath(v.url), v.name, v.url)).join('\n')}
