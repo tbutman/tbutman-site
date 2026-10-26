@@ -1,5 +1,5 @@
 {
-  "source": "70b70559d1c572e2a3ff8c34347cb3e8774c8597d4f1ad6874fa47b63a1b2498",
+  "source": "8c7012cb90cac4901f7cf6e4b41a8f7a2cd8f1ce32b442fe33d16802c7ee8bd9",
   "blocks": [
     {
       "type": "h2",
@@ -35,10 +35,8 @@
           "sub": []
         },
         {
-          "text": "**Android first.** iPhone app coming soon. Your iPhone already opens every Tilde tap and code, no app needed. `[depends on T1–T4, T-WF1–T-WF4]`",
-          "sub": [
-            "If T1–T4 or T-WF fail, say: “Your iPhone already opens Tilde’s links and codes, no app needed.”"
-          ]
+          "text": "**Android only for now;** your iPhone reads every tag.",
+          "sub": []
         }
       ]
     },
@@ -97,7 +95,7 @@
       "type": "ol",
       "items": [
         {
-          "text": "**Get Tilde on Google Play,** on an Android phone (Android 8.0 or newer), open it and tap **Get started**.",
+          "text": "**Download Tilde** on an Android phone (Android 8.0 or newer), with the steps under “How to get it”, open it and tap **Get started**.",
           "sub": []
         },
         {
@@ -261,11 +259,11 @@
       "type": "ul",
       "items": [
         {
-          "text": "**Android:** Get Tilde on Google Play. (`taptilde.com/app`)",
+          "text": "**Android:** download Tilde for Android, the APK from GitHub releases (`taptilde.com/app`), and install it in about a minute: no developer mode; Android asks twice to confirm.",
           "sub": []
         },
         {
-          "text": "**iPhone:** iPhone app coming soon. Your iPhone already opens every Tilde tap and code, no app needed. `[depends on T1–T4, T-WF1–T-WF4]` (the same fallback as above)",
+          "text": "**iPhone:** Android only for now; your iPhone reads every tag.",
           "sub": []
         }
       ]

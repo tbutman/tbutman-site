@@ -17,9 +17,11 @@ const printing = `${cardRepo}/blob/main/PRINTING.md`
 const twoPiece = `${cardRepo}/blob/main/docs/TWO-PIECE.md`
 const email = 'hello@taptilde.com'
 // The two MakerWorld listings: the card (model 3417288, private until Thomas publishes it) and the
-// keyrings (not uploaded yet).
-const makerWorldCard = 'https://makerworld.com/en/models/PLACEHOLDER-tilde-card'
-const makerWorldKeyring = 'https://makerworld.com/en/models/PLACEHOLDER-tilde-keyring'
+// keyrings (not uploaded yet). Until a listing is public its buttons stay off, and the pages link
+// GitHub (Thomas, October 26, finish-line plan §7); then its URL goes here and the null below goes.
+const makerWorldCard = null as string | null
+const makerWorldKeyring = null as string | null
+const listing = (label: string, href: string | null): Link | null => (href ? { label, href } : null)
 
 type Link = { label: string; href: string }
 
@@ -32,7 +34,7 @@ const en = {
   links: {
     guide: { label: 'how to print it', href: printing },
     source: { label: 'model on github', href: cardRepo },
-    makerWorld: { label: 'customize it on makerworld', href: makerWorldCard } as Link | null,
+    makerWorld: listing('customize it on makerworld', makerWorldCard),
   },
 
   needHeading: 'what you need',
@@ -102,7 +104,7 @@ const en = {
     '**The round fob:** a 32 mm disc for NFC only, with no QR code. Its back twists on with a quarter turn and locks, and turns open again to swap the sticker: by hand, or with its small printed key on a premium fob. A phone rewrites the sticker through the plastic, so you rarely need to.',
     '**Tell a set apart** with an icon (tap waves, Wi-Fi, a link, a phone, an envelope, a person or ~/) and a short label, inlaid in a second color or engraved.',
   ],
-  keyringsLink: { label: 'keyrings on makerworld', href: makerWorldKeyring } as Link | null,
+  keyringsLink: listing('keyrings on makerworld', makerWorldKeyring),
 
   faqHeading: 'questions',
   faq: [
@@ -151,7 +153,7 @@ const pt: TildeCardText = {
   links: {
     guide: { label: 'como imprimir (em inglês)', href: printing },
     source: { label: 'modelo no github', href: cardRepo },
-    makerWorld: { label: 'personalizar no makerworld', href: makerWorldCard },
+    makerWorld: listing('personalizar no makerworld', makerWorldCard),
   },
 
   needHeading: 'o que precisas',
@@ -221,7 +223,7 @@ const pt: TildeCardText = {
     '**O porta-chaves redondo:** um disco de 32 mm só para NFC, sem código QR. A tampa encaixa com um quarto de volta e fica trancada, e volta a abrir-se para trocares o autocolante: à mão, ou com a pequena chave impressa, no porta-chaves premium. Um telemóvel regrava o autocolante através do plástico, por isso raramente é preciso.',
     '**Distingue um conjunto** com um ícone (ondas de toque, Wi-Fi, uma ligação, um telemóvel, um envelope, uma pessoa ou ~/) e um nome curto, embutidos noutra cor ou gravados.',
   ],
-  keyringsLink: { label: 'porta-chaves no makerworld', href: makerWorldKeyring },
+  keyringsLink: listing('porta-chaves no makerworld', makerWorldKeyring),
 
   faqHeading: 'perguntas',
   faq: [

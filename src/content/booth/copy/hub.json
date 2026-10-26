@@ -1,5 +1,5 @@
 {
-  "source": "2f5f0c511a5b3b78ae12ec58b66da177fef87529642119c45d3edd5c96714d9b",
+  "source": "645c533776f13ff8323cb733cad204a9bd23cc324213166d82fa314dee725e35",
   "blocks": [
     {
       "type": "h2",
@@ -23,7 +23,7 @@
           "sub": []
         },
         {
-          "text": "**The app is free and open source,** with no account and no internet: your details stay on your phone until you share them. It’s on Google Play for Android; the iPhone app is coming soon.",
+          "text": "**The app is free and open source,** with no account and no internet: your details stay on your phone until you share them. It’s for Android, downloaded from GitHub. Android only for now; your iPhone reads every tag.",
           "sub": []
         },
         {
@@ -73,10 +73,8 @@
       "type": "ul",
       "items": [
         {
-          "text": "**The app:** Get Tilde on Google Play, on Android 8.0 or newer (`taptilde.com/app`). iPhone app coming soon. Your iPhone already opens every Tilde tap and code, no app needed. `[depends on T1–T4, T-WF1–T-WF4]`",
-          "sub": [
-            "If T1–T4 or T-WF fail, the last sentence becomes “Your iPhone already opens Tilde’s links and codes, no app needed.”"
-          ]
+          "text": "**The app:** [Download Tilde for Android](/tilde/app), from GitHub, with the install steps (Android 8.0 or newer; `taptilde.com/app`). Android only for now; your iPhone reads every tag.",
+          "sub": []
         },
         {
           "text": "**A card or a tag:** [print your own](/tilde/card), or find us at the booth.",

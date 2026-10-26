@@ -127,6 +127,8 @@ export const usesPage: BoothPage = {
     ['the handset tag', tag('use-share-number')],
     ['the found it? tag', tag('use-lost-item')],
     ['the booking tag', tag('use-book-meeting')],
+    // Docs 54: the grocery list's render, the same one Home & desk waits for (productRenders).
+    ['the grocery list on a fridge', { ids: ['product-grocery-list'], layout: 'grid', ratio: 'photo' }],
     ['the demo keychain, fanned out', { ids: ['fob-demo-keychain'], layout: 'wide', ratio: 'wide' }],
   ],
 }
@@ -248,4 +250,6 @@ export const useProducts: Record<string, RegExp> = {
   'lost-item': /lost keys/i,
   'book-a-meeting': /^book a meeting/i,
   whatsapp: /^whatsapp/i,
+  // Under More ideas (docs 54), so it isn't reordered, but products' uses link to it.
+  'the-shopping-list-on-the-fridge': /shopping list/i,
 }

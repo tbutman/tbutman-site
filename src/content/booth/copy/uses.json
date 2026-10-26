@@ -1,5 +1,5 @@
 {
-  "source": "64b180814eee08d6c2c33c98f3f02ab6b296cca7c52c7bcdc11ac652ac9e0a72",
+  "source": "d497524399b2e36a893bd27daca1e0e20689a1541f8da8ed4b8ba67dd73f2eb5",
   "blocks": [
     {
       "type": "h2",
@@ -334,6 +334,28 @@
     },
     {
       "type": "h3",
+      "text": "The shopping list on the fridge",
+      "id": "the-shopping-list-on-the-fridge"
+    },
+    {
+      "type": "image",
+      "text": "the grocery list on a fridge"
+    },
+    {
+      "type": "p",
+      "text": "**Tap the list on the fridge, and it’s on your phone.** The Grocery list is a printed list for the fridge with an NFC sticker inside. `[depends on notes spec]` for what a tap shows: a list you make and edit in Tilde, written to the sticker, opens on any phone that taps it."
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Make one:** print the Grocery list (see [Home & desk](/tilde/home#grocery-list)).",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h3",
       "text": "Physical bookmarks",
       "id": "physical-bookmarks"
     },
@@ -453,7 +475,7 @@
           "sub": []
         },
         {
-          "text": "**Print your own:** coins and tags on the Tilde Keyrings listing (MAKERWORLD-KEYRINGS-URL).",
+          "text": "**Print your own:** coins and tags from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card).",
           "sub": []
         },
         {

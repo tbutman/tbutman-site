@@ -104,7 +104,7 @@ test('"Tilde for Android" links go to the App page, and nothing else moves', () 
 
 // Printed links land on these (booth tags, lids, the demo ring: tilde-review/booth-kit), so a heading
 // docs renames must keep its id with {#id}, or this fails.
-const USE_ANCHORS = ['call-my-family', 'contact-card', 'link', 'whatsapp', 'guest-wi-fi', 'share-your-number', 'lost-item', 'book-a-meeting', 'physical-bookmarks', 'with-just-your-phone']
+const USE_ANCHORS = ['call-my-family', 'contact-card', 'link', 'whatsapp', 'guest-wi-fi', 'share-your-number', 'lost-item', 'book-a-meeting', 'physical-bookmarks', 'the-shopping-list-on-the-fridge', 'with-just-your-phone']
 
 test('every use on /tilde/uses keeps its anchor', async () => {
   const { readFile } = await import('node:fs/promises')

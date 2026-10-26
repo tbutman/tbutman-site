@@ -1,5 +1,5 @@
 {
-  "source": "cc9487732951b5464d8398c265547f44799a6acb3d5db306bdec362538a0bae8",
+  "source": "4a362f213a46fa292c679a03b0e81bf2a68e2a6357cdc53f4448c86ad10b79d6",
   "blocks": [
     {
       "type": "h2",
@@ -44,44 +44,6 @@
     {
       "type": "image",
       "text": "the fob storage box, open: flat stacks of every fob type"
-    },
-    {
-      "type": "h3",
-      "text": "Two shapes, two series",
-      "id": "two-shapes-two-series"
-    },
-    {
-      "type": "table",
-      "head": [
-        "",
-        "Coin",
-        "Tag"
-      ],
-      "rows": [
-        [
-          "**What it does**",
-          "Tap only: a round 32 mm disc with no code",
-          "Tap or scan: a QR code on the front, and the sticker inside"
-        ],
-        [
-          "**Base**",
-          "Thin, quick and cheap to print. The back twists on a quarter turn and locks. Open it by hand, or with a coin in its slot if you add one.",
-          "Thin. The key ring goes through both pieces and holds them together without glue, so the sticker can be swapped. Glue it for the most durable tag."
-        ],
-        [
-          "**Premium**",
-          "Thicker and heavier: one solid body with a round back rim. The back sits flush, the icon fills it, and it locks with a quarter turn of its small key.",
-          "The same premium body and back, as a tag with a code."
-        ]
-      ]
-    },
-    {
-      "type": "image",
-      "text": "per fob type: base coin, base tag, premium coin, premium tag; a tag's front (the code) and back (the icon)"
-    },
-    {
-      "type": "p",
-      "text": "**A tag’s size follows its link.** A base tag is 28.8 × 35.3 mm for up to 17 characters, 31 × 37.5 mm for up to 32, and 35 × 41.5 mm for up to 53. A premium tag is 36 × 44 mm for up to 32 characters, and 37 × 44.5 mm for up to 53. A link is all a tag’s code holds: a contact card is far too much for a code this small. `[depends on U16]` for “scans”."
     },
     {
       "type": "h3",
@@ -164,7 +126,7 @@
       "type": "ol",
       "items": [
         {
-          "text": "**Print your own.** Click **Customize** on the Tilde Keyrings listing on MakerWorld (MAKERWORLD-KEYRINGS-URL): choose a coin or a tag, Base or Premium, your colors and your icon, then download the 3MF.",
+          "text": "**Print your own** from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card): choose a coin or a tag, Base or Premium, your colors and your icon in OpenSCAD’s Customizer, then export it.",
           "sub": []
         },
         {

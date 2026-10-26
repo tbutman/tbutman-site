@@ -1,5 +1,5 @@
 {
-  "source": "7867219c4e9985a15b03d40866acab92c13c870c231b0b293c5e9108d10f39bd",
+  "source": "577b1cc422ae68456b574f134720d4c272a619fd019085deae90a041dea67afd",
   "sections": [
     {
       "title": "The family",
@@ -90,7 +90,7 @@
         },
         {
           "type": "p",
-          "text": "**Tilde for Android:** download the APK from GitHub releases, with the install steps (Android 8.0 or newer). It’s free, open source (MIT) and needs no account. It isn’t on Google Play."
+          "text": "**Tilde for Android:** download the APK from GitHub releases, with the install steps (Android 8.0 or newer). It’s free, open source (MIT) and needs no account."
         },
         {
           "type": "ul",
@@ -279,7 +279,7 @@
       "id": "cards",
       "products": [
         {
-          "name": "Tilde Card, Solid body",
+          "name": "Tilde Card, Solid",
           "id": "solid",
           "fields": {
             "name": {
@@ -659,7 +659,7 @@
           }
         },
         {
-          "name": "Premium coin (with the earless option and the T-key)",
+          "name": "Premium coin",
           "id": "premium-coin",
           "fields": {
             "name": {
@@ -732,7 +732,7 @@
           }
         },
         {
-          "name": "Special Edition: Retro handheld (Base and Premium)",
+          "name": "Special Edition: Retro handheld",
           "id": "retro-handheld",
           "fields": {
             "name": {
@@ -1116,7 +1116,7 @@
           }
         },
         {
-          "name": "Tilde Stand (with the Wi-Fi top)",
+          "name": "Tilde Stand",
           "id": "stand",
           "fields": {
             "name": {

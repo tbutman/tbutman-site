@@ -1,5 +1,5 @@
 {
-  "source": "c75fc850a16971163e931cf8a64205d34af82fdc9ac0e4f74c9e0cbae72c1cb8",
+  "source": "d485399684fbd67acbbe06cd76fad6e7f4df65cfec2efc82ce9a85e2b78f312e",
   "blocks": [
     {
       "type": "h2",
@@ -31,7 +31,7 @@
           "sub": []
         },
         {
-          "text": "**You print it yourself,** all at once, on a multi-color printer such as a Bambu Lab printer with an AMS or AMS lite.",
+          "text": "**You print it yourself,** on a multi-color printer such as a Bambu Lab printer with an AMS or AMS lite. Solid or Two-Piece: each has its own section below.",
           "sub": []
         }
       ]
@@ -202,34 +202,6 @@
       ]
     },
     {
-      "type": "h3",
-      "text": "Two-piece or solid `[depends on two-piece card]`",
-      "id": "two-piece-or-solid"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Two-piece** (the default): the card prints as two pieces, side by side and face down, so both faces come out smooth and matte. There’s no pause. Stick the NFC sticker into the front piece, then press the back piece in: it clicks past a lip and sits flush.",
-          "sub": [
-            "**Unglued, it holds,** and the back lifts out at a corner with a fingernail, so you can swap the sticker.",
-            "**Glued** with superglue gel, it’s permanent: the most durable card.",
-            "**Mix and match:** a back fits any front printed with the same settings (the same sticker and the same edge marks), so one card can have several backs.",
-            "**Edge marks:** a notch or a pill on the top or bottom edge shows the front piece’s color through the back. A notched front fits only a notched back.",
-            "**The seam:** a thin line runs around the back, about 1.45 mm in from the edge."
-          ]
-        },
-        {
-          "text": "**Solid:** one piece. The print pauses for you to drop the sticker in, and the rest of the card seals it inside.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "text": "a two-piece card, open beside closed; a solid card"
-    },
-    {
       "type": "h2",
       "text": "Some designs to start from",
       "id": "some-designs-to-start-from"
@@ -359,7 +331,7 @@
       "type": "ol",
       "items": [
         {
-          "text": "**Print your own.** Click **Customize** on MakerWorld (MAKERWORLD-CARD-URL), type your name, your link and your back’s lines, pick a theme, and download the 3MF. Or open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card). The printing guide below has the rest.",
+          "text": "**Print your own.** Open the model in OpenSCAD’s Customizer from [github.com/tbutman/tilde-card](https://github.com/tbutman/tilde-card), type your name, your link and your back’s lines, pick a theme, and export it. The printing guide below has the rest.",
           "sub": []
         },
         {
