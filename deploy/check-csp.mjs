@@ -1,8 +1,8 @@
 // Checks the built pages against the Content Security Policy in deploy/nginx.conf, so a change that
 // the policy would block (an inline script without its hash, an inline style or event handler, a
 // script, style, font or image from another site) fails CI instead of breaking the live site once
-// the config is installed. /tilde/c is left out: it carries its own policy, checked by
-// src/contact/page.browser.test.mjs. Usage: node deploy/check-csp.mjs (after npm run build).
+// the config is installed. /tilde/c and /tilde/n are left out: each carries its own policy, checked by
+// its page.browser.test.mjs. Usage: node deploy/check-csp.mjs (after npm run build).
 import { createHash } from 'node:crypto'
 import { readdir, readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
@@ -39,7 +39,7 @@ const used = new Set()
 let count = 0
 for await (const file of pages(dist)) {
   const name = relative(dist, file)
-  if (name === join('tilde', 'c.html')) continue
+  if (name === join('tilde', 'c.html') || name === join('tilde', 'n.html')) continue
   count++
   const html = await readFile(file, 'utf8')
   for (const [, attributes, body] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {

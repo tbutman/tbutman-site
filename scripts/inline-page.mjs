@@ -1,4 +1,5 @@
-// Builds one of Tilde's link pages, /tilde/c (the contact page, X1) or /tilde/w (the Wi-Fi page, W1),
+// Builds one of Tilde's link pages, /tilde/c (the contact page, X1), /tilde/w (the Wi-Fi page, W1) or
+// /tilde/n (the note page, N1),
 // into dist/tilde/<name>.html: one self-contained file with the script and styles inline, so the page
 // is a single request and draws at once on event Wi-Fi. The Content Security Policy allows exactly
 // those two inline blocks, by hash, and the site's own two font files, and nothing else (spec:
@@ -15,7 +16,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const assets = join(root, 'dist', 'assets')
 
 /**
- * Builds `route` (/tilde/c or /tilde/w) from src/<dir>/page.html, page.ts and page.css. `what` names
+ * Builds `route` (/tilde/c, /tilde/w or /tilde/n) from src/<dir>/page.html, page.ts and page.css. `what` names
  * the page in errors ("contact page"), and `global` is the script's IIFE name.
  */
 export async function inlinePage({ route, dir, what, global }) {

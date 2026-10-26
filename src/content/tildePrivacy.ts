@@ -32,6 +32,7 @@ const en = {
         'Nothing leaves your phone until you share it: when you tap phones, when someone scans your code, or when you use Send.',
         'A contact card you Send includes your photo only if you switch on **Include your photo when you send your contact card** (Settings → Sharing). It’s off by default, and a tap or the code never includes it.',
         '**iPhones and the contact link:** a tap with your contact card also carries a link to taptilde.com/c, with the details on your contact card, and your card’s ~/handle, color and line under your name (if you wrote one), written into the link after a #. An iPhone opens it to show your contact and save it. Browsers never send the part after the #, so neither Cloudflare nor this website receives your details: the page reads them on the other person’s phone, sends them nowhere and stores nothing (its only other requests are this site’s own fonts, which carry none of your details). Anyone who has the link can read it, as with the contact card itself.',
+        '**Notes and lists:** a note or list written to a sticker is in its link to taptilde.com/n, after a #. A phone that taps it opens the page, which reads it on that phone; neither Cloudflare nor this website receives it. If you tick items, the page remembers which ones on your phone for a week, never the words. Anyone who taps the sticker can read the note.',
         'By default, Tilde only answers taps while it’s on screen. **Answer taps when Tilde is closed** (off by default) lets it answer while the phone is unlocked. Taps are never answered from the lock screen.',
         '**Guest Wi-Fi:** the password is stored only on your phone, but the Wi-Fi code contains it. Anyone who scans it, or taps your phone while you share it, can join your network.',
       ],
@@ -49,6 +50,7 @@ const en = {
         '0 cookies and 0 trackers.',
         '**Cloudflare** carries the traffic for taptilde.com and this website. It sets no cookies. It asks browsers to report connections that fail, never ones that work, and those network error reports never include the part of a link after the #.',
         'The contact page (taptilde.com/c) is logged like any page: the time, the visitor’s IP address and browser, never the details in the link.',
+        'The note page (taptilde.com/n) is logged like any page: the time, IP address and browser, never the note.',
       ],
     },
     {
@@ -90,6 +92,7 @@ const pt: TildePrivacyText = {
         'Nada sai do teu telemóvel até o partilhares: quando encostas os telemóveis, quando alguém lê o teu código ou quando usas Enviar.',
         'Um cartão de contacto que envias com Enviar só inclui a tua fotografia se ligares **Incluir a tua fotografia quando envias o teu cartão de contacto** (Definições → Partilha). Está desligado por defeito, e um toque ou o código nunca a incluem.',
         '**iPhones e a ligação de contacto:** um toque com o teu cartão de contacto leva também uma ligação para taptilde.com/c, com os dados do teu cartão de contacto, e o ~/handle, a cor e a linha por baixo do nome do teu cartão (se escreveste uma), escritos na ligação, depois de um #. Um iPhone abre-a para mostrar o teu contacto e guardá-lo. Os browsers nunca enviam a parte depois do #, por isso nem a Cloudflare nem este site recebem os teus dados: a página lê-os no telemóvel da outra pessoa, não os envia para lado nenhum e não guarda nada (os únicos outros pedidos que faz são as fontes deste site, que não levam nenhum dos teus dados). Quem tiver a ligação pode lê-la, tal como o próprio cartão de contacto.',
+        '**Notas e listas:** uma nota ou lista escrita num autocolante vai na ligação para taptilde.com/n, depois de um #. O telemóvel que lhe toca abre a página, que a lê nesse telemóvel; nem a Cloudflare nem este site a recebem. Se marcares itens, a página lembra-se de quais, no teu telemóvel, durante uma semana, nunca das palavras. Quem tocar no autocolante pode ler a nota.',
         'Por defeito, a Tilde só responde a toques enquanto está no ecrã. **Responder a toques com a Tilde fechada** (desligado por defeito) deixa-a responder enquanto o telemóvel estiver desbloqueado. Os toques nunca são respondidos a partir do ecrã de bloqueio.',
         '**Wi-Fi para convidados:** a palavra-passe fica guardada apenas no teu telemóvel, mas o código do Wi-Fi contém-na. Quem o ler, ou encostar ao teu telemóvel enquanto o partilhas, pode ligar-se à tua rede.',
       ],
@@ -107,6 +110,7 @@ const pt: TildePrivacyText = {
         '0 cookies e 0 rastreadores.',
         'A **Cloudflare** encaminha o tráfego do taptilde.com e deste site. Não define cookies. Pede aos browsers que lhe comuniquem as ligações que falham, nunca as que funcionam, e esses relatórios de erros de rede nunca incluem a parte de uma ligação depois do #.',
         'A página de contacto (taptilde.com/c) fica registada como qualquer página: a hora, o endereço IP e o browser de quem a abre, nunca os dados da ligação.',
+        'A página de notas (taptilde.com/n) fica registada como qualquer página: a hora, o endereço IP e o browser de quem a abre, nunca a nota.',
       ],
     },
     {

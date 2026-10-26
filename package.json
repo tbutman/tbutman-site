@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/contact-page.mjs",
+    "build": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/contact-page.mjs && node scripts/note-page.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "resume:pdf": "node scripts/resume-pdf.mjs",
     "og": "node scripts/og-images.mjs",
-    "test": "node --test services/contact/server.test.mjs src/contact/link.test.mjs scripts/booth-copy.test.mjs scripts/booth-products.test.mjs scripts/leak-guard.test.mjs",
-    "test:browser": "npm run build && node --test src/contact/page.browser.test.mjs",
+    "test": "node --test services/contact/server.test.mjs src/contact/link.test.mjs src/note/link.test.mjs scripts/booth-copy.test.mjs scripts/booth-products.test.mjs scripts/leak-guard.test.mjs",
+    "test:browser": "npm run build && node --test src/contact/page.browser.test.mjs src/note/page.browser.test.mjs",
     "contact:test": "npm run build && node scripts/contact-test-server.mjs",
     "booth:sync": "node scripts/booth-sync.mjs"
   },
