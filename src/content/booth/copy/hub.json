@@ -1,5 +1,5 @@
 {
-  "source": "645c533776f13ff8323cb733cad204a9bd23cc324213166d82fa314dee725e35",
+  "source": "725acc5572099b9a2f7170fba863ca734870571ec7eb5936254491ae86d7559e",
   "blocks": [
     {
       "type": "h2",
@@ -27,7 +27,7 @@
           "sub": []
         },
         {
-          "text": "**Print what you hand out,** or pick up a tag at our booth.",
+          "text": "**Print what you hand out,** or pick up a tag at the Tilde booth at Web Summit.",
           "sub": []
         }
       ]
@@ -39,7 +39,7 @@
     },
     {
       "type": "p",
-      "text": "Four short tours of what’s on our table, and what isn’t."
+      "text": "Four short tours of everything Tilde makes."
     },
     {
       "type": "table",
@@ -77,7 +77,7 @@
           "sub": []
         },
         {
-          "text": "**A card or a tag:** [print your own](/tilde/card), or find us at the booth.",
+          "text": "**A card or a tag:** [print your own](/tilde/card), or pick one up at the Tilde booth at Web Summit.",
           "sub": []
         }
       ]

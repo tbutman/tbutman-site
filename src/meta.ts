@@ -76,7 +76,7 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
     return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde-uses.png', imageAlt: 'Tilde use cases: One tag, one job. Ten tags on a ring, each with a different icon.' }
   }
   if (pathname === '/tilde/app') {
-    return { title: 'Tilde for Android · write your own fob, or tap your phone', description: (boothLedes as Record<string, string>).app ?? tildeText.en.lede, image: '/og/tilde-app.png', imageAlt: 'Tilde for Android: Your business card, on your phone. A phone showing Jane Doe’s card and QR code.' }
+    return { title: 'Tilde for Android · write your own tags, or tap your phone', description: (boothLedes as Record<string, string>).app ?? tildeText.en.lede, image: '/og/tilde-app.png', imageAlt: 'Tilde for Android: Your business card, on your phone. A phone showing Jane Doe’s card and QR code.' }
   }
   if (pathname === '/tilde/card') {
     return { title: 'Tilde Card · countless designs, and how to print yours', description: boothLedes.cards, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }

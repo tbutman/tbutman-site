@@ -21,7 +21,10 @@ function useDocumentMeta() {
     document.title = meta.title
     document.documentElement.lang = meta.lang
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
-    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView()
+    // A target inside a fold (the card's print guide, the app's extras) opens it first.
+    const target = hash ? document.getElementById(hash.slice(1)) : null
+    for (let fold = target?.closest('details'); fold; fold = fold.parentElement?.closest('details')) fold.open = true
+    if (target) target.scrollIntoView()
     else window.scrollTo(0, 0)
   }, [pathname, hash])
 }
@@ -56,7 +59,7 @@ export default function TildeApp() {
           <Route path="/fobs" element={<FobsPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/uses" element={<UsesPage />} />
-          <Route path="/app" element={<AppPage insert={<AppSections locale="en" />} />} />
+          <Route path="/app" element={<AppPage insert={<AppSections locale="en" fold />} />} />
           <Route path="/privacy" element={<TildePrivacy locale="en" />} />
           <Route path="/pt/privacy" element={<TildePrivacy locale="pt" />} />
           <Route path="*" element={<NotFound />} />

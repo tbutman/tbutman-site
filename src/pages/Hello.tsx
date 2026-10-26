@@ -114,6 +114,9 @@ export default function Hello({ locale }: { locale: Locale }) {
         <p className="hello-note">
           <Link to={text.projectLink.to}>{text.projectLink.label}</Link>
         </p>
+        <p className="hello-note">
+          <Link to={text.buildLink.to}>{text.buildLink.label}</Link>
+        </p>
       </section>
     </article>
   )

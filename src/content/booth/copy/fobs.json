@@ -1,5 +1,5 @@
 {
-  "source": "297c060b91d9626a86b517213d56f1699b785f3f70c61568a85b10c0534a0653",
+  "source": "0519829c05a707fe8672da2d1da2489a0ae4797f66252ff9d32e246cad14b4fb",
   "blocks": [
     {
       "type": "h2",
@@ -31,7 +31,7 @@
           "sub": []
         },
         {
-          "text": "**You print it yourself** on a multi-color printer, in two pieces with no pause. Or pick up a tag at our booth.",
+          "text": "**You print it yourself** on a multi-color printer, in two pieces with no pause. Or pick up a tag at the Tilde booth at Web Summit.",
           "sub": []
         }
       ]
@@ -52,7 +52,7 @@
     },
     {
       "type": "p",
-      "text": "Our table has three color sets, each two colors, made with the model’s color options. In these three, the code takes the body’s color, with no patch of another color."
+      "text": "The Tilde booth has three color sets, each two colors, made with the model’s color options. In these three, the code takes the body’s color, with no patch of another color."
     },
     {
       "type": "ul",
@@ -62,7 +62,7 @@
           "sub": []
         },
         {
-          "text": "**Khaki on black:** our giveaway tags",
+          "text": "**Khaki on black:** the booth’s giveaway tags",
           "sub": []
         },
         {
@@ -81,15 +81,15 @@
     },
     {
       "type": "p",
-      "text": "**Special:** the pocket case fobs, orange, with black icons and the code black on white. They ride in the card pocket cases (see Cards)."
+      "text": "**Special:** orange fobs, with black icons and the code black on white."
     },
     {
       "type": "p",
-      "text": "The model’s Theme menu has the cards’ themes (Dark, Light, Signal, USA, Brasil, Portugal and Retro), not our three sets. Or pick your own colors."
+      "text": "The model’s Theme menu has the cards’ themes (Dark, Light, Signal, USA, Brasil, Portugal and Retro), not these three sets. Or pick your own colors."
     },
     {
       "type": "image",
-      "text": "the orange pocket case fobs"
+      "text": "the orange fobs"
     },
     {
       "type": "h3",
@@ -98,7 +98,7 @@
     },
     {
       "type": "p",
-      "text": "A 2 × 2 box of flat stacks: 3 premium coins, 3 premium tags, 5 base coins and 8 base tags, under a sliding lid with the wordmark engraved. We made it for the booth. Its print files aren’t published."
+      "text": "A 2 × 2 box of flat stacks: 3 premium coins, 3 premium tags, 5 base coins and 8 base tags, under a sliding lid with the wordmark engraved. It was made for the Tilde booth. Its print files aren’t published."
     },
     {
       "type": "image",
@@ -130,11 +130,11 @@
           "sub": []
         },
         {
-          "text": "**Add a round NFC sticker** and write it with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
+          "text": "**Add a round NFC sticker** (an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker””) and write it with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
           "sub": []
         },
         {
-          "text": "**Or pick one up at our booth.** Take a tag from the giveaway boxes, and we’ll show you how to write it (see the Uses page).",
+          "text": "**Or pick one up at the Tilde booth at Web Summit.** Take a tag from the giveaway boxes; it’s written for you there (see the Uses page).",
           "sub": []
         }
       ]

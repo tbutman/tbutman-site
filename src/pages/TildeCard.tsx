@@ -38,75 +38,82 @@ export default function TildeCard({ locale }: { locale: Locale }) {
       <figure className="product-video panel">
         <ProductVideo video={tildeText[locale].video} />
       </figure>
-      <section className="section" aria-labelledby="need-heading">
-        <div className="section-head">
-          <h2 id="need-heading">{card.needHeading}</h2>
-        </div>
-        <ul className="privacy-list panel">
-          {card.need.map((item) => (
-            <li key={item}>
-              <RichText text={item} />
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section className="section" aria-labelledby="steps-heading">
-        <div className="section-head">
-          <h2 id="steps-heading">{card.stepsHeading}</h2>
-        </div>
-        <ol className="product-steps card-page-steps">
-          {card.steps.map((step, index) => (
-            <li key={step.title} className="panel">
-              <span className="num">{String(index + 1).padStart(2, '0')}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-      <section className="section" aria-labelledby="time-heading">
-        <div className="section-head">
-          <h2 id="time-heading">{card.timeHeading}</h2>
-        </div>
-        {card.times.length > 0 && (
-          <dl className="stats product-stats">
-            {card.times.map((fact) => (
-              <div key={fact.label} className="panel">
-                <dt>{fact.label}</dt>
-                <dd>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
-        <p className="product-body">{card.timeBody}</p>
-      </section>
-      <section className="section" aria-labelledby="sticker-heading">
-        <div className="section-head">
-          <h2 id="sticker-heading">{card.stickerHeading}</h2>
-        </div>
-        <ul className="privacy-list panel">
-          {card.sticker.map((item) => (
-            <li key={item}>
-              <RichText text={item} />
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section className="section" aria-labelledby="faq-heading">
-        <div className="section-head">
-          <h2 id="faq-heading">{card.faqHeading}</h2>
-        </div>
-        <div className="faq">
-          {card.faq.map((item) => (
-            <details key={item.q} className="panel">
-              <summary>{item.q}</summary>
-              <p>
-                <RichText text={item.a} />
-              </p>
-            </details>
-          ))}
-        </div>
-      </section>
+      {/* The print guide, folded (visitor round 2, item 26: the page was 24 screens on a phone). */}
+      <details className="booth-makers guide-fold">
+        <summary>
+          <span className="booth-makers-title">the print guide</span>
+          <span className="booth-makers-what">what you need, the steps, how long, the sticker, questions</span>
+        </summary>
+          <section className="section" aria-labelledby="need-heading">
+            <div className="section-head">
+              <h2 id="need-heading">{card.needHeading}</h2>
+            </div>
+            <ul className="privacy-list panel">
+              {card.need.map((item) => (
+                <li key={item}>
+                  <RichText text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="section" aria-labelledby="steps-heading">
+            <div className="section-head">
+              <h2 id="steps-heading">{card.stepsHeading}</h2>
+            </div>
+            <ol className="product-steps card-page-steps">
+              {card.steps.map((step, index) => (
+                <li key={step.title} className="panel">
+                  <span className="num">{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+          <section className="section" aria-labelledby="time-heading">
+            <div className="section-head">
+              <h2 id="time-heading">{card.timeHeading}</h2>
+            </div>
+            {card.times.length > 0 && (
+              <dl className="stats product-stats">
+                {card.times.map((fact) => (
+                  <div key={fact.label} className="panel">
+                    <dt>{fact.label}</dt>
+                    <dd>{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <p className="product-body">{card.timeBody}</p>
+          </section>
+          <section className="section" aria-labelledby="sticker-heading">
+            <div className="section-head">
+              <h2 id="sticker-heading">{card.stickerHeading}</h2>
+            </div>
+            <ul className="privacy-list panel">
+              {card.sticker.map((item) => (
+                <li key={item}>
+                  <RichText text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="section" aria-labelledby="faq-heading">
+            <div className="section-head">
+              <h2 id="faq-heading">{card.faqHeading}</h2>
+            </div>
+            <div className="faq">
+              {card.faq.map((item) => (
+                <details key={item.q} className="panel">
+                  <summary>{item.q}</summary>
+                  <p>
+                    <RichText text={item.a} />
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+      </details>
     </>
   )
   const cta = (

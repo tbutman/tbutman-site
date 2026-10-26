@@ -59,6 +59,8 @@ const en = {
   },
 
   installHeading: 'install in a minute',
+  moreHeading: 'more about the app',
+  moreWhat: 'what it shares, cards, how it works, privacy, questions',
   check: {
     heading: 'Check your download',
     apk: 'The APK’s SHA-256',
@@ -179,7 +181,7 @@ const en = {
     },
     {
       q: 'What if I change phones?',
-      a: 'Save a backup to a file (**Settings → Backup and restore**, from the gear on the Cards tab), move it to your new phone however you like, and restore it there. Tilde has no cloud and no account, so the file is yours; it isn’t encrypted, so keep it somewhere private. A backup from Tilde 1.2 can’t be restored in 1.3.',
+      a: 'Save a backup to a file (**Settings → Backup and restore**, from the gear on the Cards tab), move it to your new phone however you like, and restore it there. Tilde has no cloud and no account, so the file is yours; it isn’t encrypted, so keep it somewhere private.',
     },
     {
       q: 'Is it really free?',
@@ -195,7 +197,7 @@ const en = {
     },
     {
       q: 'How do I install it without the Play Store?',
-      a: `No developer mode needed: follow the three steps under **install in a minute** near the top of this page, or the [full install guide](${installGuide}). For automatic updates, the free Obtainium app can check for new versions for you ([how](${updatesGuide})).`,
+      a: `No developer mode needed: follow the three steps under **install in a minute** on this page, or the [full install guide](${installGuide}). For automatic updates, the free Obtainium app can check for new versions for you ([how](${updatesGuide})).`,
     },
   ],
 
@@ -232,6 +234,8 @@ const pt: TildeText = {
   },
 
   installHeading: 'instalar num minuto',
+  moreHeading: 'mais sobre a app',
+  moreWhat: 'o que partilha, cartões, como funciona, privacidade, perguntas',
   check: {
     heading: 'Verifica o que descarregaste',
     apk: 'O SHA-256 do APK',
@@ -352,7 +356,7 @@ const pt: TildeText = {
     },
     {
       q: 'E se mudar de telemóvel?',
-      a: 'Guarda uma cópia de segurança num ficheiro (**Definições → Cópia de segurança e restauro**, na roda dentada do separador Cartões), passa-o para o telemóvel novo como preferires e restaura-a lá. A Tilde não tem nuvem nem conta, por isso o ficheiro é teu; não é encriptado, por isso guarda-o num sítio privado. Uma cópia de segurança da Tilde 1.2 não pode ser restaurada na 1.3.',
+      a: 'Guarda uma cópia de segurança num ficheiro (**Definições → Cópia de segurança e restauro**, na roda dentada do separador Cartões), passa-o para o telemóvel novo como preferires e restaura-a lá. A Tilde não tem nuvem nem conta, por isso o ficheiro é teu; não é encriptado, por isso guarda-o num sítio privado.',
     },
     {
       q: 'É mesmo grátis?',

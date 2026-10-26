@@ -1,5 +1,5 @@
 {
-  "source": "e1e398fcbbaa599c8dd0d747c3c3b02b6d50f76cc3282546c52e5ff5f41bb1fc",
+  "source": "1b3e1c8bb7f6c5ae3d31501608062966c6182e28a151ac30f5752a75413bbdfa",
   "sections": [
     {
       "title": "The family",
@@ -25,7 +25,7 @@
               "sub": []
             },
             {
-              "text": "**Home & desk:** the Wi-Fi coaster, the Tilde Stand and the Stand Mini, and the sticky note, the calendar and the grocery list for the fridge.",
+              "text": "**Home & desk:** the sticky note and the grocery list for the fridge, the Wi-Fi coaster, the calendar, the Tilde Stand and the Stand Mini.",
               "sub": []
             },
             {
@@ -75,7 +75,7 @@
               ]
             },
             {
-              "text": "**What fits on a sticker:** a link fits any NTAG213, 215 or 216 sticker. A full contact card needs room: Android offers to save it only if it fits (NTAG216 holds the most).",
+              "text": "**Which sticker:** a round NFC sticker, 25 mm. An NTAG216 holds a full contact card; an NTAG215 is fine for a link or your guest Wi-Fi. Search “NTAG216 25mm round NFC sticker”.",
               "sub": []
             },
             {
@@ -106,7 +106,11 @@
               "sub": []
             },
             {
-              "text": "**MakerWorld’s Model Maker** is the same customizer in your browser: you change the settings and download a 3MF that’s ready to print. Our MakerWorld listings aren’t public yet; when they are, each product links its listing here.",
+              "text": "**In color:** export a **3MF**, not an STL: the colors are flush inlays, and an STL merges them into one plain piece. A recent OpenSCAD development snapshot keeps the colors in the 3MF; open it in Bambu Studio and choose the process again.",
+              "sub": []
+            },
+            {
+              "text": "**MakerWorld’s Model Maker** is the same customizer in your browser: you change the settings and download a 3MF that’s ready to print. The Tilde listings on MakerWorld aren’t public yet; when they are, each product links its listing here.",
               "sub": []
             },
             {
@@ -114,7 +118,7 @@
               "sub": []
             },
             {
-              "text": "**Printable now:** the Tilde Card, the fobs and the Retro handheld (Base). **Coming soon:** the Wi-Fi coaster, the Tilde Stand, the Stand Mini, the sticky note, the calendar and the grocery list.",
+              "text": "**Printable now:** the Tilde Card, the fobs, the Retro handheld (Base), the sticky note, the grocery list, the calendar, the Wi-Fi coaster and the Tilde Stand. **Coming soon:** the Stand Mini’s files, and the Premium handheld. Writing notes and lists from the app comes in the next app update.",
               "sub": []
             }
           ]
@@ -167,8 +171,7 @@
               "text": "",
               "items": [
                 "**The fobs:** the same uses on your keys: a Base tag or a Premium coin in the card’s colors.",
-                "**Tilde Card, Two-Piece:** the same designs, with a back you can swap.",
-                "**The pocket cases:** for 3 or 5 cards."
+                "**Tilde Card, Two-Piece:** the same designs, with a back you can swap."
               ]
             },
             "options": {
@@ -189,15 +192,15 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin (search “NTAG215 25 mm round NFC sticker”).",
+                "**NFC sticker:** 1 round sticker, 22–25 mm, thin: an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color (AMS or similar) for the card’s colors; a 0.4 mm nozzle (0.2 for finer text).",
                 "**The pause:** add one pause in Bambu Studio at the sticker’s layer (PRINTING.md says which).",
-                "**Print time:** about 53 min on a 0.4 mm nozzle.",
+                "**Print time:** about 1 h on a 0.4 mm nozzle, at the default settings; about 17.5 g of PLA.",
                 "**Difficulty:** medium (one pause to time)."
               ]
             },
             "files": {
-              "text": "[the Tilde Card on GitHub](https://github.com/tbutman/tilde-card) (`card.scad`, PRINTING.md).",
+              "text": "[the Tilde Card on GitHub](https://github.com/tbutman/tilde-card): `card.scad` in OpenSCAD’s Customizer, exported as a 3MF, and PRINTING.md (the pause). MakerWorld’s Model Maker once its listing is public.",
               "items": []
             }
           }
@@ -241,9 +244,8 @@
             "pairsWith": {
               "text": "",
               "items": [
-                "**The fobs:** the same uses on your keys: a Base coin or a Premium coin in the same theme.",
-                "**Tilde Card, Solid:** for a card that’s sealed for good.",
-                "**The pocket cases:** for 3 or 5 cards."
+                "**The fobs:** the same uses on your keys: a Base tag or a Premium coin in the card’s colors.",
+                "**Tilde Card, Solid:** for a card that’s sealed for good."
               ]
             },
             "options": {
@@ -263,14 +265,15 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin.",
+                "**NFC sticker:** 1 round sticker, 22–25 mm, thin: an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color (AMS or similar); a 0.4 mm nozzle.",
                 "**Glue (optional):** superglue gel, for a card that stays shut for good.",
+                "**Print time:** about 55 min on a 0.4 mm nozzle, at the default settings; about 14.8 g of PLA.",
                 "**Difficulty:** easy (no pause)."
               ]
             },
             "files": {
-              "text": "[the Tilde Card on GitHub](https://github.com/tbutman/tilde-card) (`card-2piece.scad`, [TWO-PIECE.md](https://github.com/tbutman/tilde-card/blob/main/docs/TWO-PIECE.md)).",
+              "text": "[the Tilde Card on GitHub](https://github.com/tbutman/tilde-card): `card-2piece.scad` in OpenSCAD’s Customizer, exported as a 3MF of both pieces, and [TWO-PIECE.md](https://github.com/tbutman/tilde-card/blob/main/docs/TWO-PIECE.md) (its script, `make_2piece.py`, builds and checks them). MakerWorld’s Model Maker once its listing is public.",
               "items": []
             }
           }
@@ -336,13 +339,13 @@
               ]
             },
             "specs": {
-              "text": "28.8 × 35.3 mm (links up to 17 characters), 31 × 37.5 (up to 32), 35 × 41.5 (up to 53); 1.8 mm thick. PLA, about 2.5 g.",
+              "text": "28.8 × 35.3 mm (links up to 17 characters), 31 × 37.5 (up to 32), 35 × 41.5 (up to 53); 1.8 mm thick. PLA, about 5.7 g.",
               "items": []
             },
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**NFC sticker:** 1 round sticker, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick): an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color (an AMS or similar), for the inlaid code and icon; one color for an engraved tag.",
                 "**Filament:** PLA, 3 colors, about 5.7 g (black 3.0, white 1.7, orange 0.9 at the defaults).",
                 "**Print time:** about 29 min alone on an A1 mini (less when several share a plate).",
@@ -351,7 +354,7 @@
               ]
             },
             "files": {
-              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md) (`keyring.scad`).",
+              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md): `keyring.scad` in OpenSCAD’s Customizer, or `make_keyring.py --local`, which builds your fob’s color files and checks them (KEYRING.md). The Tilde Keyrings Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -412,13 +415,13 @@
               ]
             },
             "specs": {
-              "text": "32 × 41.5 mm with its tab, 3.4 mm thick; earless, 32 × 32 mm. PLA, about 3.1 g.",
+              "text": "32 × 41.5 mm with its tab, 3.4 mm thick; earless, 32 × 32 mm. PLA, about 5.6 g.",
               "items": []
             },
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**NFC sticker:** 1 round sticker, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick): an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color for an inlaid icon; one color for an engraved one.",
                 "**Filament:** PLA, 2 colors, about 5.6 g (black 4.1, orange 1.5).",
                 "**Print time:** about 22 min alone.",
@@ -427,7 +430,7 @@
               ]
             },
             "files": {
-              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md).",
+              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md): `keyring.scad` in OpenSCAD’s Customizer, or `make_keyring.py --local`, which builds your fob’s color files and checks them (KEYRING.md). The Tilde Keyrings Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -486,13 +489,13 @@
               ]
             },
             "specs": {
-              "text": "36 × 44 mm (links up to 32 characters), 37 × 44.5 (up to 53); earless, 36 × 36. About 6 mm thick. PLA, 4 walls; about 6.2 g.",
+              "text": "36 × 44 mm (links up to 32 characters), 37 × 44.5 (up to 53); earless, 36 × 36. About 6 mm thick. PLA, 4 walls; about 14.8 g with its T-key.",
               "items": []
             },
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**NFC sticker:** 1 round sticker, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick): an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color; set 4 wall loops.",
                 "**Filament:** PLA, 3 colors, about 14.8 g with its T-key (black 12.0, white 1.8, orange 0.9).",
                 "**Print time:** about 46 min alone, with its T-key (the key adds about 7.5 min and 4.5 g; leave it off if you have one).",
@@ -501,7 +504,7 @@
               ]
             },
             "files": {
-              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md).",
+              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md): `keyring.scad` in OpenSCAD’s Customizer, or `make_keyring.py --local`, which builds your fob’s color files and checks them (KEYRING.md). The Tilde Keyrings Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -557,13 +560,13 @@
               "items": []
             },
             "specs": {
-              "text": "36 × 46 mm with its eyelet; earless, 36 × 36 mm. About 6 mm thick. PLA, 4 walls; about 5.5 g. The T-key is 42 × 12 mm at its crossbar.",
+              "text": "36 × 46 mm with its eyelet; earless, 36 × 36 mm. About 6 mm thick. PLA, 4 walls; about 13.1 g with its T-key. The T-key is 42 × 12 mm at its crossbar.",
               "items": []
             },
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**NFC sticker:** 1 round sticker, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick): an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color for an inlaid icon; set 4 wall loops.",
                 "**Filament:** PLA, 2 colors, about 13.1 g with its T-key (black 11.5, orange 1.6); earless, about 12.6 g.",
                 "**Print time:** about 35 min alone, with its T-key.",
@@ -572,7 +575,7 @@
               ]
             },
             "files": {
-              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md).",
+              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md): `keyring.scad` in OpenSCAD’s Customizer, or `make_keyring.py --local`, which builds your fob’s color files and checks them (KEYRING.md). The Tilde Keyrings Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -642,7 +645,7 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**NFC sticker:** 1 round sticker, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick): an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”.",
                 "**Printer:** multi-color, 4 colors. You set the first layer’s color order by hand (the model’s notes say how).",
                 "**Filament:** PLA, 4 colors: off-white, near-black, olive and wine (matte recommended).",
                 "**Base:** about 7.5 g Large, 6.8 g Standard.",
@@ -653,7 +656,7 @@
               ]
             },
             "files": {
-              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md).",
+              "text": "[the keyrings on GitHub](https://github.com/tbutman/tilde-card/blob/main/docs/KEYRING.md): `keyring.scad` in OpenSCAD’s Customizer, or `make_keyring.py --local`, which builds your fob’s color files and checks them (KEYRING.md). The Tilde Keyrings Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -665,6 +668,155 @@
       "id": "home",
       "products": [
         {
+          "name": "Sticky note",
+          "id": "sticky-note",
+          "fields": {
+            "name": {
+              "text": "Sticky note",
+              "items": []
+            },
+            "availability": {
+              "text": "Printable now",
+              "items": []
+            },
+            "oneLiner": {
+              "text": "a printed sticky note for the fridge or the desk, with a tap icon and an NFC sticker inside.",
+              "items": []
+            },
+            "problem": {
+              "text": "the note you’d leave for the family (the Wi-Fi, who to call, when you’re back) as a tap you update from your phone, not a scrawl you rewrite.",
+              "items": []
+            },
+            "howItWorks": {
+              "text": "",
+              "items": [
+                "**Tap** the tap icon: the sticker is under it.",
+                "**Today:** it opens whatever you write to it, like any sticker: a link, your contact card, your guest Wi-Fi.",
+                "**Coming in the next app update, notes:** write a note in Tilde (“Back at 6, dinner’s in the fridge”), then Write a sticker. A tap opens the note on a page, on any phone, with no app. To change it, edit it in Tilde and tap the sticker again.",
+                "**Anyone who taps it can read it.**",
+                "**On the fridge:** magnets in the back. On a desk: the cradle, or the thin back."
+              ]
+            },
+            "uses": {
+              "text": "",
+              "items": [
+                "**Guest Wi-Fi on the fridge:** Android guests tap; iPhones scan a Wi-Fi code.",
+                "**A note for the family:** for the sitter or the kids (coming in the next app update).",
+                "**Save my contact:** the family’s numbers, as a contact card.",
+                "**A link:** the school calendar, the takeout menu."
+              ]
+            },
+            "pairsWith": {
+              "text": "",
+              "items": [
+                "**Grocery list:** the same back, for the list.",
+                "**Calendar:** the same family on the fridge.",
+                "**Wi-Fi coaster:** guest Wi-Fi with a code iPhones can scan."
+              ]
+            },
+            "options": {
+              "text": "",
+              "items": [
+                "**Size:** large (76 mm) or small (51 mm).",
+                "**The tap icon:** on or off, in a corner or the center.",
+                "**The back:** thin (no magnets), thick solid, or thick and light.",
+                "**Magnets:** outside, inside, or off. A pry cutaway to lift it, and a folded corner.",
+                "**A cradle** for the desk.",
+                "**Colors:** yellow and black, or your own."
+              ]
+            },
+            "specs": {
+              "text": "76 × 76 mm (small 51 × 51); the face is 1.6 mm, a thick back 5 mm. PLA, about 21 g (thin back) to 36 g (thick solid).",
+              "items": []
+            },
+            "whatYouNeed": {
+              "text": "",
+              "items": [
+                "**NFC sticker:** 1 round 25 mm sticker (an NTAG216 holds a full contact card; an NTAG215 is fine for a link); an **anti-metal** one (25 × 1.0 mm, ferrite side down) for the thick backs on a fridge.",
+                "**Magnets:** 10 × 2 mm, 3 for the large note (1 for the small).",
+                "**Glue:** for the folded corner.",
+                "**Printer:** two or three colors.",
+                "**Difficulty:** easy."
+              ]
+            },
+            "files": {
+              "text": "[the notes on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-notes.scad): open it in OpenSCAD’s Customizer, choose the Type, and export a 3MF. The Model Maker on MakerWorld once its listing is public.",
+              "items": []
+            }
+          }
+        },
+        {
+          "name": "Grocery list",
+          "id": "grocery-list",
+          "fields": {
+            "name": {
+              "text": "Grocery list",
+              "items": []
+            },
+            "availability": {
+              "text": "Printable now",
+              "items": []
+            },
+            "oneLiner": {
+              "text": "a printed list for the fridge, handwritten-style (“milk, bread, eggs”), with an NFC sticker inside.",
+              "items": []
+            },
+            "problem": {
+              "text": "the list on the fridge is never the one in your pocket.",
+              "items": []
+            },
+            "howItWorks": {
+              "text": "",
+              "items": [
+                "**Today:** a tap opens whatever you write to the sticker, such as a link. Tilde doesn’t make lists yet.",
+                "**Coming in the next app update, lists:** make the list in Tilde, then Write a sticker. A tap opens the list on a page with tick boxes, on any phone, with no app. Your ticks stay on your phone; they don’t change the list on the fridge. To update it, edit it in Tilde and tap the sticker again.",
+                "**It doesn’t sync:** the list on the page is what’s on the sticker. Only its owner updates it, in Tilde.",
+                "**Anyone who taps it can read the list.**"
+              ]
+            },
+            "uses": {
+              "text": "",
+              "items": [
+                "**The shopping list on the fridge:** tap it on the way out, and the list is on your phone (coming in the next app update).",
+                "**The week’s meal plan,** the same way (coming in the next app update)."
+              ]
+            },
+            "pairsWith": {
+              "text": "",
+              "items": [
+                "**Sticky note:** the same back and magnets.",
+                "**Calendar:** the family’s fridge."
+              ]
+            },
+            "options": {
+              "text": "",
+              "items": [
+                "**Size:** tall (76 × 102 mm) or short (76 × 76).",
+                "**The print:** a title and up to six items, each open, ticked or struck; the tap row’s words and layout.",
+                "**The back, magnets, cradle and colors:** as the sticky note (white, navy and khaki by default)."
+              ]
+            },
+            "specs": {
+              "text": "76 × 102 mm (short 76 × 76); the face is 1.6 mm. PLA, about 28 g (tall).",
+              "items": []
+            },
+            "whatYouNeed": {
+              "text": "",
+              "items": [
+                "**NFC sticker:** 1 round 25 mm sticker, under the tap doodle (an NTAG216 holds a full contact card; an NTAG215 is fine for a link); anti-metal for the thick backs on a fridge.",
+                "**Magnets:** 10 × 2 mm, 3.",
+                "**Glue:** for the folded corner.",
+                "**Printer:** three colors.",
+                "**Difficulty:** easy."
+              ]
+            },
+            "files": {
+              "text": "[the notes on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-notes.scad): open it in OpenSCAD’s Customizer, choose the Type, and export a 3MF. The Model Maker on MakerWorld once its listing is public.",
+              "items": []
+            }
+          }
+        },
+        {
           "name": "Wi-Fi coaster",
           "id": "wifi-coaster",
           "fields": {
@@ -673,7 +825,7 @@
               "items": []
             },
             "availability": {
-              "text": "Coming soon",
+              "text": "Printable now",
               "items": []
             },
             "oneLiner": {
@@ -725,7 +877,7 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 25 mm.",
+                "**NFC sticker:** 1 round sticker, 25 mm: an NTAG216 holds a full contact card; an NTAG215 is fine for a link or your guest Wi-Fi. Search “NTAG216 25mm round NFC sticker”.",
                 "**Weight:** up to 16 M8 fender washers, DIN 9021 (24 mm across; US 5/16” fender washers are larger and won’t fit).",
                 "**Underneath:** a 96 mm cork or felt disc, or three 12 mm felt pads.",
                 "**Printer:** multi-color; on an A1 mini, print the parts one at a time.",
@@ -733,7 +885,79 @@
               ]
             },
             "files": {
-              "text": "[the Wi-Fi coaster on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-wifi-coaster.scad).",
+              "text": "[the Wi-Fi coaster on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-wifi-coaster.scad): open it in OpenSCAD’s Customizer and export a 3MF. The Model Maker on MakerWorld once its listing is public.",
+              "items": []
+            }
+          }
+        },
+        {
+          "name": "Calendar",
+          "id": "calendar",
+          "fields": {
+            "name": {
+              "text": "Calendar",
+              "items": []
+            },
+            "availability": {
+              "text": "Printable now",
+              "items": []
+            },
+            "oneLiner": {
+              "text": "a tear-off-style desk calendar page (the month, the day, the weekday) that opens your booking page with a tap.",
+              "items": []
+            },
+            "problem": {
+              "text": "“When are you free?”, answered with a tap instead of a thread of messages.",
+              "items": []
+            },
+            "howItWorks": {
+              "text": "",
+              "items": [
+                "**Tap** the tap mark (bottom left): it opens your booking page (Calendly, a Google appointment page, any booking link). Write the link with Tilde’s Write a sticker, or NFC Tools on an iPhone.",
+                "**Today mode** prints TODAY with “tap to book”, so it never goes out of date.",
+                "On a desk in the cradle, or on the fridge with magnets."
+              ]
+            },
+            "uses": {
+              "text": "",
+              "items": [
+                "**Book a meeting:** your booking page.",
+                "**An event’s date:** a tap opens the event’s schedule.",
+                "**An evergreen desk page:** “TODAY · tap to book”."
+              ]
+            },
+            "pairsWith": {
+              "text": "",
+              "items": [
+                "**Sticky note:** the same family.",
+                "**Premium coin:** a “book a meeting” coin on your keys.",
+                "**Tilde Card:** your booking link in two places."
+              ]
+            },
+            "options": {
+              "text": "",
+              "items": [
+                "**The page:** the month, the day and the weekday, or Today mode.",
+                "**The binding:** holes, a printed band and line, or none.",
+                "**The back, magnets, cradle and colors:** as the sticky note (white, red and black by default)."
+              ]
+            },
+            "specs": {
+              "text": "70 × 80 mm; the face is 1.6 mm. PLA, about 23 g.",
+              "items": []
+            },
+            "whatYouNeed": {
+              "text": "",
+              "items": [
+                "**NFC sticker:** 1 round 25 mm sticker (an NTAG216 holds a full contact card; an NTAG215 is fine for a link); anti-metal for the thick backs on a fridge.",
+                "**Magnets:** 10 × 2 mm, 3 (optional).",
+                "**Printer:** three colors.",
+                "**Print time:** about 55 min.",
+                "**Difficulty:** easy."
+              ]
+            },
+            "files": {
+              "text": "[the notes on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-notes.scad): open it in OpenSCAD’s Customizer, choose the Type, and export a 3MF. The Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -747,7 +971,7 @@
               "items": []
             },
             "availability": {
-              "text": "Coming soon",
+              "text": "Printable now",
               "items": []
             },
             "oneLiner": {
@@ -792,14 +1016,14 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 25 mm.",
+                "**NFC sticker:** 1 round sticker, 25 mm: an NTAG216 holds a full contact card; an NTAG215 is fine for a link or your guest Wi-Fi. Search “NTAG216 25mm round NFC sticker”.",
                 "**Weight:** up to 16 M8 fender washers, DIN 9021, and a 2 mm cork disc for the cup’s floor.",
                 "**Printer:** multi-color; the parts fit an A1 mini’s plate.",
                 "**Difficulty:** medium."
               ]
             },
             "files": {
-              "text": "[the Tilde Stand on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-wifi-coaster.scad).",
+              "text": "[the Tilde Stand on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-wifi-coaster.scad) (Piece: Tilde Stand): open it in OpenSCAD’s Customizer and export a 3MF. The Model Maker on MakerWorld once its listing is public.",
               "items": []
             }
           }
@@ -865,226 +1089,6 @@
             },
             "files": {
               "text": "coming soon.",
-              "items": []
-            }
-          }
-        },
-        {
-          "name": "Sticky note",
-          "id": "sticky-note",
-          "fields": {
-            "name": {
-              "text": "Sticky note",
-              "items": []
-            },
-            "availability": {
-              "text": "Coming soon",
-              "items": []
-            },
-            "oneLiner": {
-              "text": "a printed sticky note for the fridge or the desk, with a tap icon and an NFC sticker inside.",
-              "items": []
-            },
-            "problem": {
-              "text": "the note you’d leave for the family (the Wi-Fi, who to call, when you’re back) as a tap you update from your phone, not a scrawl you rewrite.",
-              "items": []
-            },
-            "howItWorks": {
-              "text": "",
-              "items": [
-                "**Tap** the tap icon: the sticker is under it.",
-                "**Today:** it opens whatever you write to it, like any sticker: a link, your contact card, your guest Wi-Fi.",
-                "**Coming in the next app update, notes:** write a note in Tilde (“Back at 6, dinner’s in the fridge”), then Write a sticker. A tap opens the note on a page, on any phone, with no app. To change it, edit it in Tilde and tap the sticker again.",
-                "**Anyone who taps it can read it.**",
-                "**On the fridge:** magnets in the back. On a desk: the cradle, or the thin back."
-              ]
-            },
-            "uses": {
-              "text": "",
-              "items": [
-                "**Guest Wi-Fi on the fridge:** Android guests tap; iPhones scan a Wi-Fi code.",
-                "**A note for the family:** for the sitter or the kids (coming in the next app update).",
-                "**Save my contact:** the family’s numbers, as a contact card.",
-                "**A link:** the school calendar, the takeout menu."
-              ]
-            },
-            "pairsWith": {
-              "text": "",
-              "items": [
-                "**Grocery list:** the same back, for the list.",
-                "**Calendar:** the same family on the fridge.",
-                "**Wi-Fi coaster:** guest Wi-Fi with a code iPhones can scan."
-              ]
-            },
-            "options": {
-              "text": "",
-              "items": [
-                "**Size:** large (76 mm) or small (51 mm).",
-                "**The tap icon:** on or off, in a corner or the center.",
-                "**The back:** thin (no magnets), thick solid, or thick and light.",
-                "**Magnets:** outside, inside, or off. A pry cutaway to lift it, and a folded corner.",
-                "**A cradle** for the desk.",
-                "**Colors:** yellow and black, or your own."
-              ]
-            },
-            "specs": {
-              "text": "76 × 76 mm (small 51 × 51); the face is 1.6 mm, a thick back 5 mm. PLA, about 21 g (thin back) to 36 g (thick solid).",
-              "items": []
-            },
-            "whatYouNeed": {
-              "text": "",
-              "items": [
-                "**NFC sticker:** 1 round 25 mm sticker; an **anti-metal** one (25 × 1.0 mm, ferrite side down) for the thick backs on a fridge.",
-                "**Magnets:** 10 × 2 mm, 3 for the large note (1 for the small).",
-                "**Glue:** for the folded corner.",
-                "**Printer:** two or three colors.",
-                "**Difficulty:** easy."
-              ]
-            },
-            "files": {
-              "text": "[the notes on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-notes.scad).",
-              "items": []
-            }
-          }
-        },
-        {
-          "name": "Calendar",
-          "id": "calendar",
-          "fields": {
-            "name": {
-              "text": "Calendar",
-              "items": []
-            },
-            "availability": {
-              "text": "Coming soon",
-              "items": []
-            },
-            "oneLiner": {
-              "text": "a tear-off-style desk calendar page (the month, the day, the weekday) that opens your booking page with a tap.",
-              "items": []
-            },
-            "problem": {
-              "text": "“When are you free?”, answered with a tap instead of a thread of messages.",
-              "items": []
-            },
-            "howItWorks": {
-              "text": "",
-              "items": [
-                "**Tap** the tap mark (bottom left): it opens your booking page (Calendly, a Google appointment page, any booking link). Write the link with Tilde’s Write a sticker, or NFC Tools on an iPhone.",
-                "**Today mode** prints TODAY with “tap to book”, so it never goes out of date.",
-                "On a desk in the cradle, or on the fridge with magnets."
-              ]
-            },
-            "uses": {
-              "text": "",
-              "items": [
-                "**Book a meeting:** your booking page.",
-                "**An event’s date:** a tap opens the event’s schedule.",
-                "**An evergreen desk page:** “TODAY · tap to book”."
-              ]
-            },
-            "pairsWith": {
-              "text": "",
-              "items": [
-                "**Sticky note:** the same family.",
-                "**Premium coin:** a “book a meeting” coin on your keys.",
-                "**Tilde Card:** your booking link in two places."
-              ]
-            },
-            "options": {
-              "text": "",
-              "items": [
-                "**The page:** the month, the day and the weekday, or Today mode.",
-                "**The binding:** holes, a printed band and line, or none.",
-                "**The back, magnets, cradle and colors:** as the sticky note (white, red and black by default)."
-              ]
-            },
-            "specs": {
-              "text": "70 × 80 mm; the face is 1.6 mm. PLA, about 23 g.",
-              "items": []
-            },
-            "whatYouNeed": {
-              "text": "",
-              "items": [
-                "**NFC sticker:** 1 round 25 mm sticker (anti-metal for the thick backs on a fridge).",
-                "**Magnets:** 10 × 2 mm, 3 (optional).",
-                "**Printer:** three colors.",
-                "**Print time:** about 55 min.",
-                "**Difficulty:** easy."
-              ]
-            },
-            "files": {
-              "text": "[the notes on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-notes.scad).",
-              "items": []
-            }
-          }
-        },
-        {
-          "name": "Grocery list",
-          "id": "grocery-list",
-          "fields": {
-            "name": {
-              "text": "Grocery list",
-              "items": []
-            },
-            "availability": {
-              "text": "Coming soon",
-              "items": []
-            },
-            "oneLiner": {
-              "text": "a printed list for the fridge, handwritten-style (“milk, bread, eggs”), with an NFC sticker inside.",
-              "items": []
-            },
-            "problem": {
-              "text": "the list on the fridge is never the one in your pocket.",
-              "items": []
-            },
-            "howItWorks": {
-              "text": "",
-              "items": [
-                "**Today:** a tap opens whatever you write to the sticker, such as a link. Tilde doesn’t make lists yet.",
-                "**Coming in the next app update, lists:** make the list in Tilde, then Write a sticker. A tap opens the list on a page with tick boxes, on any phone, with no app. Your ticks stay on your phone; they don’t change the list on the fridge. To update it, edit it in Tilde and tap the sticker again.",
-                "**Anyone who taps it can read the list.**"
-              ]
-            },
-            "uses": {
-              "text": "",
-              "items": [
-                "**The shopping list on the fridge:** tap it on the way out, and the list is on your phone (coming in the next app update).",
-                "**The week’s meal plan,** the same way (coming in the next app update)."
-              ]
-            },
-            "pairsWith": {
-              "text": "",
-              "items": [
-                "**Sticky note:** the same back and magnets.",
-                "**Calendar:** the family’s fridge."
-              ]
-            },
-            "options": {
-              "text": "",
-              "items": [
-                "**Size:** tall (76 × 102 mm) or short (76 × 76).",
-                "**The print:** a title and up to six items, each open, ticked or struck; the tap row’s words and layout.",
-                "**The back, magnets, cradle and colors:** as the sticky note (white, navy and khaki by default)."
-              ]
-            },
-            "specs": {
-              "text": "76 × 102 mm (short 76 × 76); the face is 1.6 mm. PLA, about 28 g (tall).",
-              "items": []
-            },
-            "whatYouNeed": {
-              "text": "",
-              "items": [
-                "**NFC sticker:** 1 round 25 mm sticker, under the tap doodle (anti-metal for the thick backs on a fridge).",
-                "**Magnets:** 10 × 2 mm, 3.",
-                "**Glue:** for the folded corner.",
-                "**Printer:** three colors.",
-                "**Difficulty:** easy."
-              ]
-            },
-            "files": {
-              "text": "[the notes on GitHub](https://github.com/tbutman/tilde-card/blob/main/makerworld/tilde-notes.scad).",
               "items": []
             }
           }

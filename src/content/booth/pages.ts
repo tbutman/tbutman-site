@@ -157,7 +157,8 @@ export const appPage: BoothPage = {
   shortLink: 'taptilde.com/app',
   status: 'android · free · open source',
   name: 'Tilde for Android',
-  headline: ['Write your own fob.', 'Your phone is one.'],
+  // "fob" was unclear to a first-time visitor (visitor round 2, item 18): tags, which any page explains.
+  headline: ['Write your own tags.', 'Your phone is one, too.'],
   hero: 'app-09-tap-ready',
   heroRatio: 'phone',
   copy: appCopy as BoothCopy,
@@ -256,11 +257,12 @@ export const productRenders: Record<string, Placement> = {
 }
 
 /**
- * Use cases in the plan's lead order (finish-line plan §3): save my contact, guest Wi-Fi, a link,
- * lost keys, the shopping list, book a meeting, WhatsApp; the rest after, in docs' order. Each use
- * links to the products whose uses (docs' sheet) name it.
+ * Use cases, what an iPhone does from a tap first (visitor round 2, item 7, the coordinator's call):
+ * a link, book a meeting, WhatsApp, then contact card, guest Wi-Fi, lost item, call my family, share
+ * your number. Docs' uses.md is in this order too; the hub leads with the first three. Each use links
+ * to the products whose uses (docs' sheet) name it.
  */
-export const useOrder = ['contact-card', 'guest-wi-fi', 'link', 'lost-item', 'book-a-meeting', 'whatsapp']
+export const useOrder = ['link', 'book-a-meeting', 'whatsapp', 'contact-card', 'guest-wi-fi', 'lost-item', 'call-my-family', 'share-your-number']
 export const useProducts: Record<string, RegExp> = {
   'contact-card': /^save my contact/i,
   'guest-wi-fi': /wi-fi/i,

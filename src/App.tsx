@@ -22,7 +22,10 @@ function useDocumentMeta() {
     document.title = meta.title
     document.documentElement.lang = meta.lang
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
-    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView()
+    // A target inside a fold (the card's print guide, the app's extras) opens it first.
+    const target = hash ? document.getElementById(hash.slice(1)) : null
+    for (let fold = target?.closest('details'); fold; fold = fold.parentElement?.closest('details')) fold.open = true
+    if (target) target.scrollIntoView()
     else window.scrollTo(0, 0)
   }, [pathname, hash])
 }
@@ -53,7 +56,7 @@ export default function App() {
           {/* The booth's stations (English only): taptilde.com/fobs, /uses and /app. */}
           <Route path="/tilde/fobs" element={<FobsPage />} />
           <Route path="/tilde/uses" element={<UsesPage />} />
-          <Route path="/tilde/app" element={<AppPage insert={<AppSections locale="en" />} />} />
+          <Route path="/tilde/app" element={<AppPage insert={<AppSections locale="en" fold />} />} />
           <Route path="/tilde/home" element={<HomePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

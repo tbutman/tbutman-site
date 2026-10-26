@@ -25,7 +25,7 @@ const en = {
   status: 'you tapped or scanned my card',
   headline: ['Hi, I’m Thomas.', 'Good to meet you.'],
   intro:
-    'You got here from my business card or my phone. The card is a Tilde Card I designed and 3D-printed, with an NFC sticker sealed inside it halfway through the print. The phone runs Tilde, an open-source Android app I wrote that makes it work like the card. This page is served from a small server in my home in Lisbon.',
+    'You got here from my business card or my phone. The card is a Tilde Card I designed and 3D-printed, with an NFC sticker pressed in between its two printed pieces. The phone runs Tilde, an open-source Android app I wrote that makes it work like the card. This page is served from a small server in my home in Lisbon.',
   openTo: 'open to',
   availability: profile.availability.toLowerCase(),
   engagement: profile.engagement.toLowerCase(),
@@ -44,6 +44,8 @@ const en = {
     'The 3D model generates its own QR code, and a script decodes it from the exported model before anything is printed.',
   // Tilde is its own site (Thomas, October 26: src/site.ts).
   projectLink: { label: 'get the app or print a tilde card, free →', to: 'https://taptilde.com' },
+  // For a hiring manager who got Thomas's own card (visitor round 2, item 27).
+  buildLink: { label: 'how I built this →', to: '/work/tilde' },
 }
 
 export type HelloText = typeof en
@@ -53,7 +55,7 @@ const pt: HelloText = {
   // A non-breaking hyphen (U+2011) keeps “conhecer‑te” on one line in the large headline.
   headline: ['Olá, sou o Thomas.', 'Prazer em conhecer\u2011te.'],
   intro:
-    'Chegaste aqui pelo meu cartão de visita ou pelo meu telemóvel. O cartão é um cartão Tilde que desenhei e imprimi em 3D, com um autocolante NFC selado lá dentro a meio da impressão. O telemóvel tem a Tilde, uma app Android de código aberto que escrevi para funcionar como o cartão. Esta página é servida a partir de um pequeno servidor na minha casa, em Lisboa.',
+    'Chegaste aqui pelo meu cartão de visita ou pelo meu telemóvel. O cartão é um cartão Tilde que desenhei e imprimi em 3D, com um autocolante NFC encaixado entre as suas duas peças impressas. O telemóvel tem a Tilde, uma app Android de código aberto que escrevi para funcionar como o cartão. Esta página é servida a partir de um pequeno servidor na minha casa, em Lisboa.',
   openTo: 'disponível para',
   availability: 'remoto (EUA) ou presencial em Lisboa',
   engagement: 'tempo inteiro ou contrato',
@@ -71,6 +73,7 @@ const pt: HelloText = {
   cardNote:
     'O modelo 3D gera o seu próprio código QR, e um script descodifica-o a partir do modelo exportado antes de qualquer impressão.',
   projectLink: { label: 'obtém a app ou imprime um cartão tilde, grátis →', to: 'https://taptilde.com/pt' },
+  buildLink: { label: 'como o fiz (em inglês) →', to: '/work/tilde' },
 }
 
 export const helloText: Record<Locale, HelloText> = { en, pt }

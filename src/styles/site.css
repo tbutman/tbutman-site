@@ -2420,6 +2420,21 @@ main {
   margin-top: 1rem;
 }
 
+/* On an iPhone, in place of "get the app" (src/components/NotOnIPhone.tsx). */
+.iphone-app-note {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--muted);
+}
+
+/* "No 3D printer?": a short line where making one comes up. */
+.no-printer {
+  margin: 1rem 0 0;
+  color: var(--text-soft);
+}
+
 /* "On an iPhone?": a short line in a panel, near the top. */
 .iphone-note {
   margin: 1.5rem 0 0;
@@ -2478,9 +2493,24 @@ main {
   color: var(--dim);
 }
 
-/* "See an example": what a tap on this product shows (the note page). */
-.booth-example {
-  margin: 1rem 0 0;
+/* Beside a product's first line: "see an example" (the note page) and where its files are. */
+.booth-product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.booth-files {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
+.booth-files b {
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--accent);
 }
 
 /* For makers: folded under each product, with what you need in a box. */
@@ -2491,11 +2521,45 @@ main {
 
 .booth-makers summary {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 0.25rem 0.75rem;
   min-height: 44px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
   cursor: pointer;
+  list-style: none;
   font: 400 0.8125rem/1.4 var(--font-mono);
+}
+
+.booth-makers summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A triangle that turns when the fold opens. */
+.booth-makers-title::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.15s;
+}
+
+.booth-makers[open] .booth-makers-title::before {
+  transform: rotate(90deg);
+}
+
+.booth-makers-title {
   color: var(--accent);
+}
+
+.booth-makers-what {
+  color: var(--muted);
+}
+
+.booth-makers summary:hover {
+  border-color: var(--accent-line);
 }
 
 .booth-need {

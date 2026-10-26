@@ -24,6 +24,9 @@ export const LEAKS = [
   ['a print-guide-only note', /not for ads/i],
   ['Google Play (not live: Thomas, October 26)', /on Google Play/i],
   ['"iPhone app coming soon" (Thomas, October 26)', /iPhone app coming soon/i],
+  // No company voice on the Tilde pages (visitor round 2, item 13): "I" only in the mystery reveal and
+  // the case study. "us" only in lower case, so "US quarter" and "US 5/16" washers" pass.
+  ['"we", "our" or "us" (no company voice)', /\b(?:[Ww]e|[Oo]urs?|us)\b/],
 ]
 
 export const RELEASE = [

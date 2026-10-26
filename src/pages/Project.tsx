@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link, useParams } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
+import RichText from '../components/RichText'
 import { diagrams } from '../content/diagrams'
 import { findProject, projects, type Project as ProjectType } from '../content/projects'
 import NotFound from './NotFound'
@@ -31,7 +32,11 @@ export default function Project() {
       </p>
       <h1>{project.title}</h1>
       <p className="lede">{project.summary}</p>
-      {project.scope && <p className="scope">{project.scope}</p>}
+      {project.scope && (
+        <p className="scope">
+          <RichText text={project.scope} />
+        </p>
+      )}
       <ul className="tags" aria-label="Stack">
         {project.stack.map((tech) => (
           <li key={tech}>{tech.toLowerCase()}</li>

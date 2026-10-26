@@ -1,5 +1,5 @@
 {
-  "source": "dd0e4f37e7b2f033612de1838c3acd5aa3c4978ceb96916eb9ae84b33139449c",
+  "source": "7a7bb4d23e233c73962653cdd714f461f76ea34a12d3e94b42be75f6038bb26c",
   "blocks": [
     {
       "type": "h2",
@@ -148,7 +148,7 @@
     },
     {
       "type": "p",
-      "text": "**Which stickers:** round NFC stickers, NTAG215 or 216 (an NTAG213 holds a link only). A full contact card needs an NTAG216."
+      "text": "**Which stickers:** round NFC stickers, 25 mm: an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”."
     },
     {
       "type": "image",
@@ -279,7 +279,7 @@
           "sub": []
         },
         {
-          "text": "**Install steps, FAQ and privacy:** [Tilde](/tilde)",
+          "text": "**Privacy:** [how Tilde handles your data](/tilde/privacy)",
           "sub": []
         }
       ]
