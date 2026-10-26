@@ -180,6 +180,21 @@ if (!TILDE) {
   console.log(`wrote ${card.file}`)
 }
 
+// The App Link for taptilde.com/p (Tilde 1.4.0's package tracker): the app's package and its release
+// certificate's SHA-256, from src/content/app-links.json. Written only once the app agent's values
+// are in, and only on taptilde.com, where the link lives.
+if (TILDE) {
+  const links = JSON.parse(await readFile(join(root, 'src', 'content', 'app-links.json'), 'utf8'))
+  const fingerprints = (links.sha256 ?? []).filter((value) => /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/.test(value))
+  if (fingerprints.length !== (links.sha256 ?? []).length) throw new Error('app-links.json: a sha256 that isn\'t 32 upper-case hex pairs with colons')
+  if (fingerprints.length) {
+    const statement = [{ relation: ['delegate_permission/common.handle_all_urls'], target: { namespace: 'android_app', package_name: links.package, sha256_cert_fingerprints: fingerprints } }]
+    await mkdir(join(dist, '.well-known'), { recursive: true })
+    await writeFile(join(dist, '.well-known', 'assetlinks.json'), `${JSON.stringify(statement, null, 2)}\n`)
+    console.log(`wrote .well-known/assetlinks.json (${links.package}, ${fingerprints.length} certificate)`)
+  } else console.log('no assetlinks.json yet: src/content/app-links.json has no sha256')
+}
+
 // taptilde.com carries Tilde's files only: not the résumé, other projects' images, or their previews.
 if (TILDE) {
   for (const file of ['Thomas_Butman_Resume.pdf', 'trails']) await rm(join(dist, file), { recursive: true, force: true })

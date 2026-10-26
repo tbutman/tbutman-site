@@ -1,0 +1,5 @@
+{
+  "$comment": "The App Link for taptilde.com/p (Tilde 1.4.0, package tracking). The release certificate's SHA-256, from the app agent (read from the public signed APK). Empty: the prerender writes no assetlinks.json.",
+  "package": "com.tbutman.tilde",
+  "sha256": []
+}

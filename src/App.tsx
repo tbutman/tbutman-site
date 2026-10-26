@@ -12,6 +12,7 @@ import Resume from './pages/Resume'
 import Thanks from './pages/Thanks'
 import Tilde, { AppSections } from './pages/Tilde'
 import TildePrivacy from './pages/TildePrivacy'
+import PackagePage from './pages/PackagePage'
 import TildeCard from './pages/TildeCard'
 import { AppPage, FobsPage, HomePage, UsesPage } from './booth'
 
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="/tilde/uses" element={<UsesPage />} />
           <Route path="/tilde/app" element={<AppPage insert={<AppSections locale="en" fold />} />} />
           <Route path="/tilde/home" element={<HomePage />} />
+          <Route path="/tilde/p" element={<PackagePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

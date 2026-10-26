@@ -50,6 +50,7 @@ check /tilde/privacy          301 '^location: https://taptilde.com/privacy\?from
 check /tilde/c                301 '^location: https://taptilde.com/c\?from=tbutman\.com$'
 check /tilde/n                301 '^location: https://taptilde.com/n\?from=tbutman\.com$'
 check /tilde/home             301 '^location: https://taptilde.com/home\?from=tbutman\.com$'
+check /tilde/p                301 '^location: https://taptilde.com/p\?from=tbutman\.com$'
 check /tilde/share.webp       200 '^content-type: image/webp'
 check /_taptilde/index.html   404
 check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable' '!content-security-policy'
@@ -73,6 +74,11 @@ check /app                    200 '^content-type: text/html'
 check /privacy                200 '^content-type: text/html'
 check /pt/privacy             200 '^content-type: text/html'
 check /c                      200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}" "^content-security-policy: frame-ancestors 'none'; base-uri 'none'; object-src 'none'$"
+check /p                      200 '^content-type: text/html' "$tilde_csp"
+# The App Link's statement, once the build has one (src/content/app-links.json): JSON, no redirect.
+if [[ "$(curl -s -o /dev/null -w '%{http_code}' -H "Host: $HOST" "$BASE/.well-known/assetlinks.json")" != 404 ]]; then
+  check /.well-known/assetlinks.json 200 '^content-type: application/json' '^cache-control: public, max-age=3600' '!location'
+fi
 check /n                      200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}" "^content-security-policy: frame-ancestors 'none'; base-uri 'none'; object-src 'none'$"
 check /cards                  301 '^location: /card$'
 check /mystery                302 '^location: /\?from=mystery-card$'
