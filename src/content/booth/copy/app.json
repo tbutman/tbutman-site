@@ -1,5 +1,5 @@
 {
-  "source": "79db68ab70df368e3e71b8db6350deb82d9d94183c563e4717c4593e44072318",
+  "source": "dd0e4f37e7b2f033612de1838c3acd5aa3c4978ceb96916eb9ae84b33139449c",
   "blocks": [
     {
       "type": "h2",
@@ -118,11 +118,7 @@
     },
     {
       "type": "p",
-      "text": "**Or start from a template.** On the Cards tab, tap **+** (New card), then **Start from a template**: Family, Work, Socials, Lost & found or Guest Wi-Fi. Each is a card for one use, with a short note on what to fill in."
-    },
-    {
-      "type": "image",
-      "text": "the templates: New card, the five templates, Edit card from the Family template, and a Family card on Share"
+      "text": "**Templates are coming in the next app update:** Family, Work, Socials, Lost & found and Guest Wi-Fi, each a card for one use, with a short note on what to fill in."
     },
     {
       "type": "h2",

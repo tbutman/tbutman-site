@@ -1,5 +1,5 @@
 {
-  "source": "e5bce844c57677e711ec67169cc6950ddfe98e602c1ca5be7349708dd3e79232",
+  "source": "6fd203c8da0fb8c98cd9dbc604dadf552fb1e33094517cefa67e6c42226cd94d",
   "blocks": [
     {
       "type": "h2",
@@ -82,7 +82,7 @@
           "sub": []
         },
         {
-          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Family → Create**. It’s named “Call my family” and shares your number, ready to call. Then use **Write a sticker**.",
+          "text": "**Make one:** in Tilde, make a card with one parent’s number, then **Write a sticker → Phone number** and pick **Call**.",
           "sub": []
         },
         {
@@ -278,7 +278,7 @@
           "sub": []
         },
         {
-          "text": "**Make one:** in Tilde’s Cards tab, tap **+** (New card), then **Start from a template → Lost & found → Create**. Its line is “Found this? Call or text me”, and it shares your number, ready to call. Then **Write a sticker**.",
+          "text": "**Make one:** in Tilde, make a card with your number, then **Write a sticker → Phone number** and pick **Call**.",
           "sub": []
         },
         {

@@ -7,6 +7,7 @@ import cardsCopy from './copy/cards.json'
 import fobsCopy from './copy/fobs.json'
 import hubCopy from './copy/hub.json'
 import usesCopy from './copy/uses.json'
+import { encodeNote } from '../../note/link.ts'
 import type { BoothCopy, Placement, Ratio } from './types'
 
 export type BoothPage = {
@@ -263,4 +264,27 @@ export const useProducts: Record<string, RegExp> = {
   whatsapp: /^whatsapp/i,
   // Under More ideas (docs 54), so it isn't reordered, but products' uses link to it.
   'the-shopping-list-on-the-fridge': /shopping list/i,
+}
+
+/**
+ * "See an example" on the products whose tap opens the note page (visitor round 2's brief): a sample
+ * note and a sample list, made by the same encoder the shared vectors check (src/note/link.ts), so
+ * a visitor sees what a tap will show before the app writes notes. The spec's own two examples,
+ * undated, so they never look stale.
+ */
+const notePage = (link: string) => `/tilde/n${link.slice(link.indexOf('#'))}`
+export const productExamples: Record<string, string> = {
+  'sticky-note': notePage(encodeNote({ id: '7qa2', title: 'For the sitter', message: "Back at 6.\nDinner's in the fridge, bedtime 8:30." })),
+  'grocery-list': notePage(
+    encodeNote({
+      id: 'k3f9',
+      title: 'Groceries',
+      items: [
+        { text: 'Milk', done: false },
+        { text: 'Bread', done: false },
+        { text: 'Olive oil', done: false },
+        { text: 'Eggs', done: true },
+      ],
+    }),
+  ),
 }

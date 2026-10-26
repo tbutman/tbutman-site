@@ -66,7 +66,7 @@ function Field({ name, field }: { name: ProductFieldKey; field: ProductField }) 
   )
 }
 
-export default function ProductSection({ product, renders, page }: { product: Product; renders?: Placement; page?: string }) {
+export default function ProductSection({ product, renders, example, page }: { product: Product; renders?: Placement; example?: string; page?: string }) {
   const { fields } = product
   return (
     <section id={product.id} className="booth-product" aria-labelledby={`${product.id}-heading`}>
@@ -86,6 +86,14 @@ export default function ProductSection({ product, renders, page }: { product: Pr
       {fields.problem && (
         <p className="product-body booth-p">
           <RichText text={sentence(fields.problem.text)} />
+        </p>
+      )}
+      {/* The note page isn't a route of this app: a plain link, so the browser loads it. */}
+      {example && (
+        <p className="booth-example">
+          <a className="button" href={example}>
+            see an example →
+          </a>
         </p>
       )}
       {renders && <Placed placement={renders} page={page ?? ''} marker={product.name} />}
