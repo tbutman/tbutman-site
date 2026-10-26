@@ -3,7 +3,7 @@ import { Hub } from '../booth'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
-import { tildeText } from '../content/tilde'
+import { allReleases, signingFingerprint, tildeText } from '../content/tilde'
 import { htmlLang, type Locale, translations } from '../i18n'
 
 // The newest release, looked up when the site builds; without it the button opens the release page.
@@ -44,6 +44,24 @@ export function AppSections({ locale }: { locale: Locale }) {
         <p className="product-body product-install-note">
           <RichText text={tilde.installNote} />
         </p>
+        {/* For the careful (visitor round 1, item 9): the APK's own hash from GitHub's release page, the
+            signing certificate's fingerprint from the app's README, and every release. */}
+        <div className="install-check panel">
+          <b>{tilde.check.heading}</b>
+          {release?.sha256 && (
+            <p>
+              {tilde.check.apk} ({release.version}):
+              <code>{release.sha256}</code>
+            </p>
+          )}
+          <p>
+            {tilde.check.certificate}:
+            <code>{signingFingerprint}</code>
+          </p>
+          <p>
+            <a href={allReleases}>{tilde.check.releases} ↗</a>
+          </p>
+        </div>
       </section>
 
       <section className="section" aria-labelledby="modes-heading">

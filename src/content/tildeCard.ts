@@ -52,7 +52,7 @@ const en = {
   steps: [
     {
       title: 'Put in your details',
-      body: 'Click Customize on MakerWorld and type your name, your link (up to 53 characters), the three lines on the back and your colors. Choose your nozzle, and whether the card has an NFC sticker. Long names shrink to fit.',
+      body: 'Open the model in OpenSCAD’s Customizer (free), or in MakerWorld’s Model Maker, the same customizer in your browser, once our listing is public. Type your name, your link (up to 53 characters), the three lines on the back and your colors. Choose your nozzle, and whether the card has an NFC sticker. Long names shrink to fit.',
     },
     {
       title: 'Write the sticker first',
@@ -121,7 +121,7 @@ const en = {
     },
     {
       q: 'Can I print it in one piece?',
-      a: 'Yes: on MakerWorld, choose Build: Solid. It prints as one piece, with a pause at the layer that closes the sticker’s pocket (layer 6 on a 0.4 mm nozzle) to press the sticker in. It takes about 53 minutes on a 0.4 mm nozzle and 4 hours on a 0.2 mm one. A card with no sticker always prints in one piece.',
+      a: 'Yes: in the Customizer, choose Build: Solid. It prints as one piece, with a pause at the layer that closes the sticker’s pocket (layer 6 on a 0.4 mm nozzle) to press the sticker in. It takes about 53 minutes on a 0.4 mm nozzle and 4 hours on a 0.2 mm one. A card with no sticker always prints in one piece.',
     },
     {
       q: 'Can I make it without MakerWorld?',
@@ -129,7 +129,7 @@ const en = {
     },
     {
       q: 'Can I use my own text or logo on the back?',
-      a: 'Yes: choose no back, then add your text or logo in your slicer, with its text and color-painting tools.',
+      a: `Yes, in your slicer. There’s no setting for a picture or a logo: choose the plain back (Back: None), then add it in Bambu Studio on the back’s top face, as the [printing guide](${printing}) shows.`,
     },
     {
       q: 'Something went wrong with my print.',

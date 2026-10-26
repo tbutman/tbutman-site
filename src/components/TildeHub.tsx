@@ -87,12 +87,14 @@ export default function TildeHub() {
   const familiesAt = top.findIndex((block) => block.type === 'ul')
   const families = familiesAt < 0 ? null : (top[familiesAt] as Extract<Block, { type: 'ul' | 'ol' }>)
   const after = familiesAt < 0 ? [] : top.slice(familiesAt + 1)
-  const how = (() => {
-    const at = intro.findIndex((block) => block.type === 'h3' && /^how every tilde works/i.test(block.text))
+  // One of The family's ### parts, by its heading.
+  const part = (heading: RegExp) => {
+    const at = intro.findIndex((block) => block.type === 'h3' && heading.test(block.text))
     if (at < 0) return []
     const next = intro.findIndex((block, index) => index > at && block.type === 'h3')
     return intro.slice(at + 1, next < 0 ? undefined : next)
-  })()
+  }
+  const how = part(/^how every tilde works/i)
 
   return (
     <>
@@ -185,18 +187,13 @@ export default function TildeHub() {
         <div className="section-head">
           <h2 id="make-heading">make your own</h2>
         </div>
+        <Text blocks={part(/^make your own/i)} />
         <ul className="booth-make">
           <li>
-            <Link to="/tilde/card#how-to-get-one">print a card →</Link>
+            <Link to="/tilde/card#products">print a card →</Link>
           </li>
           <li>
-            <Link to="/tilde/fobs#how-to-get-one">print a fob →</Link>
-          </li>
-          <li>
-            <Link to="/tilde/home#products">print for home &amp; desk →</Link>
-          </li>
-          <li>
-            <a href="https://github.com/tbutman/tilde-card">the models on github ↗</a>
+            <Link to="/tilde/fobs#products">print a fob →</Link>
           </li>
           <li>
             <Link to="/tilde/app">get the app →</Link>

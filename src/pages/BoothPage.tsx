@@ -109,6 +109,12 @@ export function Blocks({ page, blocks }: { page: Page; blocks: Block[] }) {
 
 // The newest app release, looked up when the site builds (the App page's download, as /tilde's).
 const release = __TILDE_RELEASE__
+/** "version 1.2.0 · 2.0 MB · October 7, 2026 · android 8 or newer" under the download (visitor round 1, item 9). */
+function releaseLine(found: NonNullable<typeof release>): string {
+  const size = new Intl.NumberFormat('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(found.bytes / 1e6)
+  const date = found.date && new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${found.date}T00:00:00Z`))
+  return [`${tildeText.en.release.version} ${found.version}`, `${size} MB`, date, tildeText.en.release.minAndroid].filter(Boolean).join(' · ')
+}
 
 /** The opening beside the closed box, with a way down to the lineup and to how to get one. */
 function Hero({ page, opening, lineup, get }: { page: Page; opening?: Section; lineup?: Section; get?: Section }) {
@@ -149,6 +155,7 @@ function Hero({ page, opening, lineup, get }: { page: Page; opening?: Section; l
             </a>
           )}
         </div>
+        {page.download && release && <p className="product-small product-release">{releaseLine(release)}</p>}
       </div>
       <div className={`booth-hero-visual${page.heroRatio === 'phone' ? ' booth-hero-phone' : ''}`}>
         <Render image={boothImages[page.hero]} id={page.hero} ratio={page.heroRatio ?? 'photo'} size={page.heroRatio === 'phone' ? 'screen' : 'wide'} eager />
@@ -217,8 +224,25 @@ function withProducts(blocks: Block[]): Block[] {
  * The whole page from docs' copy. `insert` goes where docs' note says the page's own sections follow
  * (on /tilde/card, the print guide); `end` closes the page.
  */
+/** Docs' blocks without the ## sections and ### parts the page leaves out (pages.ts, omit). */
+function without(blocks: Block[], omit: string[] = []): Block[] {
+  const out: Block[] = []
+  let skip: 'h2' | 'h3' | null = null
+  for (const block of blocks) {
+    if (block.type === 'h2' || block.type === 'h3') {
+      if (skip && (block.type === 'h2' || skip === 'h3')) skip = null
+      if (omit.includes(block.id)) {
+        skip = block.type
+        continue
+      }
+    }
+    if (!skip) out.push(block)
+  }
+  return out
+}
+
 export function BoothBody({ page, insert, insertBefore, end }: { page: Page; insert?: ReactNode; insertBefore?: string; end?: ReactNode }) {
-  const all = sections(page.copy.blocks)
+  const all = sections(without(page.copy.blocks, page.omit))
   const opening = all.find((section) => section.heading.id === 'the-opening')
   const rest = all.filter((section) => section !== opening)
   // Docs' order: the opening, how it works, then the lineup.

@@ -33,6 +33,8 @@ export type BoothPage = {
   download?: boolean
   /** "On an iPhone?" right after the hero (visitor round 1, item 4). */
   iphoneNote?: boolean
+  /** Docs' sections (##) or parts (###) this page leaves out, by id: booth-only items (item 6). */
+  omit?: string[]
 }
 
 // Thomas's review note (October 20): each design's alternate backs go in its row, after its front
@@ -55,6 +57,8 @@ const tag = (id: string): Placement => ({ ids: [id], layout: 'tag', ratio: 'squa
 export const cardsPage: BoothPage = {
   page: 'cards',
   family: 'cards',
+  // The pocket cases and the cards-only box are booth items, not products (visitor round 1, item 6).
+  omit: ['holders'],
   label: 'Cards',
   path: '/tilde/card',
   shortLink: 'taptilde.com/card',
@@ -81,6 +85,8 @@ export const cardsPage: BoothPage = {
 export const fobsPage: BoothPage = {
   page: 'fobs',
   family: 'fobs',
+  // The storage box is a booth item (visitor round 1, item 6).
+  omit: ['the-storage-box'],
   label: 'Fobs',
   path: '/tilde/fobs',
   shortLink: 'taptilde.com/fobs',

@@ -17,6 +17,10 @@ import type { Video } from '../components/ProductVideo'
 import type { Locale } from '../i18n'
 
 export const releases = 'https://github.com/tbutman/tilde/releases/latest'
+/** Every release, for the App page's "check your download" (visitor round 1, item 9). */
+export const allReleases = 'https://github.com/tbutman/tilde/releases'
+/** The signing certificate's SHA-256 fingerprint, as the app's README publishes it. */
+export const signingFingerprint = '84:5F:25:41:BD:70:77:34:EC:97:76:23:90:BE:B1:0B:9D:0A:5C:64:AF:0D:B4:27:A6:94:99:86:73:A0:38:D9'
 const repo = 'https://github.com/tbutman/tilde'
 const installGuide = `${repo}#install`
 const updatesGuide = `${repo}#updates`
@@ -55,6 +59,12 @@ const en = {
   },
 
   installHeading: 'install in a minute',
+  check: {
+    heading: 'Check your download',
+    apk: 'The APK’s SHA-256',
+    certificate: 'The signing certificate’s SHA-256 (package com.tbutman.tilde)',
+    releases: 'every release, with its notes',
+  },
   installSteps: [
     'Tap **download for android** on your Android phone. If your browser warns about the file, tap **Download anyway**.',
     'Open the file. Android asks to let your browser install apps: tap **Settings**, turn on **Allow from this source**, and go back.',
@@ -172,10 +182,6 @@ const en = {
       a: 'Save a backup to a file (**Settings → Backup and restore**, from the gear on the Cards tab), move it to your new phone however you like, and restore it there. Tilde has no cloud and no account, so the file is yours; it isn’t encrypted, so keep it somewhere private. A backup from Tilde 1.2 can’t be restored in 1.3.',
     },
     {
-      q: 'Updating from 1.2?',
-      a: 'Tilde 1.3 starts fresh: it stores cards differently and doesn’t read 1.2’s cards or backups. Before you update, note what’s on your cards; afterwards, set them up again.',
-    },
-    {
       q: 'Is it really free?',
       a: 'Yes. No price, no paid tier, no account and no ads. The code is public under the MIT license, so anyone can check what it does.',
     },
@@ -226,6 +232,12 @@ const pt: TildeText = {
   },
 
   installHeading: 'instalar num minuto',
+  check: {
+    heading: 'Verifica o que descarregaste',
+    apk: 'O SHA-256 do APK',
+    certificate: 'O SHA-256 do certificado de assinatura (pacote com.tbutman.tilde)',
+    releases: 'todas as versões, com as notas',
+  },
   installSteps: [
     'No teu telemóvel Android, toca em **descarregar para android**. Se o browser te avisar sobre o ficheiro, toca em **Transferir mesmo assim**.',
     'Abre o ficheiro. O Android pede-te para deixares o browser instalar apps: toca em **Definições**, ativa **Permitir desta fonte** e volta atrás.',
@@ -341,10 +353,6 @@ const pt: TildeText = {
     {
       q: 'E se mudar de telemóvel?',
       a: 'Guarda uma cópia de segurança num ficheiro (**Definições → Cópia de segurança e restauro**, na roda dentada do separador Cartões), passa-o para o telemóvel novo como preferires e restaura-a lá. A Tilde não tem nuvem nem conta, por isso o ficheiro é teu; não é encriptado, por isso guarda-o num sítio privado. Uma cópia de segurança da Tilde 1.2 não pode ser restaurada na 1.3.',
-    },
-    {
-      q: 'Vais atualizar a partir da 1.2?',
-      a: 'A Tilde 1.3 começa do zero: guarda os cartões de outra forma e não lê os cartões nem as cópias de segurança da 1.2. Antes de atualizares, aponta o que tens nos teus cartões; depois, volta a criá-los.',
     },
     {
       q: 'É mesmo grátis?',

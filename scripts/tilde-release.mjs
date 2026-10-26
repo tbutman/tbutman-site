@@ -28,7 +28,8 @@ async function lookUp() {
   })
   if (!assets.ok) throw new Error(`github.com answered HTTP ${assets.status} for the assets of ${tag}`)
   const pattern = new RegExp(`/${REPO}/releases/download/${tag}/[^"/]+\\.apk`, 'g')
-  const apks = [...new Set((await assets.text()).match(pattern))]
+  const html = await assets.text()
+  const apks = [...new Set(html.match(pattern))]
   if (apks.length !== 1) throw new Error(`expected one APK in ${tag}, found ${apks.length}`)
 
   const apk = `https://github.com${apks[0]}`
@@ -36,13 +37,18 @@ async function lookUp() {
   const bytes = Number(head.headers.get('content-length'))
   if (!head.ok || !bytes) throw new Error(`the APK answered HTTP ${head.status} (${bytes} bytes): ${apk}`)
 
-  return { version: tag.slice(1), apk, bytes }
+  // The APK's row also gives its SHA-256 and when it was uploaded (the App page shows both, visitor
+  // round 1, item 9). Optional: without them the button still works.
+  const row = html.match(/<li\b[\s\S]*?<\/li>/g)?.find((li) => li.includes(apks[0])) ?? ''
+  const sha256 = row.match(/sha256:([0-9a-f]{64})/)?.[1] ?? null
+  const date = row.match(/datetime="(\d{4}-\d{2}-\d{2})T/)?.[1] ?? null
+  return { version: tag.slice(1), apk, bytes, sha256, date }
 }
 
 let release = null
 try {
   release = await lookUp()
-  console.log(`tilde-release: ${release.version}, ${release.apk} (${release.bytes} bytes)`)
+  console.log(`tilde-release: ${release.version}, ${release.apk} (${release.bytes} bytes, ${release.date ?? 'no date'}, sha256 ${release.sha256 ?? 'not listed'})`)
 } catch (error) {
   console.warn(`tilde-release: ${error.message}; the download button will link to the release page`)
 }

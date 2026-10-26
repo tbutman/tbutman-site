@@ -2345,6 +2345,33 @@ main {
   }
 }
 
+/* "Check your download": the hashes, small and breakable, so a phone needn't scroll sideways. */
+.install-check {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 1rem;
+}
+
+.install-check b {
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--accent);
+}
+
+.install-check p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-soft);
+}
+
+.install-check code {
+  display: block;
+  margin-top: 0.25rem;
+  font: 400 0.75rem/1.5 var(--font-mono);
+  overflow-wrap: anywhere;
+  color: var(--text);
+}
+
 /* The hub's arrival (?from=): one panel above everything, in the accent. */
 .arrival {
   margin: 0 0 1.5rem;
