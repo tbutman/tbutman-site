@@ -53,9 +53,8 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
     return { title: `Olá · ${profile.name}`, description: helloText.pt.bio, noindex: true }
   }
   if (pathname === '/tilde') {
-    // The family's hub (finish-line plan §3): docs' hub description. Its preview image is still the
-    // app's until media draws one for the family.
-    return { title: 'Tilde · everyday objects you can tap or scan', description: boothLedes.hub, image: '/og/tilde.png', imageAlt: 'Tilde: Your business card, on your phone. A phone showing Jane Doe’s card and QR code, and a black Tilde Card for Jane Doe with a QR code.' }
+    // The family's hub (finish-line plan §3): docs' hub description, and media's preview for the family.
+    return { title: 'Tilde · everyday objects you can tap or scan', description: boothLedes.hub, image: '/og/tilde-hub.png', imageAlt: 'Tilde: Print it. Tap it. A Tilde Card for Jane Doe, a sticky note, a Premium coin and a Base tag.' }
   }
   if (pathname === '/pt/tilde') {
     return { title: 'Tilde · cartão de visita NFC grátis para Android', description: tildeText.pt.lede, image: '/og/tilde-pt.png', imageAlt: 'Tilde: O teu cartão de visita, no teu telemóvel. Um telemóvel com o cartão e o código QR de Jane Doe, e um cartão Tilde preto.' }
@@ -66,19 +65,18 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
   if (pathname === '/pt/tilde/privacy') {
     return { title: 'Privacidade da Tilde · os teus dados ficam no teu telemóvel', description: tildePrivacyText.pt.lede, image: '/og/tilde-privacy-pt.png', imageAlt: 'Privacidade da Tilde: Os teus dados ficam no teu telemóvel. Um telemóvel com a lista de conhecidos e um cartão Tilde preto.' }
   }
-  // The booth's stations: until media draws their own previews, they use /tilde's and /tilde/card's.
+  // Each page's own preview, from media (tilde-media/web/og, October 26), with media's alt lines.
   if (pathname === '/tilde/fobs') {
-    return { title: 'Tilde Fobs · every shape, color and icon', description: boothLedes.fobs, image: '/og/tilde.png' }
+    return { title: 'Tilde Fobs · every shape, color and icon', description: boothLedes.fobs, image: '/og/tilde-fobs.png', imageAlt: 'Tilde Fobs: Your link, on your keys. A Premium coin and a Base tag, front and back, orange on black.' }
   }
   if (pathname === '/tilde/home') {
-    return { title: 'Tilde Home & desk · notes, a coaster and stands you can tap', description: homeDescription(), image: '/og/tilde.png' }
+    return { title: 'Tilde Home & desk · notes, a coaster and stands you can tap', description: homeDescription(), image: '/og/tilde-home.png', imageAlt: 'Tilde Home & desk: a tap away. A sticky note and a grocery list on a fridge, and a desk calendar.' }
   }
   if (pathname === '/tilde/uses') {
-    return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde.png' }
+    return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde-uses.png', imageAlt: 'Tilde use cases: One tag, one job. Ten tags on a ring, each with a different icon.' }
   }
   if (pathname === '/tilde/app') {
-    // Until docs' app.md lands, /tilde's own description.
-    return { title: 'Tilde for Android · write your own fob, or tap your phone', description: (boothLedes as Record<string, string>).app ?? tildeText.en.lede, image: '/og/tilde.png' }
+    return { title: 'Tilde for Android · write your own fob, or tap your phone', description: (boothLedes as Record<string, string>).app ?? tildeText.en.lede, image: '/og/tilde-app.png', imageAlt: 'Tilde for Android: Your business card, on your phone. A phone showing Jane Doe’s card and QR code.' }
   }
   if (pathname === '/tilde/card') {
     return { title: 'Tilde Card · countless designs, and how to print yours', description: boothLedes.cards, image: '/og/tilde-card.png', imageAlt: 'Tilde Card: Print your own business card. A photo of a printed black Tilde Card for Jane Doe with a QR code, held in a hand.' }

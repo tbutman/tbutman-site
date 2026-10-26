@@ -1,5 +1,5 @@
 {
-  "source": "305c0b00e4d47a522223d7e54ff220334e6b505d650a7a9146ed9e0f6c57c754",
+  "source": "e1e398fcbbaa599c8dd0d747c3c3b02b6d50f76cc3282546c52e5ff5f41bb1fc",
   "sections": [
     {
       "title": "The family",
@@ -342,10 +342,12 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin.",
-                "**A split key ring** (or glue, for the earless tag).",
-                "**Printer:** two colors for the code (any printer for an engraved, one-color tag).",
-                "**Difficulty:** easy."
+                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**Printer:** multi-color (an AMS or similar), for the inlaid code and icon; one color for an engraved tag.",
+                "**Filament:** PLA, 3 colors, about 5.7 g (black 3.0, white 1.7, orange 0.9 at the defaults).",
+                "**Print time:** about 29 min alone on an A1 mini (less when several share a plate).",
+                "**A split key ring:** it holds the back in, no glue needed. The earless tag has no hole: glue its back piece.",
+                "**Difficulty:** easy: press the back in, put the ring on."
               ]
             },
             "files": {
@@ -416,10 +418,12 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin.",
-                "**A split key ring.**",
-                "**Printer:** two colors for an inlaid icon (one for an engraved one).",
-                "**Difficulty:** easy."
+                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**Printer:** multi-color for an inlaid icon; one color for an engraved one.",
+                "**Filament:** PLA, 2 colors, about 5.6 g (black 4.1, orange 1.5).",
+                "**Print time:** about 22 min alone.",
+                "**A split key ring** (none for the earless coin). No glue: the back twists on.",
+                "**Difficulty:** easy: the quickest; drop the back in and give it a quarter turn."
               ]
             },
             "files": {
@@ -488,10 +492,12 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin.",
-                "**A split key ring.**",
-                "**Printer:** two colors for the code; set 4 wall loops.",
-                "**Difficulty:** medium (the T-key closes it)."
+                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**Printer:** multi-color; set 4 wall loops.",
+                "**Filament:** PLA, 3 colors, about 14.8 g with its T-key (black 12.0, white 1.8, orange 0.9).",
+                "**Print time:** about 46 min alone, with its T-key (the key adds about 7.5 min and 4.5 g; leave it off if you have one).",
+                "**A split key ring.** No glue: the T-key locks it.",
+                "**Difficulty:** medium: longer, 4 walls, and it closes only with the printed T-key."
               ]
             },
             "files": {
@@ -557,10 +563,12 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin.",
-                "**A split key ring** (none for the earless coin).",
-                "**Printer:** two colors for an inlaid icon; set 4 wall loops.",
-                "**Difficulty:** medium (the T-key closes it)."
+                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**Printer:** multi-color for an inlaid icon; set 4 wall loops.",
+                "**Filament:** PLA, 2 colors, about 13.1 g with its T-key (black 11.5, orange 1.6); earless, about 12.6 g.",
+                "**Print time:** about 35 min alone, with its T-key.",
+                "**A split key ring** (none for the earless coin). No glue: the T-key locks it.",
+                "**Difficulty:** medium: 4 walls, and it closes only with the printed T-key."
               ]
             },
             "files": {
@@ -634,10 +642,14 @@
             "whatYouNeed": {
               "text": "",
               "items": [
-                "**NFC sticker:** 1 round NTAG215, 22–25 mm, thin.",
-                "**Printer:** multi-color (four colors for the full look).",
-                "**Glue:** CA gel, only for raised controls.",
-                "**Difficulty:** medium."
+                "**NFC sticker:** 1 round NTAG215, 22–25 mm across (25.5 at most), 0.10–0.20 mm thick (thicker up to 0.40 mm: set NFC Sticker to Thick). Search “NTAG215 25mm round NFC sticker”.",
+                "**Printer:** multi-color, 4 colors. You set the first layer’s color order by hand (the model’s notes say how).",
+                "**Filament:** PLA, 4 colors: off-white, near-black, olive and wine (matte recommended).",
+                "**Base:** about 7.5 g Large, 6.8 g Standard.",
+                "**Premium:** about 20.8 g Large, 18.1 g Standard, with its T-key.",
+                "**Print time:** about 38 min Base Large, 37 min Base Standard; about 65 min Premium Large, 60 min Premium Standard.",
+                "**Glue:** none, except gel superglue for Premium’s raised controls (wipe with isopropyl alcohol first).",
+                "**Difficulty:** medium; raised controls are advanced (small glued pieces)."
               ]
             },
             "files": {

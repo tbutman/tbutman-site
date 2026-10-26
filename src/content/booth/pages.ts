@@ -238,8 +238,14 @@ export const productRenders: Record<string, Placement> = {
   'base-tag': fobRow(['fob-base-tag-tilde', 'fob-base-tag-dark', 'fob-base-tag-light', 'fob-earless-base-tag']),
   'base-coin': fobRow(['fob-base-coin-tilde', 'fob-base-coin-dark', 'fob-base-coin-light', 'fob-earless-base-coin']),
   'premium-tag': fobRow(['fob-premium-tag-tilde', 'fob-premium-tag-dark', 'fob-premium-tag-light', 'fob-earless-premium-tag']),
-  'premium-coin': fobRow(['fob-premium-coin-tilde', 'fob-premium-coin-dark', 'fob-premium-coin-light', 'fob-earless-premium-coin']),
-  'retro-handheld': pending('retro-handheld'),
+  // The Premium coin's row ends with its sealed back beside the T-key that turns it (media's export).
+  'premium-coin': fobRow(['fob-premium-coin-tilde', 'fob-premium-coin-dark', 'fob-premium-coin-light', 'fob-earless-premium-coin', 'fob-t-key']),
+  // The handheld's four builds at the Model Maker's defaults, and the Premium with printed back details.
+  'retro-handheld': {
+    ids: ['fob-handheld-base-large', 'fob-handheld-base-standard', 'fob-handheld-premium-large', 'fob-handheld-premium-standard', 'fob-handheld-premium-large-printed'],
+    layout: 'small',
+    ratio: 'square',
+  },
   // Each note on the fridge or desk, then opened (its magnets and sticker).
   'sticky-note': { ids: ['product-sticky-note', 'product-sticky-note-back'], layout: 'grid', ratio: 'photo' },
   calendar: { ids: ['product-calendar', 'product-calendar-back'], layout: 'grid', ratio: 'photo' },
