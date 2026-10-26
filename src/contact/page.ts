@@ -42,6 +42,8 @@ const copy = {
     madeWith: 'Made with Tilde',
     makeYourOwn: 'make your own',
     tildeHref: '/tilde',
+    // A lead-on into the family (the tour, finish-line plan §3). The use cases are English only.
+    more: { label: 'what else a tap can do', href: '/tilde/uses' } as { label: string; href: string } | null,
     title: 'Tilde contact',
     empty: ['No contact in this link', 'The link ends before the contact details. It may have been cut short when it was copied.'],
     damaged: ['This contact link is damaged', 'Part of it is missing or was changed, so it can’t be read safely.'],
@@ -68,6 +70,7 @@ const copy = {
     madeWith: 'Feito com a Tilde',
     makeYourOwn: 'faz o teu',
     tildeHref: '/pt/tilde',
+    more: null,
     title: 'Contacto Tilde',
     empty: ['Esta ligação não tem nenhum contacto', 'A ligação acaba antes dos dados do contacto. Pode ter sido cortada quando foi copiada.'],
     damaged: ['Esta ligação de contacto está danificada', 'Falta uma parte ou foi alterada, por isso não pode ser lida com segurança.'],
@@ -269,6 +272,11 @@ function footer(): HTMLElement {
   const link = el('a', undefined, `${t.makeYourOwn} →`)
   link.href = t.tildeHref
   foot.append(el('span', undefined, t.madeWith), link)
+  if (t.more) {
+    const more = el('a', undefined, `${t.more.label} →`)
+    more.href = t.more.href
+    foot.append(more)
+  }
   return foot
 }
 

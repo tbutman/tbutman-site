@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import BoothHubSection from '../components/BoothHub'
+import NextStopCard from '../components/NextStop'
 import { appPage, cardsPage, fobsPage, usesPage } from '../content/booth/pages'
 import BoothPage, { BoothBody } from '../pages/BoothPage'
 
@@ -11,3 +12,4 @@ export const UsesPage = () => <BoothPage page={usesPage} />
 export const AppPage = () => <BoothPage page={appPage} />
 export const CardShowcase = ({ insert, end }: { insert: ReactNode; end: ReactNode }) => <BoothBody page={cardsPage} insert={insert} end={end} />
 export const BoothHub = () => <BoothHubSection />
+export const NextStop = ({ from }: { from: string }) => <NextStopCard from={from} />

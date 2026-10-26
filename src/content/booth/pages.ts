@@ -106,7 +106,8 @@ export const usesPage: BoothPage = {
   path: '/tilde/uses',
   shortLink: 'taptilde.com/uses',
   status: 'nfc · android · iphone',
-  name: 'Tilde Tags',
+  // Docs' name for the page, as on the hub's tile and the short link (checker, first pass, Could 10).
+  name: 'Use cases',
   headline: ['One tag,', 'one job.'],
   hero: 'station-uses-closed',
   copy: usesCopy as BoothCopy,
@@ -172,3 +173,22 @@ export const hubSection = {
 }
 
 export const placementFor = (page: BoothPage, marker: string): Placement | null => page.images.find(([start]) => marker.startsWith(start))?.[1] ?? null
+
+/**
+ * The tour (finish-line plan §3): the way Thomas walks a visitor round the table, hub → Cards → Fobs →
+ * Around the home → Use cases → App → hub. Every page ends with the stop after it (NextStop). Around
+ * the home has no page yet, so it goes to the hub's family tiles until it does (the coordinator,
+ * October 26); its name is still Thomas's to settle.
+ */
+export type Stop = { key: string; label: string; path: string }
+export const tour: Stop[] = [
+  { key: 'hub', label: 'Tilde', path: '/tilde' },
+  { key: 'cards', label: cardsPage.label, path: cardsPage.path },
+  { key: 'fobs', label: fobsPage.label, path: fobsPage.path },
+  { key: 'home', label: 'Around the home', path: '/tilde#booth' },
+  { key: 'uses', label: usesPage.label, path: usesPage.path },
+  { key: 'app', label: appPage.label, path: appPage.path },
+]
+
+/** The stop after `key`'s; after the last, the hub again. */
+export const nextStop = (key: string): Stop => tour[(tour.findIndex((stop) => stop.key === key) + 1) % tour.length]

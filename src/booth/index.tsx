@@ -19,3 +19,4 @@ export const UsesPage = part(direct.UsesPage, () => import('./parts').then((modu
 export const AppPage = part(direct.AppPage, () => import('./parts').then((module) => module.AppPage))
 export const CardShowcase = part(direct.CardShowcase, () => import('./parts').then((module) => module.CardShowcase))
 export const BoothHub = part(direct.BoothHub, () => import('./parts').then((module) => module.BoothHub))
+export const NextStop = part(direct.NextStop, () => import('./parts').then((module) => module.NextStop))

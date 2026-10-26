@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { Placed, Render } from '../components/BoothRender'
+import NextStop from '../components/NextStop'
 import RichText from '../components/RichText'
 import { type BoothPage as Page, hubSection, placementFor } from '../content/booth/pages'
 import { type Block, boothImages, type Section, sections } from '../content/booth/types'
@@ -198,6 +199,7 @@ export function BoothBody({ page, insert, end }: { page: Page; insert?: ReactNod
           </Fragment>
         )
       })}
+      <NextStop from={page.page} />
       <Stations page={page} />
       {end}
     </>

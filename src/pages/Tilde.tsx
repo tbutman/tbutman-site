@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { BoothHub } from '../booth'
+import { BoothHub, NextStop } from '../booth'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
@@ -28,14 +28,14 @@ export default function Tilde({ locale }: { locale: Locale }) {
   return (
     <article className="product">
       <p className="product-strip">
-        <a href={tilde.sampleStrip.href}>
+        <Link to={tilde.sampleStrip.href}>
           {tilde.sampleStrip.question}{' '}
           {/* The arrow stays with its words, never alone on a line (360 px phones). */}
           <span className="nowrap">
             <b>{tilde.sampleStrip.link}</b>
             <span aria-hidden="true"> →</span>
           </span>
-        </a>
+        </Link>
       </p>
       <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
       {/* #app: where taptilde.com/app lands (a Cloudflare rule). */}
@@ -259,6 +259,9 @@ export default function Tilde({ locale }: { locale: Locale }) {
           </Link>
         </div>
       </section>
+
+      {/* The tour's first stop after the hub (English only, as the booth pages are). */}
+      {locale === 'en' && <NextStop from="hub" />}
     </article>
   )
 }

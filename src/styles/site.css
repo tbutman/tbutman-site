@@ -2295,6 +2295,34 @@ main {
   }
 }
 
+/* The tour's next stop: one card at the end of every page, as wide as a hub tile is tall. */
+.booth-next {
+  margin: 3rem 0 0;
+}
+
+.booth-next a {
+  display: grid;
+  gap: 0.375rem;
+  max-width: 34rem;
+  padding: 1.125rem 1.25rem;
+  color: var(--text-soft);
+  text-decoration: none;
+}
+
+.booth-next a:hover {
+  border-color: var(--line-strong);
+}
+
+.booth-next small {
+  font: 400 0.75rem/1.4 var(--font-mono);
+  color: var(--accent);
+}
+
+.booth-next b {
+  font: 600 1.25rem/1.3 var(--font-sans);
+  color: var(--text);
+}
+
 /* Every station page ends with the others, in walk order. */
 .booth-nav {
   display: flex;

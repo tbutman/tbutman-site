@@ -13,6 +13,7 @@
 //   npm run booth:sync             bring everything in
 //   npm run booth:sync -- --check  only report what's newer at the source than here
 //   npm run booth:sync -- --only=copy,screens   bring in only these (images, screens, copy)
+//   npm run booth:sync -- --force  convert docs' copy again even where it hasn't changed
 //
 // Every web file is checked against the manifest's size and SHA-1 before anything is copied, and
 // files the manifest no longer lists are removed. Paths: BOOTH_CARD (default ../tilde-card),
@@ -24,7 +25,7 @@ import { existsSync } from 'node:fs'
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { checkFidelity, parseCopy } from './booth-copy.mjs'
+import { checkFidelity, describe, parseCopy, relink } from './booth-copy.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // The checkout's parent: ~/Documents/personal for both tbutman-site and its worktrees.
@@ -41,6 +42,8 @@ const screensPublic = join(root, 'public', 'tilde', 'screens')
 const screensJson = join(boothDir, 'screens.json')
 const PAGES = ['cards', 'fobs', 'uses', 'app', 'hub']
 const check = process.argv.includes('--check')
+// Converts docs' copy again even where it hasn't changed: after a change to the converter.
+const force = process.argv.includes('--force')
 const only = process.argv.find((arg) => arg.startsWith('--only='))?.slice('--only='.length).split(',')
 const wanted = (part) => !only || only.includes(part)
 
@@ -79,7 +82,7 @@ async function syncCopy() {
     const bytes = await readFile(file)
     const source = hash('sha256', bytes)
     const current = await readJson(target)
-    if (current?.source === source) {
+    if (current?.source === source && !force) {
       console.log(`copy: ${page}.md up to date`)
       continue
     }
@@ -90,16 +93,20 @@ async function syncCopy() {
     const markdown = bytes.toString('utf8')
     const blocks = parseCopy(markdown, `${page}.md`)
     checkFidelity(markdown, blocks, `${page}.md`)
-    await writeJson(target, { source, blocks })
-    console.log(`copy: ${page}.md ${current ? 'updated' : 'added'}`)
+    const relinked = relink(blocks)
+    await writeJson(target, { source, blocks: relinked.blocks })
+    console.log(`copy: ${page}.md ${current ? 'updated' : 'added'}${relinked.changed ? ` (${relinked.changed} link${relinked.changed === 1 ? '' : 's'} to the site's pages)` : ''}`)
   }
-  // Each page's opening without its Markdown: its description for search and link previews, kept
-  // out of the booth chunk so every page's head can have it (src/meta.ts).
+  // Each page's description for search and link previews, kept out of the booth chunk so every page's
+  // head can have it (src/meta.ts): docs' short "Description (link previews)" line from the page's
+  // notes (checker, first pass, Could 9), else the opening without its Markdown.
   if (!check) {
     const ledes = {}
     for (const page of PAGES) {
+      const file = join(contentDir, `${page}.md`)
+      const described = existsSync(file) ? describe(await readFile(file, 'utf8')) : null
       const copy = await readJson(join(copyDir, `${page}.json`))
-      const opening = copy?.blocks.find((block) => block.type === 'p')?.text
+      const opening = described ?? copy?.blocks.find((block) => block.type === 'p')?.text
       // Without its gates: those are for the draft's readers, not search results.
       if (opening) ledes[page] = opening.replace(/\s*`?\[depends on [^\]]+\]`?/g, '').replace(/\*\*|`/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     }

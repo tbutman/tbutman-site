@@ -2,7 +2,7 @@
 // and the check that no text is dropped. Run with `npm test`.
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { checkFidelity, curly, parseCopy } from './booth-copy.mjs'
+import { checkFidelity, curly, describe, parseCopy, relink } from './booth-copy.mjs'
 
 const sample = `# Page
 
@@ -81,4 +81,35 @@ test('dropped or changed text fails the fidelity check', () => {
 test('quotes curl, except in code and link targets', () => {
   assert.equal(curly(`It's "ready" ('yes')`), 'It’s “ready” (‘yes’)')
   assert.equal(curly("`it's` [Thomas's](/a'b)"), "`it's` [Thomas’s](/a'b)")
+})
+
+test('a heading’s id leaves its gate out', () => {
+  const blocks = parseCopy('---\n\n### Two-piece or solid `[depends on two-piece card]`\n')
+  assert.equal(blocks[0].id, 'two-piece-or-solid')
+})
+
+test('docs’ link-preview description comes from the notes, wrapped or not', () => {
+  const page = "# Page\n\n- **Page:** `/tilde/x`.\n- **Description (link previews):** One tag, one job: it's\n  wrapped.\n- **Name:** X.\n\n---\n\n## The opening\n\nText.\n"
+  assert.equal(describe(page), 'One tag, one job: it’s wrapped.')
+  assert.equal(describe('---\n\n## The opening\n\nText.\n'), null)
+})
+
+test('"Tilde for Android" links go to the App page, and nothing else moves', () => {
+  const blocks = parseCopy('---\n\n- **The app:** [Tilde for Android](/tilde)\n- **Install:** [Tilde](/tilde)\n')
+  const { blocks: out, changed } = relink(blocks)
+  assert.equal(changed, 1)
+  assert.equal(out[0].items[0].text, '**The app:** [Tilde for Android](/tilde/app)')
+  assert.equal(out[0].items[1].text, '**Install:** [Tilde](/tilde)')
+})
+
+// Printed links land on these (booth tags, lids, the demo ring: tilde-review/booth-kit), so a heading
+// docs renames must keep its id with {#id}, or this fails.
+const USE_ANCHORS = ['call-my-family', 'contact-card', 'link', 'whatsapp', 'guest-wi-fi', 'share-your-number', 'lost-item', 'book-a-meeting', 'physical-bookmarks', 'with-just-your-phone']
+
+test('every use on /tilde/uses keeps its anchor', async () => {
+  const { readFile } = await import('node:fs/promises')
+  const uses = JSON.parse(await readFile(new URL('../src/content/booth/copy/uses.json', import.meta.url), 'utf8'))
+  const ids = uses.blocks.filter((block) => block.type === 'h3').map((block) => block.id)
+  assert.deepEqual(ids.filter((id) => !USE_ANCHORS.includes(id)), [], 'a use without a pinned anchor: add it to USE_ANCHORS')
+  assert.deepEqual(USE_ANCHORS.filter((id) => !ids.includes(id)), [], 'a pinned anchor is gone: docs can keep it with {#id}')
 })

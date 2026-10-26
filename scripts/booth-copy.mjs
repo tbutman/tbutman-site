@@ -9,8 +9,10 @@
 //   src/content/booth/slots.ts;
 // - **bold**, [links](…) and `code` inside text, which the page renders.
 
+// A heading's id: its words, without a gate (an anchor shouldn't change when the gate goes).
 const slug = (text) =>
   text
+    .replace(/`?\[depends on [^\]]+\]`?/g, '')
     .toLowerCase()
     .replace(/\*\*|`|\[|\]\([^)]*\)/g, '')
     .replace(/[^a-z0-9]+/g, '-')
@@ -115,6 +117,40 @@ export function parseCopy(markdown, name = 'copy') {
     if (block.type === 'image' || block.type === 'generated') return block
     return { ...block, text: curly(block.text) }
   })
+}
+
+// The site's own link targets, where docs' copy predates a page: "Tilde for Android" is the App page
+// since /tilde/app exists (site audit, item 2; the coordinator, October 26). Applied after the
+// fidelity check; docs' Markdown can catch up, and then it changes nothing.
+export const RELINK = [['[Tilde for Android](/tilde)', '[Tilde for Android](/tilde/app)']]
+
+/** The blocks with RELINK's targets swapped in, and how many links it changed. */
+export function relink(blocks) {
+  let changed = 0
+  const swap = (text) =>
+    RELINK.reduce((out, [from, to]) => {
+      changed += out.split(from).length - 1
+      return out.split(from).join(to)
+    }, text)
+  const out = blocks.map((block) => {
+    if ('items' in block) return { ...block, items: block.items.map((item) => ({ text: swap(item.text), sub: item.sub.map(swap) })) }
+    if (block.type === 'table') return { ...block, head: block.head.map(swap), rows: block.rows.map((row) => row.map(swap)) }
+    if (block.type === 'image' || block.type === 'generated') return block
+    return { ...block, text: swap(block.text) }
+  })
+  return { blocks: out, changed }
+}
+
+/** Docs' "Description (link previews)" line from the page's notes (before the `---`), or null. */
+export function describe(markdown) {
+  const lines = markdown.replace(/\r\n/g, '\n').split('\n')
+  const notes = lines.slice(0, Math.max(0, lines.indexOf('---')))
+  const at = notes.findIndex((line) => line.startsWith('- **Description (link previews):** '))
+  if (at < 0) return null
+  const text = [notes[at].slice('- **Description (link previews):** '.length)]
+  // A wrapped line is indented under its bullet.
+  for (let i = at + 1; i < notes.length && /^ {2,}\S/.test(notes[i]); i++) text.push(notes[i].trim())
+  return curly(text.join(' '))
 }
 
 // Everything docs wrote, without Markdown's syntax, spacing or quote style: to prove no text was
