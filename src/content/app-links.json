@@ -1,5 +1,7 @@
 {
-  "$comment": "The App Link for taptilde.com/p (Tilde 1.4.0, package tracking). The release certificate's SHA-256, from the app agent (read from the public signed APK). Empty: the prerender writes no assetlinks.json.",
-  "package": "com.tbutman.tilde",
-  "sha256": []
+  "$comment": "The App Link for taptilde.com/p (Tilde 1.4.0, package tracking): each app and its signing certificate's SHA-256, from the app agent (tilde-review/handoffs/packages-page, read with apksigner from the APKs; no keystore opened). The release build, then the dev builds on Thomas's phone. The taptilde.com prerender writes .well-known/assetlinks.json from this.",
+  "apps": [
+    { "package": "com.tbutman.tilde", "sha256": ["84:5F:25:41:BD:70:77:34:EC:97:76:23:90:BE:B1:0B:9D:0A:5C:64:AF:0D:B4:27:A6:94:99:86:73:A0:38:D9"] },
+    { "package": "com.tbutman.tilde.dev", "sha256": ["E0:12:E4:46:90:15:7F:26:83:06:78:C1:CC:FA:F0:BE:2B:1F:B1:B4:04:5D:12:2F:3C:12:62:48:E0:77:2E:EC"] }
+  ]
 }

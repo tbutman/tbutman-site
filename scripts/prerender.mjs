@@ -184,15 +184,18 @@ if (!TILDE) {
 // certificate's SHA-256, from src/content/app-links.json. Written only once the app agent's values
 // are in, and only on taptilde.com, where the link lives.
 if (TILDE) {
-  const links = JSON.parse(await readFile(join(root, 'src', 'content', 'app-links.json'), 'utf8'))
-  const fingerprints = (links.sha256 ?? []).filter((value) => /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/.test(value))
-  if (fingerprints.length !== (links.sha256 ?? []).length) throw new Error('app-links.json: a sha256 that isn\'t 32 upper-case hex pairs with colons')
-  if (fingerprints.length) {
-    const statement = [{ relation: ['delegate_permission/common.handle_all_urls'], target: { namespace: 'android_app', package_name: links.package, sha256_cert_fingerprints: fingerprints } }]
+  const { apps = [] } = JSON.parse(await readFile(join(root, 'src', 'content', 'app-links.json'), 'utf8'))
+  const fingerprint = /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/
+  for (const app of apps) {
+    if (!/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/.test(app.package ?? '')) throw new Error(`app-links.json: not a package name: ${app.package}`)
+    if (!app.sha256?.length || !app.sha256.every((value) => fingerprint.test(value))) throw new Error(`app-links.json: ${app.package}'s sha256 must be 32 upper-case hex pairs with colons`)
+  }
+  if (apps.length) {
+    const statement = apps.map((app) => ({ relation: ['delegate_permission/common.handle_all_urls'], target: { namespace: 'android_app', package_name: app.package, sha256_cert_fingerprints: app.sha256 } }))
     await mkdir(join(dist, '.well-known'), { recursive: true })
     await writeFile(join(dist, '.well-known', 'assetlinks.json'), `${JSON.stringify(statement, null, 2)}\n`)
-    console.log(`wrote .well-known/assetlinks.json (${links.package}, ${fingerprints.length} certificate)`)
-  } else console.log('no assetlinks.json yet: src/content/app-links.json has no sha256')
+    console.log(`wrote .well-known/assetlinks.json (${apps.map((app) => app.package).join(', ')})`)
+  } else console.log('no assetlinks.json: src/content/app-links.json lists no apps')
 }
 
 // taptilde.com carries Tilde's files only: not the résumé, other projects' images, or their previews.

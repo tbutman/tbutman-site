@@ -73,7 +73,7 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
     return { title: 'Tilde Home & desk · notes, a coaster and stands you can tap', description: homeDescription(), image: '/og/tilde-home.png', imageAlt: 'Tilde Home & desk: a tap away. A sticky note and a grocery list on a fridge, and a desk calendar.' }
   }
   if (pathname === '/tilde/p') {
-    return { title: 'Tilde · a package tracker tag', description: 'This tag opens a package tracker in Tilde for Android. Nothing about the packages is on the tag.', image: '/og/tilde.png' }
+    return { title: 'Tilde · a package tag', description: 'On its owner’s Android phone, this tag opens their list of packages in Tilde. Nothing about the packages is on the tag.', image: '/og/tilde.png', noindex: true }
   }
   if (pathname === '/tilde/uses') {
     return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde-uses.png', imageAlt: 'Tilde use cases: One tag, one job. Ten tags on a ring, each with a different icon.' }

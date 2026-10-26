@@ -14,20 +14,24 @@ export default function PackagePage() {
             <span className="status-dot" aria-hidden="true" />
             nfc · android
           </p>
+          {/* The app agent's copy (tilde-review/handoffs/packages-page, section 1). */}
           <p className="product-name">
-            <b>~</b> Tilde
+            <b>~</b> Packages
           </p>
-          <h1 id="package-heading">A package tracker tag.</h1>
-          <p className="lede">This tag opens a package tracker in Tilde for Android. Nothing about the packages is on the tag.</p>
+          <h1 id="package-heading">A package tag</h1>
+          <p className="lede">
+            On its owner’s Android phone, this tag opens their list of packages in Tilde. The list stays on their phone;
+            nothing about the packages is on the tag.
+          </p>
           <div className="button-row">
+            <Link className="button primary" to="/tilde/home">
+              next stop: home &amp; desk →
+            </Link>
             <NotOnIPhone>
-              <Link className="button primary" to="/tilde/app">
+              <Link className="button" to="/tilde/app">
                 get the app →
               </Link>
             </NotOnIPhone>
-            <Link className="button" to="/tilde/uses">
-              what else a tap can do →
-            </Link>
           </div>
         </div>
       </section>
