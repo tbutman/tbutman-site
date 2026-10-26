@@ -7,8 +7,7 @@ import RichText from './RichText'
 // /tilde's booth section (#booth), from docs' hub copy: for anyone who reached taptilde.com without
 // tapping a lid. Its opening and concept, the whole booth table, a way into each station (docs' "See
 // everything" table: a picture and a link above, a line below), and how to get it. English only.
-// A station the table doesn't link yet (the App page, until docs adds its column) still gets a tile,
-// whose line is a [TBD] that CI won't build.
+// A station the table doesn't link yet still gets a tile, with its name and no line.
 
 export default function BoothHub() {
   const all = sections(hubSection.copy.blocks)
@@ -49,7 +48,7 @@ export default function BoothHub() {
             ...table.rows[0].map((cell, index) => [cell, table.rows[1]?.[index] ?? ''] as const),
             ...hubSection.stations
               .filter((page) => !table.rows[0].some((cell) => cell.includes(`](${page.path})`)))
-              .map((page) => [`**[${page.label}](${page.path})**`, `[TBD] docs’ line for the ${page.label} tile (hub.md)`] as const),
+              .map((page) => [`**[${page.label}](${page.path})**`, ''] as const),
           ].map(([cell, line]) => {
             const marker = cell.match(/^\[image: ([^\]]+)\]\s*/)
             const link = cell.match(/\[([^\]]+)\]\((\/[^)]+)\)/)

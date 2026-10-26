@@ -7,6 +7,7 @@ import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promi
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { gzipSync } from 'node:zlib'
+import { findLeaks, guarded } from './leak-guard.mjs'
 
 const CANONICAL_ORIGIN = 'https://tbutman.com'
 const siteUrl = (process.env.SITE_URL || CANONICAL_ORIGIN).replace(/\/$/, '')
@@ -66,14 +67,18 @@ const boothPaths = new Set(['/tilde', '/tilde/card', '/tilde/fobs', '/tilde/home
 
 for (const path of paths) {
   const { html, meta } = render(path)
-  // A draft's placeholders build locally, but CI stops on them, so they can't go live: a MakerWorld
-  // link or a print time not known yet, a booth render not made yet or older than its model, and a
-  // line whose truth waits on a phone or print test, or on Thomas ([Thomas: …], [name TBD], in docs'
-  // product sheet). (No line waits on a release: Thomas, October 20.) And two lines Thomas ruled out
-  // on October 26 (finish-line plan §7), in case docs' older copy still has them: Tilde isn't on
-  // Google Play by November 5, and there's no "iPhone app coming soon".
-  if (process.env.CI && /PLACEHOLDER|\[TBD\]|\[depends on |\[Thomas: |\[name TBD\]|\[placeholder|MAKERWORLD-[A-Z]+-URL|data-render-status=|on Google Play|iPhone app coming soon/.test(html)) {
-    throw new Error(`${path}: a draft placeholder is still on the page`)
+  // Nothing internal reaches a visitor (scripts/leak-guard.mjs; visitor round 1, item 1): on every
+  // Tilde page, every build stops on our drafts' gates, placeholders, questions and names, and CI
+  // also on a render older than its model or a MakerWorld stand-in. SITE_DRAFT=1 only warns, for a
+  // local preview; CI never sets it.
+  if (guarded(path)) {
+    // The head's title and description too: they're what a link preview shows.
+    const leaks = findLeaks(`${html}<p>${meta.title}</p><p>${meta.description}</p>`, { release: Boolean(process.env.CI) })
+    if (leaks.length) {
+      const report = `${path}: ${leaks.length} thing(s) a visitor must not read:\n${leaks.map(([what, around]) => `  - ${what}: …${around}…`).join('\n')}`
+      if (process.env.SITE_DRAFT && !process.env.CI) console.warn(`draft: ${report}`)
+      else throw new Error(report)
+    }
   }
   // The images are drawn by `npm run og` and committed; catch a page whose card was never drawn.
   if (!(await readFile(join(dist, meta.image)).then(() => true, () => false))) {

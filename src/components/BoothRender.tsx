@@ -2,10 +2,10 @@ import iconUses from '../content/booth/copy/icon-uses.json'
 import { type BoothImage, boothImages, modelIcons, type Placement, type Ratio, slotImages } from '../content/booth/types'
 
 // The booth pages' images, only ever from the render export (src/content/booth/images.json). Until a
-// render exists, a placeholder of the same shape holds its place and says which render it waits
-// for; it carries [TBD], so CI won't build a page that still has one (scripts/prerender.mjs). An
-// image whose model changed since it was rendered (stale) or that was never recorded is marked
-// data-render-status, which CI also stops on.
+// render exists, nothing holds its place (visitor round 1, item 2): pages.ts still names it, so it
+// appears when its owner's export lands. An image whose model changed since it was rendered (stale)
+// or that was never recorded is marked data-render-status, which the release build stops on
+// (scripts/leak-guard.mjs).
 
 const sizes = {
   wide: '(max-width: 680px) calc(100vw - 32px), 1040px',
@@ -19,17 +19,14 @@ const sizes = {
 
 type Size = keyof typeof sizes
 
-function Pending({ what, ratio }: { what: string; ratio: Ratio }) {
-  return (
-    <div className={`booth-pending booth-ratio-${ratio}`}>
-      <span>[TBD] render: {what}</span>
-    </div>
-  )
-}
+const rendered = (image?: BoothImage): image is BoothImage => Boolean(image?.sources.length)
 
-/** One render, or its placeholder. */
-export function Render({ image, id, ratio, size, eager }: { image?: BoothImage; id: string; ratio: Ratio; size: Size; eager?: boolean }) {
-  if (!image?.sources.length) return <Pending what={id} ratio={ratio} />
+/**
+ * One render, or nothing: a render that doesn't exist yet leaves no empty box (visitor round 1, item
+ * 2). Where it would go is still in pages.ts, so it shows up as soon as its owner's export lands.
+ */
+export function Render({ image, size, eager }: { image?: BoothImage; id: string; ratio: Ratio; size: Size; eager?: boolean }) {
+  if (!rendered(image)) return null
   const largest = image.sources[image.sources.length - 1]
   return (
     <img
@@ -59,14 +56,9 @@ const themeName = (key: string) => {
 }
 
 /** The renders one of docs' [image: …] lines stands for, laid out. */
-export function Placed({ page, placement, marker }: { page: string; placement: Placement | null; marker: string }) {
-  if (!placement) {
-    return (
-      <div className="booth-grid booth-grid-wide">
-        <Pending what={marker} ratio="photo" />
-      </div>
-    )
-  }
+export function Placed({ page, placement }: { page: string; placement: Placement | null; marker: string }) {
+  // A line with no placement, or whose renders don't exist yet, draws nothing.
+  if (!placement) return null
   const { layout, ratio } = placement
   if (layout === 'omit') return null
   const slotNames = placement.slot === undefined ? [] : [placement.slot].flat()
@@ -75,24 +67,26 @@ export function Placed({ page, placement, marker }: { page: string; placement: P
     // Every icon in the model's own list, with its name there and docs' line for it.
     return (
       <ul className="booth-grid booth-grid-icons">
-        {modelIcons.map(([value, name]) => (
+        {modelIcons.filter(([value]) => rendered(boothImages[`icons-${value}`])).map(([value, name]) => (
           <li key={value}>
             <Render image={boothImages[`icons-${value}`]} id={`icons-${value}`} ratio="square" size="icons" />
             <b>{name}</b>
-            <span>{(iconUses as Record<string, string>)[value] ?? '[TBD] no line in icon-uses.json'}</span>
+            <span>{(iconUses as Record<string, string>)[value] ?? ''}</span>
           </li>
         ))}
       </ul>
     )
   }
 
-  const images: { id: string; image?: BoothImage }[] = placement.ids
-    ? placement.ids.map((id) => ({ id, image: boothImages[id] }))
-    : (slotNames
-        .map((slot) => slotImages(page, slot))
-        .find((found) => found.length)
-        ?.map((image) => ({ id: image.id, image })) ?? [])
-  if (images.length === 0) images.push({ id: slotNames.length ? `${page} · ${slotNames[0]}: ${marker}` : marker })
+  const images: { id: string; image?: BoothImage }[] = (
+    placement.ids
+      ? placement.ids.map((id) => ({ id, image: boothImages[id] }))
+      : (slotNames
+          .map((slot) => slotImages(page, slot))
+          .find((found) => found.length)
+          ?.map((image) => ({ id: image.id, image })) ?? [])
+  ).filter(({ image }) => rendered(image))
+  if (images.length === 0) return null
 
   if (layout === 'screens') {
     // The app's screens side by side, each under the app agent's caption: on a phone the row scrolls
