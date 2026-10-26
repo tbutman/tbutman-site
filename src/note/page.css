@@ -1,0 +1,300 @@
+/* /tilde/n, the note page (N1). Inlined into the page by scripts/note-page.mjs, which also adds the
+   @font-face rules for the site's own Inter and JetBrains Mono, as for /tilde/c and /tilde/w. The
+   tokens, the grid, the face panel, Copy and the footer are the Wi-Fi page's (src/wifi/page.css on
+   wifi-page). Spec: tilde-review/specs/notes-link.md, section 3. */
+
+:root {
+  color-scheme: dark;
+  --bg: #0b0d10;
+  --panel: #11151a;
+  --raised: #151a20;
+  --line: #1f262e;
+  --line-strong: #2b343e;
+  --text: #e7eaee;
+  --soft: #b6bec8;
+  --muted: #a2abb6;
+  --dim: #8a94a0;
+  --accent: #ffb547;
+  --on-accent: #0b0d10;
+  --system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --sans: 'Tilde Inter', var(--system);
+  --system-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --mono: 'Tilde Mono', var(--system-mono);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+  color: var(--text);
+  font: 400 15px/1.45 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 120% 55% at 50% 0%, transparent 0%, var(--bg) 70%);
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  isolation: isolate;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 12px 20px 28px;
+}
+
+.top {
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.wordmark {
+  display: block;
+  height: 20px;
+  width: auto;
+}
+
+.wordmark .wm-mark {
+  fill: var(--accent);
+}
+
+.wordmark .wm-name {
+  fill: var(--text);
+}
+
+.face {
+  margin-top: 8px;
+  padding: 22px 20px 20px;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--accent);
+  border-radius: 14px;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  font: 500 12px/16px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.muted {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+/* Values from the link: isolated, so their text direction can't spill, and wrapped anywhere.
+   Clipped just outside their box, so stacked accents can't draw over the lines around them. */
+.value {
+  unicode-bidi: isolate;
+  overflow-wrap: anywhere;
+  overflow: clip;
+  overflow-clip-margin: 4px;
+}
+
+/* A value with characters outside the site's Latin font files: all of it in the system font, so
+   fonts never mix within one name. */
+.system {
+  font-family: var(--system);
+}
+
+/* The title from the link: a block of its own, so the clip above applies. */
+h1 .value {
+  display: block;
+}
+
+button.copy {
+  flex: none;
+  min-width: 84px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 15px/1 var(--sans);
+  cursor: pointer;
+}
+
+button.copy:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+button.copy.done {
+  background: var(--raised);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+footer {
+  margin-top: 26px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--dim);
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: var(--soft);
+}
+
+/* The lead-on: a whole line, tall enough to tap. */
+footer .more a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 6px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+footer a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* Copy's fallback over http: a field to select, out of sight (16 px, or iOS zooms in on it). */
+.copy-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  font-size: 16px;
+}
+
+/* A note's message: its own line breaks, as written. */
+.message {
+  margin: 14px 0 0;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* A list: each item a whole-row checkbox label, 44 px tall at least. Done items stay where the
+   owner put them, struck through and muted. */
+.items {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.items li {
+  border-bottom: 1px solid var(--line);
+}
+
+.items label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.tick {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.tick:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.item {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.tick:checked + .item {
+  color: var(--dim);
+  text-decoration: line-through;
+}
+
+.counts,
+.updated {
+  margin: 12px 0 0;
+  font: 400 13px/1.4 var(--mono);
+  color: var(--muted);
+}
+
+.updated {
+  color: var(--dim);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.note-status {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.ticks {
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted);
+}
+
+.ticks strong {
+  color: var(--soft);
+}
+
+.face.void h1 {
+  font-size: 22px;
+}
+
+.face.void button.copy {
+  margin-top: 14px;
+}
+
+footer .privacy {
+  margin-top: 10px;
+}

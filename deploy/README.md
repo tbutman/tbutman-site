@@ -90,9 +90,10 @@ Redirect Rules → Create rule; type **Static**; status **302**, so a target can
 | Tilde Fobs link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/fobs" "/fobs/"})` | `https://tbutman.com/tilde/fobs` |
 | Tilde Uses link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/uses" "/uses/"})` | `https://tbutman.com/tilde/uses` |
 | Tilde App link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path in {"/app" "/app/"})` | `https://tbutman.com/tilde/app` |
+| Tilde note link | `(http.host in {"taptilde.com" "www.taptilde.com"} and http.request.uri.path eq "/n")` | `https://tbutman.com/tilde/n` |
 
-Drag all four above the catch-all, and add them to its exclusions so the result doesn't depend on
-order: `… and not http.request.uri.path in {"/c" "/w" "/card" "/card/" "/cards" "/cards/" "/fobs" "/fobs/" "/uses" "/uses/" "/app" "/app/"}`
+Drag them all above the catch-all, and add them to its exclusions so the result doesn't depend on
+order: `… and not http.request.uri.path in {"/c" "/w" "/card" "/card/" "/cards" "/cards/" "/fobs" "/fobs/" "/uses" "/uses/" "/app" "/app/" "/n"}`
 (keep `/c`, and `/w` once the Wi-Fi rule exists). `taptilde.com` itself stays on the catch-all: the
 hub is `/tilde`, whose `#booth` section leads to the four stations.
 
@@ -105,6 +106,12 @@ live it goes to the App page. Once it's live, edit only the **Tilde App link** r
 `https://play.google.com/store/apps/details?id=com.tbutman.tilde&referrer=utm_source%3Dbooth`
 instead: Play Console then shows the installs from it.) The App page stays at `/tilde/app` for
 links from the other pages.
+
+**The note link** (N1, tilde-review/specs/notes-link.md §3.7) carries a note or a list after the
+`#`, which the redirect keeps: the target has no `#` of its own. Add it **before anything writes a
+note link** (the app's notes update), so no phone caches the catch-all's 301 for `/n`. A phone that
+did anyway lands on `/tilde`, whose forwarder sends `#n1;…` on to `/tilde/n`. Check it with
+`curl -sI "https://taptilde.com/n"`: `302` and `location: https://tbutman.com/tilde/n`.
 
 Check each, then the catch-all:
 

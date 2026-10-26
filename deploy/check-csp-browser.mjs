@@ -44,10 +44,16 @@ await visit('/tilde/c#1;n=Jane%20Doe', async (page) => {
 await visit('/tilde#1;n=Jane%20Doe', async (page) => {
   await page.waitForURL(/\/tilde\/c#1;n=Jane%20Doe$/, { timeout: 5000 }).catch(() => failures.push('/tilde: the forwarder did not run'))
 })
+await visit('/tilde/n#n1;t=Groceries;i=Milk;x=Eggs', async (page) => {
+  if ((await page.locator('.tick').count()) !== 2) failures.push('/tilde/n: no list shown')
+})
+await visit('/tilde#n1;t=Groceries;i=Milk', async (page) => {
+  await page.waitForURL(/\/tilde\/n#n1;t=Groceries;i=Milk$/, { timeout: 5000 }).catch(() => failures.push('/tilde: the note forwarder did not run'))
+})
 await browser.close()
 
 if (failures.length) {
   console.error(failures.join('\n'))
   process.exit(1)
 }
-console.log(`check-csp-browser: ${paths.length + 3} pages, no CSP reports`)
+console.log(`check-csp-browser: ${paths.length + 5} pages, no CSP reports`)

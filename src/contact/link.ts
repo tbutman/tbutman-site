@@ -87,7 +87,7 @@ const SAFE = /^[A-Za-z0-9\-._~!$&'()*+=:@/?]$/
 // Control characters and the line and paragraph separators, which Apple's text APIs treat as line
 // breaks: a value with one could add lines to the .vcf, or draw a fake line under a name.
 // oxlint-disable-next-line no-control-regex -- matching control characters is the point
-const CONTROL = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g
+export const CONTROL = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g
 // Removed from every value: every format character (\p{Cf}: bidi embeddings, overrides and
 // isolates, which could show a name backwards; soft hyphen, zero-width space, LRM and RLM, word
 // joiners, BOM, the Mongolian vowel separator, interlinear annotations, tag characters, which can
@@ -102,7 +102,7 @@ const MARKS = /((?:\p{M}[\u200c\u200d]*){3})(?:\p{M}[\u200c\u200d]*)+/gu
 // A value must have something to see, not just spaces, joiners, marks and blanks. The braille
 // blank (U+2800) stays in a value but doesn't count.
 const VISIBLE = /[\p{L}\p{N}\p{P}\p{S}]/u
-const isVisible = (value: string) => VISIBLE.test(value.replace(/\u2800/g, ''))
+export const isVisible = (value: string) => VISIBLE.test(value.replace(/\u2800/g, ''))
 // Hosts on which the two IDNA standards disagree: UTS #46 (the WHATWG parser, the page) keeps ß
 // and final sigma and gives xn--strae-oqa.de, while IDNA2003 (java.net.IDN, the app) maps them to
 // strasse.de and σ, someone else's domain. Capital ẞ too (checker B23-S1): UTS #46 maps it to ss
@@ -156,7 +156,7 @@ const isPictograph = (char: string) => inRange(char, [0x1f000, 0x1faff]) || ((ch
  * moves back while the next code point extends the one before it, the one before it is a ZWJ and
  * the next a pictograph (C23), or it would split a flag's pair of regional indicators. Then trimmed.
  */
-function truncate(value: string, max: number): string {
+export function truncate(value: string, max: number): string {
   const cps = [...value]
   if (cps.length <= max) return value.trim()
   let cut = max
@@ -179,7 +179,7 @@ function truncate(value: string, max: number): string {
 }
 
 /** What every text value goes through, in the encoder and the decoder alike. */
-const tidy = (value: string) =>
+export const tidy = (value: string) =>
   value
     .replace(INVISIBLE, (_, flag: string | undefined) => flag ?? '')
     .replace(MARKS, '$1')
@@ -189,7 +189,7 @@ const tidy = (value: string) =>
  * The encoder's cleaning: control characters become spaces, and a run of spaces becomes one, so a
  * line typed with CR LF has one space (checker C17); "" when nothing visible is left.
  */
-function clean(value: string | undefined): string {
+export function clean(value: string | undefined): string {
   const tidied = tidy((value ?? '').replace(CONTROL, ' ')).replace(/ {2,}/g, ' ')
   return isVisible(tidied) ? tidied : ''
 }

@@ -2,7 +2,7 @@
 // before anything is deployed (spec: tilde-review/specs/x1-contact-link.md, section 7, T1 and T2).
 // Open the printed /x1-test address on the phone: it lists every test vector, and Save contact on the typical card.
 // Files resolve like deploy/nginx.conf: the path, then .html, then index.html. Local use only.
-import { createReadStream, readFileSync, statSync } from 'node:fs'
+import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs'
 import { createServer } from 'node:http'
 import { networkInterfaces } from 'node:os'
 import { dirname, extname, join, normalize } from 'node:path'
@@ -12,6 +12,28 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
 const port = Number(process.env.PORT || 4173)
 const vectors = JSON.parse(readFileSync(join(root, 'src', 'contact', 'vectors.json'), 'utf8'))
+// The note page's links (N1): the shared vectors once they're in src/note/, else the spec's examples.
+const noteVectorsPath = join(root, 'src', 'note', 'vectors.json')
+const noteLinks = existsSync(noteVectorsPath)
+  ? JSON.parse(readFileSync(noteVectorsPath, 'utf8')).encode.map((v) => [v.name, v.url])
+  : [
+      ['a list', 'https://taptilde.com/n#n1;d=k3f9;w=20261026;t=Groceries;i=Milk;i=Bread;i=Olive+oil;x=Eggs'],
+      ['a note', "https://taptilde.com/n#n1;d=7qa2;t=For+the+sitter;m=Back+at+6.%0ADinner's+in+the+fridge,+bedtime+8:30."],
+      ['PT items', 'https://taptilde.com/n#n1;d=pt01;t=Compras;i=P%C3%A3o;i=Caf%C3%A9;x=Leite'],
+      ['damaged', 'https://taptilde.com/n#n1;t=%G1'],
+      ['newer', 'https://taptilde.com/n#n2;t=Later'],
+    ]
+
+function noteIndex() {
+  const item = (href, label) => `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N1 test links</title><style>body{font:16px/1.5 system-ui,sans-serif;margin:16px;max-width:40rem}li{margin:.6em 0}</style></head><body>
+<h1>N1 note page: test links</h1>
+<p>For T-NO1 and T-NO5 (tilde-review/specs/notes-link.md, section 6). Tick two items on a list, reload: the ticks come back. Set the phone to Portuguese for the PT copy.</p><ul>
+${noteLinks.map(([name, url]) => item(`/tilde/n${url.slice(url.indexOf('#'))}`, name)).join('\n')}
+${item('/tilde#n1;d=k3f9;t=Groceries;i=Milk', '/tilde with a note fragment (should forward to /tilde/n)')}
+</ul></body></html>`
+}
 
 const types = {
   '.html': 'text/html; charset=utf-8',
@@ -76,9 +98,9 @@ function resolve(pathname) {
 
 createServer((req, res) => {
   const { pathname } = new URL(req.url ?? '/', 'http://localhost')
-  if (pathname === '/x1-test') {
+  if (pathname === '/x1-test' || pathname === '/n-test') {
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' })
-    res.end(testIndex())
+    res.end(pathname === '/x1-test' ? testIndex() : noteIndex())
     return
   }
   const file = resolve(pathname)
@@ -100,7 +122,7 @@ createServer((req, res) => {
     .filter((a) => a && a.family === 'IPv4' && !a.internal)
     .map((a) => a.address)
   console.log('Contact page test server. On the iPhone (same Wi-Fi), open:')
-  for (const address of addresses) console.log(`  http://${address}:${port}/x1-test`)
-  console.log(`On this Mac: http://localhost:${port}/x1-test`)
+  for (const address of addresses) console.log(`  http://${address}:${port}/x1-test  (notes: /n-test)`)
+  console.log(`On this Mac: http://localhost:${port}/x1-test and /n-test`)
   console.log('It serves every network this Mac is on: stop it with Ctrl-C when the test is done.')
 })
