@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { Link } from 'react-router'
+import { Link } from './SiteLink'
 
 // Content strings with **bold** and [links](url). A link to one of the site's own pages (a path
 // starting with /) uses the router; any other opens as a normal link. The booth pages' copy (docs'

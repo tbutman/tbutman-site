@@ -2,17 +2,20 @@
 // the policy would block (an inline script without its hash, an inline style or event handler, a
 // script, style, font or image from another site) fails CI instead of breaking the live site once
 // the config is installed. /tilde/c and /tilde/n are left out: each carries its own policy, checked by
-// its page.browser.test.mjs. Usage: node deploy/check-csp.mjs (after npm run build).
+// its page.browser.test.mjs. Usage: node deploy/check-csp.mjs (after npm run build) for tbutman.com,
+// and SITE=tilde node deploy/check-csp.mjs for taptilde.com (dist-tilde/, its $tilde_page_csp).
 import { createHash } from 'node:crypto'
 import { readdir, readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const dist = join(root, 'dist')
+const tilde = process.env.SITE === 'tilde'
+const dist = join(root, tilde ? 'dist-tilde' : 'dist')
 
 const conf = await readFile(join(root, 'deploy', 'nginx.conf'), 'utf8')
-const policy = conf.match(/~\^text\/html "([^"]+)";/)?.[1]
+// Each site's map in nginx.conf: $page_csp for tbutman.com, $tilde_page_csp for taptilde.com.
+const policy = conf.match(new RegExp(`map \\$sent_http_content_type \\$${tilde ? 'tilde_page_csp' : 'page_csp'} \\{\\s*~\\^text/html "([^"]+)";`))?.[1]
 if (!policy) throw new Error('check-csp: no text/html policy in deploy/nginx.conf')
 const directives = Object.fromEntries(
   policy.split(';').map((part) => {
@@ -29,7 +32,8 @@ const allowedScripts = new Set(directives['script-src'].filter((v) => v.startsWi
 async function* pages(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name)
-    if (entry.isDirectory()) yield* pages(path)
+    // tbutman.com's release carries taptilde.com's pages in _taptilde/, checked on their own (SITE=tilde).
+    if (entry.isDirectory() && entry.name !== '_taptilde') yield* pages(path)
     else if (entry.name.endsWith('.html')) yield path
   }
 }
@@ -39,7 +43,8 @@ const used = new Set()
 let count = 0
 for await (const file of pages(dist)) {
   const name = relative(dist, file)
-  if (name === join('tilde', 'c.html') || name === join('tilde', 'n.html')) continue
+  const own = tilde ? ['c.html', 'n.html'] : [join('tilde', 'c.html'), join('tilde', 'n.html')]
+  if (own.includes(name)) continue
   count++
   const html = await readFile(file, 'utf8')
   for (const [, attributes, body] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {

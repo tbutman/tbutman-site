@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/contact-page.mjs && node scripts/note-page.mjs",
+    "build": "npm run build:main && npm run build:tilde && node scripts/pack-sites.mjs",
+    "build:main": "node scripts/tilde-release.mjs && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/contact-page.mjs && node scripts/note-page.mjs",
+    "build:tilde": "SITE=tilde vite build --outDir dist-tilde && SITE=tilde vite build --ssr src/entry-server-tilde.tsx --outDir dist-server-tilde && SITE=tilde node scripts/prerender.mjs && SITE=tilde node scripts/contact-page.mjs && SITE=tilde node scripts/note-page.mjs",
+    "preview:tilde": "vite preview --outDir dist-tilde --port 4318",
     "lint": "oxlint",
     "preview": "vite preview",
     "resume:pdf": "node scripts/resume-pdf.mjs",

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { profile } from '../content/profile'
 
 // scripts/prerender.mjs measures each page after the build and swaps this token for the
@@ -15,12 +16,13 @@ function pageWeight() {
   return document.querySelector<HTMLMetaElement>('meta[name="page-weight"]')?.content ?? ''
 }
 
-export default function SiteFooter() {
+/** The footer of every page; `lead` replaces the © line (taptilde.com's says who made it). */
+export default function SiteFooter({ lead }: { lead?: ReactNode }) {
   const weight = pageWeight()
 
   return (
     <footer className="site-footer">
-      <p>© {profile.name}</p>
+      {lead ?? <p>© {profile.name}</p>}
       <p className="proof" aria-label="How this site is built">
         {__BUILD_COMMIT__ && (
           <span>

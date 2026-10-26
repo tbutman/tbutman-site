@@ -6,6 +6,7 @@
 // as HTML or a style, and the page sends nothing anywhere (the CSP forbids it too). The only links
 // it makes are tel: and mailto: from numbers and addresses the decoder has checked (telHref,
 // mailtoHref); websites stay text.
+import { sitePath } from '../site.ts'
 import {
   addressParts,
   AUTO_PHONE_LABEL,
@@ -270,11 +271,11 @@ function website(url: string): HTMLElement {
 function footer(): HTMLElement {
   const foot = el('footer', 'footer')
   const link = el('a', undefined, `${t.makeYourOwn} →`)
-  link.href = t.tildeHref
+  link.href = sitePath(t.tildeHref)
   foot.append(el('span', undefined, t.madeWith), link)
   if (t.more) {
     const more = el('a', undefined, `${t.more.label} →`)
-    more.href = t.more.href
+    more.href = sitePath(t.more.href)
     foot.append(more)
   }
   return foot

@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from './SiteLink'
 import ledes from '../content/booth/copy/ledes.json'
 import { hubSection, nextStop } from '../content/booth/pages'
 import { type Block, sections } from '../content/booth/types'

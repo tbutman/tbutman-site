@@ -3,3 +3,6 @@ declare const __BUILD_DATE__: string
 
 /** The newest Tilde release, looked up when the site builds (scripts/tilde-release.mjs), or null. */
 declare const __TILDE_RELEASE__: { version: string; apk: string; bytes: number; sha256?: string | null; date?: string | null } | null
+
+/** Which site this build is: tbutman.com ('main') or taptilde.com ('tilde'). See src/site.ts. */
+declare const __SITE__: 'main' | 'tilde'

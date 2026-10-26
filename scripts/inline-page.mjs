@@ -13,7 +13,10 @@ import { gzipSync } from 'node:zlib'
 import { build } from 'vite'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const assets = join(root, 'dist', 'assets')
+// SITE=tilde builds taptilde.com (src/site.ts): into dist-tilde/, with the pages at the root (/c, /n).
+const site = process.env.SITE === 'tilde' ? 'tilde' : 'main'
+const dist = join(root, site === 'tilde' ? 'dist-tilde' : 'dist')
+const assets = join(dist, 'assets')
 
 /**
  * Builds `route` (/tilde/c, /tilde/w or /tilde/n) from src/<dir>/page.html, page.ts and page.css. `what` names
@@ -21,7 +24,9 @@ const assets = join(root, 'dist', 'assets')
  */
 export async function inlinePage({ route, dir, what, global }) {
   const source = join(root, 'src', dir)
-  const out = join(root, 'dist', `${route.slice(1)}.html`)
+  // On taptilde.com the page is at the root: /tilde/c is /c.
+  if (site === 'tilde') route = route.replace(/^\/tilde/, '')
+  const out = join(dist, `${route.slice(1)}.html`)
 
   // The site's own Inter and JetBrains Mono (Latin subset), which Vite has written to dist/assets
   // under content-hashed names that nginx caches for a year: the page shares them instead of
@@ -49,7 +54,8 @@ export async function inlinePage({ route, dir, what, global }) {
       target: ['es2020', 'safari15'],
       lib: { entry: join(source, 'page.ts'), formats: ['iife'], name: global },
     },
-    define: { __LATIN_RANGE__: JSON.stringify(latinRange) },
+    // __SITE__: the pages' links to Tilde's pages are written for the site they're on (src/site.ts).
+    define: { __LATIN_RANGE__: JSON.stringify(latinRange), __SITE__: JSON.stringify(site) },
   })
   const outputs = (Array.isArray(result) ? result : [result]).flatMap((r) => r.output)
   const chunk = outputs.find((o) => o.type === 'chunk')

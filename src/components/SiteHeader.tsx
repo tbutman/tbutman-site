@@ -8,6 +8,8 @@ const navItems = [
   { label: 'about', to: '/#about', section: 'about' },
   { label: 'lab', to: '/#lab', section: 'lab' },
   { label: 'résumé', to: '/resume', section: 'resume' },
+  // Tilde has its own site (Thomas, October 26): a plain link there.
+  { label: 'tilde ↗', to: 'https://taptilde.com', section: 'tilde' },
 ]
 
 function currentSection(pathname: string) {

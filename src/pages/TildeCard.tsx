@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from '../components/SiteLink'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'

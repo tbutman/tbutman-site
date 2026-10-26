@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
+import { Link } from './SiteLink'
 import usesCopy from '../content/booth/copy/uses.json'
 import { useOrder } from '../content/booth/pages'
 import { productSheet } from '../content/booth/products'
+import { sitePath } from '../site'
 import { type Block, type BoothCopy, boothImages } from '../content/booth/types'
 import Arrival from './Arrival'
 import BoothHub from './BoothHub'
@@ -75,7 +77,7 @@ export default function TildeHub() {
   const { hash } = useLocation()
   const navigate = useNavigate()
   useEffect(() => {
-    if (MOVED[hash]) navigate(MOVED[hash], { replace: true })
+    if (MOVED[hash]) navigate(sitePath(MOVED[hash]), { replace: true })
   }, [hash, navigate])
 
   const intro = productSheet.sections.find((section) => section.id === 'the-family')?.blocks ?? []

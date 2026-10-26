@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from 'react'
-import { Link } from 'react-router'
+import { Link } from '../components/SiteLink'
 import { Placed, Render } from '../components/BoothRender'
 import FamilyProducts from '../components/FamilyProducts'
 import IPhoneNote from '../components/IPhoneNote'

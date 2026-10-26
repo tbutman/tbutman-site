@@ -28,3 +28,7 @@ dist-server
 
 # Written by scripts/tilde-release.mjs at build time
 tilde-release.json
+
+# taptilde.com (SITE=tilde)
+dist-tilde
+dist-server-tilde

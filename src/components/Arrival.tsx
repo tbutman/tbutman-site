@@ -1,7 +1,8 @@
 import { useSyncExternalStore } from 'react'
-import { Link } from 'react-router'
+import { Link } from './SiteLink'
 import { helloShared } from '../content/hello'
 import { profile } from '../content/profile'
+import { sitePath } from '../site'
 
 // Screen 0 of the hub (visitor round 1, item 3; the coordinator's wording): a line for where the
 // visitor came from, read from ?from= in the browser only (the server's snapshot is null), so the
@@ -63,7 +64,7 @@ export default function Arrival() {
         <h2 id="arrival-heading">You got a mystery card.</h2>
         <p>I’m Thomas: I designed it, printed it, and wrote the app it talks to. I’m looking for my next role.</p>
         <div className="button-row">
-          <a className="button primary" href={helloShared.vcardPath} download>
+          <a className="button primary" href={sitePath(helloShared.vcardPath)} download>
             save my contact ↓
           </a>
           <Link className="button" to="/resume">

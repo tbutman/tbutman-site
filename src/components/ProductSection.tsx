@@ -1,4 +1,5 @@
 import { familyPaths, useProducts } from '../content/booth/pages'
+import { sitePath } from '../site'
 import { productSheet } from '../content/booth/products'
 import type { Placement, Product, ProductField, ProductFieldKey } from '../content/booth/types'
 import { Placed } from './BoothRender'
@@ -91,7 +92,7 @@ export default function ProductSection({ product, renders, example, page }: { pr
       {/* The note page isn't a route of this app: a plain link, so the browser loads it. */}
       {example && (
         <p className="booth-example">
-          <a className="button" href={example}>
+          <a className="button" href={sitePath(example)}>
             see an example →
           </a>
         </p>

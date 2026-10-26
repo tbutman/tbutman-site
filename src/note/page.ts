@@ -6,6 +6,7 @@
 // HTML, a style or a link, and the page sends nothing anywhere (the CSP forbids it too). The one
 // thing it keeps is which boxes are ticked, by position, on this phone, for a week (§3.3). The title
 // stays generic: it lands in the browser's history, and the note's title shouldn't.
+import { sitePath } from '../site.ts'
 import { decode, type Item, type Note } from './link.ts'
 
 // The Latin subset's unicode-range ("U+0000-00FF,U+0131,…"), put in by the build from fontsource.
@@ -267,9 +268,9 @@ function list(note: Note, status: HTMLElement): { rows: HTMLElement; counts: HTM
 
 function footer(): HTMLElement {
   const tilde = el('a', undefined, t.tilde)
-  tilde.href = '/tilde/home'
+  tilde.href = sitePath('/tilde/home')
   const next = el('a', undefined, t.next)
-  next.href = '/tilde/uses'
+  next.href = sitePath('/tilde/uses')
   return el('footer', undefined, el('p', undefined, t.madeWith, tilde, t.about), el('p', 'more', next), el('p', 'privacy', t.privacy))
 }
 

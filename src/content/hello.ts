@@ -42,7 +42,8 @@ const en = {
   diagram: 'hello',
   cardNote:
     'The 3D model generates its own QR code, and a script decodes it from the exported model before anything is printed.',
-  projectLink: { label: 'get the app or print a tilde card, free →', to: '/tilde' },
+  // Tilde is its own site (Thomas, October 26: src/site.ts).
+  projectLink: { label: 'get the app or print a tilde card, free →', to: 'https://taptilde.com' },
 }
 
 export type HelloText = typeof en
@@ -69,7 +70,7 @@ const pt: HelloText = {
   diagram: 'hello-pt',
   cardNote:
     'O modelo 3D gera o seu próprio código QR, e um script descodifica-o a partir do modelo exportado antes de qualquer impressão.',
-  projectLink: { label: 'obtém a app ou imprime um cartão tilde, grátis →', to: '/pt/tilde' },
+  projectLink: { label: 'obtém a app ou imprime um cartão tilde, grátis →', to: 'https://taptilde.com/pt' },
 }
 
 export const helloText: Record<Locale, HelloText> = { en, pt }

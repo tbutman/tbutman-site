@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from './SiteLink'
 import { hubSection } from '../content/booth/pages'
 import { boothImages, type Block, sections } from '../content/booth/types'
 import { Render } from './BoothRender'

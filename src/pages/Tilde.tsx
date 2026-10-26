@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from '../components/SiteLink'
 import { Hub } from '../booth'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'

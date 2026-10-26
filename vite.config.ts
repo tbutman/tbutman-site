@@ -37,15 +37,28 @@ const boothParts: Plugin = {
   },
 }
 
+// Which site (src/site.ts): SITE=tilde builds taptilde.com, whose app is src/TildeApp.tsx.
+const site = process.env.SITE === 'tilde' ? 'tilde' : 'main'
+const siteApp: Plugin = {
+  name: 'site-app',
+  enforce: 'pre',
+  resolveId(source, importer) {
+    if (site === 'tilde' && source === './App' && importer?.endsWith('/src/entry-client.tsx')) {
+      return fileURLToPath(new URL('./src/TildeApp.tsx', import.meta.url))
+    }
+  },
+}
+
 // https://vite.dev/config/
 export default defineConfig(({ isPreview }) => ({
-  plugins: [react(), boothParts],
+  plugins: [react(), boothParts, siteApp],
   // In development, forward the contact form to a local `node services/contact/server.mjs`.
   server: { proxy: { '/api': 'http://127.0.0.1:3000' } },
   define: {
     __BUILD_COMMIT__: JSON.stringify(gitCommit()),
     __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),
     __TILDE_RELEASE__: JSON.stringify(tildeRelease()),
+    __SITE__: JSON.stringify(site),
   },
   // `vite preview` serves the prerendered pages as files (like production) instead of
   // falling back to the home page; the dev server keeps the SPA fallback.

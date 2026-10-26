@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
+import { Link } from './SiteLink'
 import { type Locale, prefersPortuguese, savedLocale, saveLocale } from '../i18n'
+import { sitePath } from '../site'
 
 /**
  * EN · PT links for a translated page. A language picked with this switch is remembered and wins;
@@ -11,7 +13,7 @@ export default function LangSwitch({ locale, paths }: { locale: Locale; paths: R
 
   useEffect(() => {
     const wanted = savedLocale() ?? (prefersPortuguese() ? 'pt' : null)
-    if (wanted && wanted !== locale) navigate(paths[wanted], { replace: true })
+    if (wanted && wanted !== locale) navigate(sitePath(paths[wanted]), { replace: true })
   }, [locale, navigate, paths])
 
   return (
