@@ -66,9 +66,9 @@ test('damaged: twice, bad escapes, overlong UTF-8, too long', () => {
 
 test('a bad date or id is skipped, not damaged', () => {
   const n = note('#n1;d=AB12;w=20260231;t=Hi')
-  assert.equal(n.id, null)
-  assert.equal(n.written, null)
-  assert.equal(note('#n1;w=20251231;t=Hi').written, null)
+  assert.equal(n.id, '')
+  assert.equal(n.written, '')
+  assert.equal(note('#n1;w=20251231;t=Hi').written, '')
   assert.equal(note('#n1;w=20280229;t=Hi').written, '20280229')
 })
 

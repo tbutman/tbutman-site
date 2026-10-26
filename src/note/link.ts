@@ -10,10 +10,10 @@ import { CONTROL, clean, isVisible, tidy, truncate } from '../contact/link.ts'
 
 export type Item = { text: string; done: boolean }
 export type Note = {
-  /** The note's id: 4 of [a-z0-9], random, never shown. */
-  id: string | null
-  /** The day it was last saved, as YYYYMMDD. */
-  written: string | null
+  /** The note's id: 4 of [a-z0-9], random, never shown; "" without one (as the shared vectors write it). */
+  id: string
+  /** The day it was last saved, as YYYYMMDD; "" without one. */
+  written: string
   title: string
   message: string
   items: Item[]
@@ -74,8 +74,8 @@ export function cleanMessage(value: string): string {
 /** A note's fields, cleaned and cut as both sides do. */
 export function normalize(note: Partial<Note>): Note {
   return {
-    id: note.id && /^[a-z0-9]{4}$/.test(note.id) ? note.id : null,
-    written: note.written && realDate(note.written) ? note.written : null,
+    id: note.id && /^[a-z0-9]{4}$/.test(note.id) ? note.id : '',
+    written: note.written && realDate(note.written) ? note.written : '',
     title: line(note.title ?? '', LIMITS.title),
     message: cleanMessage(note.message ?? ''),
     items: (note.items ?? [])
