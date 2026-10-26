@@ -2345,6 +2345,39 @@ main {
   }
 }
 
+/* The hub's arrival (?from=): one panel above everything, in the accent. */
+.arrival {
+  margin: 0 0 1.5rem;
+  padding: 1.25rem;
+  border-color: var(--accent);
+}
+
+.arrival h2 {
+  margin: 0 0 0.5rem;
+  font: 600 1.375rem/1.25 var(--font-sans);
+  color: var(--text);
+}
+
+.arrival p {
+  margin: 0.5rem 0 0;
+  color: var(--text-soft);
+}
+
+.arrival .button-row {
+  margin-top: 1rem;
+}
+
+/* "On an iPhone?": a short line in a panel, near the top. */
+.iphone-note {
+  margin: 1.5rem 0 0;
+  padding: 0.875rem 1rem;
+}
+
+.iphone-note p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
 /* A family's products, listed before their sections: a row of links on a desktop, a column on a phone. */
 .booth-product-index {
   display: flex;

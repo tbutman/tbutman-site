@@ -213,15 +213,7 @@ export default function Tilde({ locale }: { locale: Locale }) {
   if (locale === 'en') {
     return (
       <article className="product booth">
-        <p className="product-strip">
-          <Link to={tilde.sampleStrip.href}>
-            {tilde.sampleStrip.question}{' '}
-            <span className="nowrap">
-              <b>{tilde.sampleStrip.link}</b>
-              <span aria-hidden="true"> →</span>
-            </span>
-          </Link>
-        </p>
+        {/* The sample card's strip shows only for ?from=card now (src/components/Arrival.tsx). */}
         <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
         <Hub />
       </article>

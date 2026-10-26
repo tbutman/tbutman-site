@@ -4,17 +4,14 @@ import { boothImages, type Block, sections } from '../content/booth/types'
 import { Render } from './BoothRender'
 import RichText from './RichText'
 
-// /tilde's booth section (#booth), from docs' hub copy: for anyone who reached taptilde.com without
-// tapping a lid. Its opening and concept, the whole booth table, a way into each station (docs' "See
-// everything" table: a picture and a link above, a line below), and how to get it. English only.
-// A station the table doesn't link yet still gets a tile, with its name and no line.
+// /tilde's booth section (#booth): where and when the booth is, the whole booth table, docs' "See
+// everything" line, and a link to each station from docs' table. English only. The hub above it
+// already says what Tilde is and shows the families (visitor round 1, item 12).
 
 export default function BoothHub() {
   const all = sections(hubSection.copy.blocks)
-  const find = (id: string) => all.find((section) => section.heading.id === id)?.blocks ?? []
   const see = all.find((section) => section.heading.id === 'see-everything')
   const table = see?.blocks.find((block): block is Extract<Block, { type: 'table' }> => block.type === 'table')
-  const get = all.find((section) => /^how to get/i.test(section.heading.text))
   const text = (blocks: Block[]) =>
     blocks.map((block, index) =>
       block.type === 'p' ? (
@@ -34,49 +31,28 @@ export default function BoothHub() {
   return (
     <section id="booth" className="section booth-hub" aria-labelledby="booth-heading">
       <div className="section-head">
-        <h2 id="booth-heading">{(see?.heading.text ?? 'See everything').toLowerCase()}</h2>
+        <h2 id="booth-heading">at our booth</h2>
       </div>
-      {text(find('the-opening'))}
+      {/* The booth line (visitor round 1, item 11). Docs' opening and concept say what Tilde is, which
+          the hub's hero already does (item 12), so the hub shows only the booth itself. */}
+      <p className="product-body booth-p">
+        <b>Web Summit, Lisbon, November 9–12.</b>
+      </p>
       <div className="booth-grid booth-grid-wide">
         <Render image={boothImages[hubSection.table]} id={hubSection.table} ratio="wide" size="wide" />
       </div>
-      {text(find('the-concept'))}
       {text(see?.blocks.filter((block) => block.type !== 'table') ?? [])}
       {table && (
-        <ul className="booth-stations">
-          {[
-            ...table.rows[0].map((cell, index) => [cell, table.rows[1]?.[index] ?? ''] as const),
-            ...hubSection.stations
-              .filter((page) => !table.rows[0].some((cell) => cell.includes(`](${page.path})`)))
-              .map((page) => [`**[${page.label}](${page.path})**`, ''] as const),
-          ].map(([cell, line]) => {
-            const marker = cell.match(/^\[image: ([^\]]+)\]\s*/)
+        <ul className="booth-make">
+          {table.rows[0].map((cell) => {
             const link = cell.match(/\[([^\]]+)\]\((\/[^)]+)\)/)
-            const station = hubSection.stations.find((page) => page.path === link?.[2])
-            const id = hubSection.images.find(([start]) => marker?.[1].startsWith(start))?.[1] ?? station?.hero ?? ''
-            return (
-              <li key={cell}>
-                <Link className="panel" to={link?.[2] ?? '/tilde'}>
-                  {/* A screenshot shows only its top, about the renders' shape. */}
-                  <div className={boothImages[id]?.slot === 'screens' || id.startsWith('app-') ? 'booth-tile-screen' : undefined}>
-                    <Render image={boothImages[id]} id={id || (marker?.[1] ?? cell)} ratio="photo" size="grid" />
-                  </div>
-                  <b>{link?.[1]} →</b>
-                  <span>
-                    <RichText text={line} />
-                  </span>
-                  {station && <small>{station.shortLink}</small>}
-                </Link>
+            return link ? (
+              <li key={link[2]}>
+                <Link to={link[2]}>{link[1].toLowerCase()} →</Link>
               </li>
-            )
+            ) : null
           })}
         </ul>
-      )}
-      {get && (
-        <>
-          <h3 className="booth-h3">{get.heading.text}</h3>
-          {text(get.blocks)}
-        </>
       )}
     </section>
   )

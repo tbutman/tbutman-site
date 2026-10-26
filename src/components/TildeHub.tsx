@@ -4,13 +4,17 @@ import usesCopy from '../content/booth/copy/uses.json'
 import { useOrder } from '../content/booth/pages'
 import { productSheet } from '../content/booth/products'
 import { type Block, type BoothCopy, boothImages } from '../content/booth/types'
+import Arrival from './Arrival'
 import BoothHub from './BoothHub'
+import IPhoneNote from './IPhoneNote'
 import { Render } from './BoothRender'
 import NextStop from './NextStop'
 import RichText from './RichText'
 
-// /tilde, the family's hub (finish-line plan §3; Thomas, October 26): what Tilde is in one breath, the
-// four families, the most common uses, how every Tilde works, and how to make your own, all in docs'
+// /tilde, the family's hub (finish-line plan §3; Thomas, October 26): where the visitor came from
+// (Arrival), what Tilde is in one breath, what an iPhone does, the most common uses (outcomes before
+// the catalog: visitor round 1, item 5), the four families, how every Tilde works, and how to make
+// your own, all in docs'
 // words (the product sheet's "The family", and the Use cases page's leads). The booth's own section
 // (#booth) follows, then the tour's first stop. The app's install steps and questions are on
 // /tilde/app now; old links to them (#install, #faq) are passed on there.
@@ -92,11 +96,12 @@ export default function TildeHub() {
 
   return (
     <>
+      <Arrival />
       <section className="product-hero booth-hero" aria-labelledby="tilde-heading">
         <div className="product-hero-text">
           <p className="status">
             <span className="status-dot" aria-hidden="true" />
-            nfc · qr · 3d-printable · android
+            nfc · qr · 3d-printable · works with any phone
           </p>
           <p className="product-name">
             <b>~</b> Tilde
@@ -117,6 +122,29 @@ export default function TildeHub() {
         <div className="booth-hero-visual">
           <Render image={boothImages['booth-table-open']} id="booth-table-open" ratio="wide" size="wide" eager />
         </div>
+      </section>
+
+      <IPhoneNote />
+
+      <section id="uses" className="section" aria-labelledby="uses-heading">
+        <div className="section-head">
+          <h2 id="uses-heading">what it’s for</h2>
+        </div>
+        <ul className="booth-stations booth-uses">
+          {leadUses().map((use) => (
+            <li key={use.id}>
+              <Link className="panel" to={`/tilde/uses#${use.id}`}>
+                <b>{use.title} →</b>
+                <span>
+                  <RichText text={use.line} />
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="product-small">
+          <Link to="/tilde/uses">every use case →</Link>
+        </p>
       </section>
 
       <section id="family" className="section" aria-labelledby="family-heading">
@@ -144,27 +172,6 @@ export default function TildeHub() {
           })}
         </ul>
         <Text blocks={after} />
-      </section>
-
-      <section id="uses" className="section" aria-labelledby="uses-heading">
-        <div className="section-head">
-          <h2 id="uses-heading">what it’s for</h2>
-        </div>
-        <ul className="booth-stations booth-uses">
-          {leadUses().map((use) => (
-            <li key={use.id}>
-              <Link className="panel" to={`/tilde/uses#${use.id}`}>
-                <b>{use.title} →</b>
-                <span>
-                  <RichText text={use.line} />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="product-small">
-          <Link to="/tilde/uses">every use case →</Link>
-        </p>
       </section>
 
       <section id="how" className="section" aria-labelledby="how-heading">

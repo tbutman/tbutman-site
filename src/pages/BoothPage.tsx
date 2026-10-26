@@ -2,6 +2,7 @@ import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { Placed, Render } from '../components/BoothRender'
 import FamilyProducts from '../components/FamilyProducts'
+import IPhoneNote from '../components/IPhoneNote'
 import NextStop from '../components/NextStop'
 import RichText from '../components/RichText'
 import { familyPaths, type BoothPage as Page, placementFor, tour, useOrder, useProducts } from '../content/booth/pages'
@@ -225,6 +226,7 @@ export function BoothBody({ page, insert, insertBefore, end }: { page: Page; ins
   return (
     <>
       <Hero page={page} opening={opening} lineup={rest.find((section) => section.heading.id === page.lineup) ?? rest[1]} get={get} />
+      {page.iphoneNote && <IPhoneNote />}
       {page.family && <FamilyProducts family={page.family} />}
       {rest.map((section) => {
         const note = section.blocks.some(isNote)

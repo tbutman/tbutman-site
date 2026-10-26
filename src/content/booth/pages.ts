@@ -31,6 +31,8 @@ export type BoothPage = {
   family?: string
   /** A download button first in the hero (the App page: the APK, finish-line plan §7). */
   download?: boolean
+  /** "On an iPhone?" right after the hero (visitor round 1, item 4). */
+  iphoneNote?: boolean
 }
 
 // Thomas's review note (October 20): each design's alternate backs go in its row, after its front
@@ -108,6 +110,7 @@ export const fobsPage: BoothPage = {
 
 export const usesPage: BoothPage = {
   page: 'uses',
+  iphoneNote: true,
   label: 'Use cases',
   path: '/tilde/uses',
   shortLink: 'taptilde.com/uses',
