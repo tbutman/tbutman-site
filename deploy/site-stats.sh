@@ -20,38 +20,48 @@ DB_DIR=/var/lib/tbutman-stats
 OUT_DIR=/srv/tbutman-stats
 JSON_DIR=/var/lib/tbutman-stats-json
 
-[[ -s "$LOG_DIR/access.log" ]] || exit 0
+# One report per site (Thomas, October 26: taptilde.com has its own log, deploy/nginx.conf): tbutman.com
+# in the folders above as before, taptilde.com in a taptilde/ folder beside each, with its own totals.
+report() {
+  local site="$1" log="$2" db="$3" out="$4" json="$5"
+  [[ -s "$LOG_DIR/$log" ]] || return 0
+  mkdir -p "$db" "$out"
 
-# GoAccess picks the output format from the file extension, so write to another .html file and
-# swap it in, so the report is never seen half-written.
-docker run --rm --network none \
-  -v "$LOG_DIR:/logs:ro" -v "$DB_DIR:/db" -v "$OUT_DIR:/out" \
-  "$IMAGE" /logs/access.log \
-  --no-global-config --log-format=COMBINED \
-  --persist --restore --db-path=/db \
-  --anonymize-ip --ignore-crawlers \
-  --html-report-title="tbutman.com visitors" \
-  -o /out/next.html
-mv -f "$OUT_DIR/next.html" "$OUT_DIR/index.html"
-
-# The JSON copy: a second pass over the totals just stored (read-only, no --persist, so it can't
-# change them), with every panel except requested pages and referring sites switched off. Skipped
-# until the folder exists. Its group (set by the folder's setgid bit) may read it; nobody else.
-if [[ -d "$JSON_DIR" ]]; then
-  ignore=()
-  for panel in VISITORS REQUESTS_STATIC NOT_FOUND HOSTS OS BROWSERS VISIT_TIMES VIRTUAL_HOSTS \
-               REFERRERS KEYPHRASES STATUS_CODES REMOTE_USER CACHE_STATUS GEO_LOCATION ASN \
-               MIME_TYPE TLS_TYPE UTM_CAMPAIGNS; do
-    ignore+=(--ignore-panel="$panel")
-  done
+  # GoAccess picks the output format from the file extension, so write to another .html file and
+  # swap it in, so the report is never seen half-written.
   docker run --rm --network none \
-    -v "$LOG_DIR:/logs:ro" -v "$DB_DIR:/db:ro" -v "$JSON_DIR:/json" \
-    "$IMAGE" /logs/access.log \
+    -v "$LOG_DIR:/logs:ro" -v "$db:/db" -v "$out:/out" \
+    "$IMAGE" "/logs/$log" \
     --no-global-config --log-format=COMBINED \
-    --restore --db-path=/db \
+    --persist --restore --db-path=/db \
     --anonymize-ip --ignore-crawlers \
-    "${ignore[@]}" \
-    -o /json/next.json
-  chmod 640 "$JSON_DIR/next.json"
-  mv -f "$JSON_DIR/next.json" "$JSON_DIR/report.json"
-fi
+    --html-report-title="$site visitors" \
+    -o /out/next.html
+  mv -f "$out/next.html" "$out/index.html"
+
+  # The JSON copy: a second pass over the totals just stored (read-only, no --persist, so it can't
+  # change them), with every panel except requested pages and referring sites switched off. Skipped
+  # until the folder exists. Its group (set by the folder's setgid bit) may read it; nobody else.
+  if [[ -d "$json" ]]; then
+    ignore=()
+    for panel in VISITORS REQUESTS_STATIC NOT_FOUND HOSTS OS BROWSERS VISIT_TIMES VIRTUAL_HOSTS \
+                 REFERRERS KEYPHRASES STATUS_CODES REMOTE_USER CACHE_STATUS GEO_LOCATION ASN \
+                 MIME_TYPE TLS_TYPE UTM_CAMPAIGNS; do
+      ignore+=(--ignore-panel="$panel")
+    done
+    docker run --rm --network none \
+      -v "$LOG_DIR:/logs:ro" -v "$db:/db:ro" -v "$json:/json" \
+      "$IMAGE" "/logs/$log" \
+      --no-global-config --log-format=COMBINED \
+      --restore --db-path=/db \
+      --anonymize-ip --ignore-crawlers \
+      "${ignore[@]}" \
+      -o /json/next.json
+    chmod 640 "$json/next.json"
+    mv -f "$json/next.json" "$json/report.json"
+  fi
+}
+
+report tbutman.com access.log "$DB_DIR" "$OUT_DIR" "$JSON_DIR"
+# Its JSON copy only once the owner has made the folder, as for tbutman.com's.
+report taptilde.com taptilde.log "$DB_DIR/taptilde" "$OUT_DIR/taptilde" "$JSON_DIR/taptilde"

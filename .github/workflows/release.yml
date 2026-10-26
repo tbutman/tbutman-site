@@ -23,6 +23,8 @@ jobs:
     env:
       # Repository variable; defaults to the test site until production moves to tbutman.com.
       SITE_URL: ${{ vars.SITE_URL || 'https://home.tbutman.com' }}
+      # taptilde.com's own build (SITE=tilde, src/site.ts), packed into the same release as _taptilde/.
+      TILDE_SITE_URL: ${{ vars.TILDE_SITE_URL || 'https://taptilde.com' }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -32,15 +34,18 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
+      # Both sites: tbutman.com (dist/) and taptilde.com (dist-tilde/, packed into dist/_taptilde/).
       - run: npm run build
-      # The contact page (/tilde/c) in Chromium and WebKit against every shared test vector: what
-      # each link shows, no CSP reports, no requests beyond the page, favicon and fonts, and the .vcf.
-      # The pages fit the Content Security Policy in deploy/nginx.conf.
+      # The contact and note pages in Chromium and WebKit against their shared test vectors: what
+      # each link shows, no CSP reports, no requests beyond the page, favicon and fonts, and the .vcf;
+      # on each site. The pages fit each site's Content Security Policy in deploy/nginx.conf.
       - run: node deploy/check-csp.mjs
-      - name: Contact page in real browsers
+      - run: SITE=tilde node deploy/check-csp.mjs
+      - name: Contact and note pages in real browsers
         run: |
           npx playwright install --with-deps chromium webkit
-          node --test src/contact/page.browser.test.mjs
+          node --test src/contact/page.browser.test.mjs src/note/page.browser.test.mjs
+          SITE=tilde node --test src/contact/page.browser.test.mjs src/note/page.browser.test.mjs
       # Serve the build through the production nginx config, in the same image the server pins
       # (NGINX_IMAGE in the homelab setup script), and check statuses and cache headers.
       - name: Check the build behind the production nginx config
@@ -54,8 +59,11 @@ jobs:
           for i in $(seq 1 20); do curl -fs -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.5; done
           deploy/check-nginx.sh http://127.0.0.1:8080 || { docker logs site; exit 1; }
           node deploy/check-csp-browser.mjs http://127.0.0.1:8080 || { docker logs site; exit 1; }
+          SITE=tilde node deploy/check-csp-browser.mjs http://127.0.0.1:8080 || { docker logs site; exit 1; }
+      # One tarball for both sites: dist/ with taptilde.com's build in _taptilde/ (scripts/pack-sites.mjs).
       - name: Package
         run: |
+          test -f dist/_taptilde/index.html
           tar -czf site.tar.gz -C dist .
           sha256sum site.tar.gz > site.tar.gz.sha256
       - uses: actions/upload-artifact@v7

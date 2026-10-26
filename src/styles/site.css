@@ -48,6 +48,32 @@ main {
   align-items: center;
 }
 
+/* taptilde.com's family nav: five short words, so they stay visible on a phone, wrapping if need be. */
+.tilde-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  color: var(--muted);
+}
+
+.tilde-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  transition: color 0.15s;
+}
+
+.tilde-nav a:hover,
+.tilde-nav a[aria-current='page'] {
+  color: var(--text);
+}
+
+.tilde-made-by a {
+  color: var(--text-soft);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .palette-trigger {
   padding: 0.3125rem 0.5rem;
   border: 1px solid var(--line-strong);

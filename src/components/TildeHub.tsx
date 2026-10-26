@@ -31,6 +31,9 @@ const FAMILIES: Record<string, { path: string; image: string }> = {
 const MOVED: Record<string, string> = {
   '#install': '/tilde/app#install',
   '#faq': '/tilde/app#faq',
+  // The app's own links (1.3.0's About: taptilde.com/#faq-heading).
+  '#faq-heading': '/tilde/app#faq-heading',
+  '#install-heading': '/tilde/app#install-heading',
   '#app': '/tilde/app',
   '#card': '/tilde/card',
 }

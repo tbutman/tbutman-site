@@ -13,9 +13,12 @@ import { fileURLToPath } from 'node:url'
 import { chromium, webkit } from 'playwright'
 import { encodeNote } from './link.ts'
 
-const dist = fileURLToPath(new URL('../../dist/', import.meta.url))
+// SITE=tilde tests taptilde.com's copy (dist-tilde/n.html, at /n); otherwise tbutman.com's (/tilde/n).
+const tilde = process.env.SITE === 'tilde'
+const dist = fileURLToPath(new URL(tilde ? '../../dist-tilde/' : '../../dist/', import.meta.url))
+const pagePath = tilde ? '/n' : '/tilde/n'
 const fragmentOf = (url) => url.slice(url.indexOf('#'))
-const allowed = /^\/(tilde\/n|favicon\.svg|assets\/(inter|jetbrains-mono)-latin-wght-normal-[\w-]+\.woff2)$/
+const allowed = /^\/((tilde\/)?n|favicon\.svg|assets\/(inter|jetbrains-mono)-latin-wght-normal-[\w-]+\.woff2)$/
 
 const groceries = fragmentOf(
   encodeNote({
@@ -79,7 +82,7 @@ for (const [engine, type] of [
       })
       page.on('pageerror', (error) => problems.push(String(error)))
       page.on('request', (request) => requests.push(new URL(request.url()).pathname))
-      await page.goto(`${base}/tilde/n${fragment}`)
+      await page.goto(`${base}${pagePath}${fragment}`)
       await page.waitForSelector('#note > *')
       return { page, context, problems, requests }
     }
@@ -115,7 +118,7 @@ for (const [engine, type] of [
       assert.ok(!stored.flat().join(' ').includes('Bread'), 'the words are never stored')
       // The same note, rewritten with another item: a new key, so nothing ticked but its own.
       const rewritten = fragmentOf(encodeNote({ id: 'k3f9', title: 'Groceries', items: [{ text: 'Milk', done: false }, { text: 'Rice', done: false }] }))
-      await page.goto(`${base}/tilde/n${rewritten}`)
+      await page.goto(`${base}${pagePath}${rewritten}`)
       await page.waitForSelector('.tick')
       assert.deepEqual(await page.locator('.tick').evaluateAll((boxes) => boxes.map((box) => box.checked)), [false, false])
       await context.close()
@@ -186,7 +189,7 @@ for (const [engine, type] of [
 
     test('the footer leads to Home & desk and the use cases', async () => {
       const { page, context } = await open(sitter)
-      assert.deepEqual(await page.locator('footer a').evaluateAll((links) => links.map((a) => a.getAttribute('href'))), ['/tilde/home', '/tilde/uses'])
+      assert.deepEqual(await page.locator('footer a').evaluateAll((links) => links.map((a) => a.getAttribute('href'))), tilde ? ['/home', '/uses'] : ['/tilde/home', '/tilde/uses'])
       await context.close()
     })
   })

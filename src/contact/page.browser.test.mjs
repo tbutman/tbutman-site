@@ -12,7 +12,10 @@ import { fileURLToPath } from 'node:url'
 import { chromium, webkit } from 'playwright'
 import { decodeFragment, displayAddress, mailtoHref, telHref } from './link.ts'
 
-const dist = fileURLToPath(new URL('../../dist/', import.meta.url))
+// SITE=tilde tests taptilde.com's copy (dist-tilde/c.html, at /c); otherwise tbutman.com's (/tilde/c).
+const tilde = process.env.SITE === 'tilde'
+const dist = fileURLToPath(new URL(tilde ? '../../dist-tilde/' : '../../dist/', import.meta.url))
+const pagePath = tilde ? '/c' : '/tilde/c'
 const vectors = JSON.parse(await readFile(new URL('./vectors.json', import.meta.url), 'utf8'))
 const fragmentOf = (url) => (url.includes('#') ? url.slice(url.indexOf('#')) : '')
 
@@ -23,7 +26,7 @@ const headings = {
   unsupported: 'This contact needs a newer page',
 }
 // What the page may ask for, whatever the link says.
-const allowed = /^\/(tilde\/c|favicon\.svg|assets\/(inter|jetbrains-mono)-latin-wght-normal-[\w-]+\.woff2)$/
+const allowed = /^\/((tilde\/)?c|favicon\.svg|assets\/(inter|jetbrains-mono)-latin-wght-normal-[\w-]+\.woff2)$/
 
 // Every link the vectors hold, with what the page should make of it.
 const cases = [
@@ -81,7 +84,7 @@ for (const [engine, type] of [
       })
       page.on('pageerror', (error) => problems.push(String(error)))
       page.on('request', (request) => requests.push(new URL(request.url()).pathname))
-      await page.goto(`${base}/tilde/c${fragment}`)
+      await page.goto(`${base}${pagePath}${fragment}`)
       await page.evaluate(() => document.fonts.ready)
       return { context, page, problems, requests }
     }
