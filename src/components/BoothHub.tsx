@@ -31,7 +31,7 @@ export default function BoothHub() {
   return (
     <section id="booth" className="section booth-hub" aria-labelledby="booth-heading">
       <div className="section-head">
-        <h2 id="booth-heading">at our booth</h2>
+        <h2 id="booth-heading">the tilde booth</h2>
       </div>
       {/* The booth line (visitor round 1, item 11). Docs' opening and concept say what Tilde is, which
           the hub's hero already does (item 12), so the hub shows only the booth itself. */}

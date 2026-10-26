@@ -20,7 +20,6 @@ const SHOWN: [ProductFieldKey, string][] = [
 const MAKERS: [ProductFieldKey, string][] = [
   ['options', 'options'],
   ['specs', 'size and materials'],
-  ['files', 'get the files'],
 ]
 
 // A list item's bold lead ("**Base tag:** …", "**Save my contact:** …") as a link: to that product's
@@ -43,7 +42,9 @@ function linked(key: ProductFieldKey, item: string): string {
 }
 
 // Docs writes a field's text after its label and a colon, in lowercase; on its own it starts a sentence.
-const sentence = (text: string) => text.replace(/^([^A-Za-z]*)([a-z])/, (_, lead: string, letter: string) => lead + letter.toUpperCase())
+// Only a word that opens the text is capitalized (after bold or a quote mark): "85.60 × 53.98 mm"
+// stays as it is (visitor round 2, item 1: it read "53.98 Mm").
+const sentence = (text: string) => text.replace(/^([*"“‘(]*)([a-z])/, (_, lead: string, letter: string) => lead + letter.toUpperCase())
 
 function Field({ name, field }: { name: ProductFieldKey; field: ProductField }) {
   return (
@@ -83,17 +84,25 @@ export default function ProductSection({ product, renders, example, page }: { pr
           <RichText text={sentence(fields.oneLiner.text)} />
         </p>
       )}
+      {/* Next to the first line (visitor round 2, items 14 and 23): what a tap shows, and the files.
+          The note page isn't a route of this app: a plain link, so the browser loads it. */}
+      {(example || fields.files) && (
+        <div className="booth-product-actions">
+          {example && (
+            <a className="button" href={example}>
+              see an example →
+            </a>
+          )}
+          {fields.files && (
+            <p className="booth-files">
+              <b>get the files:</b> <RichText text={fields.files.text} />
+            </p>
+          )}
+        </div>
+      )}
       {fields.problem && (
         <p className="product-body booth-p">
           <RichText text={sentence(fields.problem.text)} />
-        </p>
-      )}
-      {/* The note page isn't a route of this app: a plain link, so the browser loads it. */}
-      {example && (
-        <p className="booth-example">
-          <a className="button" href={example}>
-            see an example →
-          </a>
         </p>
       )}
       {renders && <Placed placement={renders} page={page ?? ''} marker={product.name} />}
@@ -109,7 +118,11 @@ export default function ProductSection({ product, renders, example, page }: { pr
       </dl>
       {(fields.whatYouNeed || MAKERS.some(([key]) => fields[key])) && (
         <details className="booth-makers">
-          <summary>for makers</summary>
+          {/* Visibly a fold, with what's in it (visitor round 2, item 2: a closed one read as empty). */}
+          <summary>
+            <span className="booth-makers-title">for makers</span>
+            <span className="booth-makers-what">what you need, sizes, options</span>
+          </summary>
           {fields.whatYouNeed && (
             <div className="booth-need panel">
               <b>what you need</b>

@@ -1,5 +1,6 @@
 import { productExamples, productRenders } from '../content/booth/pages'
 import { productSheet } from '../content/booth/products'
+import NoPrinter from './NoPrinter'
 import ProductSection from './ProductSection'
 import RichText from './RichText'
 
@@ -25,6 +26,7 @@ export default function FamilyProducts({ family }: { family: string }) {
           </li>
         ))}
       </ul>
+      <NoPrinter />
       {found.products.map((product) => (
         <ProductSection key={product.id} product={product} renders={productRenders[product.id]} example={productExamples[product.id]} page={family} />
       ))}

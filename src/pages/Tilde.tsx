@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import { Hub } from '../booth'
 import LangSwitch from '../components/LangSwitch'
+import NotOnIPhone from '../components/NotOnIPhone'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
 import { allReleases, signingFingerprint, tildeText } from '../content/tilde'
@@ -22,7 +24,21 @@ function Phone({ src, alt, eager = false }: { src: string; alt: string; eager?: 
  * Card, questions, and the closing download. /pt/tilde shows them under its hero; /tilde/app shows
  * them (English) under docs' App page, since /tilde became the family's hub (finish-line plan §3).
  */
-export function AppSections({ locale }: { locale: Locale }) {
+/** Its children, or under a fold that says what's in it. */
+function Fold({ fold, title, what, children }: { fold?: boolean; title: string; what: string; children: ReactNode }) {
+  if (!fold) return children
+  return (
+    <details className="booth-makers guide-fold">
+      <summary>
+        <span className="booth-makers-title">{title}</span>
+        <span className="booth-makers-what">{what}</span>
+      </summary>
+      {children}
+    </details>
+  )
+}
+
+export function AppSections({ locale, fold }: { locale: Locale; fold?: boolean }) {
   const tilde = tildeText[locale]
   const downloadHref = release?.apk ?? tilde.download.fallbackHref
   return (
@@ -64,141 +80,144 @@ export function AppSections({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="modes-heading">
-        <div className="section-head">
-          <h2 id="modes-heading">{tilde.modesHeading}</h2>
-        </div>
-        <div className="product-split">
-          <Phone {...tilde.modesPhone} />
-          <div>
-            <p className="section-intro">
-              <RichText text={tilde.modesIntro} />
-            </p>
-            <ul className="mode-grid">
-              {tilde.modes.map((mode) => (
-                <li key={mode.title} className="panel">
-                  <h3>{mode.title}</h3>
-                  <p>{mode.body}</p>
-                </li>
-              ))}
-            </ul>
+      {/* On /tilde/app, everything after the install steps folds (visitor round 2, item 26); /pt/tilde keeps the page whole. */}
+      <Fold fold={fold} title={tilde.moreHeading} what={tilde.moreWhat}>
+        <section className="section" aria-labelledby="modes-heading">
+          <div className="section-head">
+            <h2 id="modes-heading">{tilde.modesHeading}</h2>
           </div>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="cards-heading">
-        <div className="section-head">
-          <h2 id="cards-heading">{tilde.cardsHeading}</h2>
-        </div>
-        <div className={tilde.cardsPhones.length > 1 ? 'product-split product-split-reverse product-split-pair' : 'product-split product-split-reverse'}>
-          <div>
-            {tilde.cardsBody.map((paragraph) => (
-              <p key={paragraph} className="product-body product-paragraph">
-                <RichText text={paragraph} />
+          <div className="product-split">
+            <Phone {...tilde.modesPhone} />
+            <div>
+              <p className="section-intro">
+                <RichText text={tilde.modesIntro} />
               </p>
-            ))}
+              <ul className="mode-grid">
+                {tilde.modes.map((mode) => (
+                  <li key={mode.title} className="panel">
+                    <h3>{mode.title}</h3>
+                    <p>{mode.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="product-phones">
-            {tilde.cardsPhones.map((phone) => (
-              <Phone key={phone.src} {...phone} />
-            ))}
+        </section>
+
+        <section className="section" aria-labelledby="cards-heading">
+          <div className="section-head">
+            <h2 id="cards-heading">{tilde.cardsHeading}</h2>
           </div>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="steps-heading">
-        <div className="section-head">
-          <h2 id="steps-heading">{tilde.stepsHeading}</h2>
-        </div>
-        <ol className="product-steps">
-          {tilde.steps.map((step, index) => (
-            <li key={step.title} className="panel">
-              <span className="num">{String(index + 1).padStart(2, '0')}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="section" aria-labelledby="free-heading">
-        <div className="section-head">
-          <h2 id="free-heading">{tilde.freeHeading}</h2>
-        </div>
-        <div className="product-split product-split-reverse">
-          <div>
-            <dl className="stats product-stats">
-              {tilde.freeFacts.map((fact) => (
-                <div key={fact.label} className="panel">
-                  <dt>{fact.label}</dt>
-                  <dd>{fact.value}</dd>
-                </div>
+          <div className={tilde.cardsPhones.length > 1 ? 'product-split product-split-reverse product-split-pair' : 'product-split product-split-reverse'}>
+            <div>
+              {tilde.cardsBody.map((paragraph) => (
+                <p key={paragraph} className="product-body product-paragraph">
+                  <RichText text={paragraph} />
+                </p>
               ))}
-            </dl>
-            <p className="product-body">
-              <RichText text={tilde.freeBody} />
-            </p>
-            <p className="product-small">
-              <Link to={tilde.privacyLink.to}>{tilde.privacyLink.label} →</Link>
-            </p>
-          </div>
-          <Phone {...tilde.metPhone} />
-        </div>
-      </section>
-
-      <section id="card" className="section" aria-labelledby="card-heading">
-        <div className="section-head">
-          <h2 id="card-heading">{tilde.cardHeading}</h2>
-        </div>
-        <div className="product-card-section">
-          <div className="product-card-images">
-            <img src="/tilde/card.webp" alt={tilde.cardFrontAlt} width={1200} height={603} loading="lazy" decoding="async" />
-            <div className="product-backs">
-              {tilde.backs.map((back) => (
-                <figure key={back.src}>
-                  <img src={back.src} alt={back.alt} width={800} height={505} loading="lazy" decoding="async" />
-                  <figcaption>{back.caption}</figcaption>
-                </figure>
+            </div>
+            <div className="product-phones">
+              {tilde.cardsPhones.map((phone) => (
+                <Phone key={phone.src} {...phone} />
               ))}
             </div>
           </div>
-          <div>
-            {tilde.cardBody.map((paragraph) => (
-              <p key={paragraph} className="product-body">
-                {paragraph}
-              </p>
-            ))}
-            <div className="button-row">
-              <Link className="button primary" to={tilde.cardPage.to}>
-                {tilde.cardPage.label} →
-              </Link>
-              {tilde.cardLinks.map((link) => (
-                <a key={link.href} className="button" href={link.href}>
-                  {link.label} ↗
-                </a>
-              ))}
-            </div>
-            <p className="product-small">{tilde.cardNote}</p>
+        </section>
+
+        <section className="section" aria-labelledby="steps-heading">
+          <div className="section-head">
+            <h2 id="steps-heading">{tilde.stepsHeading}</h2>
           </div>
-        </div>
-      </section>
+          <ol className="product-steps">
+            {tilde.steps.map((step, index) => (
+              <li key={step.title} className="panel">
+                <span className="num">{String(index + 1).padStart(2, '0')}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      <section className="section" aria-labelledby="faq-heading">
-        <div className="section-head">
-          <h2 id="faq-heading">{tilde.faqHeading}</h2>
-        </div>
-        <div className="faq">
-          {tilde.faq.map((item) => (
-            <details key={item.q} className="panel">
-              <summary>{item.q}</summary>
-              <p>
-                <RichText text={item.a} />
+        <section className="section" aria-labelledby="free-heading">
+          <div className="section-head">
+            <h2 id="free-heading">{tilde.freeHeading}</h2>
+          </div>
+          <div className="product-split product-split-reverse">
+            <div>
+              <dl className="stats product-stats">
+                {tilde.freeFacts.map((fact) => (
+                  <div key={fact.label} className="panel">
+                    <dt>{fact.label}</dt>
+                    <dd>{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="product-body">
+                <RichText text={tilde.freeBody} />
               </p>
-            </details>
-          ))}
-        </div>
-      </section>
+              <p className="product-small">
+                <Link to={tilde.privacyLink.to}>{tilde.privacyLink.label} →</Link>
+              </p>
+            </div>
+            <Phone {...tilde.metPhone} />
+          </div>
+        </section>
 
+        <section id="card" className="section" aria-labelledby="card-heading">
+          <div className="section-head">
+            <h2 id="card-heading">{tilde.cardHeading}</h2>
+          </div>
+          <div className="product-card-section">
+            <div className="product-card-images">
+              <img src="/tilde/card.webp" alt={tilde.cardFrontAlt} width={1200} height={603} loading="lazy" decoding="async" />
+              <div className="product-backs">
+                {tilde.backs.map((back) => (
+                  <figure key={back.src}>
+                    <img src={back.src} alt={back.alt} width={800} height={505} loading="lazy" decoding="async" />
+                    <figcaption>{back.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+            <div>
+              {tilde.cardBody.map((paragraph) => (
+                <p key={paragraph} className="product-body">
+                  {paragraph}
+                </p>
+              ))}
+              <div className="button-row">
+                <Link className="button primary" to={tilde.cardPage.to}>
+                  {tilde.cardPage.label} →
+                </Link>
+                {tilde.cardLinks.map((link) => (
+                  <a key={link.href} className="button" href={link.href}>
+                    {link.label} ↗
+                  </a>
+                ))}
+              </div>
+              <p className="product-small">{tilde.cardNote}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" aria-labelledby="faq-heading">
+          <div className="section-head">
+            <h2 id="faq-heading">{tilde.faqHeading}</h2>
+          </div>
+          <div className="faq">
+            {tilde.faq.map((item) => (
+              <details key={item.q} className="panel">
+                <summary>{item.q}</summary>
+                <p>
+                  <RichText text={item.a} />
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+      </Fold>
       <section className="product-cta panel" aria-label={tilde.ctaText}>
         <div>
           <p>
@@ -209,9 +228,18 @@ export function AppSections({ locale }: { locale: Locale }) {
           </p>
         </div>
         <div className="button-row">
-          <a className="button primary" href={downloadHref}>
-            {tilde.download.label} ↓
-          </a>
+          {/* On /tilde/app (English), an iPhone gets the line instead (visitor round 2, item 6). */}
+          {fold ? (
+            <NotOnIPhone>
+              <a className="button primary" href={downloadHref}>
+                {tilde.download.label} ↓
+              </a>
+            </NotOnIPhone>
+          ) : (
+            <a className="button primary" href={downloadHref}>
+              {tilde.download.label} ↓
+            </a>
+          )}
           <a className="button" href={tilde.sourceLink.href}>
             {tilde.sourceLink.label} ↗
           </a>

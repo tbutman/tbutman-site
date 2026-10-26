@@ -1,5 +1,5 @@
 {
-  "source": "40cfe1b6107f6b845b14b429b46a7e6b3ebc90651a5fbe381efa6c9545a17bbd",
+  "source": "29aece53b28067c2129d97f449eef62fb7b471b918ab30174185661c0b5cfdca",
   "blocks": [
     {
       "type": "h2",
@@ -31,7 +31,7 @@
           "sub": []
         },
         {
-          "text": "**You print it yourself,** on a multi-color printer such as a Bambu Lab printer with an AMS or AMS lite. Solid or Two-Piece: each has its own section below.",
+          "text": "**You print it yourself,** on a multi-color printer such as a Bambu Lab printer with an AMS or AMS lite. Solid or Two-Piece: each has its own section on this page.",
           "sub": []
         }
       ]
@@ -64,7 +64,7 @@
     },
     {
       "type": "p",
-      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes, so a card with several links needs an NTAG216. iPhones open links from a tap, so if iPhone users will tap your card, put your link on the sticker: they save your contact by scanning a code."
+      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG216 sticker (25 mm) holds a full contact card; an NTAG215 is fine for a link. iPhones open links from a tap, so if iPhone users will tap your card, put your link on the sticker: they save your contact by scanning a code."
     },
     {
       "type": "h2",
@@ -303,24 +303,20 @@
     },
     {
       "type": "image",
-      "text": "the 3-card pocket case and the 5-card pocket case, open; the cards-only box, open"
+      "text": "the cards-only box, open"
     },
     {
       "type": "ul",
       "items": [
         {
-          "text": "**Pocket cases,** for 3 or 5 cards. A drawer slides out of a branded sleeve, holding your cards plus a premium coin and a premium tag (see Fobs).",
-          "sub": []
-        },
-        {
-          "text": "**The cards-only box** (the one on our table) has three bays: 10 finished cards, 4 loose fronts and 6 loose backs, for mixing and matching. It sits under a lid that carries the wordmark.",
+          "text": "**The cards-only box** (the one at the Tilde booth) has three bays: 10 finished cards, 4 loose fronts and 6 loose backs, for mixing and matching. It sits under a lid that carries the wordmark.",
           "sub": []
         }
       ]
     },
     {
       "type": "p",
-      "text": "We made the holders for the booth. Their print files aren’t published."
+      "text": "It was made for the Tilde booth. Its print files aren’t published."
     },
     {
       "type": "h2",
@@ -335,7 +331,7 @@
           "sub": []
         },
         {
-          "text": "**Add an NFC sticker** if you want people to tap it: a round NTAG215, 22–25 mm across. Write it before it goes in, with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
+          "text": "**Add an NFC sticker** if you want people to tap it: a round one, 22–25 mm across. an NTAG216 holds a full contact card; an NTAG215 is fine for a link. Search “NTAG216 25mm round NFC sticker”. Write it before it goes in, with Tilde (Android: Cards → Write a sticker) or the free NFC Tools app (iPhone and Android).",
           "sub": []
         },
         {

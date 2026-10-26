@@ -52,7 +52,7 @@ const en = {
   steps: [
     {
       title: 'Put in your details',
-      body: 'Open the model in OpenSCAD’s Customizer (free), or in MakerWorld’s Model Maker, the same customizer in your browser, once our listing is public. Type your name, your link (up to 53 characters), the three lines on the back and your colors. Choose your nozzle, and whether the card has an NFC sticker. Long names shrink to fit.',
+      body: 'Open the model in OpenSCAD’s Customizer (free), or in MakerWorld’s Model Maker, the same customizer in your browser, once the listing is public. Type your name, your link (up to 53 characters), the three lines on the back and your colors. Choose your nozzle, and whether the card has an NFC sticker. Long names shrink to fit.',
     },
     {
       title: 'Write the sticker first',

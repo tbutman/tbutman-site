@@ -1,5 +1,5 @@
 {
-  "source": "6fd203c8da0fb8c98cd9dbc604dadf552fb1e33094517cefa67e6c42226cd94d",
+  "source": "82a884c1534a45d79760b92b34a98affd2d38a8f32caa83147a5a8c97919acd6",
   "blocks": [
     {
       "type": "h2",
@@ -8,7 +8,7 @@
     },
     {
       "type": "p",
-      "text": "**One tag, one job.** Everything in these boxes is a tag with an NFC sticker inside. Tap it with a phone and it does one thing: gets your family’s number ready to call, shares your contact, joins the Wi-Fi. Here are the eight jobs in our boxes, what each does on an iPhone and on Android, and how to make your own."
+      "text": "**One tag, one job.** Everything in these boxes is a tag with an NFC sticker inside. Tap it with a phone and it does one thing: opens a page, books a meeting, joins the Wi-Fi. Here are the eight jobs in the Tilde booth’s boxes, what each does on an iPhone and on Android, and how to make your own."
     },
     {
       "type": "h2",
@@ -42,7 +42,7 @@
     },
     {
       "type": "p",
-      "text": "**The code on our tags:** some of the booth’s tags have a QR code on the front. It opens Tilde’s page (`taptilde.com`), not what’s on your sticker. A tag you print yourself carries your own link in its code."
+      "text": "**The code on the booth’s tags:** some of the booth’s tags have a QR code on the front. It opens Tilde’s page (`taptilde.com`), not what’s on your sticker. A tag you print yourself carries your own link in its code."
     },
     {
       "type": "h2",
@@ -55,75 +55,7 @@
     },
     {
       "type": "p",
-      "text": "Our giveaway tags are khaki on black, with each job’s icon on the back."
-    },
-    {
-      "type": "h3",
-      "text": "Call my family",
-      "id": "call-my-family"
-    },
-    {
-      "type": "image",
-      "text": "the home tag"
-    },
-    {
-      "type": "p",
-      "text": "**If your child loses their phone, whoever finds them taps the tag on their backpack, and your number is ready to call.**"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Android:** a tap opens the phone app with your number filled in, ready to call. No internet needed.",
-          "sub": []
-        },
-        {
-          "text": "**iPhone:** iPhones can’t call from this tag yet: it’s for Android phones.",
-          "sub": []
-        },
-        {
-          "text": "**Make one:** in Tilde, make a card with one parent’s number, then **Write a sticker → Phone number** and pick **Call**.",
-          "sub": []
-        },
-        {
-          "text": "**Keep in mind:** one parent’s number is enough. Don’t put on it the child’s name, school or address, or your own address: anyone who finds it can read it.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "h3",
-      "text": "Contact card",
-      "id": "contact-card"
-    },
-    {
-      "type": "image",
-      "text": "the contact card tag"
-    },
-    {
-      "type": "p",
-      "text": "**Tap the tag, save the contact.**"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Android:** a tap offers to save your contact card, if it fits the sticker.",
-          "sub": []
-        },
-        {
-          "text": "**iPhone:** iPhones open links from a tap, not contact cards. For iPhone users, use the Link tag with your website.",
-          "sub": []
-        },
-        {
-          "text": "**Make one:** **Write a sticker → Contact card**. A card with several links needs an NTAG216 sticker.",
-          "sub": []
-        },
-        {
-          "text": "**Keep in mind:** anyone who taps it gets your contact card. In Edit card, uncheck your phone number or email under **What they save** if you’d rather leave them off.",
-          "sub": []
-        }
-      ]
+      "text": "The booth’s giveaway tags are khaki on black, with each job’s icon on the back."
     },
     {
       "type": "h3",
@@ -157,6 +89,36 @@
     },
     {
       "type": "h3",
+      "text": "Book a meeting",
+      "id": "book-a-meeting"
+    },
+    {
+      "type": "image",
+      "text": "the booking tag"
+    },
+    {
+      "type": "p",
+      "text": "**Tap to book time with me.**"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Android and iPhone:** a tap opens your booking page (Calendly, Google Calendar’s booking pages or any other).",
+          "sub": []
+        },
+        {
+          "text": "**Make one:** add your booking link to a card, then **Write a sticker** and choose it.",
+          "sub": []
+        },
+        {
+          "text": "**Keep in mind:** use a booking page that shows only your free times, never your calendar’s details.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h3",
       "text": "WhatsApp",
       "id": "whatsapp"
     },
@@ -181,6 +143,40 @@
         },
         {
           "text": "**Keep in mind:** the link carries your number, so anyone who taps it can message you.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Contact card",
+      "id": "contact-card"
+    },
+    {
+      "type": "image",
+      "text": "the contact card tag"
+    },
+    {
+      "type": "p",
+      "text": "**Tap the tag, save the contact.**"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Android:** a tap offers to save your contact card, if it fits the sticker.",
+          "sub": []
+        },
+        {
+          "text": "**iPhone:** iPhones open links from a tap, not contact cards. For iPhone users, use the Link tag with your website.",
+          "sub": []
+        },
+        {
+          "text": "**Make one:** **Write a sticker → Contact card**. An NTAG216 sticker holds a full contact card.",
+          "sub": []
+        },
+        {
+          "text": "**Keep in mind:** anyone who taps it gets your contact card. In Edit card, uncheck your phone number or email under **What they save** if you’d rather leave them off.",
           "sub": []
         }
       ]
@@ -221,40 +217,6 @@
     },
     {
       "type": "h3",
-      "text": "Share your number",
-      "id": "share-your-number"
-    },
-    {
-      "type": "image",
-      "text": "the handset tag"
-    },
-    {
-      "type": "p",
-      "text": "**One tap and your number is ready to call, or a new text to you, without saving a contact.**"
-    },
-    {
-      "type": "ul",
-      "items": [
-        {
-          "text": "**Android:** a tap opens the dialer with your number filled in (Call), or a new text to you (Text).",
-          "sub": []
-        },
-        {
-          "text": "**iPhone:** iPhones scan the code on your phone’s screen instead.",
-          "sub": []
-        },
-        {
-          "text": "**Make one:** **Write a sticker → Phone number**, then pick **Text** or **Call**.",
-          "sub": []
-        },
-        {
-          "text": "**Keep in mind:** the text starts empty, and Call only fills in the number: nobody’s phone calls you by itself.",
-          "sub": []
-        }
-      ]
-    },
-    {
-      "type": "h3",
       "text": "Lost item",
       "id": "lost-item"
     },
@@ -289,30 +251,68 @@
     },
     {
       "type": "h3",
-      "text": "Book a meeting",
-      "id": "book-a-meeting"
+      "text": "Call my family",
+      "id": "call-my-family"
     },
     {
       "type": "image",
-      "text": "the booking tag"
+      "text": "the home tag"
     },
     {
       "type": "p",
-      "text": "**Tap to book time with me.**"
+      "text": "**If your child loses their phone, whoever finds them taps the tag on their backpack, and your number is ready to call.**"
     },
     {
       "type": "ul",
       "items": [
         {
-          "text": "**Android and iPhone:** a tap opens your booking page (Calendly, Google Calendar’s booking pages or any other).",
+          "text": "**Android:** a tap opens the phone app with your number filled in, ready to call. No internet needed.",
           "sub": []
         },
         {
-          "text": "**Make one:** add your booking link to a card, then **Write a sticker** and choose it.",
+          "text": "**iPhone:** iPhones can’t call from this tag yet: it’s for Android phones.",
           "sub": []
         },
         {
-          "text": "**Keep in mind:** use a booking page that shows only your free times, never your calendar’s details.",
+          "text": "**Make one:** in Tilde, make a card with one parent’s number, then **Write a sticker → Phone number** and pick **Call**.",
+          "sub": []
+        },
+        {
+          "text": "**Keep in mind:** one parent’s number is enough. Don’t put on it the child’s name, school or address, or your own address: anyone who finds it can read it.",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Share your number",
+      "id": "share-your-number"
+    },
+    {
+      "type": "image",
+      "text": "the handset tag"
+    },
+    {
+      "type": "p",
+      "text": "**One tap and your number is ready to call, or a new text to you, without saving a contact.**"
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "text": "**Android:** a tap opens the dialer with your number filled in (Call), or a new text to you (Text).",
+          "sub": []
+        },
+        {
+          "text": "**iPhone:** iPhones scan the code on your phone’s screen instead.",
+          "sub": []
+        },
+        {
+          "text": "**Make one:** **Write a sticker → Phone number**, then pick **Text** or **Call**.",
+          "sub": []
+        },
+        {
+          "text": "**Keep in mind:** the text starts empty, and Call only fills in the number: nobody’s phone calls you by itself.",
           "sub": []
         }
       ]
@@ -469,7 +469,7 @@
       "type": "ul",
       "items": [
         {
-          "text": "**At our booth:** take a tag from the boxes. We’ll write it for you, or show you how to write it with Tilde.",
+          "text": "**At the Tilde booth at Web Summit:** take a tag from the boxes. It’s written for you there, in about 10 seconds.",
           "sub": []
         },
         {

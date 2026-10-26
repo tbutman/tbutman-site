@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { type ReactNode, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import usesCopy from '../content/booth/copy/uses.json'
 import { useOrder } from '../content/booth/pages'
@@ -7,9 +7,12 @@ import { type Block, type BoothCopy, boothImages } from '../content/booth/types'
 import Arrival from './Arrival'
 import BoothHub from './BoothHub'
 import IPhoneNote from './IPhoneNote'
+import NoPrinter from './NoPrinter'
+import NotOnIPhone from './NotOnIPhone'
 import { Render } from './BoothRender'
 import NextStop from './NextStop'
 import RichText from './RichText'
+import { useArrival } from './useArrival'
 
 // /tilde, the family's hub (finish-line plan §3; Thomas, October 26): where the visitor came from
 // (Arrival), what Tilde is in one breath, what an iPhone does, the most common uses (outcomes before
@@ -71,7 +74,22 @@ function Text({ blocks }: { blocks: Block[] }) {
   )
 }
 
+/** The hub's maker sections, or the same under a fold. */
+function MakerDetails({ folded, children }: { folded: boolean; children: ReactNode }) {
+  if (!folded) return children
+  return (
+    <details className="booth-makers hub-makers">
+      <summary>
+        <span className="booth-makers-title">for makers</span>
+        <span className="booth-makers-what">how every tilde works, how to print one</span>
+      </summary>
+      {children}
+    </details>
+  )
+}
+
 export default function TildeHub() {
+  const from = useArrival()
   const { hash } = useLocation()
   const navigate = useNavigate()
   useEffect(() => {
@@ -103,7 +121,7 @@ export default function TildeHub() {
         <div className="product-hero-text">
           <p className="status">
             <span className="status-dot" aria-hidden="true" />
-            nfc · qr · 3d-printable · works with any phone
+            nfc · qr · 3d-printable · any phone reads it · android writes it
           </p>
           <p className="product-name">
             <b>~</b> Tilde
@@ -116,9 +134,11 @@ export default function TildeHub() {
             <Link className="button primary" to="/tilde/card">
               start the tour →
             </Link>
-            <Link className="button" to="/tilde/app">
-              get the app →
-            </Link>
+            <NotOnIPhone>
+              <Link className="button" to="/tilde/app">
+                get the app →
+              </Link>
+            </NotOnIPhone>
           </div>
         </div>
         <div className="booth-hero-visual">
@@ -176,30 +196,36 @@ export default function TildeHub() {
         <Text blocks={after} />
       </section>
 
-      <section id="how" className="section" aria-labelledby="how-heading">
-        <div className="section-head">
-          <h2 id="how-heading">how every tilde works</h2>
-        </div>
-        <Text blocks={how} />
-      </section>
+      {/* For a mystery card's visitor, the maker details fold under the reveal (visitor round 2, item 12). */}
+      <MakerDetails folded={from === 'mystery-card'}>
+        <section id="how" className="section" aria-labelledby="how-heading">
+          <div className="section-head">
+            <h2 id="how-heading">how every tilde works</h2>
+          </div>
+          <Text blocks={how} />
+        </section>
 
-      <section id="make" className="section" aria-labelledby="make-heading">
-        <div className="section-head">
-          <h2 id="make-heading">make your own</h2>
-        </div>
-        <Text blocks={part(/^make your own/i)} />
-        <ul className="booth-make">
-          <li>
-            <Link to="/tilde/card#products">print a card →</Link>
-          </li>
-          <li>
-            <Link to="/tilde/fobs#products">print a fob →</Link>
-          </li>
-          <li>
-            <Link to="/tilde/app">get the app →</Link>
-          </li>
-        </ul>
-      </section>
+        <section id="make" className="section" aria-labelledby="make-heading">
+          <div className="section-head">
+            <h2 id="make-heading">make your own</h2>
+          </div>
+          <Text blocks={part(/^make your own/i)} />
+          <NoPrinter />
+          <ul className="booth-make">
+            <li>
+              <Link to="/tilde/card#products">print a card →</Link>
+            </li>
+            <li>
+              <Link to="/tilde/fobs#products">print a fob →</Link>
+            </li>
+            <li>
+              <NotOnIPhone>
+                <Link to="/tilde/app">get the app →</Link>
+              </NotOnIPhone>
+            </li>
+          </ul>
+        </section>
+      </MakerDetails>
 
       <BoothHub />
       <NextStop from="hub" />

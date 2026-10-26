@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { Placed, Render } from '../components/BoothRender'
 import FamilyProducts from '../components/FamilyProducts'
 import IPhoneNote from '../components/IPhoneNote'
+import NotOnIPhone from '../components/NotOnIPhone'
 import NextStop from '../components/NextStop'
 import RichText from '../components/RichText'
 import { familyPaths, type BoothPage as Page, placementFor, tour, useOrder, useProducts } from '../content/booth/pages'
@@ -140,9 +141,11 @@ function Hero({ page, opening, lineup, get }: { page: Page; opening?: Section; l
         )}
         <div className="button-row">
           {page.download && (
-            <a className="button primary" href={release?.apk ?? tildeText.en.download.fallbackHref}>
-              {tildeText.en.download.label} ↓
-            </a>
+            <NotOnIPhone>
+              <a className="button primary" href={release?.apk ?? tildeText.en.download.fallbackHref}>
+                {tildeText.en.download.label} ↓
+              </a>
+            </NotOnIPhone>
           )}
           {lineup && (
             <a className={page.download ? 'button' : 'button primary'} href={`#${lineup.heading.id}`}>
@@ -156,6 +159,14 @@ function Hero({ page, opening, lineup, get }: { page: Page; opening?: Section; l
           )}
         </div>
         {page.download && release && <p className="product-small product-release">{releaseLine(release)}</p>}
+        {/* What installing takes, beside the button (visitor round 2, item 18). Not on an iPhone. */}
+        {page.download && (
+          <NotOnIPhone>
+            <p className="product-small">
+              3 steps to install. Android’s Play Protect may warn: choose <b>Install anyway</b>. <a href="#install">The steps ↓</a>
+            </p>
+          </NotOnIPhone>
+        )}
       </div>
       <div className={`booth-hero-visual${page.heroRatio === 'phone' ? ' booth-hero-phone' : ''}`}>
         <Render image={boothImages[page.hero]} id={page.hero} ratio={page.heroRatio ?? 'photo'} size={page.heroRatio === 'phone' ? 'screen' : 'wide'} eager />

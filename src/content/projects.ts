@@ -139,7 +139,7 @@ export const projects: Project[] = [
       'A free, open-source Android app that turns a phone into an NFC business card, and the Tilde Card, a 3D-printable business card to go with it. Tap phones or scan the code to share a full contact card, a website or WhatsApp, switching between them in one tap, with no account, nothing to install on the other phone and no internet permission on mine.',
     stack: ['Kotlin', 'Android NFC', 'Material 3', 'GitHub Actions', 'OpenSCAD', 'Python'],
     scope:
-      'Mine end to end: the product, the Android app and its NFC protocol layer, the Tilde Card’s model and its automated checks, releases and documentation. I built it with AI coding agents, using the process on the how-i-work page, and tested it on real phones and real prints.',
+      'Mine end to end: the product, the Android app and its NFC protocol layer, the Tilde Card’s model and its automated checks, releases and documentation. I built it with AI coding agents, using [the process on the how-i-work page](/how-i-work), and tested it on real phones and real prints.',
     problem:
       'Paper business cards get lost, and digital-card apps usually share a link to the vendor’s own servers and want an account on at least one side. I wanted something that works with any phone, needs nothing on the other person’s side, and keeps my details on my phone until I share them.',
     story: [
@@ -231,7 +231,7 @@ export const projects: Project[] = [
       'Two free, open-source health-record apps with one encrypted core: BabyTrails for a baby’s growth on the WHO charts, LabTrails for blood test results over time. Records are encrypted in the browser and never reach my server. AI is optional, uses your own key and only explains what the code computed.',
     stack: ['React', 'TypeScript', 'Vite', 'WebCrypto (AES-GCM, Argon2id)', 'IndexedDB', 'Claude API', 'Vitest', 'Playwright', 'nginx', 'Cloudflare Tunnel'],
     scope:
-      'Mine end to end: the products, the architecture, the security model and every decision across both apps. I built them with two AI coding agents working in parallel, one per app, using the process on the how-i-work page: I wrote the briefs, approved each spec and design, reviewed the work, and arbitrated a shared notes file the agents coordinated through.',
+      'Mine end to end: the products, the architecture, the security model and every decision across both apps. I built them with two AI coding agents working in parallel, one per app, using [the process on the how-i-work page](/how-i-work): I wrote the briefs, approved each spec and design, reviewed the work, and arbitrated a shared notes file the agents coordinated through.',
     problem:
       'My blood test results and my son’s growth records both lived in long AI chat threads: hard to search, impossible to chart, and spread across labs, countries, languages and units. Most trackers want an account and a copy of your health data on their servers, and many use AI to tell you what your numbers mean. I wanted the opposite: records encrypted on my device that never reach my server, charts that are honest about how each number was measured, and AI that helps me prepare for a doctor without pretending to be one.',
     story: [

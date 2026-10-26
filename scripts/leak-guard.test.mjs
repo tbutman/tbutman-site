@@ -18,6 +18,9 @@ test('every quote from visitor round 1 is caught', () => {
     '[Thomas: which listings go public]',
     'Get Tilde on Google Play',
     'iPhone app coming soon',
+    'Take a tag from our booth.',
+    'We’ll write yours in 10 seconds.',
+    'Ask us at the booth.',
     'https://makerworld.com/en/models/PLACEHOLDER-tilde-card',
   ]) {
     assert.notDeepEqual(leaks(quote), [], quote)
@@ -32,6 +35,7 @@ test('real copy passes', () => {
     'A tag’s size follows its link: 28.8 × 35.3 mm.',
     'Tilde for Android writes your link or your contact card through the plastic.',
     'I built it with AI coding agents, using the process on the how-i-work page.',
+    'A US quarter, or US 5/16" fender washers.',
   ]) {
     assert.deepEqual(leaks(line), [], line)
   }
