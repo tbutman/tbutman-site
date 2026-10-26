@@ -1,5 +1,5 @@
 {
-  "source": "7f6b3dd88ea7bfe4085b37c278c2ae7d00dfea6fa7a0ca03caa1d8ba72371d5e",
+  "source": "5b93637c0b83b5a341a1db38cb5de1803d4084411f496ad534f363a4bf0ab5ca",
   "sections": [
     {
       "title": "The family",
@@ -61,7 +61,7 @@
             {
               "text": "**Write:** the sticker can be rewritten any time, through the plastic.",
               "sub": [
-                "**Android:** Tilde for Android’s **Write a sticker** (on the Cards tab in 1.3.0). It writes a link, your contact card, or your guest Wi-Fi.",
+                "**Android:** Tilde for Android’s **Write a sticker** (on the Cards tab in 1.3.0). It writes a link, your contact card, or your guest Wi-Fi. A note or a list is coming in the next app update.",
                 "**iPhone:** Tilde is Android only for now, and your iPhone reads every tag. To write a link from an iPhone, use the free NFC Tools app."
               ]
             },
@@ -70,7 +70,8 @@
               "sub": [
                 "**A link:** opens.",
                 "**A contact card:** in 1.3.0, a tap opens a contact page with Save contact (it needs internet on the iPhone). `[depends on T1–T4]` If they fail, an iPhone scans your phone’s code to save it.",
-                "**Guest Wi-Fi:** an iPhone joins by scanning a Wi-Fi code, never from a tap. The Wi-Fi page that a tap opens needs `wifi-page` and W1 `[depends on T-WF1–T-WF4]`."
+                "**Guest Wi-Fi:** an iPhone joins by scanning a Wi-Fi code, never from a tap. The Wi-Fi page that a tap opens needs `wifi-page` and W1 `[depends on T-WF1–T-WF4]`.",
+                "**A note or a list** (coming in the next app update): a tap opens the note page, on any phone, with no app."
               ]
             },
             {
@@ -230,8 +231,13 @@
             ],
             [
               "**Grocery list**",
-              "The printed fridge list (its title reads “groceries”); its tap waits on the notes spec",
+              "The printed fridge list (its title reads “groceries”). Its tap opens the list on the note page (coming in the next app update)",
               "“shopping list”, “tap to add”"
+            ],
+            [
+              "**note page**",
+              "`taptilde.com/n` (`/tilde/n`): the page a note or list sticker opens, on any phone",
+              "“notes app”, “cloud”"
             ],
             [
               "**Tilde Stand**",
@@ -826,13 +832,16 @@
               "items": []
             },
             "problem": {
-              "text": "the note you’d leave for the family (the Wi-Fi, the shopping list, who to call) as a tap that’s always up to date.",
+              "text": "the note you’d leave for the family (the Wi-Fi, who to call, when you’re back) as a tap you update from your phone, not a scrawl you rewrite.",
               "items": []
             },
             "howItWorks": {
               "text": "",
               "items": [
-                "**Tap** the tap icon: the sticker is under it, 1.8 mm behind the face. What a tap shows: `[depends on notes spec]` (a note you write in Tilde, shown on a page when it’s tapped). Today, it opens whatever you write to it, like any sticker.",
+                "**Tap** the tap icon: the sticker is under it, 1.8 mm behind the face.",
+                "**A note, coming in the next app update:** write a note in Tilde (“Back at 6, dinner’s in the fridge”), then Write a sticker. A tap opens the note page with it, on any phone, iPhone included, with no app. To change it, edit it in Tilde and tap the sticker again. An NTAG215 holds about 440 characters.",
+                "**Today:** it opens whatever you write to it, like any sticker: a link, your contact card, your guest Wi-Fi.",
+                "**Anyone who taps it can read the note.** The note is in the sticker’s link after the #, which browsers never send, so no server receives it.",
                 "**On the fridge:** magnets in the back (thick backs). On a desk: the cradle, or the thin back.",
                 "The face is printed, not writable."
               ]
@@ -841,7 +850,7 @@
               "text": "",
               "items": [
                 "**Guest Wi-Fi on the fridge:** for Android guests.",
-                "**A note for the family:** written in Tilde, shown when it’s tapped. `[depends on notes spec]`",
+                "**A note for the family:** “Back at 6, dinner’s in the fridge”, for the sitter or the kids. Coming in the next app update.",
                 "**Save my contact:** the family’s numbers, as a contact card.",
                 "**A link:** the school calendar, the takeout menu."
               ]
@@ -903,7 +912,7 @@
               "items": []
             },
             "oneLiner": {
-              "text": "a tear-off-style desk calendar page (the month, the day, the weekday) with a tap to book a meeting.",
+              "text": "a tear-off-style desk calendar page (the month, the day, the weekday) that opens your booking page with a tap.",
               "items": []
             },
             "problem": {
@@ -913,7 +922,7 @@
             "howItWorks": {
               "text": "",
               "items": [
-                "**Tap** the tap mark (bottom left): what a tap shows is `[depends on notes spec]`. Today, it opens whatever you write to it, such as your booking link.",
+                "**Tap** the tap mark (bottom left): it opens your booking page (Calendly, a Google appointment page, any booking link). Write the link with Tilde’s Write a sticker; it works today.",
                 "**Today mode** (experimental) prints TODAY with “tap to book”, so it never goes out of date.",
                 "On a desk in the cradle, or on the fridge with magnets."
               ]
@@ -922,8 +931,8 @@
               "text": "",
               "items": [
                 "**Book a meeting:** your booking page.",
-                "**An event’s date:** MON 9 NOV, the first day of Web Summit, with its schedule.",
-                "**A shared family calendar:** a tap opens it."
+                "**An event’s date:** MON 9 NOV, the first day of Web Summit, and a tap opens the event’s schedule page.",
+                "**An evergreen desk page:** Today mode’s “TODAY · tap to book” never goes out of date."
               ]
             },
             "options": {
@@ -975,7 +984,7 @@
               "items": []
             },
             "oneLiner": {
-              "text": "a printed list for the fridge, handwritten-style (“milk, bread, eggs”), with an NFC sticker for your real list. `[depends on notes spec]`",
+              "text": "a printed list for the fridge, handwritten-style (“milk, bread, eggs”), with an NFC sticker that carries your real list (coming in the next app update).",
               "items": []
             },
             "problem": {
@@ -985,15 +994,18 @@
             "howItWorks": {
               "text": "",
               "items": [
-                "**Tap** the tap doodle (right of the tap row): what a tap shows is `[depends on notes spec]` (a list you make and edit in Tilde, written to the sticker and shown on a page when it’s tapped). Today, it opens whatever you write to it, like any sticker.",
-                "**Today’s app has no lists:** a tap doesn’t add an item (F17). The card agent is changing the tap row’s printed default from “tap to add”."
+                "**Tap** the tap doodle (right of the tap row).",
+                "**A list, coming in the next app update:** make the list in Tilde, then Write a sticker. A tap opens the note page with the list and tick boxes, on any phone, iPhone included, with no app. An NTAG215 holds about 40 items.",
+                "**Ticks stay on that phone:** ticking an item on the page doesn’t change the list on the fridge. Its owner updates the list in Tilde and taps the sticker again. Nothing adds to the list from a tap (F17), and the card agent is changing the tap row’s printed default from “tap to add”.",
+                "**Today:** it opens whatever you write to it, like any sticker.",
+                "**Anyone who taps it can read the list.** It’s in the sticker’s link after the #, so no server receives it."
               ]
             },
             "uses": {
               "text": "",
               "items": [
-                "**The shopping list on the fridge:** a tap shows it on any phone. `[depends on notes spec]`",
-                "**The week’s meal plan,** the same way. `[depends on notes spec]`"
+                "**The shopping list on the fridge:** tap it on the way out, and the list is on your phone, ready to tick off in the shop. Coming in the next app update.",
+                "**The week’s meal plan:** a title, a line and seven items, the same way. Coming in the next app update."
               ]
             },
             "options": {

@@ -1,5 +1,5 @@
 {
-  "source": "d497524399b2e36a893bd27daca1e0e20689a1541f8da8ed4b8ba67dd73f2eb5",
+  "source": "d7877a32c480b4e6bc014b1bc4c8b6cd0f45b04b419ef382f4080aaadc86c77e",
   "blocks": [
     {
       "type": "h2",
@@ -343,13 +343,21 @@
     },
     {
       "type": "p",
-      "text": "**Tap the list on the fridge, and it’s on your phone.** The Grocery list is a printed list for the fridge with an NFC sticker inside. `[depends on notes spec]` for what a tap shows: a list you make and edit in Tilde, written to the sticker, opens on any phone that taps it."
+      "text": "**Tap the list on the fridge, and it’s on your phone.** Coming in the next app update."
     },
     {
       "type": "ul",
       "items": [
         {
-          "text": "**Make one:** print the Grocery list (see [Home & desk](/tilde/home#grocery-list)).",
+          "text": "**Android and iPhone:** a tap opens the list on a page, with tick boxes, and no app is needed. Your ticks stay on your phone; they don’t change the list on the fridge.",
+          "sub": []
+        },
+        {
+          "text": "**Make one:** make the list in Tilde, then **Write a sticker** to the Grocery list (see [Home & desk](/tilde/home#grocery-list)). To change it, edit it in Tilde and tap the sticker again.",
+          "sub": []
+        },
+        {
+          "text": "**Keep in mind:** anyone who taps it can read the list.",
           "sub": []
         }
       ]
