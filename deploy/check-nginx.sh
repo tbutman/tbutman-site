@@ -53,6 +53,14 @@ check /tilde/home             301 '^location: https://taptilde.com/home\?from=tb
 check /tilde/p                301 '^location: https://taptilde.com/p\?from=tbutman\.com$'
 check /tilde/support          301 '^location: https://taptilde.com/support\?from=tbutman\.com$'
 check /tilde/share.webp       200 '^content-type: image/webp'
+# tbutman.com's own pages, and the rest of the old /tilde links (go-live, site-finish-line.md "NOW").
+check /hello                  200 '^content-type: text/html'
+check /work/tilde             200 '^content-type: text/html'
+check /tilde/fobs             301 '^location: https://taptilde.com/fobs\?from=tbutman\.com$'
+check /tilde/uses             301 '^location: https://taptilde.com/uses\?from=tbutman\.com$'
+check /tilde/app              301 '^location: https://taptilde.com/app\?from=tbutman\.com$'
+check /tilde/card/            301 '^location: https://taptilde.com/card\?from=tbutman\.com$'
+check '/tilde?from=tag'       301 '^location: https://taptilde.com/\?from=tag&from=tbutman\.com$'
 check /_taptilde/index.html   404
 check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable' '!content-security-policy'
 check /assets/missing-check.js 404 '^content-type: text/html' '^cache-control: no-store' '!immutable' '!max-age' "${security[@]}"
@@ -78,9 +86,7 @@ check /c                      200 '^content-type: text/html' '^cache-control: pu
 check /p                      200 '^content-type: text/html' "$tilde_csp"
 check /support                200 '^content-type: text/html' "$tilde_csp"
 # The App Link's statement, once the build has one (src/content/app-links.json): JSON, no redirect.
-if [[ "$(curl -s -o /dev/null -w '%{http_code}' -H "Host: $HOST" "$BASE/.well-known/assetlinks.json")" != 404 ]]; then
-  check /.well-known/assetlinks.json 200 '^content-type: application/json' '^cache-control: public, max-age=3600' '!location'
-fi
+check /.well-known/assetlinks.json 200 '^content-type: application/json' '^cache-control: public, max-age=3600' '!location'
 check /n                      200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}" "^content-security-policy: frame-ancestors 'none'; base-uri 'none'; object-src 'none'$"
 check /cards                  301 '^location: /card$'
 check /mystery                302 '^location: /\?from=mystery-card$'
@@ -89,6 +95,14 @@ check /tilde/booth/fobs--fob-base-coin-tilde-360.webp 200 '^content-type: image/
 check /resume                 404 '^cache-control: no-store'
 check "$tilde_asset"          200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable' '!content-security-policy'
 check /no-such-page           404 '^cache-control: no-store' '!max-age' "${security[@]}" "$tilde_csp"
+# Every link printed on a tag, card, sheet or the booth, or written by the app (booth-kit, the app's links).
+for printed in '/?from=tag' '/?from=card' '/?from=sheet' '/?from=booth' '/?from=handheld' '/?from=mystery-card' \
+  '/?from=tag&x=aaaaaaaaaaaaaaaaaaaa' '/card?from=card' '/uses?from=tag' '/c?from=tag'; do
+  check "$printed"            200 '^content-type: text/html'
+done
+check /card/                  301 '^location: /card$'
+check '/pt/card/?from=card'   301 '^location: /pt/card\?from=card$'
+check '/%2Fexample.com/'      301 '^location: /example\.com$'   # stays on this site
 HOST=www.taptilde.com
 check /card                   301 '^location: https://taptilde.com/card$'
 
