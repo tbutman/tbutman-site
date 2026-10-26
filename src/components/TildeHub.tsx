@@ -22,7 +22,7 @@ import RichText from './RichText'
 const FAMILIES: Record<string, { path: string; image: string }> = {
   Cards: { path: '/tilde/card', image: 'card-classic-dark-front' },
   Fobs: { path: '/tilde/fobs', image: 'fob-premium-tag-tilde' },
-  'Home & desk': { path: '/tilde/home', image: 'product-home' },
+  'Home & desk': { path: '/tilde/home', image: 'home-stand-wifi' },
   'The app': { path: '/tilde/app', image: 'app-09-tap-ready' },
 }
 

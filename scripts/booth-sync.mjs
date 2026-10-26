@@ -44,6 +44,8 @@ const screensDir = resolve(process.env.BOOTH_SCREENS ?? join(personal, 'tilde-re
 const screensPublic = join(root, 'public', 'tilde', 'screens')
 const screensJson = join(boothDir, 'screens.json')
 const PAGES = ['cards', 'fobs', 'uses', 'app', 'hub']
+// Pages renders can be for: the copy's, and Home & desk, which is docs' product sheet alone.
+const IMAGE_PAGES = [...PAGES, 'home']
 const check = process.argv.includes('--check')
 // Converts docs' copy again even where it hasn't changed: after a change to the converter.
 const force = process.argv.includes('--force')
@@ -144,7 +146,7 @@ async function syncCopy() {
 function image(entry, index) {
   const where = `images[${index}] (${entry?.id})`
   if (typeof entry.id !== 'string' || !entry.id) fail(`${where}: no id`)
-  if (!Array.isArray(entry.pages) || entry.pages.some((page) => !PAGES.includes(page))) fail(`${where}: pages must be among ${PAGES.join(', ')}`)
+  if (!Array.isArray(entry.pages) || entry.pages.some((page) => !IMAGE_PAGES.includes(page))) fail(`${where}: pages must be among ${IMAGE_PAGES.join(', ')}`)
   if (typeof entry.alt !== 'string' || !entry.alt.trim()) fail(`${where}: no alt text`)
   const files = Object.values(entry.files ?? {})
   for (const file of files) {

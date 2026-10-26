@@ -1,5 +1,5 @@
 {
-  "source": "8c7012cb90cac4901f7cf6e4b41a8f7a2cd8f1ce32b442fe33d16802c7ee8bd9",
+  "source": "79db68ab70df368e3e71b8db6350deb82d9d94183c563e4717c4593e44072318",
   "blocks": [
     {
       "type": "h2",
@@ -118,7 +118,7 @@
     },
     {
       "type": "p",
-      "text": "**Or start from a template.** On the Cards tab, tap **+** (New card), then **Start from a template**: Family, Work, Socials, Lost & found or Guest Wi-Fi. Each is a card for one use, with a short note on what to fill in. `[depends on T-L1–T-L3]`"
+      "text": "**Or start from a template.** On the Cards tab, tap **+** (New card), then **Start from a template**: Family, Work, Socials, Lost & found or Guest Wi-Fi. Each is a card for one use, with a short note on what to fill in."
     },
     {
       "type": "image",
@@ -141,14 +141,8 @@
           "sub": []
         },
         {
-          "text": "Choose what the sticker opens. Tilde says which sticker sizes fit your full contact card. `[depends on T-W1–T-W7]`",
+          "text": "Choose what the sticker opens.",
           "sub": []
-        },
-        {
-          "text": "Choose its protection: **Protect with this phone** (any phone reads it; only yours can change it), **Don’t protect**, or **Lock for good**. `[depends on T-S1, T-S2]`",
-          "sub": [
-            "If T-S1 or T-S2 fail, this step goes."
-          ]
         },
         {
           "text": "Hold the sticker to the back of your phone until it buzzes.",
@@ -157,12 +151,12 @@
       ]
     },
     {
-      "type": "image",
-      "text": "writing a sticker: Write a sticker, ready for the tap, then Written and protected"
+      "type": "p",
+      "text": "**Which stickers:** round NFC stickers, NTAG215 or 216 (an NTAG213 holds a link only). A full contact card needs an NTAG216."
     },
     {
-      "type": "p",
-      "text": "**Tilde reads the sticker first.** If it’s blank or yours, the same tap writes it. If it holds something else, Tilde shows it and asks before replacing it. `[depends on T-W1–T-W7]`"
+      "type": "image",
+      "text": "writing a sticker: Write a sticker, ready for the tap, then Written"
     },
     {
       "type": "h2",
@@ -181,10 +175,8 @@
           "sub": []
         },
         {
-          "text": "**iPhone** (XS or newer, unlocked): a tap opens your link. With your contact card, it opens a page to save it. `[depends on T1–T4]`",
-          "sub": [
-            "If T1–T4 fail, say: “iPhone: a tap opens your link. To save your contact card, an iPhone scans your code.”"
-          ]
+          "text": "**iPhone** (XS or newer, unlocked): a tap opens your link. To save your contact card, an iPhone scans your code.",
+          "sub": []
         },
         {
           "text": "**Only when you mean it.** Tilde answers taps only while it’s on screen, so nothing shares from your pocket. You can switch on sharing with Tilde closed (phone unlocked) in Settings → Sharing.",
@@ -213,13 +205,11 @@
           "sub": []
         },
         {
-          "text": "**Friends over:** share your guest Wi-Fi with a tap. On an iPhone, it opens a page with the password. `[depends on T-WF1–T-WF4]`",
-          "sub": [
-            "If T-WF fails, say: “iPhones scan the Wi-Fi code on your Share screen.”"
-          ]
+          "text": "**Friends over:** share your guest Wi-Fi with a tap on Android. iPhones scan the Wi-Fi code on your Share screen.",
+          "sub": []
         },
         {
-          "text": "**Your number, ready to call:** share your number for a call or a new text, without saving a contact. `[depends on T-N1–T-N7]`",
+          "text": "**Your number, ready to call:** on Android, share your number for a call or a new text, without saving a contact.",
           "sub": []
         },
         {
@@ -241,11 +231,15 @@
       "type": "ul",
       "items": [
         {
-          "text": "**The Tilde Card:** a business card you print yourself, with a code on the front and a sticker inside. [Cards](/tilde/card)",
+          "text": "**The Tilde Card:** a business card you print yourself, with a code on the front and a sticker inside. See [Cards](/tilde/card).",
           "sub": []
         },
         {
-          "text": "**Fobs:** coins and tags for your keys, each with an icon. [Fobs](/tilde/fobs)",
+          "text": "**Fobs:** coins and tags for your keys, each with an icon. See [Fobs](/tilde/fobs).",
+          "sub": []
+        },
+        {
+          "text": "**Home & desk:** a Wi-Fi coaster, stands, and notes for the fridge. See [Home & desk](/tilde/home).",
           "sub": []
         }
       ]

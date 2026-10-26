@@ -1,30 +1,31 @@
 // Turns docs' product sheet (tilde-review/site-content/products.md, briefs/products-sheet.md) into
 // src/content/booth/copy/products.json, for the site's ProductSection: one source of facts for every
-// core product. It reads the sheet as docs writes it, and stops on anything else rather than drop a
-// fact:
+// core product. It reads the sheet as docs writes it (draft 4, after visitor round 1), and stops on
+// anything else rather than drop a fact:
 //
 //   (docs' notes, then)
 //   ---
-//   ## The family                    shared text (## The family, ## Glossary): kept as blocks, as the
-//   ### How every Tilde works        booth copy is (scripts/booth-copy.mjs)
+//   ## The family                    shared text, kept as blocks as the booth copy is
+//   ### How every Tilde works        (scripts/booth-copy.mjs): The family and its ### parts
 //   ---                              a rule between parts: ignored
 //   ## Cards                         a family; its products follow
-//   ### Tilde Card, Solid body       a product (an optional {#id})
-//   1. **Name:** …                   its fields, numbered, docs' labels in bold;
-//      - **Scan:** …                 a field's list, one level, indented under it,
-//        wrapped …                   and wrapped lines
-//   ## Open questions for Thomas     for Thomas and us: never on a page
-//   ## Source keys                   the same
+//   ### Tilde Card, Solid            a product (an optional {#id})
+//   - **One-liner:** …               its page fields: a bold label, its text, and wrapped lines,
+//     - **Scan:** …                  and/or a list under it (bullets or numbers), one level
+//   **For makers**                   then its makers' fields, the same way (folded on the page)
+//   - **What you need:**
+//   **Notes (never rendered)**       docs' notes: setting names, gates, status, sources. Never read.
+//   ## … (never rendered)            the same for whole sections: notes for surfaces, the glossary,
+//                                    open questions, source keys
 //
-// Fields (docs' labels): Name, One-liner, Problem, How it works, Uses, Options, Size and materials,
-// Pairs well with, Make your own, Status, Sources. A label's note in brackets ("Options (Model
-// Maker)") and a value inside the bold ("Status: final.") are both read. `[Thomas: …]`, `[name TBD]`
-// and `[placeholder…]` stay in the text: the page shows them as gates, and the release build refuses
-// them (scripts/prerender.mjs).
+// Fields (docs' labels): Name, Availability, One-liner, Problem, How it works, Uses, Pairs well with;
+// for makers: Options, Size and materials, What you need, Get the files. A label's note in brackets
+// ("Options (Model Maker)") and a value inside the bold ("Status: final.") are both read.
 import { curly, parseCopy } from './booth-copy.mjs'
 
 export const FIELDS = {
   name: 'name',
+  availability: 'availability',
   'one-liner': 'oneLiner',
   problem: 'problem',
   'how it works': 'howItWorks',
@@ -35,6 +36,8 @@ export const FIELDS = {
   'sizes and materials': 'specs',
   'pairs well with': 'pairsWith',
   'make your own': 'makeYourOwn',
+  'what you need': 'whatYouNeed',
+  'get the files': 'files',
   status: 'status',
   sources: 'sources',
 }
@@ -65,7 +68,7 @@ export const FAMILY_IDS = [
 const pinned = (list, title) => list.find(([pattern]) => pattern.test(title))?.[1]
 
 /** Sections kept for us, never on a page. */
-const PRIVATE = /^(open questions|source keys)/i
+const PRIVATE = /never rendered|^(open questions|source keys)/i
 /** Sections kept as text (blocks) rather than products. */
 const TEXT = /^(the family|family intro|glossary)/i
 
@@ -90,6 +93,7 @@ export function parseProducts(markdown, name = 'products.md') {
   let family = null
   let product = null
   let field = null
+  let skipping = false
   const fail = (i, message) => {
     throw new Error(`${name}:${i + 1}: ${message}: ${lines[i]}`)
   }
@@ -98,6 +102,7 @@ export function parseProducts(markdown, name = 'products.md') {
     const h2 = line.match(/^## (.+)$/)
     if (h2) {
       product = field = null
+      skipping = false
       const title = h2[1].trim()
       if (PRIVATE.test(title)) mode = 'private'
       else if (TEXT.test(title)) {
@@ -125,9 +130,22 @@ export function parseProducts(markdown, name = 'products.md') {
       product = { name: h3[1].trim(), id: h3[2] ?? pinned(PRODUCT_IDS, h3[1]) ?? slug(h3[1]), fields: {} }
       family.products.push(product)
       field = null
+      skipping = false
       continue
     }
-    const top = line.match(/^\d+\. \*\*(.+?)\*\*(.*)$/)
+    // A product's parts: its page fields, then **For makers**, then **Notes (never rendered)**.
+    const part = line.match(/^\*\*(For makers|Notes[^*]*)\*\*$/)
+    if (part && product) {
+      skipping = /^Notes/.test(part[1])
+      field = null
+      continue
+    }
+    if (skipping) {
+      if (/^\S/.test(line) && !/^(- |\d+\. )/.test(line)) fail(i, 'a line after Notes that isn\'t a note')
+      continue
+    }
+    // A field: "- **Label:** text", or numbered as in earlier drafts.
+    const top = line.match(/^(?:- |\d+\. )\*\*(.+?)\*\*(.*)$/)
     if (top && product) {
       // "Name:" / "Status: final." in the bold, or "Options" then " (Model Maker): …" after it.
       const [bold, rest] = [top[1], top[2]]
@@ -153,7 +171,7 @@ export function parseProducts(markdown, name = 'products.md') {
       else field.text = `${field.text} ${line.trim()}`.trim()
       continue
     }
-    fail(i, product ? 'a line outside a numbered field' : 'a line outside a product (###)')
+    fail(i, product ? 'a line outside a field' : 'a line outside a product (###)')
   }
   const tidy = (value) => ({ text: curly(value.text), items: value.items.map(curly) })
   return {

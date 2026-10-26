@@ -2409,6 +2409,57 @@ main {
   grid-template-columns: minmax(0, 1fr);
 }
 
+/* A product's availability, under its name: "Printable now" in the accent, "Coming soon" muted. */
+.booth-availability {
+  display: inline-block;
+  margin: 0.375rem 0 0;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font: 400 0.75rem/1.5 var(--font-mono);
+  color: var(--accent);
+}
+
+.booth-availability.soon {
+  border-color: var(--line-strong);
+  color: var(--dim);
+}
+
+/* For makers: folded under each product, with what you need in a box. */
+.booth-makers {
+  margin: 1.25rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.booth-makers summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--accent);
+}
+
+.booth-need {
+  display: grid;
+  gap: 0.375rem;
+  margin: 0.5rem 0 0;
+  padding: 1rem;
+}
+
+.booth-need b {
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--accent);
+}
+
+.booth-need p {
+  margin: 0;
+}
+
+.booth-need .booth-list {
+  margin: 0;
+}
+
 /* The tour's next stop: one card at the end of every page, as wide as a hub tile is tall. */
 .booth-next {
   margin: 3rem 0 0;

@@ -131,7 +131,7 @@ export const usesPage: BoothPage = {
     ['the found it? tag', tag('use-lost-item')],
     ['the booking tag', tag('use-book-meeting')],
     // Docs 54: the grocery list's render, the same one Home & desk waits for (productRenders).
-    ['the grocery list on a fridge', { ids: ['product-grocery-list'], layout: 'grid', ratio: 'photo' }],
+    ['the grocery list on a fridge', { ids: ['product-grocery-list'], layout: 'wide', ratio: 'photo' }],
     ['the demo keychain, fanned out', { ids: ['fob-demo-keychain'], layout: 'wide', ratio: 'wide' }],
   ],
 }
@@ -227,17 +227,19 @@ const pending = (id: string): Placement => ({ ids: [`product-${id}`], layout: 'g
 export const productRenders: Record<string, Placement> = {
   solid: { ids: ['card-solid-black-front', 'card-solid-black-back'], layout: 'grid', ratio: 'card' },
   'two-piece': { ids: ['card-two-piece', 'card-two-piece-back'], layout: 'grid', ratio: 'photo' },
-  'base-tag': fobRow(['fob-base-tag-tilde', 'fob-base-tag-dark', 'fob-base-tag-light']),
-  'base-coin': fobRow(['fob-base-coin-tilde', 'fob-base-coin-dark', 'fob-base-coin-light']),
-  'premium-tag': fobRow(['fob-premium-tag-tilde', 'fob-premium-tag-dark', 'fob-premium-tag-light']),
-  'premium-coin': fobRow(['fob-premium-coin-tilde', 'fob-premium-coin-dark', 'fob-premium-coin-light']),
+  // Each fob's three color sets, then its earless option (design's export, October 26).
+  'base-tag': fobRow(['fob-base-tag-tilde', 'fob-base-tag-dark', 'fob-base-tag-light', 'fob-earless-base-tag']),
+  'base-coin': fobRow(['fob-base-coin-tilde', 'fob-base-coin-dark', 'fob-base-coin-light', 'fob-earless-base-coin']),
+  'premium-tag': fobRow(['fob-premium-tag-tilde', 'fob-premium-tag-dark', 'fob-premium-tag-light', 'fob-earless-premium-tag']),
+  'premium-coin': fobRow(['fob-premium-coin-tilde', 'fob-premium-coin-dark', 'fob-premium-coin-light', 'fob-earless-premium-coin']),
   'retro-handheld': pending('retro-handheld'),
-  'sticky-note': pending('sticky-note'),
-  calendar: pending('calendar'),
-  'grocery-list': pending('grocery-list'),
+  // Each note on the fridge or desk, then opened (its magnets and sticker).
+  'sticky-note': { ids: ['product-sticky-note', 'product-sticky-note-back'], layout: 'grid', ratio: 'photo' },
+  calendar: { ids: ['product-calendar', 'product-calendar-back'], layout: 'grid', ratio: 'photo' },
+  'grocery-list': { ids: ['product-grocery-list', 'product-grocery-list-back'], layout: 'grid', ratio: 'photo' },
   'wifi-coaster': pending('wifi-coaster'),
-  stand: pending('stand'),
-  'stand-mini': pending('stand-mini'),
+  stand: { ids: ['home-stand-wifi'], layout: 'wide', ratio: 'photo' },
+  'stand-mini': { ids: ['home-stand-mini'], layout: 'wide', ratio: 'photo' },
 }
 
 /**

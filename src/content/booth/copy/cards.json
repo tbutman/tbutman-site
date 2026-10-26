@@ -1,5 +1,5 @@
 {
-  "source": "d485399684fbd67acbbe06cd76fad6e7f4df65cfec2efc82ce9a85e2b78f312e",
+  "source": "40cfe1b6107f6b845b14b429b46a7e6b3ebc90651a5fbe381efa6c9545a17bbd",
   "blocks": [
     {
       "type": "h2",
@@ -64,7 +64,7 @@
     },
     {
       "type": "p",
-      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes, so a card with several links needs an NTAG216. A full card that doesn’t fit is written as its contact link, which opens your contact page and needs internet. `[depends on T1–T4]` for the contact link. Tilde’s Write a sticker tells you which sizes fit before it writes. `[depends on T-W1–T-W7]` On an iPhone, a tap opens a page with your card and **Save contact**, which needs internet. `[depends on T1–T4]` for the iPhone line."
+      "text": "**A contact card on the sticker:** Android offers to save it if your card fits. An NTAG215 sticker holds 504 bytes, so a card with several links needs an NTAG216. iPhones open links from a tap, so if iPhone users will tap your card, put your link on the sticker: they save your contact by scanning a code."
     },
     {
       "type": "h2",
@@ -73,7 +73,7 @@
     },
     {
       "type": "p",
-      "text": "**Countless designs.** In the Model Maker, you put your own card together:"
+      "text": "**Countless designs.** In the Model Maker (MakerWorld’s customizer in your browser, or the same settings in OpenSCAD’s Customizer), you put your own card together:"
     },
     {
       "type": "ul",
@@ -95,14 +95,14 @@
           "sub": []
         },
         {
-          "text": "on a two-piece card, a window over the sticker and a notch or pill on its edges. `[depends on two-piece card]`",
+          "text": "on a two-piece card, a window over the sticker and a notch or pill on its edges.",
           "sub": []
         }
       ]
     },
     {
       "type": "p",
-      "text": "It’s your text, your code and the model’s own marks, in the colors you choose. There’s no way to add a picture or a logo of your own."
+      "text": "It’s your text, your code and the model’s own marks, in the colors you choose. There’s no setting for a picture or a logo: to add your own, choose the plain back (Back: None) and add it in Bambu Studio, on the back’s top face, as the printing guide shows."
     },
     {
       "type": "h3",
@@ -294,7 +294,7 @@
     },
     {
       "type": "p",
-      "text": "**The tap card** is made only to be tapped, for example in a wallet’s outside pocket, so a tap reaches the sticker through it. `[depends on a tap through a wallet pocket: USE-CASES 1.7 says it's untested]`. Until that passes, cut the wallet clause: “It’s made only to be tapped.”"
+      "text": "**The tap card** is made only to be tapped."
     },
     {
       "type": "h2",

@@ -1,6 +1,6 @@
 {
-  "manifest": "017d472b30a66669d0dcb10cf35ce6b939d376ccee5f71444a01172734f1fc49",
-  "exported": "2026-10-20T08:55:28+01:00",
+  "manifest": "323708d3107784648a80b59dfa86f93b986052ce2bd4ffbe5bf7ef8f5638d627",
+  "exported": "2026-10-26T03:01:53+00:00",
   "images": {
     "booth-table-open": {
       "pages": [
@@ -8,7 +8,7 @@
       ],
       "slot": "hero",
       "alt": "The Tilde booth table: the two giveaway boxes open with their eight stacks of base tags and the fob storage box open with its four stacks of fobs, beside the closed cards-only box and the 5- and 3-card pocket cases.",
-      "status": "ok",
+      "status": "stale",
       "sources": [
         {
           "src": "/tilde/booth/hub--booth-table-open-720.webp",
@@ -28,7 +28,7 @@
       ],
       "slot": "table-closed",
       "alt": "The Tilde booth table with every lid on: the cards-only box and its black lid, the fob storage box and its engraved lid, two olive giveaway lids, and the 5- and 3-card pocket cases.",
-      "status": "ok",
+      "status": "unrecorded",
       "sources": [
         {
           "src": "/tilde/booth/hub--booth-table-closed-720.webp",
@@ -48,7 +48,7 @@
       ],
       "slot": "station",
       "alt": "The cards-only box closed: a khaki base under a black lid with a QR code, the orange and white ~/tilde wordmark and taptilde.com.",
-      "status": "ok",
+      "status": "stale",
       "sources": [
         {
           "src": "/tilde/booth/cards--station-cards-closed-720.webp",
@@ -68,7 +68,7 @@
       ],
       "slot": "station-open",
       "alt": "The cards-only box open and empty: its three bays, for 10 assembled cards, 4 loose fronts and 6 loose backs, the lid set face up beside it.",
-      "status": "ok",
+      "status": "stale",
       "sources": [
         {
           "src": "/tilde/booth/cards--station-cards-open-720.webp",
@@ -88,7 +88,7 @@
       ],
       "slot": "station",
       "alt": "The fob storage box closed: a khaki base under a black sliding lid with the ~/tilde lockup engraved, a thumb hole at the front edge.",
-      "status": "ok",
+      "status": "stale",
       "sources": [
         {
           "src": "/tilde/booth/fobs--station-fobs-closed-720.webp",
@@ -108,7 +108,7 @@
       ],
       "slot": "station-open",
       "alt": "The fob storage box open, its four stacks of fobs in the three color sets, the sliding lid beside it: base coins (on top, Tap waves, orange on black), base tags (Wi-Fi password, black on khaki), premium coins (Tap waves, khaki on black) and premium tags (Person, orange on black).",
-      "status": "ok",
+      "status": "unrecorded",
       "sources": [
         {
           "src": "/tilde/booth/fobs--station-fobs-open-720.webp",
@@ -128,7 +128,7 @@
       ],
       "slot": "station",
       "alt": "The giveaway box closed: a long khaki base under an olive lid with a khaki QR code, the ~/tilde wordmark with an orange ~/ and tap waves, and taptilde.com.",
-      "status": "ok",
+      "status": "unrecorded",
       "sources": [
         {
           "src": "/tilde/booth/uses--station-uses-closed-720.webp",
@@ -148,7 +148,7 @@
       ],
       "slot": "station-open",
       "alt": "The two giveaway boxes open, ten base tags in each stack, icons up. Box 1: Family (a house), Contact card, Link and chat. Box 2: Guest Wi-Fi (Wi-Fi password), Share your number (a handset), Lost item (Found it?) and Book a meeting (booking).",
-      "status": "ok",
+      "status": "stale",
       "sources": [
         {
           "src": "/tilde/booth/uses--station-uses-open-720.webp",
@@ -168,7 +168,7 @@
       ],
       "slot": "types",
       "alt": "A base coin, orange on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "base coin · orange on black",
       "sources": [
         {
@@ -179,12 +179,12 @@
         {
           "src": "/tilde/booth/fobs--fob-base-coin-tilde-720.webp",
           "width": 720,
-          "height": 437
+          "height": 436
         },
         {
           "src": "/tilde/booth/fobs--fob-base-coin-tilde-1400.webp",
           "width": 1400,
-          "height": 849
+          "height": 847
         }
       ]
     },
@@ -194,7 +194,7 @@
       ],
       "slot": "types",
       "alt": "A base coin, khaki on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "base coin · khaki on black",
       "sources": [
         {
@@ -205,12 +205,12 @@
         {
           "src": "/tilde/booth/fobs--fob-base-coin-dark-720.webp",
           "width": 720,
-          "height": 437
+          "height": 436
         },
         {
           "src": "/tilde/booth/fobs--fob-base-coin-dark-1400.webp",
           "width": 1400,
-          "height": 849
+          "height": 847
         }
       ]
     },
@@ -220,7 +220,7 @@
       ],
       "slot": "types",
       "alt": "A base coin, black on khaki: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "base coin · black on khaki",
       "sources": [
         {
@@ -231,12 +231,12 @@
         {
           "src": "/tilde/booth/fobs--fob-base-coin-light-720.webp",
           "width": 720,
-          "height": 437
+          "height": 436
         },
         {
           "src": "/tilde/booth/fobs--fob-base-coin-light-1400.webp",
           "width": 1400,
-          "height": 849
+          "height": 847
         }
       ]
     },
@@ -246,7 +246,7 @@
       ],
       "slot": "types",
       "alt": "A base tag, orange on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "base tag · orange on black",
       "sources": [
         {
@@ -272,7 +272,7 @@
       ],
       "slot": "types",
       "alt": "A base tag, khaki on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "base tag · khaki on black",
       "sources": [
         {
@@ -298,7 +298,7 @@
       ],
       "slot": "types",
       "alt": "A base tag, black on khaki: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "base tag · black on khaki",
       "sources": [
         {
@@ -324,7 +324,7 @@
       ],
       "slot": "types",
       "alt": "A premium coin, orange on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium coin · orange on black",
       "sources": [
         {
@@ -350,7 +350,7 @@
       ],
       "slot": "types",
       "alt": "A premium coin, khaki on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium coin · khaki on black",
       "sources": [
         {
@@ -376,7 +376,7 @@
       ],
       "slot": "types",
       "alt": "A premium coin, black on khaki: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium coin · black on khaki",
       "sources": [
         {
@@ -402,7 +402,7 @@
       ],
       "slot": "types",
       "alt": "A premium tag, orange on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium tag · orange on black",
       "sources": [
         {
@@ -428,7 +428,7 @@
       ],
       "slot": "types",
       "alt": "A premium tag, khaki on black: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium tag · khaki on black",
       "sources": [
         {
@@ -454,7 +454,7 @@
       ],
       "slot": "types",
       "alt": "A premium tag, black on khaki: both pieces, the front and the back.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium tag · black on khaki",
       "sources": [
         {
@@ -480,7 +480,7 @@
       ],
       "slot": "special",
       "alt": "The pocket case premium coin: orange, with black tap waves.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium coin · black on orange",
       "sources": [
         {
@@ -506,7 +506,7 @@
       ],
       "slot": "special",
       "alt": "The pocket case premium tag: orange, with a black person icon and its code black on white.",
-      "status": "ok",
+      "status": "stale",
       "caption": "premium tag · black on orange",
       "sources": [
         {
@@ -532,7 +532,7 @@
       ],
       "slot": "tag-faces",
       "alt": "A tag's front, orange on black: its QR code.",
-      "status": "ok",
+      "status": "stale",
       "caption": "tag front · the code",
       "sources": [
         {
@@ -558,7 +558,7 @@
       ],
       "slot": "tag-faces",
       "alt": "A tag's back, orange on black: its icon.",
-      "status": "ok",
+      "status": "stale",
       "caption": "tag back · the icon",
       "sources": [
         {
@@ -585,18 +585,18 @@
       ],
       "slot": "demo-keychain",
       "alt": "The demo keychain fanned out: a ring of orange on black tags, each a different use.",
-      "status": "ok",
+      "status": "stale",
       "caption": "the demo keychain",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-demo-keychain-720.webp",
           "width": 720,
-          "height": 654
+          "height": 627
         },
         {
           "src": "/tilde/booth/fobs--fob-demo-keychain-1440.webp",
           "width": 1440,
-          "height": 1308
+          "height": 1255
         }
       ]
     },
@@ -946,6 +946,33 @@
         },
         {
           "src": "/tilde/booth/fobs--icons-location-830.webp",
+          "width": 830,
+          "height": 900
+        }
+      ]
+    },
+    "icons-luggage": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "icons",
+      "alt": "The Luggage tag icon.",
+      "status": "ok",
+      "icon": "luggage",
+      "name": "Luggage tag",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--icons-luggage-360.webp",
+          "width": 360,
+          "height": 390
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-luggage-720.webp",
+          "width": 720,
+          "height": 781
+        },
+        {
+          "src": "/tilde/booth/fobs--icons-luggage-830.webp",
           "width": 830,
           "height": 900
         }
@@ -1550,8 +1577,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Family tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Family tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Family",
       "sources": [
         {
@@ -1571,8 +1598,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Contact card tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Contact card tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Contact card",
       "sources": [
         {
@@ -1592,8 +1619,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Link tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Link tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Link",
       "sources": [
         {
@@ -1613,8 +1640,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The WhatsApp (a generic chat icon) tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The WhatsApp (a generic chat icon) tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "WhatsApp",
       "sources": [
         {
@@ -1634,8 +1661,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Guest Wi-Fi tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Guest Wi-Fi tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Guest Wi-Fi",
       "sources": [
         {
@@ -1655,8 +1682,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Share your number tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Share your number tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Share your number",
       "sources": [
         {
@@ -1676,8 +1703,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Lost item tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Lost item tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Lost item",
       "sources": [
         {
@@ -1697,8 +1724,8 @@
         "uses"
       ],
       "slot": "stacks",
-      "alt": "The Book a meeting tag from the giveaway box.",
-      "status": "ok",
+      "alt": "The Book a meeting tag from the giveaway box, khaki on black.",
+      "status": "stale",
       "caption": "Book a meeting",
       "sources": [
         {
@@ -2238,7 +2265,7 @@
         "cards"
       ],
       "slot": "themes",
-      "alt": "The Brasil card's front: yellow, with navy text, a green ~/ and underline, a navy QR code on a white field. Jane Doe is a made-up example.",
+      "alt": "The Brasil card's front: yellow, with navy text, a green ~/ and underline, a navy QR code on a white field. Maria da Silva is a made-up example.",
       "status": "ok",
       "caption": "Brasil · front",
       "sources": [
@@ -2264,7 +2291,7 @@
         "cards"
       ],
       "slot": "themes",
-      "alt": "The Brasil card's back: yellow, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy and green.",
+      "alt": "The Brasil card's back: yellow, with a terminal window: \"$ whoami\", then maria da silva, designer de produto and msilva@example.com, in navy and green.",
       "status": "ok",
       "caption": "Brasil · back",
       "sources": [
@@ -2905,7 +2932,7 @@
         "cards"
       ],
       "slot": "backs",
-      "alt": "An alternate back for the Brasil card (Terminal, green, navy text): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in navy.",
+      "alt": "An alternate back for the Brasil card (Terminal, green, navy text): green, with a terminal window: \"$ whoami\", then maria da silva, designer de produto and msilva@example.com, in navy.",
       "status": "ok",
       "caption": "Brasil · green back, navy text",
       "sources": [
@@ -2931,7 +2958,7 @@
         "cards"
       ],
       "slot": "backs",
-      "alt": "An alternate back for the Brasil card (Terminal, green, white text): green, with a terminal window: \"$ whoami\", then jane doe, product designer and jane@example.com, in white.",
+      "alt": "An alternate back for the Brasil card (Terminal, green, white text): green, with a terminal window: \"$ whoami\", then maria da silva, designer de produto and msilva@example.com, in white.",
       "status": "ok",
       "caption": "Brasil · green back, white text",
       "sources": [
@@ -2957,7 +2984,7 @@
         "cards"
       ],
       "slot": "backs",
-      "alt": "An alternate back for the Brasil card (Plain, green Color window): yellow, with a green circle (a Color window over the sticker) and jane doe, product designer and jane@example.com in navy and green.",
+      "alt": "An alternate back for the Brasil card (Plain, green Color window): yellow, with a green circle (a Color window over the sticker) and maria da silva, designer de produto and msilva@example.com in navy and green.",
       "status": "ok",
       "caption": "Brasil · yellow back, green window",
       "sources": [
@@ -3457,6 +3484,279 @@
           "src": "/tilde/booth/cards--card-portugal-angle-1440.webp",
           "width": 1440,
           "height": 815
+        }
+      ]
+    },
+    "home-stand-wifi": {
+      "pages": [
+        "home"
+      ],
+      "slot": "stand",
+      "alt": "The Tilde Stand with its Wi-Fi top on a kitchen counter: a black turned stand, its tilted gray face holding a khaki Wi-Fi code label and an orange Wi-Fi icon, and a phone tapping the icon to join the network.",
+      "status": "ok",
+      "caption": "The Tilde Stand with its Wi-Fi top: guests scan the code, or tap their phone on the icon.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--home-stand-wifi-720.webp",
+          "width": 720,
+          "height": 518
+        },
+        {
+          "src": "/tilde/booth/home--home-stand-wifi-1440.webp",
+          "width": 1440,
+          "height": 1037
+        }
+      ]
+    },
+    "home-stand-mini": {
+      "pages": [
+        "home"
+      ],
+      "slot": "stand-mini",
+      "alt": "The Stand Mini on an oak desk beside a phone: a small black stand holding a khaki Premium coin with tap waves and the word home, its face tilted toward you.",
+      "status": "ok",
+      "caption": "The Stand Mini holds any earless Premium coin on your desk; swap coins by unscrewing the ring.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--home-stand-mini-720.webp",
+          "width": 720,
+          "height": 422
+        },
+        {
+          "src": "/tilde/booth/home--home-stand-mini-1440.webp",
+          "width": 1440,
+          "height": 844
+        }
+      ]
+    },
+    "fob-earless-base-coin": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "earless",
+      "alt": "An earless Base coin, orange on black: no ring hole, for a stand or a home project.",
+      "status": "ok",
+      "caption": "earless base coin",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-earless-base-coin-720.webp",
+          "width": 720,
+          "height": 380
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-earless-base-coin-1400.webp",
+          "width": 1400,
+          "height": 739
+        }
+      ]
+    },
+    "fob-earless-base-tag": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "earless",
+      "alt": "An earless Base tag, orange on black: no ring hole, for a stand or a home project.",
+      "status": "ok",
+      "caption": "earless base tag",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-earless-base-tag-720.webp",
+          "width": 720,
+          "height": 406
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-earless-base-tag-1400.webp",
+          "width": 1400,
+          "height": 789
+        }
+      ]
+    },
+    "fob-earless-premium-coin": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "earless",
+      "alt": "An earless Premium coin, orange on black: no ring hole, for a stand or a home project.",
+      "status": "ok",
+      "caption": "earless premium coin",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-earless-premium-coin-720.webp",
+          "width": 720,
+          "height": 419
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-earless-premium-coin-1400.webp",
+          "width": 1400,
+          "height": 815
+        }
+      ]
+    },
+    "fob-earless-premium-tag": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "earless",
+      "alt": "An earless Premium tag, orange on black: no ring hole, for a stand or a home project.",
+      "status": "ok",
+      "caption": "earless premium tag",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-earless-premium-tag-720.webp",
+          "width": 720,
+          "height": 426
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-earless-premium-tag-1395.webp",
+          "width": 1395,
+          "height": 826
+        }
+      ]
+    },
+    "fob-t-key": {
+      "pages": [
+        "fobs"
+      ],
+      "slot": "t-key",
+      "alt": "A Premium coin's back, orange on black, beside the T-key that turns it.",
+      "status": "ok",
+      "caption": "the T-key",
+      "sources": [
+        {
+          "src": "/tilde/booth/fobs--fob-t-key-720.webp",
+          "width": 720,
+          "height": 402
+        },
+        {
+          "src": "/tilde/booth/fobs--fob-t-key-1400.webp",
+          "width": 1400,
+          "height": 782
+        }
+      ]
+    },
+    "product-sticky-note": {
+      "pages": [
+        "home"
+      ],
+      "slot": "sticky-note",
+      "alt": "A yellow sticky note on a pale fridge door beside its handle: a black tap icon at its top left, its bottom right corner folded over in white.",
+      "status": "ok",
+      "caption": "The sticky note: magnets inside, an NFC sticker under the tap icon.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--product-sticky-note-720.webp",
+          "width": 720,
+          "height": 595
+        },
+        {
+          "src": "/tilde/booth/home--product-sticky-note-1440.webp",
+          "width": 1440,
+          "height": 1190
+        }
+      ]
+    },
+    "product-grocery-list": {
+      "pages": [
+        "home"
+      ],
+      "slot": "grocery-list",
+      "alt": "A white grocery list on a pale fridge door: \"groceries\" handwritten in navy and underlined, milk and eggs ticked, bread crossed out, and a last row reading \"tap for list\" with a hand-drawn tap icon; its corner folded over in khaki.",
+      "status": "ok",
+      "caption": "The grocery list: tap the last row's icon with your phone.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--product-grocery-list-720.webp",
+          "width": 720,
+          "height": 639
+        },
+        {
+          "src": "/tilde/booth/home--product-grocery-list-1352.webp",
+          "width": 1352,
+          "height": 1200
+        }
+      ]
+    },
+    "product-calendar": {
+      "pages": [
+        "home"
+      ],
+      "slot": "calendar",
+      "alt": "A tear-off desk calendar page in a white cradle on an oak desk beside a phone: a row of binding holes, a red NOV header, a big black 9 and MONDAY, and a small tap icon at the bottom left.",
+      "status": "ok",
+      "caption": "The desk calendar in its cradle; it lifts out for the fridge.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--product-calendar-720.webp",
+          "width": 720,
+          "height": 446
+        },
+        {
+          "src": "/tilde/booth/home--product-calendar-1440.webp",
+          "width": 1440,
+          "height": 893
+        }
+      ]
+    },
+    "product-sticky-note-back": {
+      "pages": [
+        "home"
+      ],
+      "slot": "sticky-note-back",
+      "alt": "The yellow sticky note opened: its face lifted off the back, and in the back three round magnets and a black NFC sticker in their wells, a curved notch at one corner for lifting it apart.",
+      "status": "ok",
+      "caption": "Inside: three magnets and the NFC sticker, hidden behind the face.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--product-sticky-note-back-720.webp",
+          "width": 720,
+          "height": 540
+        },
+        {
+          "src": "/tilde/booth/home--product-sticky-note-back-1365.webp",
+          "width": 1365,
+          "height": 1023
+        }
+      ]
+    },
+    "product-grocery-list-back": {
+      "pages": [
+        "home"
+      ],
+      "slot": "grocery-list-back",
+      "alt": "The white grocery list opened: its handwritten face lifted off the back, and in the back three round magnets and a black NFC sticker in their wells, a curved notch at one corner for lifting it apart.",
+      "status": "ok",
+      "caption": "Inside: three magnets and the NFC sticker, hidden behind the face.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--product-grocery-list-back-720.webp",
+          "width": 720,
+          "height": 560
+        },
+        {
+          "src": "/tilde/booth/home--product-grocery-list-back-1340.webp",
+          "width": 1340,
+          "height": 1043
+        }
+      ]
+    },
+    "product-calendar-back": {
+      "pages": [
+        "home"
+      ],
+      "slot": "calendar-back",
+      "alt": "The calendar page opened: its face lifted off the back, the binding holes through both, and in the back three round magnets and a black NFC sticker in their wells, a curved notch at one corner.",
+      "status": "ok",
+      "caption": "Inside: three magnets and the NFC sticker, hidden behind the face.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--product-calendar-back-720.webp",
+          "width": 720,
+          "height": 548
+        },
+        {
+          "src": "/tilde/booth/home--product-calendar-back-1365.webp",
+          "width": 1365,
+          "height": 1038
         }
       ]
     }

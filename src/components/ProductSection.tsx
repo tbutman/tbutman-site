@@ -7,16 +7,20 @@ import RichText from './RichText'
 // One core product from docs' product sheet (src/content/booth/products.ts), the same way on every
 // family page (finish-line plan §3): what it is and the problem it solves, its renders, then how it
 // works, its uses, its options, its sizes, what pairs well with it, and how to make your own. Its
-// heading is the product's name in the sheet; docs' Name field (the Model Maker's settings for it),
-// status and sources are for us and the checker, never shown.
+// heading is the product's name in the sheet, with its availability (Printable now, Coming soon).
+// Options, sizes, what you need and the files fold into "for makers". Docs' Notes (the Model Maker's
+// setting names, gates, status, sources) never reach the site (scripts/booth-products.mjs).
 
 const SHOWN: [ProductFieldKey, string][] = [
   ['howItWorks', 'how it works'],
   ['uses', 'use cases'],
+  ['pairsWith', 'pairs well with'],
+]
+// For makers (visitor round 1, items 5–7): folded, so the page reads as outcomes first.
+const MAKERS: [ProductFieldKey, string][] = [
   ['options', 'options'],
   ['specs', 'size and materials'],
-  ['pairsWith', 'pairs well with'],
-  ['makeYourOwn', 'make your own'],
+  ['files', 'get the files'],
 ]
 
 // A list item's bold lead ("**Base tag:** …", "**Save my contact:** …") as a link: to that product's
@@ -69,6 +73,11 @@ export default function ProductSection({ product, renders, page }: { product: Pr
       <h3 id={`${product.id}-heading`} className="booth-h3">
         <RichText text={product.name} />
       </h3>
+      {fields.availability?.text && (
+        <p className={`booth-availability${/coming soon/i.test(fields.availability.text) && !/printable now/i.test(fields.availability.text) ? ' soon' : ''}`}>
+          <RichText text={fields.availability.text} />
+        </p>
+      )}
       {fields.oneLiner && (
         <p className="booth-product-lead">
           <RichText text={sentence(fields.oneLiner.text)} />
@@ -90,6 +99,27 @@ export default function ProductSection({ product, renders, page }: { product: Pr
           </div>
         ))}
       </dl>
+      {(fields.whatYouNeed || MAKERS.some(([key]) => fields[key])) && (
+        <details className="booth-makers">
+          <summary>for makers</summary>
+          {fields.whatYouNeed && (
+            <div className="booth-need panel">
+              <b>what you need</b>
+              <Field name="whatYouNeed" field={fields.whatYouNeed} />
+            </div>
+          )}
+          <dl className="booth-product-facts">
+            {MAKERS.filter(([key]) => fields[key]).map(([key, label]) => (
+              <div key={key}>
+                <dt>{label}</dt>
+                <dd>
+                  <Field name={key} field={fields[key] as ProductField} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+      )}
     </section>
   )
 }
