@@ -68,8 +68,9 @@ for (const path of paths) {
   const { html, meta } = render(path)
   // A draft's placeholders build locally, but CI stops on them, so they can't go live: a MakerWorld
   // link or a print time not known yet, a booth render not made yet or older than its model, and a
-  // line whose truth waits on a phone or print test. (No line waits on a release: Thomas, October 20.)
-  if (process.env.CI && /PLACEHOLDER|\[TBD\]|\[depends on |MAKERWORLD-[A-Z]+-URL|data-render-status=/.test(html)) {
+  // line whose truth waits on a phone or print test, or on Thomas ([Thomas: …], [name TBD], in docs'
+  // product sheet). (No line waits on a release: Thomas, October 20.)
+  if (process.env.CI && /PLACEHOLDER|\[TBD\]|\[depends on |\[Thomas: |\[name TBD\]|MAKERWORLD-[A-Z]+-URL|data-render-status=/.test(html)) {
     throw new Error(`${path}: a draft placeholder is still on the page`)
   }
   // The images are drawn by `npm run og` and committed; catch a page whose card was never drawn.

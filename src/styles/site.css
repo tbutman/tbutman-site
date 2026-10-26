@@ -2295,6 +2295,56 @@ main {
   }
 }
 
+/* A core product from docs' product sheet: its lead, then its facts as labeled rows. */
+.booth-product {
+  margin: 2.5rem 0 0;
+  scroll-margin-top: 5rem;
+}
+
+.booth-product-lead {
+  margin: 0.5rem 0 0;
+  font: 500 1.125rem/1.5 var(--font-sans);
+  color: var(--text);
+}
+
+.booth-product-facts {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0 0;
+}
+
+.booth-product-facts > div {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.booth-product-facts dt {
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  color: var(--accent);
+}
+
+.booth-product-facts dd {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.booth-product-facts dd p {
+  margin: 0;
+}
+
+.booth-product-facts dd .booth-list {
+  margin: 0.25rem 0 0;
+}
+
+@media (min-width: 861px) {
+  .booth-product-facts > div {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
 /* The tour's next stop: one card at the end of every page, as wide as a hub tile is tall. */
 .booth-next {
   margin: 3rem 0 0;

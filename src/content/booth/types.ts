@@ -74,3 +74,11 @@ export function sections(blocks: Block[]): Section[] {
   }
   return out
 }
+
+/** One field of a product in docs' product sheet (scripts/booth-products.mjs): its text and/or a list. */
+export type ProductField = { text: string; items: string[] }
+export type ProductFieldKey = 'name' | 'oneLiner' | 'problem' | 'howItWorks' | 'uses' | 'options' | 'sizes' | 'pairsWith' | 'makeYourOwn' | 'status' | 'sources'
+export type Product = { name: string; id: string; fields: Partial<Record<ProductFieldKey, ProductField>> }
+export type ProductFamily = { name: string; id: string; products: Product[] }
+/** site-content/products.md as synced: the families and their products, plus the intro and glossary. */
+export type ProductSheet = { source: string; families: ProductFamily[]; sections: { title: string; id: string; text: string }[] }

@@ -5,8 +5,9 @@ import { Link } from 'react-router'
 // starting with /) uses the router; any other opens as a normal link. The booth pages' copy (docs'
 // Markdown) also has `code`, links inside bold, and [depends on …] gates: a line that waits on a
 // phone or print test (there are no release gates: Thomas, October 20), shown as a badge, and
-// blocked from going live by CI (scripts/prerender.mjs).
-const TOKEN = /(\*\*[^*]+\*\*|\[depends on [^\]]+\]|\[[^\]]+\]\([^)\s]+\)|`[^`]+`)/
+// blocked from going live by CI (scripts/prerender.mjs). Docs' product sheet adds two more of the
+// kind: [Thomas: …], a question only he can answer, and [name TBD].
+const TOKEN = /(\*\*[^*]+\*\*|\[(?:depends on |Thomas: )[^\]]+\]|\[name TBD\]|\[[^\]]+\]\([^)\s]+\)|`[^`]+`)/
 
 export default function RichText({ text }: { text: string }) {
   return text.split(TOKEN).map((part, index) => {
@@ -19,7 +20,7 @@ export default function RichText({ text }: { text: string }) {
       )
     }
     // A gate, bare or in backticks as docs writes it.
-    if (/^`?\[depends on [^\]]+\]`?$/.test(part)) {
+    if (/^`?\[(?:(?:depends on |Thomas: )[^\]]+|name TBD)\]`?$/.test(part)) {
       return (
         <span key={index} className="gate">
           {part.replace(/`/g, '')}

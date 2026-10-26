@@ -8,11 +8,13 @@
 //   as WebP in public/tilde/screens/, and src/content/booth/screens.json in images.json's shape;
 // - the icons' names, from the model's Icon list (tilde-card/keyring.scad), never copied by hand;
 // - the copy: tilde-review/site-content/{cards,fobs,uses,app,hub}.md as blocks
-//   (scripts/booth-copy.mjs) in src/content/booth/copy/, and icon-uses.json beside them.
+//   (scripts/booth-copy.mjs) in src/content/booth/copy/, and icon-uses.json beside them;
+// - the product sheet: tilde-review/site-content/products.md (scripts/booth-products.mjs) as
+//   src/content/booth/copy/products.json.
 //
 //   npm run booth:sync             bring everything in
 //   npm run booth:sync -- --check  only report what's newer at the source than here
-//   npm run booth:sync -- --only=copy,screens   bring in only these (images, screens, copy)
+//   npm run booth:sync -- --only=copy,screens   bring in only these (images, screens, copy, products)
 //   npm run booth:sync -- --force  convert docs' copy again even where it hasn't changed
 //
 // Every web file is checked against the manifest's size and SHA-1 before anything is copied, and
@@ -26,6 +28,7 @@ import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promi
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { checkFidelity, describe, parseCopy, relink } from './booth-copy.mjs'
+import { checkProducts, parseProducts } from './booth-products.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // The checkout's parent: ~/Documents/personal for both tbutman-site and its worktrees.
@@ -67,6 +70,26 @@ async function iconNames() {
     .split(', ')
     .map((option) => option.split(/:(.*)/s).slice(0, 2))
     .filter(([value]) => value !== 'none')
+}
+
+// ---------- The product sheet ----------
+// Docs' site-content/products.md (tilde-review/briefs/products-sheet.md): one source of facts for every
+// core product, for ProductSection (scripts/booth-products.mjs). Until docs' draft lands, the site keeps
+// an empty sheet, and the stub in scripts/fixtures/ stands in for tests and previews.
+async function syncProducts() {
+  const file = join(contentDir, 'products.md')
+  const target = join(copyDir, 'products.json')
+  if (!existsSync(file)) return console.log('products: products.md not written yet')
+  const bytes = await readFile(file)
+  const source = hash('sha256', bytes)
+  const current = await readJson(target)
+  if (current?.source === source && !force) return console.log('products: products.md up to date')
+  if (check) return console.log("products: products.md is NEWER than the site's copy")
+  const sheet = parseProducts(bytes.toString('utf8'))
+  checkProducts(sheet)
+  await writeJson(target, { source, ...sheet })
+  const count = sheet.families.reduce((sum, family) => sum + family.products.length, 0)
+  console.log(`products: products.md ${current?.source ? 'updated' : 'added'} (${sheet.families.length} families, ${count} products)`)
 }
 
 // ---------- The copy ----------
@@ -285,3 +308,4 @@ async function syncScreens() {
 if (wanted('images')) await syncImages()
 if (wanted('screens')) await syncScreens()
 if (wanted('copy')) await syncCopy()
+if (wanted('products')) await syncProducts()
