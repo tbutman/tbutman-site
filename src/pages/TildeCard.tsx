@@ -68,14 +68,16 @@ export default function TildeCard({ locale }: { locale: Locale }) {
         <div className="section-head">
           <h2 id="time-heading">{card.timeHeading}</h2>
         </div>
-        <dl className="stats product-stats">
-          {card.times.map((fact) => (
-            <div key={fact.label} className="panel">
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
+        {card.times.length > 0 && (
+          <dl className="stats product-stats">
+            {card.times.map((fact) => (
+              <div key={fact.label} className="panel">
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <p className="product-body">{card.timeBody}</p>
       </section>
       <section className="section" aria-labelledby="sticker-heading">
@@ -186,14 +188,16 @@ export default function TildeCard({ locale }: { locale: Locale }) {
             <div className="section-head">
               <h2 id="time-heading">{card.timeHeading}</h2>
             </div>
-            <dl className="stats product-stats">
-              {card.times.map((fact) => (
-                <div key={fact.label} className="panel">
-                  <dt>{fact.label}</dt>
-                  <dd>{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
+            {card.times.length > 0 && (
+              <dl className="stats product-stats">
+                {card.times.map((fact) => (
+                  <div key={fact.label} className="panel">
+                    <dt>{fact.label}</dt>
+                    <dd>{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
             <p className="product-body">{card.timeBody}</p>
           </section>
           <section className="section" aria-labelledby="backs-heading">

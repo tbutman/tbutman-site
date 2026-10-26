@@ -6,7 +6,8 @@
 // Draft (final plan S12): the two-piece card, MakerWorld's default build, and the keyrings, from
 // tilde-card's docs/TWO-PIECE.md and docs/KEYRING.md. Before it ships:
 // - the two MakerWorld links replace their placeholders, or go back to null to hide the buttons;
-// - Bambu Studio's two-piece print times replace the [TBD]s;
+// - Bambu Studio's two-piece print times go back into `times` once measured (PRINTING.md has none
+//   yet, so the figures are off the page; docs did the same in products.md, October 26);
 // - docs/TWO-PIECE.md is on tilde-card's main, since the FAQ links to it;
 // - real photos of the card and keyrings, from media.
 // CI fails the build while a placeholder is on a page (scripts/prerender.mjs).
@@ -72,11 +73,9 @@ const en = {
   ],
 
   timeHeading: 'how long it takes',
-  times: [
-    { value: '[TBD]', label: 'per card on a 0.4 mm nozzle (Bambu Studio’s estimate for the two-piece sample card)' },
-    { value: '[TBD]', label: 'per card on a 0.2 mm nozzle, for the sharpest text' },
-    { value: '[TBD]', label: 'cards fit on an A1 mini’s plate, and take barely longer than one' },
-  ],
+  // Back when measured: per card on a 0.4 mm nozzle (Bambu Studio's estimate for the two-piece sample
+  // card), per card on 0.2 mm, and how many cards fit on an A1 mini's plate.
+  times: [] as { value: string; label: string }[],
   timeBody:
     'Most of the time is color changes. The two-piece card has all its colors in its first few layers and prints the rest in black, so it’s much quicker than the one-piece card, which changes colors over more layers and stops halfway for the sticker. Color changes happen once per layer for the whole plate, so a full plate takes barely longer than one card. A plain back or no back is quicker still.',
 
@@ -191,11 +190,7 @@ const pt: TildeCardText = {
   ],
 
   timeHeading: 'quanto tempo demora',
-  times: [
-    { value: '[TBD]', label: 'por cartão num bico de 0,4 mm (estimativa do Bambu Studio para o cartão de exemplo em duas peças)' },
-    { value: '[TBD]', label: 'por cartão num bico de 0,2 mm, para o texto mais nítido' },
-    { value: '[TBD]', label: 'cartões cabem na placa de uma A1 mini, e demoram pouco mais do que um' },
-  ],
+  times: [] as { value: string; label: string }[],
   timeBody:
     'Quase todo o tempo vai nas mudanças de cor. O cartão em duas peças tem todas as cores nas primeiras camadas e imprime o resto a preto, por isso é muito mais rápido do que o cartão numa só peça, que muda de cor em mais camadas e para a meio para o autocolante. As mudanças de cor acontecem uma vez por camada para a placa inteira, por isso uma placa cheia demora pouco mais do que um cartão. Um verso simples, ou sem verso, ainda é mais rápido.',
 

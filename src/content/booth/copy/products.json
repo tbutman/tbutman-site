@@ -1,5 +1,5 @@
 {
-  "source": "577b1cc422ae68456b574f134720d4c272a619fd019085deae90a041dea67afd",
+  "source": "7f6b3dd88ea7bfe4085b37c278c2ae7d00dfea6fa7a0ca03caa1d8ba72371d5e",
   "sections": [
     {
       "title": "The family",
@@ -51,7 +51,7 @@
               "sub": []
             },
             {
-              "text": "**Tap:** an NFC sticker sits inside, under the tap icon. Hold the back of the phone flat on the icon, within 1–2 cm. `[Thomas: say where on an iPhone (near the top) and on most Android phones (near the camera or mid-back)? No source documents it for iPhones, so a test would settle it.]`",
+              "text": "**Tap:** an NFC sticker sits inside, under the tap icon. Hold the back of the phone flat on the icon, within 1–2 cm. (Where on each phone to hold it is open question 5 below, for us, not the page.)",
               "sub": [
                 "**iPhone XS or newer:** reads a tap with the screen on, with no app and no setting. A link comes up as a notification. Not while Camera or Wallet is open.",
                 "**iPhone 7 to X:** open the NFC reader in Control Center first.",
@@ -403,8 +403,7 @@
                 "85.60 × 53.98 mm; 1.8 mm with a thin sticker, 2.0 with a thick one.",
                 "The back piece is 0.8 mm.",
                 "PLA, up to 4 colors, changed only in the first 3 layers.",
-                "One round NFC sticker, NTAG215, 22–25 mm.",
-                "Print time: `[TBD]`."
+                "One round NFC sticker, NTAG215, 22–25 mm."
               ]
             },
             "pairsWith": {
@@ -420,7 +419,7 @@
               "items": []
             },
             "status": {
-              "text": "final. What’s left: one print on today’s defaults, and the Model Maker pass. Thomas’s checks on a full Model Maker card (seam, corner opening, sticker read, a glued card bent) are `[TBD]` in TP:464–469. The marks ship only if their coupon is good (TP:369–370).",
+              "text": "final. What’s left: one print on today’s defaults, and the Model Maker pass. Its print time isn’t measured yet: it goes in field 7 once it is (Site 38). Thomas’s checks on a full Model Maker card (seam, corner opening, sticker read, a glued card bent) are `[TBD]` in TP:464–469. The marks ship only if their coupon is good (TP:369–370).",
               "items": []
             },
             "sources": {
@@ -922,7 +921,7 @@
             "uses": {
               "text": "",
               "items": [
-                "**Book a meeting:** your booking page. `[Thomas: the demo endpoint (a shared calendar or Calendly), October 29–November 1]`",
+                "**Book a meeting:** your booking page.",
                 "**An event’s date:** MON 9 NOV, the first day of Web Summit, with its schedule.",
                 "**A shared family calendar:** a tap opens it."
               ]
@@ -958,7 +957,7 @@
               "items": []
             },
             "status": {
-              "text": "designing. It’s designed in the Model Maker, but there’s no print file yet. What’s left: a print file from the notes Model Maker (after v5c), then one print.",
+              "text": "designing. It’s designed in the Model Maker, but there’s no print file yet. The booth demo needs `[Thomas: the demo endpoint (a shared calendar or Calendly), October 29–November 1]` (open question 8). What’s left: a print file from the notes Model Maker (after v5c), then one print.",
               "items": []
             },
             "sources": {
@@ -1085,7 +1084,7 @@
                 "100 mm across, 15 mm tall with the ring.",
                 "Ballast: up to 16 M8 fender washers (DIN 9021), four wells, with press-in covers. Underneath, a 96 mm cork or felt disc.",
                 "NFC sticker: 25 mm round, 3.4 mm under the face, at least 10 mm from the steel.",
-                "PLA, 4 walls. Weight: `[TBD]`. It hasn’t been printed or weighed; the 213 g estimate assumed solid plastic."
+                "PLA, 4 walls."
               ]
             },
             "pairsWith": {
@@ -1101,7 +1100,7 @@
               "items": []
             },
             "status": {
-              "text": "designing. The Model Maker passed the checker (P103b, P104), but the coaster has never been printed. What’s left:",
+              "text": "designing. The Model Maker passed the checker (P103b, P104), but the coaster has never been printed or weighed (the 213 g estimate assumed solid plastic). Its weight goes in field 7 once it’s weighed (Site 38). What’s left:",
               "items": [
                 "`[Thomas: pick the colors]`, then one print from the Model Maker;",
                 "`[Thomas: the inlaid code prints face down; keep it, or try face up?]`;",
