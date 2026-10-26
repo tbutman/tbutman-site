@@ -187,6 +187,10 @@ export const projects: Project[] = [
       { src: '/tilde/share.webp', caption: 'share', alt: 'Tilde’s Share screen: Jane Doe’s Web Summit card, the QR code for her contact card, and chips to switch between her website, contact card and LinkedIn' },
       { src: '/tilde/cards.webp', caption: 'switching cards', alt: 'Switching cards: Jane Doe’s Work and Web Summit cards' },
       { src: '/tilde/write.webp', caption: 'write a sticker', alt: 'Write a sticker: the contact card chosen, with the warning that anyone who taps the sticker gets the phone number and email' },
+      // The printed card itself, photographed (visitor round 1, item 13; the photos from the printing
+      // report on print-story, the email blurred there).
+      { src: '/tilde/printing/12-04mm-final-front.webp', caption: 'the printed card, front', alt: 'The finished card on the 0.4 mm nozzle, front: “Thomas Butman”, an even white QR field with no sticker showing through, and the white “tap” label with orange waves', width: 960, height: 640, desktop: true },
+      { src: '/tilde/printing/13-04mm-final-back.webp', caption: 'and its back', alt: 'The same card’s back: the terminal design with “$ whoami”, name and title, every letter clean, including over the sticker’s pocket', width: 960, height: 640, desktop: true },
     ],
     built: [
       'An Android app in Kotlin that emulates an NFC Forum Type 4 Tag with Host Card Emulation, serving links, vCards and Wi-Fi credentials as NDEF records.',
@@ -203,6 +207,7 @@ export const projects: Project[] = [
       'Three releases in three days, 1.0 to 1.2 (October 5 to 7): 1.1 installs over 1.0 and keeps the card, which I tested by updating through Obtainium from a pre-release before anyone else got it.',
       'Two permissions, NFC and vibration, and no internet permission.',
       'Tested on an Android phone with an iPhone reading it, from the first beta.',
+      '256 unit tests in 1.3 (the tag protocol, NDEF, vCards, links, the Met log), run by CI on every push to main and every pull request; every release is built and signed by GitHub Actions from a tag.',
     ],
     reflection:
       'What I’d do differently: test phone-to-phone with a second Android phone before 1.0. Next: the customizable card on MakerWorld, and the Play Store.',
