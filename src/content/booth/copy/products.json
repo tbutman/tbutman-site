@@ -1,5 +1,5 @@
 {
-  "source": "1b3e1c8bb7f6c5ae3d31501608062966c6182e28a151ac30f5752a75413bbdfa",
+  "source": "d964bd3e514b574da05053b1249e8c8c7fea77ba912039d1adda3633994bf211",
   "sections": [
     {
       "title": "The family",
@@ -61,7 +61,7 @@
             {
               "text": "**Write:** the sticker can be rewritten any time, through the plastic.",
               "sub": [
-                "**Android:** Tilde for Android’s **Write a sticker**. It writes a link, your contact card, or your guest Wi-Fi. Notes and lists are coming in the next app update.",
+                "**Android:** Tilde for Android’s **Write a sticker**. It writes a link, your contact card, or your guest Wi-Fi. Notes and lists, and a package tag, are coming in the next app update.",
                 "**iPhone:** Tilde is Android only for now. To write a link from an iPhone, use the free NFC Tools app."
               ]
             },
@@ -71,7 +71,8 @@
                 "**A link:** opens it.",
                 "**A contact card:** if iPhone users will tap it, write a link instead (your website or a contact page): iPhones open links from a tap. To save your contact, an iPhone scans your phone’s code.",
                 "**Guest Wi-Fi:** an iPhone joins by scanning the Wi-Fi code.",
-                "**A note or a list** (coming in the next app update): a tap opens the note page, with no app."
+                "**A note or a list** (coming in the next app update): a tap opens the note page, with no app.",
+                "**A package tag** (coming in the next app update): a page says what the tag is. Only its owner’s phone opens the package list."
               ]
             },
             {
@@ -1058,6 +1059,7 @@
             "uses": {
               "text": "",
               "items": [
+                "**Your packages:** a package coin opens your package list in Tilde; other phones see what the tag is (coming in the next app update).",
                 "**Guest Wi-Fi on a desk or a reception counter:** for Android guests.",
                 "**Book a meeting:** on your office desk.",
                 "**Save my contact:** at a front desk."
