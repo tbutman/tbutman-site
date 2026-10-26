@@ -1,6 +1,6 @@
 {
-  "manifest": "8a2cd16211963402452abbe7f7f84b97a2027788dcde8d66abbde562740601c2",
-  "exported": "2026-10-26T03:32:36+00:00",
+  "manifest": "391f80f894d89eb0a1ac4cbca898964c510568f7371f7e6248a2d5db5206ef24",
+  "exported": "2026-10-26T06:49:22+00:00",
   "images": {
     "booth-table-open": {
       "pages": [
@@ -584,9 +584,9 @@
         "uses"
       ],
       "slot": "demo-keychain",
-      "alt": "The demo keychain fanned out: a ring of orange on black tags, each a different use.",
+      "alt": "The demo ring: ten tags on a ring, each a different use, orange on black.",
       "status": "ok",
-      "caption": "the demo keychain",
+      "caption": "the demo ring",
       "sources": [
         {
           "src": "/tilde/booth/fobs--fob-demo-keychain-720.webp",
@@ -3514,7 +3514,7 @@
       ],
       "slot": "stand-mini",
       "alt": "The Stand Mini on an oak desk beside a phone: a small black stand holding a khaki Premium coin with tap waves and the word home, its face tilted toward you.",
-      "status": "stale",
+      "status": "ok",
       "caption": "The Stand Mini holds any earless Premium coin on your desk; swap coins by unscrewing the ring.",
       "sources": [
         {
@@ -3862,6 +3862,27 @@
           "src": "/tilde/booth/fobs--fob-handheld-premium-large-printed-1400.webp",
           "width": 1400,
           "height": 999
+        }
+      ]
+    },
+    "home-coaster": {
+      "pages": [
+        "home"
+      ],
+      "slot": "coaster",
+      "alt": "The Tilde Wi-Fi coaster on a walnut coffee table: a black disc with a threaded ring, its gray face holding a khaki Wi-Fi code label and an orange Wi-Fi icon, and a phone tapping the icon to join the network.",
+      "status": "ok",
+      "caption": "The Wi-Fi coaster: the same Wi-Fi top as the Stand, lying flat on a table.",
+      "sources": [
+        {
+          "src": "/tilde/booth/home--home-coaster-720.webp",
+          "width": 720,
+          "height": 493
+        },
+        {
+          "src": "/tilde/booth/home--home-coaster-1440.webp",
+          "width": 1440,
+          "height": 986
         }
       ]
     }
