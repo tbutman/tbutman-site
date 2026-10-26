@@ -2345,6 +2345,37 @@ main {
   }
 }
 
+/* A family's products, listed before their sections: a row of links on a desktop, a column on a phone. */
+.booth-product-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font: 400 0.875rem/1.5 var(--font-mono);
+}
+
+/* The hub's "make your own": its links, each a whole line, tall enough to tap. */
+.booth-make {
+  display: grid;
+  gap: 0.25rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.booth-make a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Home & desk has no box to show beside its opening. */
+.booth-hero-text-only {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 /* The tour's next stop: one card at the end of every page, as wide as a hub tile is tall. */
 .booth-next {
   margin: 3rem 0 0;

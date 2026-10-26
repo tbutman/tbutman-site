@@ -2,7 +2,7 @@ import { type ComponentType, lazy, Suspense } from 'react'
 import * as direct from './direct'
 
 // The booth pages' content (docs' copy and the render index) stays out of the rest of the site: the
-// browser loads it as its own chunk, only on /tilde, /tilde/card, /tilde/fobs, /tilde/uses and /tilde/app. The
+// browser loads it as its own chunk, only on /tilde, /tilde/card, /tilde/fobs, /tilde/home, /tilde/uses and /tilde/app. The
 // prerender draws it in full, and a Suspense boundary keeps that HTML on screen until the chunk has
 // loaded and hydrated. In the browser build ./direct is ./none (vite.config.ts), so each part loads.
 function part<P extends object>(direct: ComponentType<P> | null, load: () => Promise<ComponentType<P>>): ComponentType<P> {
@@ -20,3 +20,5 @@ export const AppPage = part(direct.AppPage, () => import('./parts').then((module
 export const CardShowcase = part(direct.CardShowcase, () => import('./parts').then((module) => module.CardShowcase))
 export const BoothHub = part(direct.BoothHub, () => import('./parts').then((module) => module.BoothHub))
 export const NextStop = part(direct.NextStop, () => import('./parts').then((module) => module.NextStop))
+export const HomePage = part(direct.HomePage, () => import('./parts').then((module) => module.HomePage))
+export const Hub = part(direct.Hub, () => import('./parts').then((module) => module.Hub))

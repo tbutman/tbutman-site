@@ -10,10 +10,10 @@ import NotFound from './pages/NotFound'
 import Project from './pages/Project'
 import Resume from './pages/Resume'
 import Thanks from './pages/Thanks'
-import Tilde from './pages/Tilde'
+import Tilde, { AppSections } from './pages/Tilde'
 import TildePrivacy from './pages/TildePrivacy'
 import TildeCard from './pages/TildeCard'
-import { AppPage, FobsPage, UsesPage } from './booth'
+import { AppPage, FobsPage, HomePage, UsesPage } from './booth'
 
 function useDocumentMeta() {
   const { pathname, hash } = useLocation()
@@ -53,7 +53,8 @@ export default function App() {
           {/* The booth's stations (English only): taptilde.com/fobs, /uses and /app. */}
           <Route path="/tilde/fobs" element={<FobsPage />} />
           <Route path="/tilde/uses" element={<UsesPage />} />
-          <Route path="/tilde/app" element={<AppPage />} />
+          <Route path="/tilde/app" element={<AppPage insert={<AppSections locale="en" />} />} />
+          <Route path="/tilde/home" element={<HomePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

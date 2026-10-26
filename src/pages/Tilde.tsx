@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { BoothHub, NextStop } from '../booth'
+import { Hub } from '../booth'
 import LangSwitch from '../components/LangSwitch'
 import ProductVideo from '../components/ProductVideo'
 import RichText from '../components/RichText'
@@ -17,73 +17,16 @@ function Phone({ src, alt, eager = false }: { src: string; alt: string; eager?: 
   )
 }
 
-export default function Tilde({ locale }: { locale: Locale }) {
+/**
+ * The app's own sections: install, what it shares, cards, how it works, free and yours, the Tilde
+ * Card, questions, and the closing download. /pt/tilde shows them under its hero; /tilde/app shows
+ * them (English) under docs' App page, since /tilde became the family's hub (finish-line plan §3).
+ */
+export function AppSections({ locale }: { locale: Locale }) {
   const tilde = tildeText[locale]
   const downloadHref = release?.apk ?? tilde.download.fallbackHref
-  // "version 1.1.0 · 1.7 MB · android 8 or newer", with the decimal comma in Portuguese.
-  const size = release && new Intl.NumberFormat(htmlLang[locale], { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(release.bytes / 1e6)
-  const releaseLine = [release && `${tilde.release.version} ${release.version}`, release && `${size} MB`, tilde.release.minAndroid]
-    .filter(Boolean)
-    .join(' · ')
   return (
-    <article className="product">
-      <p className="product-strip">
-        <Link to={tilde.sampleStrip.href}>
-          {tilde.sampleStrip.question}{' '}
-          {/* The arrow stays with its words, never alone on a line (360 px phones). */}
-          <span className="nowrap">
-            <b>{tilde.sampleStrip.link}</b>
-            <span aria-hidden="true"> →</span>
-          </span>
-        </Link>
-      </p>
-      <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
-      {/* #app: where taptilde.com/app lands (a Cloudflare rule). */}
-      <section id="app" className="product-hero" aria-labelledby="tilde-heading">
-        <div className="product-hero-text">
-          <p className="status">
-            <span className="status-dot" aria-hidden="true" />
-            {tilde.status}
-          </p>
-          <p className="product-name">
-            <b>~</b> {tilde.name}
-          </p>
-          <h1 id="tilde-heading">
-            {tilde.headline[0]} <span>{tilde.headline[1]}</span>
-          </h1>
-          <p className="lede">{tilde.lede}</p>
-          <div className="button-row">
-            <a className="button primary" href={downloadHref}>
-              {tilde.download.label} ↓
-            </a>
-            <a className="button" href={tilde.printCard.href}>
-              {tilde.printCard.label}
-            </a>
-          </div>
-          <p className="product-small product-release">{releaseLine}</p>
-          <p className="product-small">{tilde.requirements}</p>
-        </div>
-        <div className="product-hero-visual">
-          <img
-            className="product-card"
-            src="/tilde/card.webp"
-            alt={tilde.heroCardAlt}
-            width={1200}
-            height={603}
-          />
-          <Phone {...tilde.heroPhone} eager />
-        </div>
-      </section>
-
-      {/* The booth's stations (Web Summit), English only, right under the hero for anyone who reached
-          taptilde.com without tapping a lid. */}
-      {locale === 'en' && <BoothHub />}
-
-      {/* The Tilde Card video: full width, framed, on its beige studio backdrop (launch plan 7a). */}
-      <figure className="product-video panel">
-        <ProductVideo video={tilde.video} />
-      </figure>
-
+    <>
       <section id="install" className="section" aria-labelledby="install-heading">
         <div className="section-head">
           <h2 id="install-heading">{tilde.installHeading}</h2>
@@ -259,9 +202,92 @@ export default function Tilde({ locale }: { locale: Locale }) {
           </Link>
         </div>
       </section>
+    </>
+  )
+}
 
-      {/* The tour's first stop after the hub (English only, as the booth pages are). */}
-      {locale === 'en' && <NextStop from="hub" />}
+export default function Tilde({ locale }: { locale: Locale }) {
+  const tilde = tildeText[locale]
+  const downloadHref = release?.apk ?? tilde.download.fallbackHref
+  // English: the family's hub (src/components/TildeHub.tsx). Portuguese: the app's page, as before.
+  if (locale === 'en') {
+    return (
+      <article className="product booth">
+        <p className="product-strip">
+          <Link to={tilde.sampleStrip.href}>
+            {tilde.sampleStrip.question}{' '}
+            <span className="nowrap">
+              <b>{tilde.sampleStrip.link}</b>
+              <span aria-hidden="true"> →</span>
+            </span>
+          </Link>
+        </p>
+        <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
+        <Hub />
+      </article>
+    )
+  }
+  // "version 1.1.0 · 1.7 MB · android 8 or newer", with the decimal comma in Portuguese.
+  const size = release && new Intl.NumberFormat(htmlLang[locale], { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(release.bytes / 1e6)
+  const releaseLine = [release && `${tilde.release.version} ${release.version}`, release && `${size} MB`, tilde.release.minAndroid]
+    .filter(Boolean)
+    .join(' · ')
+  return (
+    <article className="product">
+      <p className="product-strip">
+        <Link to={tilde.sampleStrip.href}>
+          {tilde.sampleStrip.question}{' '}
+          {/* The arrow stays with its words, never alone on a line (360 px phones). */}
+          <span className="nowrap">
+            <b>{tilde.sampleStrip.link}</b>
+            <span aria-hidden="true"> →</span>
+          </span>
+        </Link>
+      </p>
+      <LangSwitch locale={locale} paths={{ en: '/tilde', pt: translations['/tilde'] }} />
+      {/* #app: where taptilde.com/app lands (a Cloudflare rule). */}
+      <section id="app" className="product-hero" aria-labelledby="tilde-heading">
+        <div className="product-hero-text">
+          <p className="status">
+            <span className="status-dot" aria-hidden="true" />
+            {tilde.status}
+          </p>
+          <p className="product-name">
+            <b>~</b> {tilde.name}
+          </p>
+          <h1 id="tilde-heading">
+            {tilde.headline[0]} <span>{tilde.headline[1]}</span>
+          </h1>
+          <p className="lede">{tilde.lede}</p>
+          <div className="button-row">
+            <a className="button primary" href={downloadHref}>
+              {tilde.download.label} ↓
+            </a>
+            <a className="button" href={tilde.printCard.href}>
+              {tilde.printCard.label}
+            </a>
+          </div>
+          <p className="product-small product-release">{releaseLine}</p>
+          <p className="product-small">{tilde.requirements}</p>
+        </div>
+        <div className="product-hero-visual">
+          <img
+            className="product-card"
+            src="/tilde/card.webp"
+            alt={tilde.heroCardAlt}
+            width={1200}
+            height={603}
+          />
+          <Phone {...tilde.heroPhone} eager />
+        </div>
+      </section>
+
+      {/* The Tilde Card video: full width, framed, on its beige studio backdrop (launch plan 7a). */}
+      <figure className="product-video panel">
+        <ProductVideo video={tilde.video} />
+      </figure>
+
+      <AppSections locale={locale} />
     </article>
   )
 }

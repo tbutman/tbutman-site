@@ -27,6 +27,10 @@ export type BoothPage = {
   lineup?: string
   copy: BoothCopy
   images: [string, Placement][]
+  /** Its family in docs' product sheet: the products, each a ProductSection, right after the hero. */
+  family?: string
+  /** A download button first in the hero (the App page: the APK, finish-line plan §7). */
+  download?: boolean
 }
 
 // Thomas's review note (October 20): each design's alternate backs go in its row, after its front
@@ -48,6 +52,7 @@ const tag = (id: string): Placement => ({ ids: [id], layout: 'tag', ratio: 'squa
 
 export const cardsPage: BoothPage = {
   page: 'cards',
+  family: 'cards',
   label: 'Cards',
   path: '/tilde/card',
   shortLink: 'taptilde.com/card',
@@ -73,6 +78,7 @@ export const cardsPage: BoothPage = {
 
 export const fobsPage: BoothPage = {
   page: 'fobs',
+  family: 'fobs',
   label: 'Fobs',
   path: '/tilde/fobs',
   shortLink: 'taptilde.com/fobs',
@@ -133,6 +139,7 @@ export const usesPage: BoothPage = {
 const screens = (ids: string[]): Placement => ({ ids, layout: 'screens', ratio: 'phone' })
 export const appPage: BoothPage = {
   page: 'app',
+  download: true,
   label: 'App',
   path: '/tilde/app',
   shortLink: 'taptilde.com/app',
@@ -176,19 +183,69 @@ export const placementFor = (page: BoothPage, marker: string): Placement | null 
 
 /**
  * The tour (finish-line plan §3): the way Thomas walks a visitor round the table, hub → Cards → Fobs →
- * Around the home → Use cases → App → hub. Every page ends with the stop after it (NextStop). Around
- * the home has no page yet, so it goes to the hub's family tiles until it does (the coordinator,
- * October 26); its name is still Thomas's to settle.
+ * Home & desk → Use cases → App → hub. Every page ends with the stop after it (NextStop). The names
+ * are Thomas's (finish-line plan §7).
  */
 export type Stop = { key: string; label: string; path: string }
 export const tour: Stop[] = [
   { key: 'hub', label: 'Tilde', path: '/tilde' },
   { key: 'cards', label: cardsPage.label, path: cardsPage.path },
   { key: 'fobs', label: fobsPage.label, path: fobsPage.path },
-  { key: 'home', label: 'Around the home', path: '/tilde#booth' },
+  { key: 'home', label: 'Home & desk', path: '/tilde/home' },
   { key: 'uses', label: usesPage.label, path: usesPage.path },
   { key: 'app', label: appPage.label, path: appPage.path },
 ]
 
 /** The stop after `key`'s; after the last, the hub again. */
 export const nextStop = (key: string): Stop => tour[(tour.findIndex((stop) => stop.key === key) + 1) % tour.length]
+
+/** Each family's page, by its id in docs' product sheet (scripts/booth-products.mjs, FAMILY_IDS). */
+export const familyPaths: Record<string, string> = { cards: '/tilde/card', fobs: '/tilde/fobs', home: '/tilde/home' }
+
+/** Home & desk (finish-line plan §7): a page of docs' product sheet alone, with no station copy. */
+export const homePage = {
+  key: 'home',
+  family: 'home',
+  path: '/tilde/home',
+  shortLink: 'taptilde.com/home',
+  status: 'nfc · qr · 3d-printable',
+  name: 'Home & desk',
+}
+
+/**
+ * Each product's renders, from the export: by its id in docs' sheet. A product with no render yet
+ * (the handheld, Home & desk) shows a placeholder that names the render it waits for; CI won't
+ * build one.
+ */
+const fobRow = (ids: string[]): Placement => ({ ids, layout: 'small', ratio: 'square' })
+const pending = (id: string): Placement => ({ ids: [`product-${id}`], layout: 'grid', ratio: 'photo' })
+export const productRenders: Record<string, Placement> = {
+  solid: { ids: ['card-solid-black-front', 'card-solid-black-back'], layout: 'grid', ratio: 'card' },
+  'two-piece': { ids: ['card-two-piece', 'card-two-piece-back'], layout: 'grid', ratio: 'photo' },
+  'base-tag': fobRow(['fob-base-tag-tilde', 'fob-base-tag-dark', 'fob-base-tag-light']),
+  'base-coin': fobRow(['fob-base-coin-tilde', 'fob-base-coin-dark', 'fob-base-coin-light']),
+  'premium-tag': fobRow(['fob-premium-tag-tilde', 'fob-premium-tag-dark', 'fob-premium-tag-light']),
+  'premium-coin': fobRow(['fob-premium-coin-tilde', 'fob-premium-coin-dark', 'fob-premium-coin-light']),
+  'retro-handheld': pending('retro-handheld'),
+  'sticky-note': pending('sticky-note'),
+  calendar: pending('calendar'),
+  'grocery-list': pending('grocery-list'),
+  'wifi-coaster': pending('wifi-coaster'),
+  stand: pending('stand'),
+  'stand-mini': pending('stand-mini'),
+}
+
+/**
+ * Use cases in the plan's lead order (finish-line plan §3): save my contact, guest Wi-Fi, a link,
+ * lost keys, the shopping list, book a meeting, WhatsApp; the rest after, in docs' order. Each use
+ * links to the products whose uses (docs' sheet) name it.
+ */
+export const useOrder = ['contact-card', 'guest-wi-fi', 'link', 'lost-item', 'book-a-meeting', 'whatsapp']
+export const useProducts: Record<string, RegExp> = {
+  'contact-card': /^save my contact/i,
+  'guest-wi-fi': /wi-fi/i,
+  link: /^a link/i,
+  'lost-item': /lost keys/i,
+  'book-a-meeting': /^book a meeting/i,
+  whatsapp: /^whatsapp/i,
+}

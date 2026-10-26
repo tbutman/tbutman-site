@@ -6,6 +6,7 @@ import { tildeText } from './content/tilde'
 import { tildePrivacyText } from './content/tildePrivacy'
 import { tildeCardText } from './content/tildeCard'
 import boothLedes from './content/booth/copy/ledes.json'
+import products from './content/booth/copy/products.json'
 import { alternatesFor, htmlLang, localeOf, type Locale } from './i18n'
 
 export type Meta = {
@@ -52,7 +53,9 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
     return { title: `Olá · ${profile.name}`, description: helloText.pt.bio, noindex: true }
   }
   if (pathname === '/tilde') {
-    return { title: 'Tilde · a free NFC business card app for Android', description: tildeText.en.lede, image: '/og/tilde.png', imageAlt: 'Tilde: Your business card, on your phone. A phone showing Jane Doe’s card and QR code, and a black Tilde Card for Jane Doe with a QR code.' }
+    // The family's hub (finish-line plan §3): docs' hub description. Its preview image is still the
+    // app's until media draws one for the family.
+    return { title: 'Tilde · everyday objects you can tap or scan', description: boothLedes.hub, image: '/og/tilde.png', imageAlt: 'Tilde: Your business card, on your phone. A phone showing Jane Doe’s card and QR code, and a black Tilde Card for Jane Doe with a QR code.' }
   }
   if (pathname === '/pt/tilde') {
     return { title: 'Tilde · cartão de visita NFC grátis para Android', description: tildeText.pt.lede, image: '/og/tilde-pt.png', imageAlt: 'Tilde: O teu cartão de visita, no teu telemóvel. Um telemóvel com o cartão e o código QR de Jane Doe, e um cartão Tilde preto.' }
@@ -66,6 +69,9 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
   // The booth's stations: until media draws their own previews, they use /tilde's and /tilde/card's.
   if (pathname === '/tilde/fobs') {
     return { title: 'Tilde Fobs · every shape, color and icon', description: boothLedes.fobs, image: '/og/tilde.png' }
+  }
+  if (pathname === '/tilde/home') {
+    return { title: 'Tilde Home & desk · notes, a coaster and stands you can tap', description: homeDescription(), image: '/og/tilde.png' }
   }
   if (pathname === '/tilde/uses') {
     return { title: 'Tilde use cases · one tag, one job', description: boothLedes.uses, image: '/og/tilde.png' }
@@ -93,4 +99,19 @@ function pageMeta(pathname: string): Omit<Meta, 'image' | 'lang'> & { image?: st
     }
   }
   return { title: `Not found · ${profile.name}`, description: defaultDescription }
+}
+
+/** Home & desk's description: its line in docs' product sheet ("Four families"), without Markdown. */
+function homeDescription(): string {
+  for (const section of products.sections as { id: string; blocks: { type: string; items?: { text: string }[] }[] }[]) {
+    if (section.id !== 'the-family') continue
+    for (const block of section.blocks) {
+      const item = block.items?.find((entry) => entry.text.startsWith('**Home & desk:**'))
+      if (item) {
+        const line = item.text.slice('**Home & desk:**'.length).replace(/\*\*|`/g, '').trim()
+        return line.charAt(0).toUpperCase() + line.slice(1)
+      }
+    }
+  }
+  return boothLedes.hub
 }

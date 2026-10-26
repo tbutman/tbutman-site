@@ -1,129 +1,176 @@
 // Turns docs' product sheet (tilde-review/site-content/products.md, briefs/products-sheet.md) into
 // src/content/booth/copy/products.json, for the site's ProductSection: one source of facts for every
-// core product. It reads this shape, and stops on anything else rather than drop a fact:
+// core product. It reads the sheet as docs writes it, and stops on anything else rather than drop a
+// fact:
 //
 //   (docs' notes, then)
 //   ---
-//   ## Cards                         a family; `## Around the home [name TBD]` keeps its marker
-//   ### Two-Piece                    a product, with an optional {#id}
-//   - **One-liner:** …               a field: its text on the line and wrapped lines under it,
-//   - **Use cases:**                 and/or sub-bullets (a list)
-//     - Save my contact: …
-//   ## Family intro / ## Glossary    kept as text, for the hub and the checker
+//   ## The family                    shared text (## The family, ## Glossary): kept as blocks, as the
+//   ### How every Tilde works        booth copy is (scripts/booth-copy.mjs)
+//   ---                              a rule between parts: ignored
+//   ## Cards                         a family; its products follow
+//   ### Tilde Card, Solid body       a product (an optional {#id})
+//   1. **Name:** …                   its fields, numbered, docs' labels in bold;
+//      - **Scan:** …                 a field's list, one level, indented under it,
+//        wrapped …                   and wrapped lines
+//   ## Open questions for Thomas     for Thomas and us: never on a page
+//   ## Source keys                   the same
 //
-// Fields, by docs' labels (any case; "Field (note)" counts as "Field"): Name, One-liner, Problem, How it
-// works, Use cases, Options, Sizes and materials, Pairs well with, Make your own, Status, Sources.
-// `[Thomas: …]` and `[name TBD]` stay in the text: the page shows them as gates, and the release build
-// refuses them (scripts/prerender.mjs).
-import { curly } from './booth-copy.mjs'
+// Fields (docs' labels): Name, One-liner, Problem, How it works, Uses, Options, Size and materials,
+// Pairs well with, Make your own, Status, Sources. A label's note in brackets ("Options (Model
+// Maker)") and a value inside the bold ("Status: final.") are both read. `[Thomas: …]`, `[name TBD]`
+// and `[placeholder…]` stay in the text: the page shows them as gates, and the release build refuses
+// them (scripts/prerender.mjs).
+import { curly, parseCopy } from './booth-copy.mjs'
 
 export const FIELDS = {
   name: 'name',
   'one-liner': 'oneLiner',
   problem: 'problem',
-  'the problem': 'problem',
   'how it works': 'howItWorks',
-  'use cases': 'uses',
   uses: 'uses',
+  'use cases': 'uses',
   options: 'options',
-  'sizes and materials': 'sizes',
-  sizes: 'sizes',
+  'size and materials': 'specs',
+  'sizes and materials': 'specs',
   'pairs well with': 'pairsWith',
   'make your own': 'makeYourOwn',
   status: 'status',
   sources: 'sources',
 }
 
-const slug = (text) =>
+// The site's anchors for each product and family, so links (Uses, Next stop, printed links) survive
+// docs' renames (Fob Display → Tilde Stand, Thomas, October 26). Matched on the heading, first match
+// wins; a heading's own {#id} wins over all of them.
+export const PRODUCT_IDS = [
+  [/^Tilde Card, Solid/i, 'solid'],
+  [/^Tilde Card, Two-Piece/i, 'two-piece'],
+  [/^Base tag/i, 'base-tag'],
+  [/^Base coin/i, 'base-coin'],
+  [/^Premium tag/i, 'premium-tag'],
+  [/^Premium coin/i, 'premium-coin'],
+  [/Retro handheld/i, 'retro-handheld'],
+  [/^Sticky note/i, 'sticky-note'],
+  [/^Calendar/i, 'calendar'],
+  [/^Grocery list/i, 'grocery-list'],
+  [/coaster/i, 'wifi-coaster'],
+  [/Stand Mini|Fob Display, small|desk stand/i, 'stand-mini'],
+  [/Tilde Stand|Fob Display, large|Wi-Fi console/i, 'stand'],
+]
+export const FAMILY_IDS = [
+  [/^Cards/i, 'cards'],
+  [/^Fobs/i, 'fobs'],
+  [/home|desk/i, 'home'],
+]
+const pinned = (list, title) => list.find(([pattern]) => pattern.test(title))?.[1]
+
+/** Sections kept for us, never on a page. */
+const PRIVATE = /^(open questions|source keys)/i
+/** Sections kept as text (blocks) rather than products. */
+const TEXT = /^(the family|family intro|glossary)/i
+
+const GATE = /`?\[(?:name TBD|Thomas: [^\]]*|placeholder[^\]]*)\]`?/g
+export const slug = (text) =>
   text
-    .replace(/\[(?:name TBD|Thomas: [^\]]*)\]/g, '')
+    .replace(GATE, '')
     .toLowerCase()
     .replace(/\*\*|`/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
 
-const TEXT_SECTIONS = /^(family intro|the family|glossary)\b/i
-
-/** The sheet as { families, sections }. Throws on a line it doesn't understand. */
+/** The sheet as { sections, families }. Throws on a line it doesn't understand. */
 export function parseProducts(markdown, name = 'products.md') {
   const lines = markdown.replace(/\r\n/g, '\n').split('\n')
   const start = lines.indexOf('---')
   if (start < 0) throw new Error(`${name}: no --- after docs' notes`)
-  const families = []
   const sections = []
+  const families = []
+  let mode = null // 'text', 'family', 'private'
+  let text = null
   let family = null
   let product = null
-  let section = null
   let field = null
   const fail = (i, message) => {
     throw new Error(`${name}:${i + 1}: ${message}: ${lines[i]}`)
   }
   for (let i = start + 1; i < lines.length; i++) {
     const line = lines[i]
-    if (!line.trim()) {
-      field = null
-      continue
-    }
     const h2 = line.match(/^## (.+)$/)
     if (h2) {
       product = field = null
-      if (TEXT_SECTIONS.test(h2[1])) {
-        section = { title: h2[1].trim(), id: slug(h2[1]), text: [] }
-        sections.push(section)
-        family = null
+      const title = h2[1].trim()
+      if (PRIVATE.test(title)) mode = 'private'
+      else if (TEXT.test(title)) {
+        mode = 'text'
+        text = { title, id: slug(title), lines: [] }
+        sections.push(text)
       } else {
-        section = null
-        family = { name: h2[1].trim(), id: slug(h2[1]), products: [] }
+        mode = 'family'
+        family = { name: title, id: pinned(FAMILY_IDS, title) ?? slug(title), products: [] }
         families.push(family)
       }
       continue
     }
-    if (section) {
-      if (/^#{3,} /.test(line)) fail(i, 'a heading inside the intro or glossary')
-      section.text.push(line)
+    if (line === '---' || mode === 'private') continue
+    if (mode === 'text') {
+      text.lines.push(line)
       continue
     }
+    if (!line.trim()) {
+      continue
+    }
+    if (mode !== 'family') fail(i, 'a line before the first ## heading')
     const h3 = line.match(/^### (.+?)(?: \{#([a-z0-9-]+)\})?$/)
     if (h3) {
-      if (!family) fail(i, 'a product before its family (##)')
-      product = { name: h3[1].trim(), id: h3[2] ?? slug(h3[1]), fields: {} }
+      product = { name: h3[1].trim(), id: h3[2] ?? pinned(PRODUCT_IDS, h3[1]) ?? slug(h3[1]), fields: {} }
       family.products.push(product)
       field = null
       continue
     }
-    const top = line.match(/^- \*\*([^*]+?):?\*\*:? ?(.*)$/)
+    const top = line.match(/^\d+\. \*\*(.+?)\*\*(.*)$/)
     if (top && product) {
-      const label = top[1].replace(/\s*\(.*\)$/, '').trim().toLowerCase()
-      const key = FIELDS[label]
-      if (!key) fail(i, `a field this site doesn't know ("${top[1]}"): add it to FIELDS, or ask docs`)
-      field = product.fields[key] = { text: top[2].trim(), items: [] }
+      // "Name:" / "Status: final." in the bold, or "Options" then " (Model Maker): …" after it.
+      const [bold, rest] = [top[1], top[2]]
+      let label = bold.replace(/:$/, '')
+      let value = rest
+      if (bold.includes(':')) {
+        label = bold.slice(0, bold.indexOf(':'))
+        value = `${bold.slice(bold.indexOf(':') + 1)}${rest}`
+      } else value = rest.replace(/^\s*\([^)]*\)/, '').replace(/^:/, '')
+      const key = FIELDS[label.trim().toLowerCase()]
+      if (!key) fail(i, `a field this site doesn't know ("${label}"): add it to FIELDS, or ask docs`)
+      field = product.fields[key] = { text: value.trim(), items: [] }
       continue
     }
-    const sub = line.match(/^ {2,4}- (.*)$/)
-    if (sub && field) {
-      field.items.push(sub[1].trim())
+    const item = line.match(/^ {2,4}(?:- |\d+\. )(.*)$/)
+    if (item && field) {
+      field.items.push(item[1].trim())
       continue
     }
     if (/^ {2,}\S/.test(line) && field) {
-      // A wrapped line: of the last sub-bullet if it's indented under one, else of the field's text.
-      if (field.items.length && /^ {4,}\S/.test(line)) field.items[field.items.length - 1] += ` ${line.trim()}`
+      // A wrapped line: of the field's last list item, or of its text before the list starts.
+      if (field.items.length) field.items[field.items.length - 1] += ` ${line.trim()}`
       else field.text = `${field.text} ${line.trim()}`.trim()
       continue
     }
-    fail(i, product ? 'a line outside a field (- **Field:** …)' : 'a line outside a product')
+    fail(i, product ? 'a line outside a numbered field' : 'a line outside a product (###)')
   }
-  const tidy = (field) => ({ text: curly(field.text), items: field.items.map(curly) })
+  const tidy = (value) => ({ text: curly(value.text), items: value.items.map(curly) })
   return {
-    families: families.map((f) => ({
-      ...f,
-      name: curly(f.name),
-      products: f.products.map((p) => ({ ...p, name: curly(p.name), fields: Object.fromEntries(Object.entries(p.fields).map(([key, value]) => [key, tidy(value)])) })),
+    sections: sections.map((section) => ({
+      title: curly(section.title),
+      id: section.id,
+      blocks: parseCopy(`---\n${section.lines.join('\n')}\n`, `${name}, ${section.title}`),
     })),
-    sections: sections.map((s) => ({ ...s, text: curly(s.text.join('\n').trim()) })),
+    families: families.map((f) => ({
+      name: curly(f.name),
+      id: f.id,
+      products: f.products.map((p) => ({ name: curly(p.name), id: p.id, fields: Object.fromEntries(Object.entries(p.fields).map(([key, value]) => [key, tidy(value)])) })),
+    })),
   }
 }
 
-/** Throws unless every product has the fields a page needs (the rest may wait for Thomas). */
+/** Throws unless every product has the fields a page needs, and every id is unique. */
 export function checkProducts(sheet, name = 'products.md') {
   const needed = ['oneLiner', 'howItWorks']
   const ids = new Set()

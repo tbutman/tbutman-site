@@ -7,7 +7,7 @@ import { Link } from 'react-router'
 // phone or print test (there are no release gates: Thomas, October 20), shown as a badge, and
 // blocked from going live by CI (scripts/prerender.mjs). Docs' product sheet adds two more of the
 // kind: [Thomas: …], a question only he can answer, and [name TBD].
-const TOKEN = /(\*\*[^*]+\*\*|\[(?:depends on |Thomas: )[^\]]+\]|\[name TBD\]|\[[^\]]+\]\([^)\s]+\)|`[^`]+`)/
+const TOKEN = /(\*\*[^*]+\*\*|\[(?:depends on |Thomas: |placeholder)[^\]]*\]|\[name TBD\]|\[[^\]]+\]\([^)\s]+\)|`[^`]+`)/
 
 export default function RichText({ text }: { text: string }) {
   return text.split(TOKEN).map((part, index) => {
@@ -20,7 +20,7 @@ export default function RichText({ text }: { text: string }) {
       )
     }
     // A gate, bare or in backticks as docs writes it.
-    if (/^`?\[(?:(?:depends on |Thomas: )[^\]]+|name TBD)\]`?$/.test(part)) {
+    if (/^`?\[(?:(?:depends on |Thomas: |placeholder)[^\]]*|name TBD)\]`?$/.test(part)) {
       return (
         <span key={index} className="gate">
           {part.replace(/`/g, '')}

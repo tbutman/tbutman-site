@@ -5,3 +5,5 @@ export const AppPage = null
 export const CardShowcase = null
 export const BoothHub = null
 export const NextStop = null
+export const HomePage = null
+export const Hub = null

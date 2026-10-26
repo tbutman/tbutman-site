@@ -47,6 +47,7 @@ check /pt/tilde/card          200 '^content-type: text/html'
 check /tilde/fobs             200 '^content-type: text/html' "$csp"
 check /tilde/uses             200 '^content-type: text/html' "$csp"
 check /tilde/app              200 '^content-type: text/html' "$csp"
+check /tilde/home             200 '^content-type: text/html' "$csp"
 # /tilde/c has its own policy in a meta tag; the header adds only what a meta tag can't set.
 check /tilde/c                200 '^content-type: text/html' '^cache-control: public, max-age=86400, stale-while-revalidate=604800' '^referrer-policy: no-referrer' "${security[@]}" "^content-security-policy: frame-ancestors 'none'; base-uri 'none'; object-src 'none'$"
 check "$asset"                200 '^content-type: application/javascript' '^cache-control: public, max-age=31536000, immutable' '!content-security-policy'
