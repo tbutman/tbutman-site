@@ -1,0 +1,6 @@
+{
+  "$comment": "taptilde.com/support's buttons (briefs/support.md). A button shows only when its URL is set. For now each is its service's front page (Thomas, October 26, 11:12): swap in his own page's URL, one line each, before go-live (summaries/site-golive.md).",
+  "kofi": "https://ko-fi.com",
+  "sponsors": "https://github.com/sponsors",
+  "stripe": "https://buy.stripe.com"
+}

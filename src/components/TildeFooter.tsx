@@ -11,7 +11,7 @@ export default function TildeFooter() {
       lead={
         <p className="tilde-made-by">
           Tilde is made by <a href={`${MAIN_ORIGIN}/`}>{profile.name}</a> · <a href={`${MAIN_ORIGIN}/work/tilde`}>how it was built</a> ·{' '}
-          <Link to="/tilde/privacy">privacy</Link>
+          <Link to="/tilde/privacy">privacy</Link> · <Link to="/tilde/support">support Tilde</Link>
         </p>
       }
     />

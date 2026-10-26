@@ -159,6 +159,12 @@ function Hero({ page, opening, lineup, get }: { page: Page; opening?: Section; l
           )}
         </div>
         {page.download && release && <p className="product-small product-release">{releaseLine(release)}</p>}
+        {/* The app stays free (briefs/support.md): one quiet line on the App page. */}
+        {page.download && (
+          <p className="product-small">
+            Free, with no ads. <Link to="/tilde/support">Support Tilde →</Link>
+          </p>
+        )}
         {/* What installing takes, beside the button (visitor round 2, item 18). Not on an iPhone. */}
         {page.download && (
           <NotOnIPhone>

@@ -9,7 +9,7 @@ export { tildeTwin } from './site'
 
 // The prerender's entry for taptilde.com (SITE=tilde; scripts/prerender.mjs): its pages at the root,
 // each with its tbutman.com twin's title and description.
-export const paths = ['/', '/pt', '/card', '/pt/card', '/fobs', '/home', '/p', '/uses', '/app', '/privacy', '/pt/privacy', '/404']
+export const paths = ['/', '/pt', '/card', '/pt/card', '/fobs', '/home', '/p', '/support', '/uses', '/app', '/privacy', '/pt/privacy', '/404']
 
 export function render(path: string) {
   const html = renderToString(

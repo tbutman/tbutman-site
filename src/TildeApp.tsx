@@ -7,6 +7,7 @@ import { Link } from './components/SiteLink'
 import { getMeta } from './meta'
 import Tilde, { AppSections } from './pages/Tilde'
 import PackagePage from './pages/PackagePage'
+import SupportPage from './pages/SupportPage'
 import TildeCard from './pages/TildeCard'
 import TildePrivacy from './pages/TildePrivacy'
 import { internalPath } from './site'
@@ -60,6 +61,7 @@ export default function TildeApp() {
           <Route path="/fobs" element={<FobsPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/p" element={<PackagePage />} />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="/uses" element={<UsesPage />} />
           <Route path="/app" element={<AppPage insert={<AppSections locale="en" fold />} />} />
           <Route path="/privacy" element={<TildePrivacy locale="en" />} />
