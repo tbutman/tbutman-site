@@ -22,16 +22,16 @@ function currentSection(pathname: string) {
 export default function SiteHeader() {
   const { pathname } = useLocation()
   const active = currentSection(pathname)
-  // /hello's photo, as a small avatar beside the name on a phone (src/components/HelloPhoto.tsx).
+  // /hello's photo, as a small avatar before the name on a phone (src/components/HelloPhoto.tsx).
   const hello = pathname === '/hello' ? 'en' : pathname === '/pt/hello' ? 'pt' : null
 
   return (
     <header className="site-header">
       <div className="site-brand">
+        {hello && <HelloPhoto locale={hello} variant="avatar" />}
         <Link to="/" className="site-name" aria-label={`${profile.name}, home`}>
           <b>~/</b>tbutman
         </Link>
-        {hello && <HelloPhoto locale={hello} variant="avatar" />}
       </div>
       <nav className="site-nav" aria-label="Primary">
         {navItems.map((item) => (
