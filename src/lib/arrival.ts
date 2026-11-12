@@ -6,9 +6,10 @@
 // deploy/nginx.conf's $hello_arrival map makes the same choice, to serve the matching prerendered
 // page; src/lib/arrival.test.mjs keeps the two in step. No imports, so the test can load this file.
 
-// Thomas has two phones: the Android one runs Tilde, the iPhone shares the link its own way.
+// Thomas has two phones: the Android one runs Tilde, the iPhone shares the link its own way. Tilde
+// can give a tap and its on-screen QR code different links (-nfc, -qr); plain phone-android is either.
 /** The arrivals with a page of their own, as the build writes them (scripts/prerender.mjs). */
-export const ARRIVALS = ['card-qr', 'card-nfc', 'key-qr', 'fob', 'phone', 'phone-android', 'phone-iphone', 'qr', 'nfc'] as const
+export const ARRIVALS = ['card-qr', 'card-nfc', 'key-qr', 'fob', 'phone', 'phone-android', 'phone-android-nfc', 'phone-android-qr', 'phone-iphone', 'qr', 'nfc'] as const
 
 export type Arrival = 'link' | (typeof ARRIVALS)[number]
 

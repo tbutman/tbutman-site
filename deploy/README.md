@@ -89,7 +89,9 @@ printed:
 | The business card's NFC sticker | `card-nfc` | you tapped my card |
 | The keychain's QR tag | `key-qr` | you scanned my keychain |
 | The QR tag's NFC sticker, or the round fob | `key-nfc`, `fob` | you tapped my keychain |
-| Thomas's Android phone (Tilde) | `phone-android` | you tapped or scanned my phone |
+| Thomas's Android phone (Tilde), its tap link | `phone-android-nfc` | you tapped my phone |
+| Thomas's Android phone (Tilde), its on-screen QR code | `phone-android-qr` | you scanned my phone |
+| Thomas's Android phone, one link for both | `phone-android` | you tapped or scanned my phone |
 | Thomas's iPhone | `phone-iphone` | you got this from my iPhone |
 | Either phone | `phone` | you got this from my phone |
 | Any other QR code or NFC tag | `qr-<name>`, `nfc-<name>` (lowercase, digits, `-`) | you scanned / tapped one of my codes |
