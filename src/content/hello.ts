@@ -74,7 +74,7 @@ const en = {
       note: 'The fob’s two pieces twist shut with a quarter turn and no glue, so the sticker inside can be swapped.',
     },
     phone: {
-      status: 'you got this from my phone',
+      status: 'you tapped or scanned my phone',
       intro: 'Thanks for tapping or scanning my phone. My business card and keychain do the same, with a tap or a scan.',
       mine: { label: 'My phone', detail: 'a tap or a code' },
       yours: { label: 'Your phone', detail: 'opened the link' },
@@ -195,7 +195,7 @@ const pt: HelloText = {
       note: 'As duas peças do porta-chaves fecham com um quarto de volta e sem cola, por isso o autocolante lá dentro pode ser trocado.',
     },
     phone: {
-      status: 'recebeste isto do meu telemóvel',
+      status: 'tocaste ou leste o meu telemóvel',
       intro: 'Obrigado por encostares o teu telemóvel ao meu ou leres o código no ecrã. O meu cartão de visita e o meu porta-chaves fazem o mesmo, com um toque ou um código.',
       mine: { label: 'O meu telemóvel', detail: 'um toque ou um código' },
       yours: { label: 'O teu telemóvel', detail: 'abriu o link' },

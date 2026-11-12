@@ -51,11 +51,12 @@ export default function Hello({ locale }: { locale: Locale }) {
 
   // The server log has counted the ?from= already; take it off the address, so a forwarded link
   // doesn't tell its next reader they tapped the card.
+  // The rest of the query stays as written (?links=resume,book keeps its commas).
   useEffect(() => {
-    const url = new URL(window.location.href)
-    if (!url.searchParams.has('from')) return
-    url.searchParams.delete('from')
-    window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`)
+    const { pathname, search, hash } = window.location
+    const rest = search.slice(1).split('&').filter((part) => part && !part.startsWith('from='))
+    if (rest.length === search.slice(1).split('&').filter(Boolean).length) return
+    window.history.replaceState(window.history.state, '', `${pathname}${rest.length ? `?${rest.join('&')}` : ''}${hash}`)
   }, [])
 
   return (
@@ -99,9 +100,10 @@ export default function Hello({ locale }: { locale: Locale }) {
           <a className="button primary" href={helloShared.vcardPath}>
             {text.saveContact}
           </a>
-          <div className="button-row">
+          {/* data-hello-item: what ?social= and ?links= can hide (scripts/hello-share.mjs). */}
+          <div className="button-row" data-hello-item="social">
             {helloShared.socials.map((link) => (
-              <a key={link.href} className="button" href={link.href}>
+              <a key={link.href} className="button" href={link.href} data-hello-item={link.label.toLowerCase()}>
                 {link.label.toLowerCase()} ↗
               </a>
             ))}
@@ -109,24 +111,24 @@ export default function Hello({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="hello-work-heading">
+      <section className="section" aria-labelledby="hello-work-heading" data-hello-item="links">
         <div className="section-head">
           <h2 id="hello-work-heading">{text.workHeading}</h2>
         </div>
         <div className="hello-actions panel">
-          <a className="button primary" href={profile.bookingUrl}>
+          <a className="button primary" href={profile.bookingUrl} data-hello-item="book">
             {text.bookCall}
           </a>
           <div className="button-row">
-            <Link className="button" to="/resume">
+            <Link className="button" to="/resume" data-hello-item="resume">
               {text.resume}
             </Link>
             {workLinks.map((link) => (
-              <a key={link.href} className="button" href={link.href}>
+              <a key={link.href} className="button" href={link.href} data-hello-item={link.label.toLowerCase()}>
                 {link.label.toLowerCase()}
               </a>
             ))}
-            <Link className="button" to="/">
+            <Link className="button" to="/" data-hello-item="site">
               {text.fullSite}
             </Link>
           </div>

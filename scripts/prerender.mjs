@@ -12,6 +12,7 @@ import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promi
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { gzipSync } from 'node:zlib'
+import { helloShareScript } from './hello-share.mjs'
 import { findLeaks, guarded } from './leak-guard.mjs'
 
 const TILDE = process.env.SITE === 'tilde'
@@ -138,6 +139,8 @@ for (const { path: route, file: output } of pages) {
     // fragment across the redirect; pass it on to the contact page before anything draws. Note links
     // (#n1;…, tilde-review/specs/notes-link.md §3.7) name themselves, and go to the note page.
     path === '/tilde' ? `<script>if(/^#[1-9][0-9]{0,2};/.test(location.hash))location.replace('/tilde/c'+location.hash);if(/^#n[1-9][0-9]{0,2};/.test(location.hash))location.replace('/tilde/n'+location.hash)</script>` : '',
+    // /hello's ?social= and ?links=, before the page is drawn (scripts/hello-share.mjs).
+    !TILDE && (path === '/hello' || path === '/pt/hello') ? `<script>${helloShareScript}</script>` : '',
     // taptilde.com's home does the same for its own pages at the root.
     TILDE && path === '/' ? `<script>if(/^#[1-9][0-9]{0,2};/.test(location.hash))location.replace('/c'+location.hash);if(/^#n[1-9][0-9]{0,2};/.test(location.hash))location.replace('/n'+location.hash)</script>` : '',
   ]

@@ -1023,6 +1023,20 @@ main {
   text-decoration-color: var(--accent);
 }
 
+/* ?social= and ?links= (scripts/hello-share.mjs): <html data-hello-hide> names what to hide, before
+   the page is drawn. */
+[data-hello-hide~='instagram'] [data-hello-item='instagram'],
+[data-hello-hide~='x'] [data-hello-item='x'],
+[data-hello-hide~='linkedin'] [data-hello-item='linkedin'],
+[data-hello-hide~='social'] [data-hello-item='social'],
+[data-hello-hide~='book'] [data-hello-item='book'],
+[data-hello-hide~='resume'] [data-hello-item='resume'],
+[data-hello-hide~='github'] [data-hello-item='github'],
+[data-hello-hide~='site'] [data-hello-item='site'],
+[data-hello-hide~='links'] [data-hello-item='links'] {
+  display: none;
+}
+
 .hello-bio {
   max-width: 44rem;
   font-size: 1.0625rem;
