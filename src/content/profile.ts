@@ -7,7 +7,7 @@ export const profile = {
   workAuthorization: 'US citizen · Portuguese residence permit pending',
   // Update as the Portuguese classes progress (started October 2026, three days a week).
   languages: 'English (native) · Portuguese (A2, learning)',
-  hours: 'Works US business hours',
+  hours: 'Works EU or US hours',
   headline: ['I build products', 'end to end.'],
   lede: 'Senior product engineer with ten years in fintech and deep React experience. I owned the frontend across DigitalPay’s payment applications, and now build full-stack products from data model through deployment.',
   email: 'tbutman@gmail.com',
