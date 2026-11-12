@@ -24,6 +24,7 @@ test('a list shows only what it names', () => {
   assert.deepEqual(hidden('?social=LinkedIn,instagram,myspace'), ['x'])
   assert.deepEqual(hidden('?links=resume,book'), ['github', 'site'])
   assert.deepEqual(hidden('?social=x&links=github'), ['instagram', 'linkedin', 'book', 'resume', 'site'])
+  assert.deepEqual(hidden('?contact=whatsapp,card'), ['email'])
 })
 
 test('none hides the whole group', () => {
@@ -33,7 +34,10 @@ test('none hides the whole group', () => {
 
 test('the stylesheet hides every key and group', () => {
   const css = readFileSync(new URL('../src/styles/site.css', import.meta.url), 'utf8')
-  for (const key of [...Object.keys(SHARE_GROUPS), ...Object.values(SHARE_GROUPS).flat()]) {
+  // A group's own rule, except contact's: the section goes only with the socials too (touch).
+  assert.ok(css.includes(`[data-hello-hide~='contact'][data-hello-hide~='social'] [data-hello-item='touch']`), 'touch')
+  assert.ok(css.includes(`[data-hello-hide~='email'][data-hello-hide~='whatsapp'] [data-hello-item='reach']`), 'reach')
+  for (const key of [...Object.keys(SHARE_GROUPS).filter((group) => group !== 'contact'), ...Object.values(SHARE_GROUPS).flat()]) {
     assert.ok(css.includes(`[data-hello-hide~='${key}'] [data-hello-item='${key}']`), key)
   }
 })

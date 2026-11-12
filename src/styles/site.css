@@ -1023,8 +1023,13 @@ main {
   text-decoration-color: var(--accent);
 }
 
-/* ?social= and ?links= (scripts/hello-share.mjs): <html data-hello-hide> names what to hide, before
-   the page is drawn. */
+/* ?contact=, ?social= and ?links= (scripts/hello-share.mjs): <html data-hello-hide> names what to
+   hide, before the page is drawn. With no contact and no socials, the keep-in-touch section goes. */
+[data-hello-hide~='email'] [data-hello-item='email'],
+[data-hello-hide~='card'] [data-hello-item='card'],
+[data-hello-hide~='whatsapp'] [data-hello-item='whatsapp'],
+[data-hello-hide~='email'][data-hello-hide~='whatsapp'] [data-hello-item='reach'],
+[data-hello-hide~='contact'][data-hello-hide~='social'] [data-hello-item='touch'],
 [data-hello-hide~='instagram'] [data-hello-item='instagram'],
 [data-hello-hide~='x'] [data-hello-item='x'],
 [data-hello-hide~='linkedin'] [data-hello-item='linkedin'],
@@ -1035,6 +1040,11 @@ main {
 [data-hello-hide~='site'] [data-hello-item='site'],
 [data-hello-hide~='links'] [data-hello-item='links'] {
   display: none;
+}
+
+/* The email button and its copy button sit in the row like the others. */
+.hello-email {
+  display: contents;
 }
 
 .hello-bio {

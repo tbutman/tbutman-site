@@ -1,7 +1,7 @@
-// /hello's ?social= and ?links=: which of Thomas's socials and work links the page shows, so a
-// card, keychain or phone link can share fewer of them. Each is a comma-separated list of keys,
-// `all` or `none`; without one, or with no key it knows, the page shows them all. The order on the
-// page doesn't change.
+// /hello's ?contact=, ?social= and ?links=: which ways to reach Thomas, socials and work links the
+// page shows, so a card, keychain or phone link can share fewer of them. Each is a comma-separated
+// list of keys, `all` or `none`; without one, or with no key it knows, the page shows them all. The
+// order on the page doesn't change.
 //
 // scripts/prerender.mjs puts this script inline in /hello's <head>, so it runs before anything is
 // drawn: it names what to hide in <html data-hello-hide>, and src/styles/site.css hides each
@@ -11,6 +11,7 @@
 
 /** The keys, as each item's data-hello-item in src/pages/Hello.tsx. */
 export const SHARE_GROUPS = {
+  contact: ['email', 'card', 'whatsapp'],
   social: ['instagram', 'x', 'linkedin'],
   links: ['book', 'resume', 'github', 'site'],
 }

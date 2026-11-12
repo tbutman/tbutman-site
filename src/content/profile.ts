@@ -11,6 +11,11 @@ export const profile = {
   headline: ['I build products', 'end to end.'],
   lede: 'Senior product engineer with ten years in fintech and deep React experience. I owned the frontend across DigitalPay’s payment applications, and now build full-stack products from data model through deployment.',
   email: 'tbutman@gmail.com',
+  // /hello's WhatsApp button: the number in international format, digits only. It's in /hello's
+  // HTML for anyone who opens the page, even where a link hides the button (?contact=); the rest of
+  // the site, the vCard included, still has no phone number (Thomas, November 12, 2026). Empty, the
+  // button doesn't show.
+  whatsapp: '351937693001',
   bookingUrl: 'https://cal.com/tbutman/intro',
   // Turn on once the contact service is deployed and a test message has arrived.
   contactFormEnabled: true,

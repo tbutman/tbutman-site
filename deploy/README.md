@@ -104,18 +104,19 @@ then every visitor gets the plain page, which fits all of them. Adding a value m
 disagree. Any `from` makes the link longer than 32 characters, so the keychain's QR tag grows to
 29 × 29 squares (tilde-card's `docs/KEYRING.md`).
 
-### Which socials and links /hello shows (`?social=`, `?links=`)
+### What /hello offers (`?contact=`, `?social=`, `?links=`)
 
 Each is a comma-separated list, `all` or `none`, and can go on any /hello link with or without
 `from`, for example `/hello?from=phone-android-nfc&social=linkedin&links=resume,book`:
 
 | Parameter | Keys | Without it |
 | --- | --- | --- |
+| `contact` | `email`, `card` (save my contact card), `whatsapp` | all three |
 | `social` | `instagram`, `x`, `linkedin` | all three |
 | `links` | `book` (the intro call), `resume`, `github`, `site` (the full site) | all four |
 
 Unknown keys are ignored; a list with none it knows shows everything. `none` hides the row (socials)
-or the whole "work with me" section (links). Email and "save my contact card" always show. An inline
+or the whole "work with me" section (links); with no contact and no socials, "keep in touch" goes too. An inline
 script in /hello's head reads them before the page is drawn (`scripts/hello-share.mjs`), allowed
 by its hash in `nginx.conf`'s policy, so this also needs the new `nginx.conf` on the server; with
 the old one, the page shows everything. Adding a key means the script's list, its rule in

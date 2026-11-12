@@ -35,7 +35,7 @@ export default function Hello({ locale }: { locale: Locale }) {
       }
     : { ...base, nodes }
   const [status, setStatus] = useState<'idle' | 'copied' | 'selected'>('idle')
-  const emailRef = useRef<HTMLAnchorElement>(null)
+  const emailRef = useRef<HTMLSpanElement>(null)
   // GitHub and the like; LinkedIn is already under the socials.
   const workLinks = profile.links.filter((link) => !helloShared.socials.some((social) => social.href === link.href))
 
@@ -80,27 +80,35 @@ export default function Hello({ locale }: { locale: Locale }) {
         </p>
       </section>
 
-      <section className="section" aria-labelledby="hello-touch-heading">
+      <section className="section" aria-labelledby="hello-touch-heading" data-hello-item="touch">
         <div className="section-head">
           <h2 id="hello-touch-heading">{text.keepInTouchHeading}</h2>
         </div>
         <div className="hello-actions panel">
-          <div className="contact-email">
-            <a ref={emailRef} href={`mailto:${profile.email}`}>
-              {profile.email}
-            </a>
-            <button type="button" className="button" onClick={() => void copyEmail()}>
-              {text.copy[status]}
-            </button>
-            <span className="visually-hidden" aria-live="polite">
-              {status === 'copied' ? text.copy.copiedAnnounce : status === 'selected' ? text.copy.selectedAnnounce : ''}
-            </span>
-          </div>
-          {/* No download attribute: iOS only offers "Create New Contact" when it opens the file. */}
-          <a className="button primary" href={helloShared.vcardPath}>
+          {/* data-hello-item: what ?contact=, ?social= and ?links= can hide (scripts/hello-share.mjs). */}
+          {/* The one call to action. No download attribute: iOS only offers "Create New Contact" when it opens the file. */}
+          <a className="button primary" href={helloShared.vcardPath} data-hello-item="card">
             {text.saveContact}
           </a>
-          {/* data-hello-item: what ?social= and ?links= can hide (scripts/hello-share.mjs). */}
+          {/* The address shows on its button, so a phone that won't copy can select it instead. */}
+          <div className="button-row" data-hello-item="reach">
+            <span className="hello-email" data-hello-item="email">
+              <a className="button" href={`mailto:${profile.email}`}>
+                <span ref={emailRef}>{profile.email}</span> ↗
+              </a>
+              <button type="button" className="button" onClick={() => void copyEmail()}>
+                {text.copy[status]}
+              </button>
+              <span className="visually-hidden" aria-live="polite">
+                {status === 'copied' ? text.copy.copiedAnnounce : status === 'selected' ? text.copy.selectedAnnounce : ''}
+              </span>
+            </span>
+            {profile.whatsapp && (
+              <a className="button" href={`https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(text.whatsapp.text)}`} data-hello-item="whatsapp">
+                {text.whatsapp.label}
+              </a>
+            )}
+          </div>
           <div className="button-row" data-hello-item="social">
             {helloShared.socials.map((link) => (
               <a key={link.href} className="button" href={link.href} data-hello-item={link.label.toLowerCase()}>

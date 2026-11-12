@@ -137,6 +137,8 @@ const en = {
   keepInTouchHeading: 'keep in touch',
   copy: { idle: 'copy', copied: 'copied ✓', selected: 'selected', copiedAnnounce: 'Email address copied', selectedAnnounce: 'Email address selected' },
   saveContact: 'save my contact card',
+  // Opens a chat with Thomas with the start of a message already typed; they add their name.
+  whatsapp: { label: 'message me on whatsapp ↗', text: 'Hey Thomas, it’s ' },
   workHeading: 'work with me',
   bookCall: 'book a 20-minute intro call ↗',
   resume: 'résumé',
@@ -257,6 +259,8 @@ const pt: HelloText = {
   keepInTouchHeading: 'vamos manter o contacto',
   copy: { idle: 'copiar', copied: 'copiado ✓', selected: 'selecionado', copiedAnnounce: 'Endereço de email copiado', selectedAnnounce: 'Endereço de email selecionado' },
   saveContact: 'guardar o meu cartão de contacto',
+  // "Sou …" works for anyone, with no o/a to choose (PT: review).
+  whatsapp: { label: 'mensagem no whatsapp ↗', text: 'Olá Thomas, sou ' },
   workHeading: 'trabalhar comigo',
   bookCall: 'marcar uma conversa de 20 minutos ↗',
   resume: 'cv (em inglês)',
