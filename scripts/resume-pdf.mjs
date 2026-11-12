@@ -44,7 +44,8 @@ for (let attempt = 0; attempt < 60; attempt++) {
   if (next > 0 && next === size) break
   size = next
 }
-const exited = new Promise((resolve) => browser.once('exit', resolve))
+// Chrome may already have exited, and then 'exit' won't fire again.
+const exited = browser.exitCode === null && browser.signalCode === null ? new Promise((resolve) => browser.once('exit', resolve)) : null
 browser.kill()
 await exited
 await server.close()
