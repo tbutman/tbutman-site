@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router'
 import { profile } from '../content/profile'
 import CommandPalette from './CommandPalette'
+import HelloPhoto from './HelloPhoto'
 
 const navItems = [
   { label: 'experience', to: '/#experience', section: 'experience' },
@@ -19,13 +20,19 @@ function currentSection(pathname: string) {
 }
 
 export default function SiteHeader() {
-  const active = currentSection(useLocation().pathname)
+  const { pathname } = useLocation()
+  const active = currentSection(pathname)
+  // /hello's photo, as a small avatar beside the name on a phone (src/components/HelloPhoto.tsx).
+  const hello = pathname === '/hello' ? 'en' : pathname === '/pt/hello' ? 'pt' : null
 
   return (
     <header className="site-header">
-      <Link to="/" className="site-name" aria-label={`${profile.name}, home`}>
-        <b>~/</b>tbutman
-      </Link>
+      <div className="site-brand">
+        <Link to="/" className="site-name" aria-label={`${profile.name}, home`}>
+          <b>~/</b>tbutman
+        </Link>
+        {hello && <HelloPhoto locale={hello} variant="avatar" />}
+      </div>
       <nav className="site-nav" aria-label="Primary">
         {navItems.map((item) => (
           <Link
