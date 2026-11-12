@@ -90,13 +90,14 @@ page '/pt/hello?from=fob'     'data-arrival="fob"'
 page '/pt/hello?from=fob'     'lang="pt-PT"'
 check /_hello/card-qr.html    404 '^cache-control: no-store'
 # The contact card for what /hello shows (?v=, src/lib/vcard.ts): a combination, or the default card.
-check '/thomas-butman.vcf?v=1ff' 200 '^content-type: text/vcard'
-page '/thomas-butman.vcf?v=1ff' 'instagram'
+check '/thomas-butman.vcf?v=01f' 200 '^content-type: text/vcard'
+page '/thomas-butman.vcf?v=01f' 'instagram'
 page '/thomas-butman.vcf?v=000' '!EMAIL'
 page '/thomas-butman.vcf?v=001' 'EMAIL'
 page '/thomas-butman.vcf'       '!instagram'
+page '/thomas-butman.vcf'       '!github'
 page '/thomas-butman.vcf?v=../x' 'BEGIN:VCARD'
-check /vcard/1ff.vcf          404
+check /vcard/01f.vcf          404
 check /work/tilde             200 '^content-type: text/html'
 check /tilde/fobs             301 '^location: https://taptilde.com/fobs\?from=tbutman\.com$'
 check /tilde/uses             301 '^location: https://taptilde.com/uses\?from=tbutman\.com$'

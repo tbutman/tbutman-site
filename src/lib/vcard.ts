@@ -6,13 +6,14 @@ import { profile } from '../content/profile'
 // carry itemN.X-ABLabel labels, which Apple and Google Contacts both read. The WhatsApp number is
 // the one phone number (Thomas): saved as a mobile, WhatsApp lists the contact; no address.
 //
-// It holds what the page offers (Thomas): each of VCARD_ITEMS that ?contact=, ?social= and ?links=
-// leave showing (scripts/hello-share.mjs). The build writes one file per combination,
-// vcard/<mask>.vcf (bit i for VCARD_ITEMS[i], three hex digits), and the page asks for its own as
-// /thomas-butman.vcf?v=<mask>, which nginx serves from there (deploy/nginx.conf).
+// It holds the website and what /hello's keep-in-touch section shows (Thomas): each of VCARD_ITEMS
+// that ?contact= and ?social= leave showing (scripts/hello-share.mjs), never the work links. The
+// build writes one file per combination, vcard/<mask>.vcf (bit i for VCARD_ITEMS[i], three hex
+// digits, as nginx takes them), and the page asks for its own as /thomas-butman.vcf?v=<mask>, which
+// nginx serves from there (deploy/nginx.conf).
 
-/** What a contact card can hold, each a data-hello-item key on /hello. The order sets the mask's bits. */
-export const VCARD_ITEMS = ['email', 'whatsapp', 'site', 'instagram', 'x', 'linkedin', 'github', 'resume', 'book'] as const
+/** What a contact card can hold besides the website, each a data-hello-item key on /hello. The order sets the mask's bits. */
+export const VCARD_ITEMS = ['email', 'whatsapp', 'instagram', 'x', 'linkedin'] as const
 
 /** The mask for the items a card holds, as /thomas-butman.vcf?v= and the file's name take it. */
 export const vcardMask = (has: (item: (typeof VCARD_ITEMS)[number]) => boolean) =>
@@ -22,14 +23,10 @@ export function contactCard(siteUrl: string, mask = vcardMask(() => true)) {
   const bits = parseInt(mask, 16)
   const has = (item: (typeof VCARD_ITEMS)[number]) => (bits & (1 << VCARD_ITEMS.indexOf(item))) !== 0
   const [given, ...rest] = profile.name.split(' ')
-  const github = profile.links.find((link) => link.label === 'GitHub')
   const links = [
-    has('site') && { label: 'Website', href: `${siteUrl}/` },
+    { label: 'Website', href: `${siteUrl}/` },
     has('whatsapp') && profile.whatsapp && { label: 'WhatsApp', href: `https://wa.me/${profile.whatsapp}` },
     ...hello.socials.filter((link) => has(link.label.toLowerCase() as (typeof VCARD_ITEMS)[number])),
-    has('github') && github,
-    has('resume') && { label: 'Résumé', href: `${siteUrl}/resume` },
-    has('book') && { label: 'Intro call', href: profile.bookingUrl },
   ].filter((link): link is { label: string; href: string } => Boolean(link))
   const lines = [
     'BEGIN:VCARD',

@@ -17,15 +17,12 @@ import { copyText, selectText } from '../lib/clipboard'
 // stays for the visit, so switching language keeps it.
 const served = typeof document === 'undefined' ? null : document.querySelector('.hello')?.getAttribute('data-arrival') ?? null
 
-// The contact card holds what the page shows (src/lib/vcard.ts): read in the browser from what the
-// head script hid, and the Tilde version's missing work links; the server's is the default card.
+// The contact card holds what keep in touch shows (src/lib/vcard.ts): read in the browser from what
+// the head script hid; the server's is the default card.
 const noSubscribe = () => () => {}
-const WORK = new Set<string>(['site', 'github', 'resume', 'book'])
 function vcardHref() {
-  const root = document.documentElement
-  const hidden = new Set((root.getAttribute('data-hello-hide') ?? '').split(' '))
-  const noLinks = root.getAttribute('data-hello-about') === 'tilde' && !root.hasAttribute('data-hello-links-set')
-  return `${helloShared.vcardPath}?v=${vcardMask((item) => !hidden.has(item) && !(noLinks && WORK.has(item)))}`
+  const hidden = new Set((document.documentElement.getAttribute('data-hello-hide') ?? '').split(' '))
+  return `${helloShared.vcardPath}?v=${vcardMask((item) => !hidden.has(item))}`
 }
 
 // Landing page for the business card. Phone-first: ways to stay in touch come first, for anyone
