@@ -1094,6 +1094,21 @@ main {
   font-size: 0.9375rem;
 }
 
+.hello-points {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 44rem;
+  margin: 1.25rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.hello-points b {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .hello-note {
   max-width: 44rem;
   margin-top: 1rem;

@@ -169,6 +169,17 @@ const en = {
   bookCall: 'book a 20-minute intro call ↗',
   resume: 'résumé',
   fullSite: 'the full site →',
+  // The default version only (Thomas): for North American founders and CEOs who need someone in
+  // Europe, first written for Web Summit 2026's networking events.
+  american: {
+    heading: 'an american in europe',
+    intro: 'I’m an American software engineer living in Lisbon. I spent the last ten years in San Francisco building fintech products. If your company is based in North America and needs someone on this side of the Atlantic, I can help:',
+    points: [
+      ['European or US hours.', 'Lisbon is 5 hours ahead of New York and 8 ahead of San Francisco. I can work the European day, US hours, or a mix that overlaps with your team.'],
+      ['A presence on the ground.', 'I can meet customers and partners, show up at events or conferences, or be your first engineer in Europe.'],
+      ['Nothing lost in translation.', 'I’m a native English speaker and a US citizen, used to American teams, startups and expectations.'],
+    ],
+  },
   aboutHeading: 'about me',
   bio: profile.lede,
   diagramHeading: 'how this page reached you',
@@ -317,6 +328,16 @@ const pt: HelloText = {
   bookCall: 'marcar uma conversa de 20 minutos ↗',
   resume: 'cv',
   fullSite: 'o site completo →',
+  // PT: review.
+  american: {
+    heading: 'um americano na europa',
+    intro: 'Sou um engenheiro de software americano a viver em Lisboa. Passei os últimos dez anos em São Francisco a criar produtos de fintech. Se a tua empresa está na América do Norte e precisa de alguém deste lado do Atlântico, posso ajudar:',
+    points: [
+      ['Horário europeu ou americano.', 'Lisboa está 5 horas à frente de Nova Iorque e 8 à frente de São Francisco. Posso trabalhar no horário europeu, no americano ou num misto que se cruze com o da tua equipa.'],
+      ['Presença no terreno.', 'Posso reunir com clientes e parceiros, ir a eventos ou conferências, ou ser o primeiro engenheiro da tua empresa na Europa.'],
+      ['Nada se perde na tradução.', 'Sou falante nativo de inglês e cidadão americano, habituado a equipas, startups e expectativas americanas.'],
+    ],
+  },
   aboutHeading: 'sobre mim',
   bio: 'Engenheiro de produto sénior, com dez anos em fintech e muita experiência em React. Fui responsável pelo frontend das aplicações de pagamento da DigitalPay e hoje construo produtos full-stack, do modelo de dados até à produção.',
   diagramHeading: 'como esta página chegou até ti',
