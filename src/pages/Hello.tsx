@@ -1,4 +1,4 @@
-import { type MouseEvent, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
 import LangSwitch from '../components/LangSwitch'
@@ -60,24 +60,8 @@ export default function Hello({ locale }: { locale: Locale }) {
     window.history.replaceState(window.history.state, '', `${pathname}${rest.length ? `?${rest.join('&')}` : ''}${hash}`)
   }, [])
 
-  // ?about=tilde, the Tilde version: both versions are in the page (data-hello-version), and <html
-  // data-hello-about> picks one. The head script sets it on load (scripts/hello-share.mjs); "how this
-  // works" sets it here, keeping the arrival, and going back undoes it.
-  const showTilde = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    const { pathname, search, hash } = window.location
-    window.history.pushState(window.history.state, '', `${pathname}${search ? `${search}&` : '?'}about=tilde${hash}`)
-    document.documentElement.setAttribute('data-hello-about', 'tilde')
-    window.scrollTo(0, 0)
-  }
-  useEffect(() => {
-    const sync = () => {
-      if (new URLSearchParams(window.location.search).get('about') === 'tilde') document.documentElement.setAttribute('data-hello-about', 'tilde')
-      else document.documentElement.removeAttribute('data-hello-about')
-    }
-    window.addEventListener('popstate', sync)
-    return () => window.removeEventListener('popstate', sync)
-  }, [])
+  // ?about=tilde, the Tilde version: both versions are in the page (data-hello-version), and the head
+  // script's <html data-hello-about> picks one (scripts/hello-share.mjs).
   const tilde = text.tildeVersion
 
   return (
@@ -205,12 +189,7 @@ export default function Hello({ locale }: { locale: Locale }) {
         </div>
         <ArchitectureDiagram diagram={diagram} />
         {from.note && <p className="hello-note">{from.note}</p>}
-        <p className="hello-note" data-hello-version="default">
-          <a href="?about=tilde" onClick={showTilde}>
-            {text.howLink}
-          </a>
-        </p>
-        <p className="hello-note">
+        <p className="hello-note" data-hello-version="tilde">
           <Link to={text.buildLink.to}>{text.buildLink.label}</Link>
         </p>
       </section>

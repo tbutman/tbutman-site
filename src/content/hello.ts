@@ -174,8 +174,6 @@ const en = {
   diagramHeading: 'how this page reached you',
   mineColumn: 'mine',
   diagram: 'hello',
-  // The default version's way to the Tilde version (?about=tilde).
-  howLink: 'how this works →',
   // ?about=tilde (Thomas): for someone who'd like to know about Tilde itself. Tilde is its own site
   // (Thomas, October 26: src/site.ts).
   tildeVersion: {
@@ -189,7 +187,8 @@ const en = {
       { label: 'what people use it for ↗', href: 'https://taptilde.com/uses' },
     ],
   },
-  // For a hiring manager who got Thomas's own card (visitor round 2, item 27).
+  // For a hiring manager who got Thomas's own card (visitor round 2, item 27); the Tilde version
+  // only (Thomas).
   buildLink: { label: 'how I built this →', to: '/work/tilde' },
 }
 
@@ -316,14 +315,13 @@ const pt: HelloText = {
   whatsapp: { label: 'mensagem no whatsapp ↗', text: 'Olá Thomas, sou ' },
   workHeading: 'trabalhar comigo',
   bookCall: 'marcar uma conversa de 20 minutos ↗',
-  resume: 'cv (em inglês)',
-  fullSite: 'o site completo (em inglês) →',
+  resume: 'cv',
+  fullSite: 'o site completo →',
   aboutHeading: 'sobre mim',
   bio: 'Engenheiro de produto sénior, com dez anos em fintech e muita experiência em React. Fui responsável pelo frontend das aplicações de pagamento da DigitalPay e hoje construo produtos full-stack, do modelo de dados até à produção.',
   diagramHeading: 'como esta página chegou até ti',
   mineColumn: 'de mim',
   diagram: 'hello-pt',
-  howLink: 'como funciona →',
   // taptilde.com has Portuguese only for its home, the card and privacy; the rest links in English (PT: review).
   tildeVersion: {
     headline: 'Isto é a Tilde.',
