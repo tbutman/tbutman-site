@@ -33,8 +33,38 @@ export type Project = {
 }
 
 // Personal projects are drafted from each project's README; DigitalPay is from Thomas's own
-// account. All case-study copy gets a final pass with Thomas once the site settles.
+// account. All case-study copy gets a final pass with Thomas once the site settles. Prato em Dia leads
+// and DigitalPay comes second (Thomas, November 12, 2026).
 export const projects: Project[] = [
+  {
+    slug: 'prato-em-dia',
+    title: 'Prato em Dia',
+    kind: 'Product · restaurants',
+    year: '2026',
+    status: 'In development · preparing a local pilot',
+    // Not `live`: the site and its demo are public, but the service isn't running for restaurants yet.
+    links: [{ label: 'visit pratoemdia.com ↗', href: 'https://pratoemdia.com' }],
+    summary:
+      'Helping independent restaurants manage their menus and online presence. Owners keep dishes, prices and daily specials current from their phone, and guests see the published menu at the table, online and on the restaurant’s own website.',
+    stack: ['React', 'TypeScript', 'Python', 'SQLite', 'Claude API'],
+    scope: 'My own product: strategy, UX and full-stack development.',
+    problem:
+      'In many Portuguese restaurants the menu changes every day, but what guests can see doesn’t keep up. The board by the door only reaches people walking past. An old photo online still shows last season’s dishes and prices. The QR code on the table opens a PDF from March, with the sold-out dish crossed off by hand. And a Portuguese-only menu gets explained one dish at a time in the middle of the lunch rush.',
+    screensNote: 'the public demo on pratoemdia.com: Tasca Imaginária is a fictional restaurant',
+    screens: [
+      { src: '/prato-em-dia/guest-menu-sold-out.webp', width: 640, height: 1280, caption: 'What guests see · a daily special sold out', alt: 'The guest menu of the fictional Tasca Imaginária on a phone: its daily specials with prices, and duck rice crossed out and marked sold out.' },
+      { src: '/prato-em-dia/owner-mark-sold-out.webp', width: 640, height: 1280, caption: 'The owner’s phone · one change, waiting to publish', alt: 'The owner’s view on a phone: a switch for each daily special and dessert, duck rice switched to sold out, and one unpublished change with Discard and Publish change buttons.' },
+      { src: '/prato-em-dia/landing.webp', width: 1280, height: 800, desktop: true, caption: 'pratoemdia.com · the landing page', alt: 'The Prato em Dia landing page: “Today’s menu. Up to date everywhere.”, with a handwritten specials sheet beside the same menu on a phone.' },
+    ],
+    built: [
+      'A phone-first owner app. Photos of a printed menu become a private draft, and every dish is reviewed before anything is published; nothing reaches guests until the owner publishes.',
+      'Everyday changes in a Today screen (prices and availability), menus scheduled by date and period, promotions and temporary closures.',
+      'Lightweight restaurant pages: the menu is in the initial HTML for search engines, business facts are entered once and shared by every page, and photos are served at the size each screen needs.',
+      'Menus in Portuguese and English, and one permanent address per restaurant for the QR code on the table, the website and social profiles.',
+    ],
+    reflection:
+      'The product is built around local businesses and personal support rather than self-service sign-ups. Next: a local pilot in Lisbon.',
+  },
   {
     slug: 'digitalpay-payouts',
     title: 'DigitalPay payouts',
@@ -124,35 +154,6 @@ export const projects: Project[] = [
       'Google and Telegram sign-in, free and paid tiers with Stripe, and first-party analytics with no third-party scripts.',
       'Runs on a single self-hosted box with SQLite, chosen for cost and simplicity at early-access scale.',
     ],
-  },
-  {
-    slug: 'prato-em-dia',
-    title: 'Prato em Dia',
-    kind: 'Product · restaurants',
-    year: '2026',
-    status: 'In development · preparing a local pilot',
-    // Not `live`: the site and its demo are public, but the service isn't running for restaurants yet.
-    links: [{ label: 'visit pratoemdia.com ↗', href: 'https://pratoemdia.com' }],
-    summary:
-      'Helping independent restaurants manage their menus and online presence. Owners keep dishes, prices and daily specials current from their phone, and guests see the published menu at the table, online and on the restaurant’s own website.',
-    stack: ['React', 'TypeScript', 'Python', 'SQLite', 'Claude API'],
-    scope: 'My own product: strategy, UX and full-stack development.',
-    problem:
-      'In many Portuguese restaurants the menu changes every day, but what guests can see doesn’t keep up. The board by the door only reaches people walking past. An old photo online still shows last season’s dishes and prices. The QR code on the table opens a PDF from March, with the sold-out dish crossed off by hand. And a Portuguese-only menu gets explained one dish at a time in the middle of the lunch rush.',
-    screensNote: 'the public demo on pratoemdia.com: Tasca Imaginária is a fictional restaurant',
-    screens: [
-      { src: '/prato-em-dia/guest-menu-sold-out.webp', width: 640, height: 1280, caption: 'What guests see · a daily special sold out', alt: 'The guest menu of the fictional Tasca Imaginária on a phone: its daily specials with prices, and duck rice crossed out and marked sold out.' },
-      { src: '/prato-em-dia/owner-mark-sold-out.webp', width: 640, height: 1280, caption: 'The owner’s phone · one change, waiting to publish', alt: 'The owner’s view on a phone: a switch for each daily special and dessert, duck rice switched to sold out, and one unpublished change with Discard and Publish change buttons.' },
-      { src: '/prato-em-dia/landing.webp', width: 1280, height: 800, desktop: true, caption: 'pratoemdia.com · the landing page', alt: 'The Prato em Dia landing page: “Today’s menu. Up to date everywhere.”, with a handwritten specials sheet beside the same menu on a phone.' },
-    ],
-    built: [
-      'A phone-first owner app. Photos of a printed menu become a private draft, and every dish is reviewed before anything is published; nothing reaches guests until the owner publishes.',
-      'Everyday changes in a Today screen (prices and availability), menus scheduled by date and period, promotions and temporary closures.',
-      'Lightweight restaurant pages: the menu is in the initial HTML for search engines, business facts are entered once and shared by every page, and photos are served at the size each screen needs.',
-      'Menus in Portuguese and English, and one permanent address per restaurant for the QR code on the table, the website and social profiles.',
-    ],
-    reflection:
-      'The product is built around local businesses and personal support rather than self-service sign-ups. Next: a local pilot in Lisbon.',
   },
   {
     slug: 'tilde',
