@@ -109,17 +109,17 @@ disagree. Any `from` makes the link longer than 32 characters, so the keychain's
 Each is a comma-separated list, `all` or `none`, and can go on any /hello link with or without
 `from`, for example `/hello?from=phone-android-nfc&social=linkedin&links=resume,book`:
 
-| Parameter | Keys | Without it |
+| Parameter | Keys | Without it (Thomas's default) |
 | --- | --- | --- |
 | `contact` | `email`, `card` (save my contact card), `whatsapp` | all three |
-| `social` | `instagram`, `x`, `linkedin` | all three |
-| `links` | `book` (the intro call), `resume`, `github`, `site` (the full site) | all four |
+| `social` | `instagram`, `x`, `linkedin` | none |
+| `links` | `book` (the intro call), `resume`, `github`, `site` (the full site) | `site` |
 
-Unknown keys are ignored; a list with none it knows shows everything. `none` hides the row (socials)
+Unknown keys are ignored; a list with none it knows gets the default. `none` hides the row (socials)
 or the whole "work with me" section (links); with no contact and no socials, "keep in touch" goes too. An inline
 script in /hello's head reads them before the page is drawn (`scripts/hello-share.mjs`), allowed
 by its hash in `nginx.conf`'s policy, so this also needs the new `nginx.conf` on the server; with
-the old one, the page shows everything. Adding a key means the script's list, its rule in
+the old one, the page shows everything, defaults included. The defaults are `SHARE_DEFAULTS` there. Adding a key means the script's list, its rule in
 `site.css` and its `data-hello-item` in `src/pages/Hello.tsx`; the script change also changes the
 hash, and `deploy/check-csp.mjs` fails the build until `nginx.conf` has the new one.
 

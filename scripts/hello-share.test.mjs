@@ -13,22 +13,29 @@ function hidden(search) {
   return attribute === null ? [] : attribute.split(' ')
 }
 
-test('no setting, all, or nothing it knows shows everything', () => {
-  for (const search of ['', '?from=card-qr', '?social=all', '?links=all', '?social=', '?social=myspace', '?links=all,none']) {
-    assert.deepEqual(hidden(search), [], search)
+const DEFAULT = ['instagram', 'x', 'linkedin', 'social', 'book', 'resume', 'github']
+
+test('no setting, or nothing it knows, is the default: ways to reach Thomas and his site', () => {
+  for (const search of ['', '?from=card-qr', '?social=', '?social=myspace', '?links=nope&contact=']) {
+    assert.deepEqual(hidden(search), DEFAULT, search)
   }
 })
 
+test('all shows the whole group', () => {
+  assert.deepEqual(hidden('?social=all'), ['book', 'resume', 'github'])
+  assert.deepEqual(hidden('?links=all,none'), ['instagram', 'x', 'linkedin', 'social'])
+  assert.deepEqual(hidden('?contact=all&social=all&links=all'), [])
+})
+
 test('a list shows only what it names', () => {
-  assert.deepEqual(hidden('?social=linkedin'), ['instagram', 'x'])
-  assert.deepEqual(hidden('?social=LinkedIn,instagram,myspace'), ['x'])
-  assert.deepEqual(hidden('?links=resume,book'), ['github', 'site'])
-  assert.deepEqual(hidden('?social=x&links=github'), ['instagram', 'linkedin', 'book', 'resume', 'site'])
-  assert.deepEqual(hidden('?contact=whatsapp,card'), ['email'])
+  assert.deepEqual(hidden('?social=linkedin'), ['instagram', 'x', 'book', 'resume', 'github'])
+  assert.deepEqual(hidden('?social=LinkedIn,instagram,myspace&links=all'), ['x'])
+  assert.deepEqual(hidden('?links=resume,book'), ['instagram', 'x', 'linkedin', 'social', 'github', 'site'])
+  assert.deepEqual(hidden('?contact=whatsapp,card'), ['email', ...DEFAULT])
 })
 
 test('none hides the whole group', () => {
-  assert.deepEqual(hidden('?social=none'), ['instagram', 'x', 'linkedin', 'social'])
+  assert.deepEqual(hidden('?contact=none&social=all&links=all'), ['email', 'card', 'whatsapp', 'contact'])
   assert.deepEqual(hidden('?links=none&social=all'), ['book', 'resume', 'github', 'site', 'links'])
 })
 
