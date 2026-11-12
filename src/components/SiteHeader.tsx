@@ -2,6 +2,8 @@ import { Link, useLocation } from 'react-router'
 import { profile } from '../content/profile'
 import CommandPalette from './CommandPalette'
 import HelloPhoto from './HelloPhoto'
+import LangSwitch from './LangSwitch'
+import { translations } from '../i18n'
 
 const navItems = [
   { label: 'experience', to: '/#experience', section: 'experience' },
@@ -33,6 +35,8 @@ export default function SiteHeader() {
           <b>~/</b>tbutman
         </Link>
       </div>
+      {/* /hello's EN · PT in the top row, evenly between the name and the menu (Thomas). */}
+      {hello && <LangSwitch locale={hello} paths={{ en: '/hello', pt: translations['/hello'] }} />}
       <nav className="site-nav" aria-label="Primary">
         {navItems.map((item) => (
           <Link

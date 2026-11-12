@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Link, useLocation } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
-import LangSwitch from '../components/LangSwitch'
 import HelloPhoto from '../components/HelloPhoto'
 import NotOnIPhone from '../components/NotOnIPhone'
 import { type Diagram, diagrams } from '../content/diagrams'
 import { helloShared, helloText } from '../content/hello'
 import { profile } from '../content/profile'
-import { type Locale, translations } from '../i18n'
+import type { Locale } from '../i18n'
 import { arrivalOf } from '../lib/arrival'
 import { vcardMask } from '../lib/vcard'
 import { copyText, selectText } from '../lib/clipboard'
@@ -87,7 +86,6 @@ export default function Hello({ locale }: { locale: Locale }) {
 
   return (
     <article className="hello" data-arrival={arrival}>
-      <LangSwitch locale={locale} paths={{ en: '/hello', pt: translations['/hello'] }} />
       <section className="hello-intro" aria-labelledby="hello-heading">
         <HelloPhoto locale={locale} variant="hero" />
         <p className="status">

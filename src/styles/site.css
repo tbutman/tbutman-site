@@ -28,6 +28,10 @@ main {
   gap: 0.75rem;
 }
 
+.site-header .lang-switch {
+  margin-top: 0;
+}
+
 .site-name b {
   color: var(--accent);
   font-weight: 500;
@@ -1001,7 +1005,8 @@ main {
 /* Phone-first: one column, full-width actions, and the intro short enough to leave the call
    button near the first screen. */
 .hello-intro {
-  padding: clamp(2rem, 8vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  /* Close under the top bar, which holds the language switch (Thomas). */
+  padding: clamp(0.75rem, 3vw, 2.5rem) 0 clamp(2.5rem, 6vw, 4rem);
 }
 
 .hello-intro h1 {
