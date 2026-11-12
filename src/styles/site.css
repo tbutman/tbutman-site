@@ -1011,6 +1011,18 @@ main {
   color: var(--accent);
 }
 
+/* The intro's Tilde link: underlined too, so it reads as a link without the color. */
+.hello-intro .lede a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-line);
+  text-underline-offset: 0.2em;
+}
+
+.hello-intro .lede a:hover {
+  text-decoration-color: var(--accent);
+}
+
 .hello-bio {
   max-width: 44rem;
   font-size: 1.0625rem;
