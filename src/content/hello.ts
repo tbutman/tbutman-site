@@ -173,7 +173,7 @@ const en = {
   // Europe, first written for Web Summit 2026's networking events.
   american: {
     heading: 'an american in europe',
-    intro: 'I’m an American software engineer living in Lisbon. I spent the last ten years in San Francisco building fintech products. If your company is based in North America and needs someone on this side of the Atlantic, I can help:',
+    intro: 'I’m an American software engineer living in Lisbon. If your company is based in North America and needs someone on this side of the Atlantic, I can help:',
     points: [
       ['European or US hours.', 'Lisbon is 5 hours ahead of New York and 8 ahead of San Francisco. I can work the European day, US hours, or a mix that overlaps with your team.'],
       ['A presence on the ground.', 'I can meet customers and partners, show up at events or conferences, or be your first engineer in Europe.'],
@@ -331,7 +331,7 @@ const pt: HelloText = {
   // PT: review.
   american: {
     heading: 'um americano na europa',
-    intro: 'Sou um engenheiro de software americano a viver em Lisboa. Passei os últimos dez anos em São Francisco a criar produtos de fintech. Se a tua empresa está na América do Norte e precisa de alguém deste lado do Atlântico, posso ajudar:',
+    intro: 'Sou um engenheiro de software americano a viver em Lisboa. Se a tua empresa está na América do Norte e precisa de alguém deste lado do Atlântico, posso ajudar:',
     points: [
       ['Horário europeu ou americano.', 'Lisboa está 5 horas à frente de Nova Iorque e 8 à frente de São Francisco. Posso trabalhar no horário europeu, no americano ou num misto que se cruze com o da tua equipa.'],
       ['Presença no terreno.', 'Posso reunir com clientes e parceiros, ir a eventos ou conferências, ou ser o primeiro engenheiro da tua empresa na Europa.'],

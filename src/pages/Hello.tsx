@@ -152,20 +152,6 @@ export default function Hello({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="hello-american-heading" data-hello-version="default">
-        <div className="section-head">
-          <h2 id="hello-american-heading">{text.american.heading}</h2>
-        </div>
-        <p className="hello-bio">{text.american.intro}</p>
-        <ul className="hello-points">
-          {text.american.points.map(([lead, body]) => (
-            <li key={lead}>
-              <b>{lead}</b> {body}
-            </li>
-          ))}
-        </ul>
-      </section>
-
       <section className="section" aria-labelledby="hello-work-heading" data-hello-item="links">
         <div className="section-head">
           <h2 id="hello-work-heading">{text.workHeading}</h2>
@@ -195,6 +181,20 @@ export default function Hello({ locale }: { locale: Locale }) {
           <h2 id="hello-about-heading">{text.aboutHeading}</h2>
         </div>
         <p className="hello-bio">{text.bio}</p>
+      </section>
+
+      <section className="section" aria-labelledby="hello-american-heading" data-hello-version="default">
+        <div className="section-head">
+          <h2 id="hello-american-heading">{text.american.heading}</h2>
+        </div>
+        <p className="hello-bio">{text.american.intro}</p>
+        <ul className="hello-points">
+          {text.american.points.map(([lead, body]) => (
+            <li key={lead}>
+              <b>{lead}</b> {body}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="section" aria-labelledby="hello-path-heading">
