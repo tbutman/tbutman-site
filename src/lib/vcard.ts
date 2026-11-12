@@ -3,11 +3,12 @@ import { profile } from '../content/profile'
 
 // The /hello page's "save contact" file, written to dist/ by scripts/prerender.mjs from the same
 // content as the page. vCard 3.0 is the version iOS and Android contacts apps both import. Links
-// carry itemN.X-ABLabel labels, which Apple and Google Contacts both read. No phone number or
-// address, matching the rest of the site.
+// carry itemN.X-ABLabel labels, which Apple and Google Contacts both read. The WhatsApp number is
+// the one phone number (Thomas): saved as a mobile, WhatsApp lists the contact; no address.
 export function contactCard(siteUrl: string) {
   const [given, ...rest] = profile.name.split(' ')
-  const links = [{ label: 'Website', href: `${siteUrl}/` }, ...hello.socials]
+  const whatsapp = profile.whatsapp ? [{ label: 'WhatsApp', href: `https://wa.me/${profile.whatsapp}` }] : []
+  const links = [{ label: 'Website', href: `${siteUrl}/` }, ...whatsapp, ...hello.socials]
   const lines = [
     'BEGIN:VCARD',
     'VERSION:3.0',
@@ -15,6 +16,7 @@ export function contactCard(siteUrl: string) {
     `FN:${escape(profile.name)}`,
     `TITLE:${escape(profile.role)}`,
     `EMAIL;TYPE=INTERNET:${profile.email}`,
+    ...(profile.whatsapp ? [`TEL;TYPE=CELL:+${profile.whatsapp}`] : []),
     ...links.flatMap((link, index) => [`item${index + 1}.URL:${link.href}`, `item${index + 1}.X-ABLabel:${escape(link.label)}`]),
     'END:VCARD',
   ]
