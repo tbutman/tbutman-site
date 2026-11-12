@@ -18,6 +18,21 @@ export function roleDates(role: Pick<Role, 'start' | 'end'>, separator = ' – '
 // After moving to Lisbon, Thomas continued with DigitalPay as a contractor from 2024 until about
 // September 2025 (Thomas, October 4, 2026).
 export const experience: Role[] = [
+  // Prato em Dia runs alongside PepAlert, so PepAlert stays "Now" (Thomas, November 12, 2026). No customers,
+  // revenue or deployment are claimed: it's before its local pilot.
+  {
+    company: 'Prato em Dia',
+    title: 'Founder & Engineer',
+    location: 'Lisbon',
+    start: '2026',
+    end: 'Now',
+    summary: 'Designing and building a mobile-first menu-management and website service for independent Portuguese restaurants.',
+    bullets: [
+      'Leading product strategy, UX and full-stack development of a phone-first owner app: photo-to-private-draft menu review, scheduled menus, Today price and availability changes, promotions and temporary closures.',
+      'Built lightweight restaurant pages (menus in the initial HTML for search, shared business facts, responsive photos); focused on local businesses and personal support, and preparing a local pilot.',
+    ],
+    stack: ['React', 'TypeScript', 'Python', 'SQLite', 'Claude API'],
+  },
   {
     company: 'PepAlert',
     title: 'Founder & Engineer',
