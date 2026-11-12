@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
 import LangSwitch from '../components/LangSwitch'
-import { diagrams } from '../content/diagrams'
+import { type Diagram, diagrams } from '../content/diagrams'
 import { helloShared, helloText } from '../content/hello'
 import { profile } from '../content/profile'
 import { type Locale, translations } from '../i18n'
@@ -22,12 +22,18 @@ export default function Hello({ locale }: { locale: Locale }) {
   const { search } = useLocation()
   const arrival = arrivalOf(typeof document === 'undefined' ? new URLSearchParams(search).get('from') : served)
   const from = text.arrivals[arrival]
+  // The visitor's phone as this arrival names it, after Thomas's card, keychain or phone when known.
   const base = diagrams[text.diagram]
-  const diagram = {
-    ...base,
-    columns: [from.column, ...base.columns.slice(1)],
-    nodes: base.nodes.map((node) => (node.id === 'phone' ? { ...node, label: from.label, detail: from.detail } : node)),
-  }
+  const shift = from.mine ? 1 : 0
+  const nodes = base.nodes.map((node) => ({ ...node, col: node.col + shift, ...(node.id === 'phone' ? from.yours : {}) }))
+  const diagram: Diagram = from.mine
+    ? {
+        ...base,
+        columns: [text.mineColumn, ...base.columns],
+        nodes: [{ id: 'mine', ...from.mine, col: 0, row: 0 }, ...nodes],
+        edges: [['mine', 'phone'], ...base.edges],
+      }
+    : { ...base, nodes }
   const [status, setStatus] = useState<'idle' | 'copied' | 'selected'>('idle')
   const emailRef = useRef<HTMLAnchorElement>(null)
   // GitHub and the like; LinkedIn is already under the socials.
