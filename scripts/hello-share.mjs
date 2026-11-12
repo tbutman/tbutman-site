@@ -9,6 +9,10 @@
 // sees the setting, so hydration is untouched. The script is allowed by its hash in
 // deploy/nginx.conf's policy; deploy/check-csp.mjs fails the build if the two disagree. Where it
 // can't run (a server on an older nginx.conf, whose policy blocks it), the page shows everything.
+//
+// It also picks the version: ?about=tilde sets <html data-hello-about="tilde"> for the Tilde
+// version (src/pages/Hello.tsx), which leaves out the work links unless ?links= asks for them
+// (data-hello-links-set).
 
 /** The keys, as each item's data-hello-item in src/pages/Hello.tsx. */
 export const SHARE_GROUPS = {
@@ -24,4 +28,4 @@ export const SHARE_DEFAULTS = {
   links: ['site'],
 }
 
-export const helloShareScript = `(function(){var q=new URLSearchParams(location.search),g=${JSON.stringify(SHARE_GROUPS)},d=${JSON.stringify(SHARE_DEFAULTS)},h=[];for(var k in g){var v=q.get(k),keep=d[k];if(v!==null){var w=v.toLowerCase().split(','),none=w.indexOf('none')>=0,named=g[k].filter(function(i){return w.indexOf(i)>=0});if(w.indexOf('all')>=0)keep=g[k];else if(none)keep=[];else if(named.length)keep=named}g[k].forEach(function(i){if(keep.indexOf(i)<0)h.push(i)});if(!keep.length)h.push(k)}if(h.length)document.documentElement.setAttribute('data-hello-hide',h.join(' '))})()`
+export const helloShareScript = `(function(){var q=new URLSearchParams(location.search),g=${JSON.stringify(SHARE_GROUPS)},d=${JSON.stringify(SHARE_DEFAULTS)},h=[];for(var k in g){var v=q.get(k),keep=d[k];if(v!==null){var w=v.toLowerCase().split(','),none=w.indexOf('none')>=0,named=g[k].filter(function(i){return w.indexOf(i)>=0});if(w.indexOf('all')>=0)keep=g[k];else if(none)keep=[];else if(named.length)keep=named}g[k].forEach(function(i){if(keep.indexOf(i)<0)h.push(i)});if(!keep.length)h.push(k)}var e=document.documentElement;if(h.length)e.setAttribute('data-hello-hide',h.join(' '));if(q.get('about')==='tilde')e.setAttribute('data-hello-about','tilde');if(q.has('links'))e.setAttribute('data-hello-links-set','')})()`

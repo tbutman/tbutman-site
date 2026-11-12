@@ -5,13 +5,16 @@ import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import { helloShareScript, SHARE_GROUPS } from './hello-share.mjs'
 
-// Runs the script for a query and returns what it hid, as <html data-hello-hide> would hold it.
-function hidden(search) {
-  let attribute = null
-  const document = { documentElement: { setAttribute: (name, value) => (attribute = name === 'data-hello-hide' ? value : attribute) } }
+// Runs the script for a query and returns the attributes it set on <html>.
+function run(search) {
+  const set = {}
+  const document = { documentElement: { setAttribute: (name, value) => (set[name] = value) } }
   new Function('location', 'document', helloShareScript)({ search }, document)
-  return attribute === null ? [] : attribute.split(' ')
+  return set
 }
+
+// What it hid, as <html data-hello-hide> holds it.
+const hidden = (search) => run(search)['data-hello-hide']?.split(' ') ?? []
 
 const DEFAULT = ['instagram', 'x', 'linkedin', 'social', 'book', 'resume', 'github']
 
@@ -37,6 +40,13 @@ test('a list shows only what it names', () => {
 test('none hides the whole group', () => {
   assert.deepEqual(hidden('?contact=none&social=all&links=all'), ['email', 'card', 'whatsapp', 'contact'])
   assert.deepEqual(hidden('?links=none&social=all'), ['book', 'resume', 'github', 'site', 'links'])
+})
+
+test('about=tilde picks the Tilde version, and links= marks that it asked', () => {
+  assert.deepEqual(run('?from=card-nfc&about=tilde'), { 'data-hello-hide': DEFAULT.join(' '), 'data-hello-about': 'tilde' })
+  assert.equal(run('?about=me')['data-hello-about'], undefined)
+  assert.equal(run('?about=tilde&links=resume')['data-hello-links-set'], '')
+  assert.equal(run('?about=tilde')['data-hello-links-set'], undefined)
 })
 
 test('the stylesheet hides every key and group', () => {

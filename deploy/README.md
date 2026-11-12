@@ -123,6 +123,15 @@ the old one, the page shows everything, defaults included. The defaults are `SHA
 `site.css` and its `data-hello-item` in `src/pages/Hello.tsx`; the script change also changes the
 hash, and `deploy/check-csp.mjs` fails the build until `nginx.conf` has the new one.
 
+### The Tilde version (`?about=tilde`)
+
+`?about=tilde` shows /hello for someone who'd like to know about Tilde: "This is Tilde." as the
+headline, an intro about the card, keychain or phone they met, a "make your own" section (the app,
+print a card, keychains, uses), then keep in touch, about me and the diagram, with no work links
+unless `?links=` asks. The default page links to it ("how this works →"), keeping the arrival; back
+returns. Both versions are in every /hello page and the head script picks one, so it needs the new
+`nginx.conf` too.
+
 ## taptilde.com short links (Cloudflare, Thomas)
 
 **Until taptilde.com goes live as its own site** (the next section). After that, these rules are disabled and the

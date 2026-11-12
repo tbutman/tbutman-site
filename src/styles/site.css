@@ -1047,6 +1047,20 @@ main {
   display: contents;
 }
 
+/* ?about=tilde (scripts/hello-share.mjs): each version hides the other's parts, and the Tilde one the
+   work links unless ?links= asks. Only hiding, so a shown part keeps its own display (the headline's
+   second line is a block); :root outranks rules like .hello-intro h1 span. */
+:root:not([data-hello-about='tilde']) [data-hello-version='tilde'],
+:root[data-hello-about='tilde'] [data-hello-version='default'],
+:root[data-hello-about='tilde']:not([data-hello-links-set]) [data-hello-item='links'] {
+  display: none;
+}
+
+.hello-iphone {
+  margin: 0;
+  color: var(--text-soft);
+}
+
 .hello-bio {
   max-width: 44rem;
   font-size: 1.0625rem;

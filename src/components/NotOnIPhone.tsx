@@ -14,10 +14,11 @@ const appleDevice = (): 'iPhone' | 'iPad' | null => {
 }
 const subscribe = () => () => {}
 
-/** The children, or on an iPhone or iPad, what it does instead of the Android app. */
-export default function NotOnIPhone({ children }: { children: ReactNode }) {
+/** The children, or on an iPhone or iPad, what it does instead of the Android app (or the given note). */
+export default function NotOnIPhone({ children, note }: { children: ReactNode; note?: ReactNode }) {
   const device = useSyncExternalStore(subscribe, appleDevice, () => null)
   if (!device) return children
+  if (note) return note
   return (
     <span className="iphone-app-note">
       Your {device} reads tags with no app · the app is Android only

@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { type MouseEvent, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
 import LangSwitch from '../components/LangSwitch'
+import NotOnIPhone from '../components/NotOnIPhone'
 import { type Diagram, diagrams } from '../content/diagrams'
 import { helloShared, helloText } from '../content/hello'
 import { profile } from '../content/profile'
@@ -59,6 +60,26 @@ export default function Hello({ locale }: { locale: Locale }) {
     window.history.replaceState(window.history.state, '', `${pathname}${rest.length ? `?${rest.join('&')}` : ''}${hash}`)
   }, [])
 
+  // ?about=tilde, the Tilde version: both versions are in the page (data-hello-version), and <html
+  // data-hello-about> picks one. The head script sets it on load (scripts/hello-share.mjs); "how this
+  // works" sets it here, keeping the arrival, and going back undoes it.
+  const showTilde = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    const { pathname, search, hash } = window.location
+    window.history.pushState(window.history.state, '', `${pathname}${search ? `${search}&` : '?'}about=tilde${hash}`)
+    document.documentElement.setAttribute('data-hello-about', 'tilde')
+    window.scrollTo(0, 0)
+  }
+  useEffect(() => {
+    const sync = () => {
+      if (new URLSearchParams(window.location.search).get('about') === 'tilde') document.documentElement.setAttribute('data-hello-about', 'tilde')
+      else document.documentElement.removeAttribute('data-hello-about')
+    }
+    window.addEventListener('popstate', sync)
+    return () => window.removeEventListener('popstate', sync)
+  }, [])
+  const tilde = text.tildeVersion
+
   return (
     <article className="hello" data-arrival={arrival}>
       <LangSwitch locale={locale} paths={{ en: '/hello', pt: translations['/hello'] }} />
@@ -68,16 +89,40 @@ export default function Hello({ locale }: { locale: Locale }) {
           {from.status}
         </p>
         <h1 id="hello-heading">
-          {text.headline[0]} <span>{text.headline[1]}</span>
+          {text.headline[0]} <span data-hello-version="default">{text.headline[1]}</span>
+          <span data-hello-version="tilde">{tilde.headline}</span>
         </h1>
-        <p className="lede">
-          {from.intro} {text.tilde.before}
+        <p className="lede" data-hello-version="default">
+          {from.thanks} {from.others} {text.tilde.before}
           <a href={text.tilde.href}>{text.tilde.link}</a>
           {text.tilde.after}
+        </p>
+        <p className="lede" data-hello-version="tilde">
+          {[from.thanks, from.made, tilde.about].filter(Boolean).join(' ')}
         </p>
         <p className="hello-open">
           <span>{text.openTo}</span> {text.availability} · {text.engagement}
         </p>
+      </section>
+
+      <section className="section" aria-labelledby="hello-tilde-heading" data-hello-version="tilde">
+        <div className="section-head">
+          <h2 id="hello-tilde-heading">{tilde.heading}</h2>
+        </div>
+        <div className="hello-actions panel">
+          <NotOnIPhone note={<p className="hello-iphone">{tilde.iphone}</p>}>
+            <a className="button primary" href={tilde.app.href}>
+              {tilde.app.label}
+            </a>
+          </NotOnIPhone>
+          <div className="button-row">
+            {tilde.links.map((link) => (
+              <a key={link.href} className="button" href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="section" aria-labelledby="hello-touch-heading" data-hello-item="touch">
@@ -155,9 +200,11 @@ export default function Hello({ locale }: { locale: Locale }) {
           <h2 id="hello-path-heading">{text.diagramHeading}</h2>
         </div>
         <ArchitectureDiagram diagram={diagram} />
-        <p className="hello-note">{from.note}</p>
-        <p className="hello-note">
-          <Link to={text.projectLink.to}>{text.projectLink.label}</Link>
+        {from.note && <p className="hello-note">{from.note}</p>}
+        <p className="hello-note" data-hello-version="default">
+          <a href="?about=tilde" onClick={showTilde}>
+            {text.howLink}
+          </a>
         </p>
         <p className="hello-note">
           <Link to={text.buildLink.to}>{text.buildLink.label}</Link>
