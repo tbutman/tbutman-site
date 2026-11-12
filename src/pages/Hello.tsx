@@ -72,7 +72,7 @@ export default function Hello({ locale }: { locale: Locale }) {
         <p className="lede">
           {from.intro} {text.tilde.before}
           <a href={text.tilde.href}>{text.tilde.link}</a>
-          {text.tilde.after} {text.introEnd}
+          {text.tilde.after}
         </p>
         <p className="hello-open">
           <span>{text.openTo}</span> {text.availability} · {text.engagement}
