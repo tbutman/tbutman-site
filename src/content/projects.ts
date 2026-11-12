@@ -53,12 +53,12 @@ export const projects: Project[] = [
     screensNote: 'the public demo on pratoemdia.com: Tasca Imaginária is a fictional restaurant',
     screens: [
       { src: '/prato-em-dia/guest-menu-sold-out.webp', width: 640, height: 1280, caption: 'What guests see · a daily special sold out', alt: 'The guest menu of the fictional Tasca Imaginária on a phone: its daily specials with prices, and duck rice crossed out and marked sold out.' },
-      { src: '/prato-em-dia/owner-mark-sold-out.webp', width: 640, height: 1280, caption: 'The owner’s phone · one change, waiting to publish', alt: 'The owner’s view on a phone: a switch for each daily special and dessert, duck rice switched to sold out, and one unpublished change with Discard and Publish change buttons.' },
+      { src: '/prato-em-dia/owner-sold-out-today.webp', width: 640, height: 1280, caption: 'The owner’s phone · sold out, live at once for today', alt: 'The owner’s view on a phone: a switch for each daily special, duck rice switched to sold out, and a note that it’s live now for today only, with Undo and a link to the guest menu.' },
       { src: '/prato-em-dia/landing.webp', width: 1280, height: 800, desktop: true, caption: 'pratoemdia.com · the landing page', alt: 'The Prato em Dia landing page: “Today’s menu. Up to date everywhere.”, with a handwritten specials sheet beside the same menu on a phone.' },
     ],
     built: [
       'A phone-first owner app. Photos of a printed menu become a private draft, and every dish is reviewed before anything is published; nothing reaches guests until the owner publishes.',
-      'Everyday changes in a Today screen (prices and availability), menus scheduled by date and period, promotions and temporary closures.',
+      'A Today screen for everyday changes: a sold-out dish or today’s price reaches guests at once, for that day only, with Undo, and the saved menu stays as it was. Plus menus scheduled by date and period, promotions and temporary closures.',
       'Lightweight restaurant pages: the menu is in the initial HTML for search engines, business facts are entered once and shared by every page, and photos are served at the size each screen needs.',
       'Menus in Portuguese and English, and one permanent address per restaurant for the QR code on the table, the website and social profiles.',
     ],
