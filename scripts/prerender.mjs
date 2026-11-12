@@ -12,7 +12,7 @@ import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promi
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { gzipSync } from 'node:zlib'
-import { helloShareScript } from './hello-share.mjs'
+import { helloShareScript, SHARE_DEFAULTS } from './hello-share.mjs'
 import { findLeaks, guarded } from './leak-guard.mjs'
 
 const TILDE = process.env.SITE === 'tilde'
@@ -26,7 +26,7 @@ const dist = join(root, TILDE ? 'dist-tilde' : 'dist')
 const serverDist = join(root, TILDE ? 'dist-server-tilde' : 'dist-server')
 
 const template = await readFile(join(dist, 'index.html'), 'utf8')
-const { paths, arrivalPages = [], render, contactCard, tildeTwin } = await import(pathToFileURL(join(serverDist, TILDE ? 'entry-server-tilde.js' : 'entry-server.js')).href)
+const { paths, arrivalPages = [], render, contactCards, tildeTwin } = await import(pathToFileURL(join(serverDist, TILDE ? 'entry-server-tilde.js' : 'entry-server.js')).href)
 // A tbutman.com Tilde path's address on taptilde.com ("/tilde/card" → "https://taptilde.com/card"), or null.
 const twinUrl = (path) => {
   const twin = tildeTwin(path)
@@ -183,9 +183,13 @@ if (!TILDE) {
     console.warn('no Thomas_Butman_Resume.pdf in dist; run npm run resume:pdf')
   })
 
-  const card = contactCard(siteUrl)
-  await writeFile(join(dist, card.file), card.body)
-  console.log(`wrote ${card.file}`)
+  // The contact card (src/lib/vcard.ts): thomas-butman.vcf holds what /hello offers by default, for
+  // a page whose script doesn't run; vcard/<mask>.vcf, every combination, for what a page offers.
+  const shownByDefault = new Set(Object.values(SHARE_DEFAULTS).flat())
+  const cards = contactCards(siteUrl, (item) => shownByDefault.has(item))
+  await mkdir(join(dist, 'vcard'), { recursive: true })
+  for (const card of cards) await writeFile(join(dist, card.file), card.body)
+  console.log(`wrote ${cards[0].file} and ${cards.length - 1} combinations in vcard/`)
 }
 
 // The App Link for taptilde.com/p (Tilde 1.4.0's package tracker): the app's package and its release

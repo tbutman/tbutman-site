@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Link, useLocation } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
 import LangSwitch from '../components/LangSwitch'
@@ -8,6 +8,7 @@ import { helloShared, helloText } from '../content/hello'
 import { profile } from '../content/profile'
 import { type Locale, translations } from '../i18n'
 import { arrivalOf } from '../lib/arrival'
+import { vcardMask } from '../lib/vcard'
 import { copyText, selectText } from '../lib/clipboard'
 
 // The arrival the page was served for. nginx picks the prerendered page for the link's ?from=
@@ -15,6 +16,17 @@ import { copyText, selectText } from '../lib/clipboard'
 // address means hydration always matches, even on a server whose config predates the arrivals. It
 // stays for the visit, so switching language keeps it.
 const served = typeof document === 'undefined' ? null : document.querySelector('.hello')?.getAttribute('data-arrival') ?? null
+
+// The contact card holds what the page shows (src/lib/vcard.ts): read in the browser from what the
+// head script hid, and the Tilde version's missing work links; the server's is the default card.
+const noSubscribe = () => () => {}
+const WORK = new Set<string>(['site', 'github', 'resume', 'book'])
+function vcardHref() {
+  const root = document.documentElement
+  const hidden = new Set((root.getAttribute('data-hello-hide') ?? '').split(' '))
+  const noLinks = root.getAttribute('data-hello-about') === 'tilde' && !root.hasAttribute('data-hello-links-set')
+  return `${helloShared.vcardPath}?v=${vcardMask((item) => !hidden.has(item) && !(noLinks && WORK.has(item)))}`
+}
 
 // Landing page for the business card. Phone-first: ways to stay in touch come first, for anyone
 // met in person, then the work actions, then everything else.
@@ -59,6 +71,8 @@ export default function Hello({ locale }: { locale: Locale }) {
     if (rest.length === search.slice(1).split('&').filter(Boolean).length) return
     window.history.replaceState(window.history.state, '', `${pathname}${rest.length ? `?${rest.join('&')}` : ''}${hash}`)
   }, [])
+
+  const vcard = useSyncExternalStore(noSubscribe, vcardHref, () => helloShared.vcardPath)
 
   // ?about=tilde, the Tilde version: both versions are in the page (data-hello-version), and the head
   // script's <html data-hello-about> picks one (scripts/hello-share.mjs).
@@ -120,7 +134,7 @@ export default function Hello({ locale }: { locale: Locale }) {
         <div className="hello-actions panel">
           {/* data-hello-item: what ?contact=, ?social= and ?links= can hide (scripts/hello-share.mjs). */}
           {/* The one call to action. No download attribute: iOS only offers "Create New Contact" when it opens the file. */}
-          <a className="button primary" href={helloShared.vcardPath} data-hello-item="card">
+          <a className="button primary" href={vcard} data-hello-item="card">
             {text.saveContact}
           </a>
           {/* The address shows on its button, so a phone that won't copy can select it instead. */}

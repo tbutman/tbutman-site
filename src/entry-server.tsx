@@ -6,7 +6,7 @@ import { projects } from './content/projects'
 import { ARRIVALS } from './lib/arrival'
 import { getMeta } from './meta'
 
-export { contactCard } from './lib/vcard'
+export { contactCards } from './lib/vcard'
 export { tildeTwin } from './site'
 
 export const paths = ['/', '/resume', '/how-i-work', '/thanks', '/hello', '/pt/hello', '/tilde', '/pt/tilde', '/tilde/privacy', '/pt/tilde/privacy', '/tilde/card', '/pt/tilde/card', '/tilde/fobs', '/tilde/home', '/tilde/p', '/tilde/support', '/tilde/uses', '/tilde/app', ...projects.map((project) => `/work/${project.slug}`), '/404']
