@@ -106,16 +106,17 @@ disagree. Any `from` makes the link longer than 32 characters, so the keychain's
 
 ### What /hello offers (`?contact=`, `?social=`, `?links=`)
 
-Each is a comma-separated list, `all` or `none`, and can go on any /hello link with or without
-`from`, for example `/hello?from=phone-android-nfc&social=linkedin&links=resume,book`:
+Each is a comma-separated list, and can go on any /hello link with or without `from`. The keys it
+names show along with the default; `none` first starts from nothing, so only what follows shows;
+`all` shows the whole group. For example `/hello?from=phone-android-nfc&social=linkedin&links=none,resume,book`:
 
 | Parameter | Keys | Without it (Thomas's default) |
 | --- | --- | --- |
 | `contact` | `email`, `card` (save my contact card), `whatsapp` | all three |
 | `social` | `instagram`, `x`, `linkedin` | none |
-| `links` | `book` (the intro call), `resume`, `github`, `site` (the full site) | `site` |
+| `links` | `book` (the intro call), `resume`, `github`, `site` (the full site) | all four |
 
-Unknown keys are ignored; a list with none it knows gets the default. `none` hides the row (socials)
+Unknown keys are ignored. `none` alone hides the row (socials)
 or the whole "work with me" section (links); with no contact and no socials, "keep in touch" goes too. An inline
 script in /hello's head reads them before the page is drawn (`scripts/hello-share.mjs`), allowed
 by its hash in `nginx.conf`'s policy, so this also needs the new `nginx.conf` on the server; with
