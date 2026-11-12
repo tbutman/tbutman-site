@@ -25,7 +25,7 @@ const dist = join(root, TILDE ? 'dist-tilde' : 'dist')
 const serverDist = join(root, TILDE ? 'dist-server-tilde' : 'dist-server')
 
 const template = await readFile(join(dist, 'index.html'), 'utf8')
-const { paths, render, contactCard, tildeTwin } = await import(pathToFileURL(join(serverDist, TILDE ? 'entry-server-tilde.js' : 'entry-server.js')).href)
+const { paths, arrivalPages = [], render, contactCard, tildeTwin } = await import(pathToFileURL(join(serverDist, TILDE ? 'entry-server-tilde.js' : 'entry-server.js')).href)
 // A tbutman.com Tilde path's address on taptilde.com ("/tilde/card" → "https://taptilde.com/card"), or null.
 const twinUrl = (path) => {
   const twin = tildeTwin(path)
@@ -77,8 +77,13 @@ const boothChunk = assetFiles.find((file) => /^parts-[\w-]+\.js$/.test(file))
 if (!boothChunk) throw new Error('no booth chunk (assets/parts-*.js) in the build')
 const boothPaths = new Set(TILDE ? ['/', '/card', '/fobs', '/home', '/uses', '/app'] : ['/tilde', '/tilde/card', '/tilde/fobs', '/tilde/home', '/tilde/uses', '/tilde/app'])
 
-for (const path of paths) {
-  const { html, meta } = render(path)
+// /hello's pages for each ?from= arrival (src/entry-server.tsx) are written beside the routes, with
+// their path's head (its canonical is plain /hello).
+const pages = [...paths.map((path) => ({ path, file: outputFile(path) })), ...arrivalPages]
+
+for (const { path: route, file: output } of pages) {
+  const { html, meta } = render(route)
+  const path = route.split('?')[0]
   // Nothing internal reaches a visitor (scripts/leak-guard.mjs; visitor round 1, item 1): on every
   // Tilde page, every build stops on our drafts' gates, placeholders, questions and names, and CI
   // also on a render older than its model or a MakerWorld stand-in. SITE_DRAFT=1 only warns, for a
@@ -146,10 +151,10 @@ for (const path of paths) {
   const weight = await pageWeight(page)
   page = page.replaceAll('__PAGE_WEIGHT__', weight)
 
-  const file = join(dist, outputFile(path))
+  const file = join(dist, output)
   await mkdir(dirname(file), { recursive: true })
   await writeFile(file, page)
-  console.log(`prerendered ${path} -> ${outputFile(path)} (${weight})`)
+  console.log(`prerendered ${route} -> ${output} (${weight})`)
 }
 
 await writeFile(

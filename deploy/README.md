@@ -76,6 +76,32 @@ sudo docker compose exec website nginx -t
 sudo docker compose exec website nginx -s reload
 ```
 
+## /hello's ?from= links
+
+/hello and /pt/hello say where the visitor came from: the status line, the intro's opening, the
+diagram's first step and the note under it (`src/content/hello.ts`). Each printed or programmed
+link carries a `from` value; the stats count each one as its own row. Values never change once
+printed:
+
+| Link | `from` | Page |
+| --- | --- | --- |
+| The business card's QR code | `card-qr` | you scanned my card |
+| The business card's NFC sticker | `card-nfc` | you tapped my card |
+| The keychain's QR tag | `key-qr` | you scanned my keychain |
+| The QR tag's NFC sticker, or the round fob | `key-nfc`, `fob` | you tapped my keychain |
+| Thomas's Android phone (Tilde) | `phone-android` | you tapped or scanned my phone |
+| Thomas's iPhone | `phone-iphone` | you got this from my iPhone |
+| Either phone | `phone` | you got this from my phone |
+| Any other QR code or NFC tag | `qr-<name>`, `nfc-<name>` (lowercase, digits, `-`) | you scanned / tapped one of my codes |
+| A link, or anything without a value | none | the plain page |
+
+The build prerenders a page for each (`dist/_hello/`), and nginx serves it by the value
+(`$hello_arrival` in `nginx.conf`). **That needs the new `nginx.conf` on the server** (above): until
+then every visitor gets the plain page, which fits all of them. Adding a value means
+`src/lib/arrival.ts`, the map, and the copy in both languages; `npm test` fails if the map and the app
+disagree. Any `from` makes the link longer than 32 characters, so the keychain's QR tag grows to
+29 × 29 squares (tilde-card's `docs/KEYRING.md`).
+
 ## taptilde.com short links (Cloudflare, Thomas)
 
 **Until taptilde.com goes live as its own site** (the next section). After that, these rules are disabled and the

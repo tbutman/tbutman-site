@@ -26,6 +26,18 @@ check() {
   (( failures == before )) && echo "ok   ${HOST:+$HOST }$path ($status)"
 }
 
+# page <path> <pattern> : the page's body must match (or, with a leading !, must not)
+page() {
+  local path="$1" pattern="$2" body
+  body="$(curl -s ${HOST:+-H "Host: $HOST"} "$BASE$path")"
+  if [[ "$pattern" == !* ]]; then
+    grep -qE "${pattern:1}" <<<"$body" && { echo "FAIL $path: body matches ${pattern:1}"; failures=$((failures + 1)); return; }
+  else
+    grep -qE "$pattern" <<<"$body" || { echo "FAIL $path: body doesn't match $pattern"; failures=$((failures + 1)); return; }
+  fi
+  echo "ok   ${HOST:+$HOST }$path (body)"
+}
+
 HOST=""
 asset="$(curl -s "$BASE/" | grep -oE '/assets/[^"]+\.js' | head -n1)"
 [[ -n "$asset" ]] || { echo "FAIL could not find a script asset on the home page"; exit 1; }
@@ -55,6 +67,26 @@ check /tilde/support          301 '^location: https://taptilde.com/support\?from
 check /tilde/share.webp       200 '^content-type: image/webp'
 # tbutman.com's own pages, and the rest of the old /tilde links (go-live, site-finish-line.md "NOW").
 check /hello                  200 '^content-type: text/html'
+# /hello's page for where the visitor came from (?from=, src/lib/arrival.ts); anything else gets the plain page.
+check '/hello?from=card-qr'   200 '^content-type: text/html' '^cache-control: no-cache' "${security[@]}" "$csp"
+page /hello                   'data-arrival="link"'
+page '/hello?from=card-qr'    'data-arrival="card-qr"'
+page '/hello?from=card-nfc'   'data-arrival="card-nfc"'
+page '/hello?from=key-qr'     'data-arrival="key-qr"'
+page '/hello?from=key-nfc'    'data-arrival="fob"'
+page '/hello?from=fob'        'data-arrival="fob"'
+page '/hello?from=phone'      'data-arrival="phone"'
+page '/hello?from=phone-android' 'data-arrival="phone-android"'
+page '/hello?from=phone-iphone'  'data-arrival="phone-iphone"'
+page '/hello?from=qr-laptop'  'data-arrival="qr"'
+page '/hello?from=nfc-laptop' 'data-arrival="nfc"'
+page '/hello?from=fob&x=1'    'data-arrival="fob"'
+page '/hello?from=nope'       'data-arrival="link"'
+page '/hello?from=../index'   'data-arrival="link"'
+page '/pt/hello'              'data-arrival="link"'
+page '/pt/hello?from=fob'     'data-arrival="fob"'
+page '/pt/hello?from=fob'     'lang="pt-PT"'
+check /_hello/card-qr.html    404 '^cache-control: no-store'
 check /work/tilde             200 '^content-type: text/html'
 check /tilde/fobs             301 '^location: https://taptilde.com/fobs\?from=tbutman\.com$'
 check /tilde/uses             301 '^location: https://taptilde.com/uses\?from=tbutman\.com$'
