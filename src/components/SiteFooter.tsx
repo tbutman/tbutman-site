@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { profile } from '../content/profile'
+import { Link } from './SiteLink'
 
 // scripts/prerender.mjs measures each page after the build and swaps this token for the
 // real size, mirroring it into a meta tag so hydration reads the same value: what the first
@@ -16,13 +17,18 @@ function pageWeight() {
   return document.querySelector<HTMLMetaElement>('meta[name="page-weight"]')?.content ?? ''
 }
 
-/** The footer of every page; `lead` replaces the © line (taptilde.com's says who made it). */
+/** The footer of every page; `lead` replaces the © line (taptilde.com's says who made it). The ©
+ line links to the home page, for pages people reach directly, like /hello (Thomas). */
 export default function SiteFooter({ lead }: { lead?: ReactNode }) {
   const weight = pageWeight()
 
   return (
     <footer className="site-footer">
-      {lead ?? <p>© {profile.name}</p>}
+      {lead ?? (
+        <p>
+          © {profile.name} · <Link to="/">tbutman.com</Link>
+        </p>
+      )}
       <p className="proof" aria-label="How this site is built">
         {__BUILD_COMMIT__ && (
           <span>
