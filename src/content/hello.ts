@@ -61,7 +61,7 @@ const en = {
   arrivals: {
     link: {
       status: 'you found my hello page',
-      thanks: 'Thanks for stopping by.',
+      thanks: 'Thanks for visiting.',
       others: 'My business card, keychain and phone all lead here, with a tap or a scan.',
       mine: null,
       yours: { label: 'Your phone or computer', detail: 'a link, a tap or a scan' },
