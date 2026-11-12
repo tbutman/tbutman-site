@@ -1011,6 +1011,11 @@ main {
   color: var(--accent);
 }
 
+/* "Good to meet you.": quieter than the name, so "Let's keep in touch." stands out. */
+.hello-intro h1 .hello-meet {
+  color: var(--muted);
+}
+
 /* The intro's Tilde link: underlined too, so it reads as a link without the color. */
 .hello-intro .lede a {
   color: var(--accent);

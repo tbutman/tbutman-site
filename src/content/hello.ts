@@ -37,10 +37,8 @@ type ArrivalText = {
   status: string
   /** The intro's first sentence, in both versions. */
   thanks: string
-  /** The default version's second sentence: Thomas's other devices. */
+  /** The Tilde version's (?about=tilde) second sentence: Thomas's other devices. */
   others: string
-  /** The Tilde version's (?about=tilde) second sentence: what that object is, or nothing. */
-  made: string
   mine: Step | null
   yours: Step
   /** Under the diagram; empty for none. */
@@ -48,13 +46,16 @@ type ArrivalText = {
 }
 
 const en = {
-  headline: ['Hi, I’m Thomas.', 'Good to meet you.'],
+  // The second line in a quieter color, the third in the accent (Thomas).
+  headline: ['Hi, I’m Thomas.', 'Good to meet you.', 'Let’s keep in touch.'],
+  // The default version's intro, after the arrival's "Thanks for…": it reads naturally with Thomas
+  // right there (Thomas: most visitors open it while he's talking to them).
+  ready: 'Everything you need to reach me is below, ready whenever you are.',
   arrivals: {
     link: {
       status: 'you found my hello page',
       thanks: 'Thanks for stopping by.',
       others: 'My business card, keychain and phone all lead here, with a tap or a scan.',
-      made: '',
       mine: null,
       yours: { label: 'Your phone or computer', detail: 'a link, a tap or a scan' },
       note: '',
@@ -63,7 +64,6 @@ const en = {
       status: 'you scanned my card',
       thanks: 'Thanks for scanning my business card.',
       others: 'My keychain and phone do the same, with a tap or a scan.',
-      made: 'It’s a Tilde Card: I designed and 3D-printed it, with an NFC sticker sealed inside.',
       mine: { label: 'My business card', detail: 'a QR code on the front' },
       yours: { label: 'Your phone', detail: 'scanned the code' },
       note: '',
@@ -72,7 +72,6 @@ const en = {
       status: 'you tapped my card',
       thanks: 'Thanks for tapping my business card.',
       others: 'My keychain and phone do the same, with a tap or a scan.',
-      made: 'It’s a Tilde Card: I designed and 3D-printed it, with an NFC sticker sealed inside.',
       mine: { label: 'My business card', detail: 'an NFC sticker inside' },
       yours: { label: 'Your phone', detail: 'tapped the card' },
       note: 'There’s a QR code on the front too, for phones without NFC.',
@@ -81,7 +80,6 @@ const en = {
       status: 'you scanned my keychain',
       thanks: 'Thanks for scanning my keychain.',
       others: 'My business card and phone do the same, with a tap or a scan.',
-      made: 'It’s a Tilde keychain I 3D-printed, with an NFC sticker inside.',
       mine: { label: 'My keychain', detail: 'a QR tag' },
       yours: { label: 'Your phone', detail: 'scanned the tag' },
       note: 'The tag’s size follows its link: the 3D model picks the smallest QR code that holds it.',
@@ -90,7 +88,6 @@ const en = {
       status: 'you tapped my keychain',
       thanks: 'Thanks for tapping my keychain.',
       others: 'My business card and phone do the same, with a tap or a scan.',
-      made: 'It’s a Tilde keychain I 3D-printed, with an NFC sticker inside.',
       mine: { label: 'My keychain', detail: 'an NFC sticker inside' },
       yours: { label: 'Your phone', detail: 'tapped it' },
       note: 'The fob’s two pieces twist shut with a quarter turn and no glue, so the sticker inside can be swapped.',
@@ -99,7 +96,6 @@ const en = {
       status: 'you tapped or scanned my phone',
       thanks: 'Thanks for tapping or scanning my phone.',
       others: 'My business card and keychain do the same, with a tap or a scan.',
-      made: 'My Android phone runs Tilde, an app I wrote.',
       mine: { label: 'My phone', detail: 'a tap or a code' },
       yours: { label: 'Your phone', detail: 'opened the link' },
       note: 'On my Android phone, Tilde shares it with a tap or a QR code, and your phone needs no app to read it.',
@@ -108,7 +104,6 @@ const en = {
       status: 'you tapped or scanned my phone',
       thanks: 'Thanks for tapping or scanning my phone.',
       others: 'My business card and keychain do the same, with a tap or a scan.',
-      made: 'It runs Tilde, an app I wrote.',
       mine: { label: 'My Android phone', detail: 'running Tilde' },
       yours: { label: 'Your phone', detail: 'a tap or a scan' },
       note: 'Your phone didn’t need an app: it reads mine the way it reads an NFC sticker or a contactless business card.',
@@ -117,7 +112,6 @@ const en = {
       status: 'you tapped my phone',
       thanks: 'Thanks for tapping my phone.',
       others: 'My business card and keychain do the same, with a tap or a scan.',
-      made: 'It runs Tilde, an app I wrote.',
       mine: { label: 'My Android phone', detail: 'running Tilde' },
       yours: { label: 'Your phone', detail: 'tapped it' },
       note: 'Your phone didn’t need an app: it reads mine the way it reads an NFC sticker or a contactless business card.',
@@ -126,7 +120,6 @@ const en = {
       status: 'you scanned my phone',
       thanks: 'Thanks for scanning my phone.',
       others: 'My business card and keychain do the same, with a tap or a scan.',
-      made: 'It runs Tilde, an app I wrote.',
       mine: { label: 'My Android phone', detail: 'running Tilde' },
       yours: { label: 'Your phone', detail: 'scanned my screen' },
       note: 'Tilde shows the link as a QR code too, for phones without NFC or people who’d rather scan.',
@@ -135,7 +128,6 @@ const en = {
       status: 'you got this from my iphone',
       thanks: 'Thanks for opening the link from my iPhone.',
       others: 'My business card and keychain do the same, with a tap or a scan.',
-      made: '',
       mine: { label: 'My iPhone', detail: 'a shared link' },
       yours: { label: 'Your phone', detail: 'opened the link' },
       note: 'Tilde’s app is Android only for now, so on my iPhone the link is just a link.',
@@ -144,7 +136,6 @@ const en = {
       status: 'you scanned one of my codes',
       thanks: 'Thanks for scanning one of my QR codes.',
       others: 'My business card, keychain and phone do the same, with a tap or a scan.',
-      made: '',
       mine: { label: 'A code of mine', detail: 'a QR code' },
       yours: { label: 'Your phone', detail: 'scanned it' },
       note: '',
@@ -153,14 +144,13 @@ const en = {
       status: 'you tapped one of my tags',
       thanks: 'Thanks for tapping one of my NFC tags.',
       others: 'My business card, keychain and phone do the same, with a tap or a scan.',
-      made: '',
       mine: { label: 'A tag of mine', detail: 'an NFC sticker' },
       yours: { label: 'Your phone', detail: 'tapped it' },
       note: 'Phones read a tag like this without any app. The 3D models and the app are open source.',
     },
   } satisfies Record<Arrival, ArrivalText>,
-  // The same for every arrival, after its own two sentences; the link is the app's page, the best
-  // introduction to Tilde (Thomas).
+  // The Tilde version's last sentence, the same for every arrival; the link is the app's page, the
+  // best introduction to Tilde (Thomas).
   tilde: {
     before: 'They’re all part of ',
     link: 'Tilde',
@@ -190,7 +180,6 @@ const en = {
   // (Thomas, October 26: src/site.ts).
   tildeVersion: {
     headline: 'This is Tilde.',
-    about: 'Tilde is my open-source project for sharing anything with a link, with a tap or a scan: a free Android app, and cards and keychains you can print yourself.',
     heading: 'make your own',
     app: { label: 'get the free android app ↗', href: 'https://taptilde.com/app' },
     iphone: 'On an iPhone? The app is Android only for now, but a printed card or keychain works with any phone.',
@@ -208,14 +197,15 @@ export type HelloText = typeof en
 
 const pt: HelloText = {
   // A non-breaking hyphen (U+2011) keeps “conhecer‑te” on one line in the large headline.
-  headline: ['Olá, sou o Thomas.', 'Prazer em conhecer\u2011te.'],
+  headline: ['Olá, sou o Thomas.', 'Prazer em conhecer\u2011te.', 'Vamos falando.'],
+  // "Vamos falando" is how pt-PT says "let's keep in touch", and fits the headline's line (PT: review).
+  ready: 'Tens aqui em baixo tudo o que precisas para falar comigo, para quando te der jeito.',
   // New for the ?from= arrivals (PT: review).
   arrivals: {
     link: {
       status: 'encontraste a minha página',
       thanks: 'Obrigado pela visita.',
       others: 'O meu cartão de visita, o meu porta-chaves e o meu telemóvel trazem-te até aqui, com um toque ou um código.',
-      made: '',
       mine: null,
       yours: { label: 'O teu navegador', detail: 'um link, toque ou código' },
       note: '',
@@ -224,7 +214,6 @@ const pt: HelloText = {
       status: 'leste o código do meu cartão',
       thanks: 'Obrigado por leres o código do meu cartão de visita.',
       others: 'O meu porta-chaves e o meu telemóvel fazem o mesmo, com um toque ou um código.',
-      made: 'É um cartão Tilde: desenhei-o e imprimi-o em 3D, com um autocolante NFC selado lá dentro.',
       mine: { label: 'O meu cartão de visita', detail: 'um código QR na frente' },
       yours: { label: 'O teu telemóvel', detail: 'leu o código' },
       note: '',
@@ -233,7 +222,6 @@ const pt: HelloText = {
       status: 'tocaste no meu cartão',
       thanks: 'Obrigado por encostares o telemóvel ao meu cartão de visita.',
       others: 'O meu porta-chaves e o meu telemóvel fazem o mesmo, com um toque ou um código.',
-      made: 'É um cartão Tilde: desenhei-o e imprimi-o em 3D, com um autocolante NFC selado lá dentro.',
       mine: { label: 'O meu cartão de visita', detail: 'com NFC lá dentro' },
       yours: { label: 'O teu telemóvel', detail: 'tocou no cartão' },
       note: 'Também há um código QR na frente, para telemóveis sem NFC.',
@@ -242,7 +230,6 @@ const pt: HelloText = {
       status: 'leste o código do meu porta-chaves',
       thanks: 'Obrigado por leres o código do meu porta-chaves.',
       others: 'O meu cartão de visita e o meu telemóvel fazem o mesmo, com um toque ou um código.',
-      made: 'É um porta-chaves Tilde que imprimi em 3D, com um autocolante NFC lá dentro.',
       mine: { label: 'O meu porta-chaves', detail: 'uma etiqueta QR' },
       yours: { label: 'O teu telemóvel', detail: 'leu a etiqueta' },
       note: 'O tamanho da etiqueta acompanha o link: o modelo 3D escolhe o código QR mais pequeno que o comporta.',
@@ -251,7 +238,6 @@ const pt: HelloText = {
       status: 'tocaste no meu porta-chaves',
       thanks: 'Obrigado por encostares o telemóvel ao meu porta-chaves.',
       others: 'O meu cartão de visita e o meu telemóvel fazem o mesmo, com um toque ou um código.',
-      made: 'É um porta-chaves Tilde que imprimi em 3D, com um autocolante NFC lá dentro.',
       mine: { label: 'O meu porta-chaves', detail: 'com NFC lá dentro' },
       yours: { label: 'O teu telemóvel', detail: 'tocou-lhe' },
       note: 'As duas peças do porta-chaves fecham com um quarto de volta e sem cola, por isso o autocolante lá dentro pode ser trocado.',
@@ -260,7 +246,6 @@ const pt: HelloText = {
       status: 'tocaste ou leste o meu telemóvel',
       thanks: 'Obrigado por encostares o teu telemóvel ao meu ou leres o código no ecrã.',
       others: 'O meu cartão de visita e o meu porta-chaves fazem o mesmo, com um toque ou um código.',
-      made: 'O meu Android tem a Tilde, uma app que escrevi.',
       mine: { label: 'O meu telemóvel', detail: 'um toque ou um código' },
       yours: { label: 'O teu telemóvel', detail: 'abriu o link' },
       note: 'No meu Android, a Tilde partilha-o com um toque ou um código QR, e o teu telemóvel não precisa de nenhuma app para o ler.',
@@ -269,7 +254,6 @@ const pt: HelloText = {
       status: 'tocaste ou leste o meu telemóvel',
       thanks: 'Obrigado por encostares o teu telemóvel ao meu ou leres o código no ecrã.',
       others: 'O meu cartão de visita e o meu porta-chaves fazem o mesmo, com um toque ou um código.',
-      made: 'Tem a Tilde, uma app que escrevi.',
       mine: { label: 'O meu Android', detail: 'com a Tilde' },
       yours: { label: 'O teu telemóvel', detail: 'um toque ou um código' },
       note: 'O teu telemóvel não precisou de nenhuma app: lê o meu como lê um autocolante NFC ou um cartão de visita sem contacto.',
@@ -278,7 +262,6 @@ const pt: HelloText = {
       status: 'tocaste no meu telemóvel',
       thanks: 'Obrigado por encostares o teu telemóvel ao meu.',
       others: 'O meu cartão de visita e o meu porta-chaves fazem o mesmo, com um toque ou um código.',
-      made: 'Tem a Tilde, uma app que escrevi.',
       mine: { label: 'O meu Android', detail: 'com a Tilde' },
       yours: { label: 'O teu telemóvel', detail: 'tocou-lhe' },
       note: 'O teu telemóvel não precisou de nenhuma app: lê o meu como lê um autocolante NFC ou um cartão de visita sem contacto.',
@@ -287,7 +270,6 @@ const pt: HelloText = {
       status: 'leste o código do meu telemóvel',
       thanks: 'Obrigado por leres o código no ecrã do meu telemóvel.',
       others: 'O meu cartão de visita e o meu porta-chaves fazem o mesmo, com um toque ou um código.',
-      made: 'Tem a Tilde, uma app que escrevi.',
       mine: { label: 'O meu Android', detail: 'com a Tilde' },
       yours: { label: 'O teu telemóvel', detail: 'leu o código no ecrã' },
       note: 'A Tilde também mostra o link num código QR, para telemóveis sem NFC ou para quem prefere ler o código.',
@@ -296,7 +278,6 @@ const pt: HelloText = {
       status: 'recebeste isto do meu iphone',
       thanks: 'Obrigado por abrires o link do meu iPhone.',
       others: 'O meu cartão de visita e o meu porta-chaves fazem o mesmo, com um toque ou um código.',
-      made: '',
       mine: { label: 'O meu iPhone', detail: 'um link partilhado' },
       yours: { label: 'O teu telemóvel', detail: 'abriu o link' },
       note: 'Por agora, a app Tilde só existe para Android, por isso no meu iPhone o link é só um link.',
@@ -305,7 +286,6 @@ const pt: HelloText = {
       status: 'leste um dos meus códigos',
       thanks: 'Obrigado por leres um dos meus códigos QR.',
       others: 'O meu cartão de visita, o meu porta-chaves e o meu telemóvel fazem o mesmo, com um toque ou um código.',
-      made: '',
       mine: { label: 'Um código meu', detail: 'um código QR' },
       yours: { label: 'O teu telemóvel', detail: 'leu-o' },
       note: '',
@@ -314,7 +294,6 @@ const pt: HelloText = {
       status: 'tocaste numa das minhas etiquetas',
       thanks: 'Obrigado por encostares o telemóvel a uma das minhas etiquetas NFC.',
       others: 'O meu cartão de visita, o meu porta-chaves e o meu telemóvel fazem o mesmo, com um toque ou um código.',
-      made: '',
       mine: { label: 'Uma etiqueta minha', detail: 'uma etiqueta NFC' },
       yours: { label: 'O teu telemóvel', detail: 'tocou-lhe' },
       note: 'Os telemóveis leem uma etiqueta destas sem nenhuma app. Os modelos 3D e a app são de código aberto.',
@@ -348,7 +327,6 @@ const pt: HelloText = {
   // taptilde.com has Portuguese only for its home, the card and privacy; the rest links in English (PT: review).
   tildeVersion: {
     headline: 'Isto é a Tilde.',
-    about: 'A Tilde é o meu projeto de código aberto para partilhar qualquer coisa com um link, com um toque ou um código: uma app Android grátis, e cartões e porta-chaves que qualquer pessoa pode imprimir.',
     heading: 'faz o teu',
     app: { label: 'obtém a app android grátis ↗', href: 'https://taptilde.com/app' },
     iphone: 'Tens um iPhone? Por agora, a app só existe para Android, mas um cartão ou porta-chaves impresso funciona com qualquer telemóvel.',

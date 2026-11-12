@@ -89,16 +89,20 @@ export default function Hello({ locale }: { locale: Locale }) {
           {from.status}
         </p>
         <h1 id="hello-heading">
-          {text.headline[0]} <span data-hello-version="default">{text.headline[1]}</span>
+          {text.headline[0]}{' '}
+          <span className="hello-meet" data-hello-version="default">
+            {text.headline[1]}
+          </span>{' '}
+          <span data-hello-version="default">{text.headline[2]}</span>
           <span data-hello-version="tilde">{tilde.headline}</span>
         </h1>
         <p className="lede" data-hello-version="default">
+          {from.thanks} {text.ready}
+        </p>
+        <p className="lede" data-hello-version="tilde">
           {from.thanks} {from.others} {text.tilde.before}
           <a href={text.tilde.href}>{text.tilde.link}</a>
           {text.tilde.after}
-        </p>
-        <p className="lede" data-hello-version="tilde">
-          {[from.thanks, from.made, tilde.about].filter(Boolean).join(' ')}
         </p>
         <p className="hello-open">
           <span>{text.openTo}</span> {text.availability} · {text.engagement}
