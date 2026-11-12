@@ -147,8 +147,11 @@ for (const { path: route, file: output } of pages) {
     .filter(Boolean)
     .join('\n    ')
 
+  // English /hello isn't for machine translation (Thomas): its Portuguese is /pt/hello. src/pages/Hello.tsx
+  // keeps the mark right when the page switches language in place.
+  const noTranslate = !TILDE && path === '/hello'
   let page = template
-    .replace('<html lang="en">', `<html lang="${meta.lang}">`)
+    .replace('<html lang="en">', `<html lang="${meta.lang}"${noTranslate ? ' translate="no"' : ''}>`)
     .replace('<!--app-head-->', () => head)
     .replace('<!--app-html-->', () => html)
   const weight = await pageWeight(page)

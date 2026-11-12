@@ -59,6 +59,15 @@ export default function Hello({ locale }: { locale: Locale }) {
     window.setTimeout(() => setStatus('idle'), 2500)
   }
 
+  // English /hello isn't for machine translation (Thomas): /pt/hello is the Portuguese. The build marks
+  // the English page (scripts/prerender.mjs); this follows a switch of language in place.
+  useEffect(() => {
+    const root = document.documentElement
+    if (locale === 'en') root.setAttribute('translate', 'no')
+    else root.removeAttribute('translate')
+    return () => root.removeAttribute('translate')
+  }, [locale])
+
   // The server log has counted the ?from= already; take it off the address, so a forwarded link
   // doesn't tell its next reader they tapped the card.
   // The rest of the query stays as written (?links=resume,book keeps its commas).
