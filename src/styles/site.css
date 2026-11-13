@@ -28,7 +28,16 @@ main {
   gap: 0.75rem;
 }
 
-.site-header .lang-switch {
+/* /hello: EN · PT on a row of its own under the menu (Thomas). The header's top padding and the
+   row gap are smaller there, and .hello-intro's top padding with them, so the intro starts where it
+   did with one row. */
+.site-header-hello {
+  row-gap: 0.5rem;
+  padding: 1rem 0 0;
+}
+
+.site-header-hello .lang-switch {
+  flex-basis: 100%;
   margin-top: 0;
 }
 
@@ -1005,8 +1014,8 @@ main {
 /* Phone-first: one column, full-width actions, and the intro short enough to leave the call
    button near the first screen. */
 .hello-intro {
-  /* Close under the top bar, which holds the language switch (Thomas). */
-  padding: clamp(0.75rem, 3vw, 2.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  /* Close under the language row (Thomas); see .site-header-hello. */
+  padding: clamp(0.9375rem, 3vw, 2.5rem) 0 clamp(2.5rem, 6vw, 4rem);
 }
 
 .hello-intro h1 {
@@ -1077,72 +1086,35 @@ main {
   color: var(--text-soft);
 }
 
-/* Thomas's photo (src/components/HelloPhoto.tsx): a circle in the page's line color with a faint
-   accent ring, large beside the intro on desktop, a small avatar beside ~/tbutman on a phone. */
+/* Thomas's photo (src/components/HelloPhoto.tsx): a small circle beside ~/tbutman, in the page's
+   line color with a faint accent ring, opening the same circle larger. */
 .hello-photo {
   flex: none;
+  width: 2rem;
+  height: 2rem;
   padding: 0;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   background: var(--line);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent-soft);
   cursor: zoom-in;
 }
 
-.hello-photo img {
+.hello-photo img,
+.photo-dialog img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.hello-photo-hero {
-  width: clamp(10rem, 18vw, 13.5rem);
-  aspect-ratio: 1;
-}
-
-.hello-photo-avatar {
-  width: 2rem;
-  height: 2rem;
-  box-shadow: 0 0 0 2px var(--accent-soft);
-}
-
-@media (min-width: 681px) {
-  .hello-photo-avatar {
-    display: none;
-  }
-
-  .hello-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: clamp(2rem, 5vw, 4rem);
-  }
-
-  .hello-intro > * {
-    grid-column: 1;
-  }
-
-  .hello-intro > .status {
-    justify-self: start;
-  }
-
-  .hello-intro > .hello-photo-hero {
-    grid-column: 2;
-    grid-row: 1 / span 4;
-    align-self: center;
-  }
-}
-
-@media (max-width: 680px) {
-  .hello-photo-hero {
-    display: none;
-  }
-}
-
+/* Up to 280 px, and never wider than the screen less its gutters. */
 .photo-dialog {
-  max-width: min(92vw, 36rem);
+  width: min(17.5rem, 100vw - 2 * var(--gutter));
+  max-width: none;
   padding: 0;
+  overflow: visible;
   border: 0;
   background: transparent;
   cursor: zoom-out;
@@ -1153,12 +1125,23 @@ main {
 }
 
 .photo-dialog img {
+  aspect-ratio: 1;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--line);
+  box-shadow: 0 0 0 6px var(--accent-soft);
+}
+
+.photo-close {
   display: block;
-  width: 100%;
-  height: auto;
-  max-height: 88vh;
-  object-fit: contain;
-  border-radius: 12px;
+  margin: 1.25rem auto 0;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  font: 500 0.8125rem/1 var(--font-mono);
+  cursor: pointer;
 }
 
 .hello-bio {

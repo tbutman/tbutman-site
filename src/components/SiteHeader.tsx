@@ -24,19 +24,17 @@ function currentSection(pathname: string) {
 export default function SiteHeader() {
   const { pathname } = useLocation()
   const active = currentSection(pathname)
-  // /hello's photo, as a small avatar before the name on a phone (src/components/HelloPhoto.tsx).
+  // /hello's photo, as a small avatar before the name (src/components/HelloPhoto.tsx).
   const hello = pathname === '/hello' ? 'en' : pathname === '/pt/hello' ? 'pt' : null
 
   return (
-    <header className="site-header">
+    <header className={hello ? 'site-header site-header-hello' : 'site-header'}>
       <div className="site-brand">
-        {hello && <HelloPhoto locale={hello} variant="avatar" />}
+        {hello && <HelloPhoto locale={hello} />}
         <Link to="/" className="site-name" aria-label={`${profile.name}, home`}>
           <b>~/</b>tbutman
         </Link>
       </div>
-      {/* /hello's EN · PT in the top row, evenly between the name and the menu (Thomas). */}
-      {hello && <LangSwitch locale={hello} paths={{ en: '/hello', pt: translations['/hello'] }} />}
       <nav className="site-nav" aria-label="Primary">
         {navItems.map((item) => (
           <Link
@@ -50,6 +48,8 @@ export default function SiteHeader() {
         <Link to="/#contact">contact</Link>
         <CommandPalette />
       </nav>
+      {/* /hello's EN · PT on a row of its own, under the menu (Thomas). */}
+      {hello && <LangSwitch locale={hello} paths={{ en: '/hello', pt: translations['/hello'] }} />}
     </header>
   )
 }

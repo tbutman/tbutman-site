@@ -3,24 +3,27 @@ import { helloShared, helloText } from '../content/hello'
 import type { Locale } from '../i18n'
 
 /**
- * Thomas's photo on /hello (Thomas): a circle, which opens the whole photo. The intro shows it large
- * on desktop; on a phone it's the small avatar beside ~/tbutman (src/components/SiteHeader.tsx).
+ * Thomas's photo on /hello (Thomas): a small avatar beside ~/tbutman (src/components/SiteHeader.tsx),
+ * which opens the same circle larger, up to 280 px: enough to recognize him by, not the whole photo.
  * Every copy is resized from the original with its metadata, location included, left out.
  */
-export default function HelloPhoto({ locale, variant }: { locale: Locale; variant: 'hero' | 'avatar' }) {
+export default function HelloPhoto({ locale }: { locale: Locale }) {
   const dialog = useRef<HTMLDialogElement>(null)
-  const { photo } = helloShared
+  const { avatar, large } = helloShared.photo
   const text = helloText[locale].photo
-  const size = variant === 'hero' ? photo.circle : photo.avatar
 
   return (
     <>
-      <button type="button" className={`hello-photo hello-photo-${variant}`} aria-label={text.open} onClick={() => dialog.current?.showModal()}>
-        <img src={size.src} alt="" width={size.width} height={size.width} />
+      <button type="button" className="hello-photo" aria-label={text.open} onClick={() => dialog.current?.showModal()}>
+        <img src={avatar.src} alt="" width={avatar.width} height={avatar.width} />
       </button>
-      {/* A tap anywhere closes it, as do Escape and the back gesture (the browser's own for a dialog). */}
+      {/* A tap anywhere closes it, as do the close button, Escape and the back gesture; the browser
+          then returns focus to the avatar. */}
       <dialog ref={dialog} className="photo-dialog" aria-label={text.alt} onClick={() => dialog.current?.close()}>
-        <img src={photo.full.src} alt={text.alt} width={photo.full.width} height={photo.full.height} loading="lazy" />
+        <img src={large.src} alt={text.alt} width={large.width} height={large.width} loading="lazy" />
+        <button type="button" className="photo-close" autoFocus>
+          {text.close}
+        </button>
       </dialog>
     </>
   )

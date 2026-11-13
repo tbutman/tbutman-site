@@ -20,12 +20,12 @@ import { profile } from './profile'
 const shared = {
   // Generated at build time by src/lib/vcard.ts; nginx serves it as text/vcard.
   vcardPath: '/thomas-butman.vcf',
-  // Thomas and his son (Thomas, November 12, 2026; his choice to include him): the circle crop at
-  // two sizes and the whole photo, made from his original without its metadata (src/components/HelloPhoto.tsx).
+  // Thomas and his son (Thomas, November 12, 2026; his choice to include him): one circle crop, as
+  // the avatar and enlarged to 280 px (2x), made from his original without its metadata
+  // (src/components/HelloPhoto.tsx).
   photo: {
     avatar: { src: '/hello/photo-96.webp', width: 96 },
-    circle: { src: '/hello/photo-480.webp', width: 480 },
-    full: { src: '/hello/photo-1200.webp', width: 900, height: 1200 },
+    large: { src: '/hello/photo-560.webp', width: 560 },
   },
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/t.butman/' },
@@ -167,7 +167,7 @@ const en = {
   openTo: 'open to',
   availability: profile.availability.toLowerCase(),
   engagement: profile.engagement.toLowerCase(),
-  photo: { open: 'See my photo', alt: 'Thomas Butman with his son on a sofa, feeding him a bottle' },
+  photo: { open: 'See my photo', close: 'Close', alt: 'Thomas Butman with his son on a sofa, feeding him a bottle' },
   keepInTouchHeading: 'keep in touch',
   copy: { idle: 'copy', copied: 'copied ✓', selected: 'selected', copiedAnnounce: 'Email address copied', selectedAnnounce: 'Email address selected' },
   saveContact: 'save my contact card',
@@ -327,7 +327,7 @@ const pt: HelloText = {
   openTo: 'disponível para',
   availability: 'remoto (EUA) ou presencial em Lisboa',
   engagement: 'tempo inteiro ou contrato',
-  photo: { open: 'Ver a minha foto', alt: 'Thomas Butman com o filho num sofá, a dar-lhe o biberão' },
+  photo: { open: 'Ver a minha foto', close: 'Fechar', alt: 'Thomas Butman com o filho num sofá, a dar-lhe o biberão' },
   keepInTouchHeading: 'vamos manter o contacto',
   copy: { idle: 'copiar', copied: 'copiado ✓', selected: 'selecionado', copiedAnnounce: 'Endereço de email copiado', selectedAnnounce: 'Endereço de email selecionado' },
   saveContact: 'guardar o meu cartão de contacto',

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Link, useLocation } from 'react-router'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
-import HelloPhoto from '../components/HelloPhoto'
 import NotOnIPhone from '../components/NotOnIPhone'
 import { type Diagram, diagrams } from '../content/diagrams'
 import { helloShared, helloText } from '../content/hello'
@@ -87,7 +86,6 @@ export default function Hello({ locale }: { locale: Locale }) {
   return (
     <article className="hello" data-arrival={arrival}>
       <section className="hello-intro" aria-labelledby="hello-heading">
-        <HelloPhoto locale={locale} variant="hero" />
         <p className="status">
           <span className="status-dot" aria-hidden="true" />
           {from.status}
