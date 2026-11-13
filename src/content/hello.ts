@@ -178,7 +178,8 @@ const en = {
   resume: 'résumé',
   fullSite: 'the full site →',
   // The default version only (Thomas): for North American founders and CEOs who need someone in
-  // Europe, first written for Web Summit 2026's networking events.
+  // Europe, first written for Web Summit 2026's networking events. The home page shows the English
+  // one too (src/components/AmericanInEurope.tsx).
   american: {
     heading: 'an american in europe',
     intro: 'I’m an American software engineer living in Lisbon. If your company is based in North America and needs someone on this side of the Atlantic, I can help:',

@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import AmericanInEurope from '../components/AmericanInEurope'
 import ContactSection from '../components/ContactSection'
 import { experience, roleDates } from '../content/experience'
 import { lab, labIntro } from '../content/lab'
@@ -149,6 +150,7 @@ export default function Home() {
         </div>
       </section>
 
+      <AmericanInEurope locale="en" id="american" headingId="american-heading" />
 
       <section id="lab" className="section" aria-labelledby="lab-heading">
         <div className="section-head">

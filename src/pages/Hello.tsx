@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Link, useLocation } from 'react-router'
+import AmericanInEurope from '../components/AmericanInEurope'
 import ArchitectureDiagram from '../components/ArchitectureDiagram'
 import NotOnIPhone from '../components/NotOnIPhone'
 import { type Diagram, diagrams } from '../content/diagrams'
@@ -201,19 +202,7 @@ export default function Hello({ locale }: { locale: Locale }) {
         <p className="hello-bio">{text.bio}</p>
       </section>
 
-      <section className="section" aria-labelledby="hello-american-heading" data-hello-version="default">
-        <div className="section-head">
-          <h2 id="hello-american-heading">{text.american.heading}</h2>
-        </div>
-        <p className="hello-bio">{text.american.intro}</p>
-        <ul className="hello-points">
-          {text.american.points.map(([lead, body]) => (
-            <li key={lead}>
-              <b>{lead}</b> {body}
-            </li>
-          ))}
-        </ul>
-      </section>
+      <AmericanInEurope locale={locale} headingId="hello-american-heading" data-hello-version="default" />
 
       <section className="section" aria-labelledby="hello-path-heading">
         <div className="section-head">
